@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="lexer.flex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="50" column="36" lean-forward="true" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+              <folding>
+                <marker date="1492873391890" expanded="true" signature="129:132" ph=" { " />
+                <marker date="1492873391890" expanded="true" signature="129:140" ph=" { " />
+                <marker date="1492873391890" expanded="true" signature="182:188" ph=" }" />
+                <marker date="1492873391890" expanded="true" signature="238:241" ph=" { " />
+                <marker date="1492873391890" expanded="true" signature="238:249" ph=" { " />
+                <marker date="1492873391890" expanded="true" signature="298:304" ph=" }" />
+                <marker date="1492873391890" expanded="true" signature="463:470" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="463:501" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="516:550" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="565:601" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="616:648" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="663:692" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="707:738" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="753:787" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="802:832" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="847:883" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="898:935" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="950:986" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="950:987" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1001:1038" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1054:1072" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1054:1073" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1088:1089" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1109:1127" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1109:1128" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1147:1166" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1177:1227" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1260:1296" ph="{...}" />
+                <marker date="1492873391890" expanded="true" signature="1302:1397" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project-template.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/project-template.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modules.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="misc.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-600">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vcs.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1772">
+              <caret line="602" column="51" lean-forward="false" selection-start-line="602" selection-start-column="51" selection-end-line="602" selection-end-column="51" />
+              <folding>
+                <marker date="1492887469663" expanded="true" signature="74006:74048" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74006:74066" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74006:74079" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74006:74094" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74129:76325" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74142:76310" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74196:74491" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74215:74476" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74278:74456" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74318:74422" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74339:74400" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74541:74868" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74560:74853" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74655:74833" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74695:74799" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74716:74777" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74919:75184" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74938:75169" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="74971:75149" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75011:75115" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75032:75093" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75227:75533" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75246:75518" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75320:75498" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75360:75464" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75381:75442" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75584:75929" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75603:75914" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75677:75894" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75717:75860" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75738:75838" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="75981:76296" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="76000:76281" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="76083:76261" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="76123:76227" ph="..." />
+                <marker date="1492887469663" expanded="true" signature="76144:76205" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parser.cup" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/parser.cup">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="132" column="35" lean-forward="false" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
+              <folding>
+                <marker date="1492887169906" expanded="true" signature="13808:15583" ph="{...}" />
+                <marker date="1492887169906" expanded="true" signature="13808:15585" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LexerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ParserTest</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/rosko/bojan/sym.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/Lexer.java" />
+        <option value="$PROJECT_DIR$/test/program.mj" />
+        <option value="$PROJECT_DIR$/test/rosko.bojan/LexerTest.java" />
+        <option value="$PROJECT_DIR$/spec/mjlexer.flex" />
+        <option value="$PROJECT_DIR$/spec/syntax.cup" />
+        <option value="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" />
+        <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
+        <option value="$PROJECT_DIR$/spec/parser.cup" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1920" />
+    <option name="width" value="1280" />
+    <option name="height" value="1024" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bojan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bojan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/java-cup-11a.jar" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="add_unversioned_files" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/rosko.bojan" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JAR Application.Parser">
+    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="rosko.bojan.Main" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="pp1" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="pp1" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="false" name="LexerTest" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="rosko.bojan.LexerTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="pp1" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Parser" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/lib/java-cup-11a.jar" />
+      <option name="PROGRAM_PARAMETERS" value="-dump -destdir src/rosko/bojan -parser Parser spec/parser.cup" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ParserTest" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="rosko.bojan.ParserTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="pp1" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Lexer" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/lib/JFlex.jar" />
+      <option name="PROGRAM_PARAMETERS" value="-d  src/rosko/bojan/ spec/lexer.flex" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.LexerTest" />
+      <item index="1" class="java.lang.String" itemvalue="JAR Application.Parser" />
+      <item index="2" class="java.lang.String" itemvalue="Application.ParserTest" />
+      <item index="3" class="java.lang.String" itemvalue="JAR Application.Lexer" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Main" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="" />
+      <created>1492781127107</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1492781127107</updated>
+      <workItem from="1492781129898" duration="584000" />
+      <workItem from="1492781742808" duration="19000" />
+      <workItem from="1492781772849" duration="3578000" />
+      <workItem from="1492860902371" duration="2391000" />
+      <workItem from="1492869725209" duration="7967000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="14539000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1920" y="0" width="1280" height="1024" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5121413" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2734375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#956#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+          <folding>
+            <marker date="1492873391890" expanded="true" signature="129:132" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="129:140" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="182:188" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="238:241" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="238:249" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="298:304" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="463:470" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="463:501" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="516:550" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="565:601" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="616:648" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="663:692" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="707:738" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="753:787" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="802:832" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="847:883" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="898:935" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:986" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:987" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1001:1038" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1072" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1073" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1088:1089" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1127" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1128" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1147:1166" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1177:1227" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1260:1296" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1302:1397" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12840">
+          <caret line="642" column="16" lean-forward="true" selection-start-line="642" selection-start-column="16" selection-end-line="642" selection-end-column="16" />
+          <folding>
+            <element signature="e#7590#7591#0" expanded="false" />
+            <element signature="e#7647#7648#0" expanded="false" />
+            <element signature="e#7699#7700#0" expanded="false" />
+            <element signature="e#7763#7764#0" expanded="false" />
+            <element signature="e#7965#7966#0" expanded="false" />
+            <element signature="e#7993#7994#0" expanded="false" />
+            <element signature="e#8198#8199#0" expanded="false" />
+            <element signature="e#8247#8248#0" expanded="false" />
+            <element signature="e#11227#11228#0" expanded="false" />
+            <element signature="e#11258#11259#0" expanded="false" />
+            <element signature="e#11396#11397#0" expanded="false" />
+            <element signature="e#11431#11432#0" expanded="false" />
+            <element signature="e#11543#11544#0" expanded="false" />
+            <element signature="e#11620#11621#0" expanded="false" />
+            <element signature="e#11978#11979#0" expanded="false" />
+            <element signature="e#12020#12021#0" expanded="false" />
+            <element signature="e#12118#12119#0" expanded="false" />
+            <element signature="e#12158#12159#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#956#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding>
+            <element signature="e#7590#7591#0" expanded="false" />
+            <element signature="e#7647#7648#0" expanded="false" />
+            <element signature="e#7699#7700#0" expanded="false" />
+            <element signature="e#7763#7764#0" expanded="false" />
+            <element signature="e#7965#7966#0" expanded="false" />
+            <element signature="e#7993#7994#0" expanded="false" />
+            <element signature="e#8198#8199#0" expanded="false" />
+            <element signature="e#8247#8248#0" expanded="false" />
+            <element signature="e#11227#11228#0" expanded="false" />
+            <element signature="e#11258#11259#0" expanded="false" />
+            <element signature="e#11396#11397#0" expanded="false" />
+            <element signature="e#11431#11432#0" expanded="false" />
+            <element signature="e#11543#11544#0" expanded="false" />
+            <element signature="e#11620#11621#0" expanded="false" />
+            <element signature="e#11978#11979#0" expanded="false" />
+            <element signature="e#12020#12021#0" expanded="false" />
+            <element signature="e#12118#12119#0" expanded="false" />
+            <element signature="e#12158#12159#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding>
+            <marker date="1492873391890" expanded="true" signature="129:132" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="129:140" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="182:188" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="238:241" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="238:249" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="298:304" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="463:470" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="463:501" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="516:550" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="565:601" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="616:648" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="663:692" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="707:738" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="753:787" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="802:832" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="847:883" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="898:935" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:986" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:987" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1001:1038" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1072" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1073" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1088:1089" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1127" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1128" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1147:1166" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1177:1227" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1260:1296" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1302:1397" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#956#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1492873391890" expanded="true" signature="129:132" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="129:140" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="182:188" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="238:241" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="238:249" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="298:304" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="463:470" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="463:501" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="516:550" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="565:601" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="616:648" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="663:692" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="707:738" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="753:787" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="802:832" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="847:883" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="898:935" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:986" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:987" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1001:1038" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1072" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1073" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1088:1089" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1127" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1128" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1147:1166" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1177:1227" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1260:1296" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1302:1397" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#956#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1492873391890" expanded="true" signature="129:132" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="129:140" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="182:188" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="238:241" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="238:249" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="298:304" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="463:470" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="463:501" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="516:550" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="565:601" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="616:648" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="663:692" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="707:738" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="753:787" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="802:832" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="847:883" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="898:935" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:986" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:987" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1001:1038" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1072" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1073" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1088:1089" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1127" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1128" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1147:1166" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1177:1227" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1260:1296" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1302:1397" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp1.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/test/rosko/bojan.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko.bojan/LexerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#956#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/program.mj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="633" column="23" lean-forward="true" selection-start-line="633" selection-start-column="23" selection-end-line="633" selection-end-column="23" />
+          <folding>
+            <element signature="e#7590#7591#0" expanded="false" />
+            <element signature="e#7647#7648#0" expanded="false" />
+            <element signature="e#7699#7700#0" expanded="false" />
+            <element signature="e#7763#7764#0" expanded="false" />
+            <element signature="e#7965#7966#0" expanded="false" />
+            <element signature="e#7993#7994#0" expanded="false" />
+            <element signature="e#8198#8199#0" expanded="false" />
+            <element signature="e#8247#8248#0" expanded="false" />
+            <element signature="e#11227#11228#0" expanded="false" />
+            <element signature="e#11258#11259#0" expanded="false" />
+            <element signature="e#11396#11397#0" expanded="false" />
+            <element signature="e#11431#11432#0" expanded="false" />
+            <element signature="e#11543#11544#0" expanded="false" />
+            <element signature="e#11620#11621#0" expanded="false" />
+            <element signature="e#11978#11979#0" expanded="false" />
+            <element signature="e#12020#12021#0" expanded="false" />
+            <element signature="e#12118#12119#0" expanded="false" />
+            <element signature="e#12158#12159#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="132" column="35" lean-forward="false" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
+          <folding>
+            <marker date="1492887169906" expanded="true" signature="13808:15583" ph="{...}" />
+            <marker date="1492887169906" expanded="true" signature="13808:15585" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="50" column="36" lean-forward="true" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <folding>
+            <marker date="1492873391890" expanded="true" signature="129:132" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="129:140" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="182:188" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="238:241" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="238:249" ph=" { " />
+            <marker date="1492873391890" expanded="true" signature="298:304" ph=" }" />
+            <marker date="1492873391890" expanded="true" signature="463:470" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="463:501" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="516:550" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="565:601" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="616:648" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="663:692" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="707:738" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="753:787" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="802:832" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="847:883" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="898:935" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:986" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="950:987" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1001:1038" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1072" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1054:1073" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1088:1089" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1127" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1109:1128" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1147:1166" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1177:1227" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1260:1296" ph="{...}" />
+            <marker date="1492873391890" expanded="true" signature="1302:1397" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/project-template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1772">
+          <caret line="602" column="51" lean-forward="false" selection-start-line="602" selection-start-column="51" selection-end-line="602" selection-end-column="51" />
+          <folding>
+            <marker date="1492887469663" expanded="true" signature="74006:74048" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74006:74066" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74006:74079" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74006:74094" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74129:76325" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74142:76310" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74196:74491" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74215:74476" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74278:74456" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74318:74422" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74339:74400" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74541:74868" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74560:74853" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74655:74833" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74695:74799" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74716:74777" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74919:75184" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74938:75169" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="74971:75149" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75011:75115" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75032:75093" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75227:75533" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75246:75518" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75320:75498" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75360:75464" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75381:75442" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75584:75929" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75603:75914" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75677:75894" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75717:75860" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75738:75838" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="75981:76296" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="76000:76281" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="76083:76261" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="76123:76227" ph="..." />
+            <marker date="1492887469663" expanded="true" signature="76144:76205" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>pp1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>java-cup-11a</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

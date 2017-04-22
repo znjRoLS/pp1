@@ -1,0 +1,61 @@
+package rosko.bojan;
+
+import java_cup.runtime.*;
+import java.util.logging.Logger;
+
+//////////////////////////////////////////////
+
+parser code {:
+    Logger log = Logger.getLogger(Parser.class.toString());
+:}
+
+scan with {:
+    Symbol s = this.getScanner().next_token();
+    if (s != null && s.value != null) {
+        log.info("Parsed symbol: " + s.value + " - " + s);
+    }
+    return s;
+:}
+
+
+////////////////////////////////////////////////
+
+terminal PROGRAM, RETURN, VOID, PRINT;
+terminal IDENT, NUMBER;
+terminal BRACES_LEFT, BRACES_RIGHT, PARENT_LEFT, PARENT_RIGHT;
+terminal SEMICOLON, COMMA;
+terminal PLUS, EQUALS;
+
+non terminal Program;
+non terminal VarDeclList, VarDeclLine, VarDecl;
+non terminal MethDeclList, MethDecl;
+non terminal ArgList, Args, Arg;
+non terminal Type, MethType;
+non terminal StmtList, Stmt;
+
+/////////////////////////////////////////////////
+
+Program ::= PROGRAM IDENT VarDeclList BRACES_LEFT MethDeclList BRACES_RIGHT;
+
+VarDeclList ::= VarDeclList VarDeclLine |
+                /* epsilon */ ;
+VarDeclLine ::= VarDeclLine COMMA VarDecl SEMICOLON |
+                Type VarDecl;
+VarDecl ::= IDENT;
+
+Type ::= IDENT ;
+MethType ::= Type | VOID;
+
+MethDeclList ::= MethDeclList MethDecl | /* epsilon */;
+MethDecl ::= MethType IDENT
+                PARENT_LEFT Args PARENT_RIGHT
+                VarDeclList
+                BRACES_LEFT StmtList BRACES_RIGHT;
+
+Args ::= ArgList | /* epsilon */;
+ArgList ::= ArgList COMMA Arg |
+            Arg;
+Arg ::= Type IDENT;
+
+StmtList ::= StmtList Stmt | /* epsilon */;
+Stmt ::= IDENT SEMICOLON;

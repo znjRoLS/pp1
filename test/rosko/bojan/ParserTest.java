@@ -1,34 +1,30 @@
 package rosko.bojan;
 
+import java_cup.runtime.Symbol;
+
+import java.io.*;
+import java.util.logging.Logger;
+
 /**
  * Created by rols on 4/22/17.
  */
+public class ParserTest {
 
-import java_cup.runtime.Symbol;
-import java.io.*;
-import java.util.logging.Logger;
-import rosko.bojan.Lexer;
-
-public class LexerTest {
     public static void main(String[] args) {
-        Logger log = Logger.getLogger(LexerTest.class.toString());
+        Logger log = Logger.getLogger(ParserTest.class.toString());
+
         Reader reader = null;
         try {
             File sourceCode = new File("program.mj");
-            log.info("Lexical analysis, source file: " + sourceCode.getAbsolutePath());
+            log.info("Parsing source file: " + sourceCode.getAbsolutePath());
             reader = new BufferedReader(new FileReader(sourceCode));
             Lexer lexer = new Lexer(reader);
-            Symbol currToken = null;
-            while( (currToken = lexer.next_token()).sym != sym.EOF) {
-                if (currToken != null) {
-                    log.info("Parsed token: " + currToken +
-                            ", value: " + currToken.value);
-                }
-            }
-
+            Parser parser = new Parser(lexer);
+            Symbol symbol = parser.parse();
+            log.info("Got symbol " + symbol + " " + symbol.value);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (reader != null) {
@@ -39,6 +35,5 @@ public class LexerTest {
                 }
             }
         }
-
     }
 }

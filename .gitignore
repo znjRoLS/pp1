@@ -1,3 +1,8 @@
 .idea
 *.java~
 out
+
+# should be auto generated!
+src/rosko/bojan/Lexer.java
+src/rosko/bojan/Parser.java
+src/rosko/bojan/sym.java

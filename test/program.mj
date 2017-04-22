@@ -1,0 +1,7 @@
+program HelloWorld
+    int x,y;
+{
+    void main() {
+
+    }
+}

@@ -7,7 +7,6 @@ package rosko.bojan;
 import java_cup.runtime.Symbol;
 import java.io.*;
 import java.util.logging.Logger;
-import rosko.bojan.Lexer;
 
 public class LexerTest {
     public static void main(String[] args) {
@@ -21,8 +20,8 @@ public class LexerTest {
             Symbol currToken = null;
             while( (currToken = lexer.next_token()).sym != sym.EOF) {
                 if (currToken != null) {
-                    log.info("Parsed token: " + currToken +
-                            ", value: " + currToken.value);
+                    System.out.println("LEXER_INFO: Parsed token " + currToken +
+                            ", value " + currToken.value);
                 }
             }
 

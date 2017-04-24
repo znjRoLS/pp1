@@ -1,7 +1,9 @@
-program HelloWorld
-    int x,y;
+program funky
+const int nekiint  =54, nekidrugi = 0;
+void;
+void void;
+const bool opetbool = true, herhe=false;
+const char mnjoh='k', hnjoj='H';
 {
-    void main() {
-
-    }
+    void void void;
 }

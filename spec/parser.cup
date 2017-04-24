@@ -11,7 +11,6 @@ parser code {:
     Logger log = Logger.getLogger(Parser.class.toString());
     Scanner scanner;
     Symbol currSym;
-    Struct currentVarDeclType;
 
     void report_error(String msg) {
         log.info(msg);
@@ -21,6 +20,8 @@ parser code {:
 init with {:
     scanner = this.getScanner();
     Tab.init();
+
+    Tab.insert(Obj.Con, "void", Tab.nullType);
 :}
 
 scan with {:
@@ -31,82 +32,144 @@ scan with {:
     return currSym;
 :}
 
+action code {:
+    Obj currentMethod = null;
+    Struct currentVarDeclType;
+
+    void report_error(String msg) {
+        this.parser.log.info("ERROR: " + msg);
+        //System.out.println("ERROR: " + msg);
+    }
+    void report_info(String msg) {
+        this.parser.log.info("INFO: " + msg);
+        //System.out.println("INFO: " + msg);
+    }
+:}
+
+
+// TERMINALS
+////////////////////////////////////////////////
+
+// RESERVED WORDS
+terminal PROGRAM;
+terminal NEW, RETURN, VOID;
+terminal FOR, BREAK, CONTINUE;
+terminal CLASS, CONST, EXTENDS, STATIC;
+terminal IF, ELSE;
+terminal PRINT, READ;
+
+// IDENTIFICATOR AND LITERALS
+terminal ID, CONST_NUMBER, CONST_CHAR, CONST_BOOL;
+
+// OPERATORS
+terminal ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION, MODULO;
+terminal EQUAL, NOT_EQUAL, GREATER, GREATER_EQUAL, LESS, LESS_EQUAL;
+terminal AND, OR;
+terminal ASSIGN, ASSIGN_ADDITION, ASSIGN_SUBTRACTION, ASSIGN_MULTIPLICATION, ASSIGN_DIVISION, ASSIGN_MODULO;
+terminal INCREMENT, DECREMENT;
+terminal SEMICOLON, COMMA, DOT;
+terminal PARENTHESES_LEFT, PARENTHESES_RIGHT, BRACKETS_LEFT, BRACKETS_RIGHT, BRACES_LEFT, BRACES_RIGHT;
 
 ////////////////////////////////////////////////
 
-terminal PROGRAM, RETURN, VOID, PRINT;
-terminal IDENT, NUMBER;
-terminal BRACES_LEFT, BRACES_RIGHT, PARENT_LEFT, PARENT_RIGHT;
-terminal SEMICOLON, COMMA;
-terminal PLUS, EQUALS;
-terminal IF, ELSE;
+// NON TERMINALS
+////////////////////////////////////////////////
 
-non terminal Program;
-non terminal VarDeclList, VarDeclLine, VarDecl;
-non terminal MethDeclList, MethDecl;
-non terminal ArgList, Args, Arg;
-non terminal MethType;
-non terminal StmtList, Stmt;
-non terminal Expr;
+non terminal Program, ProgramName;
+non terminal DeclarationList, Declaration;
+non terminal VarDeclarationLine;
+non terminal ConstDeclarationLine, ConstDeclarationList, ConstDeclaration, Const;
+non terminal ClassDeclarationLine;
+non terminal MethodDeclarationList;
+non terminal Type;
 
-non terminal Obj ProgramName;
-non terminal Struct Type;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// PARSER RULES START SECTION
+////////////////////////////////////////////////
+////////////////////////////////////////////////
 
-/////////////////////////////////////////////////
+// PROGRAM
+////////////////////////////////////////////////
 
-Program ::= PROGRAM ProgramName VarDeclList BRACES_LEFT MethDeclList BRACES_RIGHT
+Program ::= PROGRAM ProgramName:progObj DeclarationList
 {:
-    Tab.dump();
-:};
-
-ProgramName ::= IDENT:progName
-{:
-    RESULT = Tab.insert( Obj.Prog, progName.toString(), Tab.noType);
-    Tab.openScope();
+    report_info("Program just before left braces");
 :}
-;
-
-VarDeclList ::= VarDeclList VarDeclLine |
-                /* epsilon */ ;
-VarDeclLine ::= VarDeclLine COMMA VarDecl SEMICOLON |
-                Type VarDecl;
-
-VarDecl ::= IDENT:varName
+BRACES_LEFT MethodDeclarationList BRACES_RIGHT
 {:
-    this.parser.log.info("Hey, found var " + ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).value);
-    //Obj var = Tab.find(varName);
-    Tab.insert(Obj.Var, varName.toString(), this.parser.currentVarDeclType);
+    report_info("Parsed whole program");
+:};
+
+ProgramName ::= ID:progName
+{:
+    report_info("Parsed program name " + progName);
+:};
+
+////////////////////////////////////////////////
+
+// DECLARATIONS
+////////////////////////////////////////////////
+
+DeclarationList ::= DeclarationList Declaration
+{:
+    report_info("Declaration list Declaration");
+:}
+| /* epsilon */
+{:
+    report_info("Declaration list epsilon");
+:};
+
+Declaration ::=     VarDeclarationLine
+                    | ConstDeclarationLine
+                    | ClassDeclarationLine;
+
+////////////////////////////////////////////////
+
+// RANDOM? DECLARATION
+////////////////////////////////////////////////
+
+Type ::= ID:id
+{:
+    report_info("Matched type " + id);
+:};
+
+////////////////////////////////////////////////
+
+// CONSTANTS DECLARATION
+////////////////////////////////////////////////
+
+ConstDeclarationLine ::=    CONST Type ConstDeclarationList SEMICOLON;
+
+ConstDeclarationList ::=    ConstDeclarationList COMMA ConstDeclaration
+                          | ConstDeclaration;
+
+ConstDeclaration ::= ID ASSIGN Const:constObj
+{:
+    report_info("Assigning to constant " + constObj);
+:};
+
+Const ::= CONST_NUMBER | CONST_CHAR | CONST_BOOL;
+
+////////////////////////////////////////////////
+
+// OTHER
+////////////////////////////////////////////////
+
+VarDeclarationLine ::= VOID SEMICOLON
+{:
+    report_info("Var decl, not yet implemented");
+:};
+
+ClassDeclarationLine ::= VOID VOID SEMICOLON
+{:
+    report_info("Class decl, not yet implemented");
+:};
+
+MethodDeclarationList ::= VOID VOID VOID SEMICOLON
+{:
+    report_info("Method decl, not yet implemented");
 :};
 
 
-Type ::= IDENT:typeName
-{:
-    Obj type = Tab.find(typeName.toString());
-    if (type == Tab.noObj) {
-        this.parser.report_error("Type not defined: " + typeName);
-        RESULT = Tab.noType;
-    } else if (Obj.Type != type.getKind()){
-        this.parser.report_error("Not of kind type: " + typeName + " - " + type.getKind());
-        RESULT = Tab.noType;
-    } else {
-        this.parser.currentVarDeclType = type.getType();
-        RESULT = type.getType();
-    }
-:};
-MethType ::= Type | VOID;
 
-MethDeclList ::= MethDeclList MethDecl | /* epsilon */;
-MethDecl ::= MethType IDENT
-                PARENT_LEFT Args PARENT_RIGHT
-                VarDeclList
-                BRACES_LEFT StmtList BRACES_RIGHT;
-
-Args ::= ArgList | /* epsilon */;
-ArgList ::= ArgList COMMA Arg |
-            Arg;
-Arg ::= Type IDENT;
-
-StmtList ::= StmtList Stmt | /* epsilon */;
-Stmt ::= IDENT SEMICOLON;
-
-Expr ::= IDENT;

@@ -1,0 +1,132 @@
+package rosko.bojan;
+
+import java_cup.runtime.*;
+import java.util.logging.Logger;
+import rs.etf.pp1.symboltable.Tab;
+import rs.etf.pp1.symboltable.concepts.*;
+
+//////////////////////////////////////////////
+
+parser code {:
+    Logger log = Logger.getLogger(Parser.class.toString());
+    Scanner scanner;
+    Symbol currSym;
+
+
+    void report_error(String msg) {
+        log.info(msg);
+    }
+:}
+
+init with {:
+    scanner = this.getScanner();
+    Tab.init();
+
+    Tab.insert(Obj.Con, "void", Tab.nullType);
+:}
+
+scan with {:
+    currSym = scanner.next_token();
+    if (currSym != null && currSym.value != null) {
+        log.info("Parsed symbol: " + currSym.value + " - " + currSym);
+    }
+    return currSym;
+:}
+
+action code {:
+    Obj currentMethod = null;
+    Struct currentVarDeclType;
+:}
+
+
+////////////////////////////////////////////////
+
+terminal PROGRAM, RETURN, VOID, PRINT;
+terminal IDENT, NUMBER;
+terminal BRACES_LEFT, BRACES_RIGHT, PARENT_LEFT, PARENT_RIGHT;
+terminal SEMICOLON, COMMA;
+terminal PLUS, EQUALS;
+terminal IF, ELSE;
+
+non terminal Program;
+non terminal VarDeclList, VarDeclLine, VarDecl;
+non terminal MethDeclList, MethDecl;
+non terminal ArgList, Args, Arg;
+non terminal MethType;
+non terminal StmtList, Stmt;
+non terminal Expr;
+
+non terminal Obj ProgramName;
+non terminal Struct Type;
+
+/////////////////////////////////////////////////
+
+Program ::= PROGRAM ProgramName:progObj VarDeclList BRACES_LEFT MethDeclList BRACES_RIGHT
+{:
+    Tab.chainLocalSymbols(progObj);
+    Tab.closeScope();
+    Tab.dump();
+:};
+
+ProgramName ::= IDENT:progName
+{:
+    RESULT = Tab.insert( Obj.Prog, progName.toString(), Tab.noType);
+    Tab.openScope();
+:}
+;
+
+VarDeclList ::= VarDeclList VarDeclLine |
+                /* epsilon */ ;
+VarDeclLine ::= VarDeclLine COMMA VarDecl SEMICOLON |
+                Type VarDecl;
+
+VarDecl ::= IDENT:varName
+{:
+    this.parser.log.info("Hey, found var " + ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).value);
+    //Obj var = Tab.find(varName);
+    Tab.insert(Obj.Var, varName.toString(), currentVarDeclType);
+:};
+
+
+Type ::= IDENT:typeName
+{:
+    Obj type = Tab.find(typeName.toString());
+    if (type == Tab.noObj) {
+        this.parser.report_error("Type not defined: " + typeName);
+        RESULT = Tab.noType;
+    } else if (Obj.Type != type.getKind()){
+        this.parser.report_error("Not of kind type: " + typeName + " - " + type.getKind());
+        RESULT = Tab.noType;
+    } else {
+        currentVarDeclType = type.getType();
+        RESULT = type.getType();
+    }
+:};
+MethType ::= Type | VOID;
+
+MethDeclList ::= MethDeclList MethDecl | /* epsilon */;
+MethDecl ::= MethType:methType IDENT:methName
+{:
+    currentMethod = Tab.insert(Obj.Meth, methName.toString(), Tab.find(methType.toString()).getType());
+    Tab.openScope();
+    parser.report_error("Function declaration " + methNameleft);
+
+:}
+                PARENT_LEFT Args PARENT_RIGHT
+                VarDeclList
+                BRACES_LEFT StmtList BRACES_RIGHT
+{:
+    Tab.chainLocalSymbols(currentMethod);
+    Tab.closeScope();
+:};
+
+
+Args ::= ArgList | /* epsilon */;
+ArgList ::= ArgList COMMA Arg |
+            Arg;
+Arg ::= Type IDENT;
+
+StmtList ::= StmtList Stmt | /* epsilon */;
+Stmt ::= IDENT SEMICOLON;
+
+Expr ::= IDENT;

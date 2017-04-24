@@ -2,19 +2,33 @@ package rosko.bojan;
 
 import java_cup.runtime.*;
 import java.util.logging.Logger;
+import rs.etf.pp1.symboltable.Tab;
+import rs.etf.pp1.symboltable.concepts.*;
 
 //////////////////////////////////////////////
 
 parser code {:
     Logger log = Logger.getLogger(Parser.class.toString());
+    Scanner scanner;
+    Symbol currSym;
+    Struct currentVarDeclType;
+
+    void report_error(String msg) {
+        log.info(msg);
+    }
+:}
+
+init with {:
+    scanner = this.getScanner();
+    Tab.init();
 :}
 
 scan with {:
-    Symbol s = this.getScanner().next_token();
-    if (s != null && s.value != null) {
-        log.info("Parsed symbol: " + s.value + " - " + s);
+    currSym = scanner.next_token();
+    if (currSym != null && currSym.value != null) {
+        log.info("Parsed symbol: " + currSym.value + " - " + currSym);
     }
-    return s;
+    return currSym;
 :}
 
 
@@ -25,25 +39,60 @@ terminal IDENT, NUMBER;
 terminal BRACES_LEFT, BRACES_RIGHT, PARENT_LEFT, PARENT_RIGHT;
 terminal SEMICOLON, COMMA;
 terminal PLUS, EQUALS;
+terminal IF, ELSE;
 
 non terminal Program;
 non terminal VarDeclList, VarDeclLine, VarDecl;
 non terminal MethDeclList, MethDecl;
 non terminal ArgList, Args, Arg;
-non terminal Type, MethType;
+non terminal MethType;
 non terminal StmtList, Stmt;
+non terminal Expr;
+
+non terminal Obj ProgramName;
+non terminal Struct Type;
 
 /////////////////////////////////////////////////
 
-Program ::= PROGRAM IDENT VarDeclList BRACES_LEFT MethDeclList BRACES_RIGHT;
+Program ::= PROGRAM ProgramName VarDeclList BRACES_LEFT MethDeclList BRACES_RIGHT
+{:
+    Tab.dump();
+:};
+
+ProgramName ::= IDENT:progName
+{:
+    RESULT = Tab.insert( Obj.Prog, progName.toString(), Tab.noType);
+    Tab.openScope();
+:}
+;
 
 VarDeclList ::= VarDeclList VarDeclLine |
                 /* epsilon */ ;
 VarDeclLine ::= VarDeclLine COMMA VarDecl SEMICOLON |
                 Type VarDecl;
-VarDecl ::= IDENT;
 
-Type ::= IDENT ;
+VarDecl ::= IDENT:varName
+{:
+    this.parser.log.info("Hey, found var " + ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).value);
+    //Obj var = Tab.find(varName);
+    Tab.insert(Obj.Var, varName.toString(), this.parser.currentVarDeclType);
+:};
+
+
+Type ::= IDENT:typeName
+{:
+    Obj type = Tab.find(typeName.toString());
+    if (type == Tab.noObj) {
+        this.parser.report_error("Type not defined: " + typeName);
+        RESULT = Tab.noType;
+    } else if (Obj.Type != type.getKind()){
+        this.parser.report_error("Not of kind type: " + typeName + " - " + type.getKind());
+        RESULT = Tab.noType;
+    } else {
+        this.parser.currentVarDeclType = type.getType();
+        RESULT = type.getType();
+    }
+:};
 MethType ::= Type | VOID;
 
 MethDeclList ::= MethDeclList MethDecl | /* epsilon */;
@@ -59,3 +108,5 @@ Arg ::= Type IDENT;
 
 StmtList ::= StmtList Stmt | /* epsilon */;
 Stmt ::= IDENT SEMICOLON;
+
+Expr ::= IDENT;

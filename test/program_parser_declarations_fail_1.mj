@@ -1,0 +1,10 @@
+program funky funky
+const int nekiint  =54, nekidrugi = 0;
+int varijabla, varijabla2[];
+bool jedanbool;
+const bool opetbool = true, herhe=false;
+const char mnjoh='k', hnjoj='H';
+
+{
+
+}

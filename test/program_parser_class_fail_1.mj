@@ -1,0 +1,15 @@
+program funky
+
+class nekiclass {
+    int unutrasnji,unitrasnji2[];
+
+}
+class opetclassextends nekiclass {
+    {
+
+    }
+}
+
+{
+
+}

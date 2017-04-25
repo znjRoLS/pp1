@@ -1,0 +1,19 @@
+program funky
+
+
+class opetclass extends nekiclass {
+    {
+        int metoda1() {
+
+        }
+    }
+}
+
+{
+    void metoda2(int osama[], binladen)
+        char currChar;
+        char currString[];
+    {
+
+    }
+}

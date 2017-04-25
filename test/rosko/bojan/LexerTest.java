@@ -6,23 +6,28 @@ package rosko.bojan;
 
 import java_cup.runtime.Symbol;
 import java.io.*;
-import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 public class LexerTest {
-    //Logger log = Logger.getLogger(LexerTest.class.toString());
-    static String [] testPrograms = {
-            "program_test_lexer1.mj",
-            "program_test_lexer2.mj",
-            "program_test_lexer3.mj",
-            "program_test_lexer4.mj",
-    };
+
+    public static File[] listFilesMatching(File root, String regex) {
+        if(!root.isDirectory()) {
+            throw new IllegalArgumentException(root+" is no directory.");
+        }
+        final Pattern p = Pattern.compile(regex); // careful: could also throw an exception!
+        return root.listFiles(new FileFilter(){
+            @Override
+            public boolean accept(File file) {
+                return p.matcher(file.getName()).matches();
+            }
+        });
+    }
 
     public static void main(String[] args) {
 
-        for (String testProgram : testPrograms) {
+        for (File sourceCode : listFilesMatching(new File("./"), "program_lexer.*")) {
             Reader reader = null;
             try {
-                File sourceCode = new File(testProgram);
                 logInfo("Lexical analysis, source file: " + sourceCode.getAbsolutePath());
                 reader = new BufferedReader(new FileReader(sourceCode));
                 Lexer lexer = new Lexer(reader);

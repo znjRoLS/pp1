@@ -1,0 +1,25 @@
+program funky
+
+{
+    void main()
+        char currChar;
+        char currString[];
+    {
+
+        return void void void void void;;
+        break;
+        continue;
+        if (void void void void;) break;
+        if (void void void void;) continue; else break;
+        if (void void void void;) if (void void void void;) break; else break;
+
+        read(void void ;);
+        print(void void void void void;);
+        {
+            break;
+            for(;;) break;
+            for(;void void void void;;) return;
+        }
+
+    }
+}

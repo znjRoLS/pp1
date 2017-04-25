@@ -1,0 +1,21 @@
+program lexer
+int ja,sam[],neki,lekser;
+char 123opala, returnreturn;
+bool truetrue, truefalse, voidfalse;
+
+//ovo je neki znj komentar (*&^*%&&
+
+class nesto extends nestodrugo {
+    bool polje;
+    {
+        int funkcija(int param) {
+//            b = b/2;
+            x = x + 1 * 90;
+            ch = 'g' + 'Y' - 'A';
+            opalabato = x > 10 && ch < 'z' && ch > 'a';
+        }
+    }
+}
+{
+
+}

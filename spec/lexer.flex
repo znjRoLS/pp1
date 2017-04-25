@@ -15,6 +15,8 @@ import java_cup.runtime.Symbol;
     private Symbol symbol(int type, Object value) {
         return new Symbol(type, yyline, yycolumn, value);
     }
+
+    public boolean Successful = true;
 %}
 
 %xstate COMMENT
@@ -23,14 +25,15 @@ import java_cup.runtime.Symbol;
     return symbol(sym.EOF);
 %eofval}
 
+LineTerminator  = \r|\n|\r\n
+WhiteSpace      = {LineTerminator} | [ \t\f\b]
+Identifier      = [:jletter:] [:jletterdigit:]*
+
+DecIntegerLiteral = 0 | [1-9][0-9]*
+
 %%
 
-" "     { }
-"\b"    { }
-"\t"    { }
-"\r\n"  { }
-"\n"    { }
-"\f"    { }
+{WhiteSpace} { }
 
 "program"   {return symbol(sym.PROGRAM, "program");}
 "break"   {return symbol(sym.BREAK, "break");}
@@ -49,10 +52,10 @@ import java_cup.runtime.Symbol;
 "static"   {return symbol(sym.STATIC, "static");}
 
 
-[0-9]+ { return symbol(sym.CONST_NUMBER, new Integer(yytext()));}
+{DecIntegerLiteral}/[^[:jletter:]] { return symbol(sym.CONST_NUMBER, new Integer(yytext()));}
 \'([a-z]|[A-Z])\' { return symbol(sym.CONST_CHAR, new Character(yytext().charAt(1)));}
 (true|false) { return symbol(sym.CONST_BOOL, new Boolean(yytext()));}
-([a-z]|[A-Z])[a-z|A-Z|0-9|_]* { return symbol(sym.ID, yytext());}
+{Identifier} { return symbol(sym.ID, yytext());}
 
 
 "+"         {return symbol(sym.ADDITION, "+");}
@@ -88,8 +91,7 @@ import java_cup.runtime.Symbol;
 
 "//"        { yybegin(COMMENT); }
 <COMMENT> . { }
-<COMMENT> "\r\n" {yybegin(YYINITIAL);}
-<COMMENT> "\n"  {yybegin(YYINITIAL);}
+<COMMENT> {LineTerminator} {yybegin(YYINITIAL);}
 
 
-. { System.err.println("Error in lexical analysis, token: " + yytext() + ", line: " + (yyline+1));}
+. { Successful = false; System.out.println("Error in lexical analysis, token: " + yytext() + ", line: " + (yyline+1)); return symbol(sym.ERROR);}

@@ -57,7 +57,7 @@ action code {:
 ////////////////////////////////////////////////
 
 // RESERVED WORDS
-terminal PROGRAM;
+terminal PROGRAM, ERROR;
 terminal NEW, RETURN, VOID;
 terminal FOR, BREAK, CONTINUE;
 terminal CLASS, CONST, EXTENDS, STATIC;
@@ -86,8 +86,10 @@ non terminal DeclarationList, Declaration;
 non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList;
 non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
 non terminal ClassDeclaration, ClassExtends;
-non terminal MethodDeclarationSection, OptionalMethodDeclarationSection, MethodDeclarationList;
-non terminal Type;
+non terminal MethodDeclarationSection, OptionalMethodDeclarationSection, MethodDeclarationList, MethodDeclaration;
+non terminal FormalParameterSection, FormalParameterList, FormalParameter;
+non terminal Type, MethodType, OptionalStatic;
+non terminal StatementList, Statement;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -131,6 +133,11 @@ non terminal Type;
                                                         report_info("Matched type " + id);
                                                     :};
 
+                                 OptionalStatic ::= STATIC
+                                                    | /* epsilon */;
+
+                                     MethodType ::= Type:id
+                                                    | VOID;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //                        CONSTANTS DECLARATION
@@ -174,7 +181,8 @@ non terminal Type;
 //                            CLASS DECLARATION
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                               ClassDeclaration ::= CLASS ID ClassExtends BRACES_LEFT VarDeclarationList
+                               ClassDeclaration ::= CLASS ID ClassExtends
+                                                    BRACES_LEFT VarDeclarationList
                                                     OptionalMethodDeclarationSection BRACES_RIGHT
                                                     {:
                                                         report_info("Parsed class declaration!");
@@ -199,16 +207,37 @@ non terminal Type;
                OptionalMethodDeclarationSection ::= MethodDeclarationSection
                                                     | /* epsilon */;
 
-                          MethodDeclarationList ::= VOID VOID VOID SEMICOLON
+                          MethodDeclarationList ::= MethodDeclarationList MethodDeclaration
+                                                    | /* epsilon */;
+
+                              MethodDeclaration ::= OptionalStatic MethodType ID:id
+                                                    PARENTHESES_LEFT FormalParameterSection PARENTHESES_RIGHT
+                                                    VarDeclarationList
+                                                    BRACES_LEFT StatementList BRACES_RIGHT
                                                     {:
-                                                        report_info("Method decl, not yet implemented");
+                                                        report_info("Matched method " + id);
                                                     :};
 
+                        FormalParameterSection ::= FormalParameterList
+                                                    | /* epsilon */;
+
+                           FormalParameterList ::= FormalParameterList COMMA FormalParameter
+                                                    | FormalParameter;
+
+                                FormalParameter ::= Type ID
+                                                    | Type ID BRACKETS_LEFT BRACKETS_RIGHT;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//                                        OTHER          
+//                                   STATEMENTS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//                                        OTHER
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+StatementList ::= VOID VOID VOID SEMICOLON;
 
 

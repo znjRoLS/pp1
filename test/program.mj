@@ -11,10 +11,17 @@ class nekiclass {
 }
 class opetclass extends nekiclass {
     {
-        void void void;
+        int metoda1() {
+            void void void;
+        }
     }
 }
 
 {
-    void void void;
+    void metoda2(int osama[], bool binladen)
+        char currChar;
+        char currString[];
+    {
+        void void void;
+    }
 }

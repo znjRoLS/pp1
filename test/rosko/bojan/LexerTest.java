@@ -5,10 +5,15 @@ package rosko.bojan;
  */
 
 import java_cup.runtime.Symbol;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.util.regex.Pattern;
 
 public class LexerTest {
+
+    static Logger logger = LogManager.getLogger(LexerTest.class);
 
     public static File[] listFilesMatching(File root, String regex) {
         if(!root.isDirectory()) {
@@ -28,20 +33,23 @@ public class LexerTest {
         for (File sourceCode : listFilesMatching(new File("./"), "program_lexer.*")) {
             Reader reader = null;
             try {
-                logInfo("Lexical analysis, source file: " + sourceCode.getAbsolutePath());
+                logger.info("Lexical analysis, source file: " + sourceCode.getAbsolutePath());
                 reader = new BufferedReader(new FileReader(sourceCode));
                 Lexer lexer = new Lexer(reader);
                 Symbol currToken = null;
                 while( (currToken = lexer.next_token()).sym != sym.EOF) {
                     if (currToken != null) {
-                        logInfo("Parsed token " + currToken +
+                        logger.info("Parsed token " + currToken +
                                 ", value " + currToken.value);
                     } else {
-                        logInfo("null symbol?");
+                        logger.info("null symbol?");
                     }
                 }
-
-                logInfo("Parse successful: " + lexer.Successful);
+                if (lexer.Successful) {
+                    logger.info("Parse successful!");
+                } else {
+                    logger.error("Parse not successful!");
+                }
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -55,13 +63,10 @@ public class LexerTest {
                         e.printStackTrace();
                     }
                 }
-                logInfo("");
-                logInfo("");
+                logger.info("");
+                logger.info("");
             }
         }
     }
 
-    public static void logInfo(String msg) {
-        System.out.println("INFO: " + msg);
-    }
 }

@@ -2,32 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_class_correct.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_class_fail_1.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_class_fail_2.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_class_fail_3.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_class_fail_4.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_correct.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_1.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_2.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_3.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_4.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_5.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_6.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_declarations_fail_7.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_method_correct.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_method_fail_1.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_method_fail_2.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_method_fail_3.mj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_parser_statement_correct.mj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/program_test_lexer1.mj" afterPath="$PROJECT_DIR$/test/program_lexer_correct.mj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/program_test_lexer2.mj" afterPath="$PROJECT_DIR$/test/program_lexer_fail_1.mj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/program_test_lexer3.mj" afterPath="$PROJECT_DIR$/test/program_lexer_fail_2.mj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/program_test_lexer4.mj" afterPath="$PROJECT_DIR$/test/program_lexer_fail_3.mj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser.cup" afterPath="$PROJECT_DIR$/spec/parser.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" afterPath="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" afterPath="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-1.2-api-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-1.2-api-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-1.2-api-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-api-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-api-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-api-scala_2.10-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-api-scala_2.10-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-api-scala_2.11-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-api-scala_2.11-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-core-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-core-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-core-2.8.2-tests.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-flume-ng-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-flume-ng-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-flume-ng-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-iostreams-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-iostreams-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-iostreams-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jcl-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jcl-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jcl-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jmx-gui-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jmx-gui-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jmx-gui-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jul-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jul-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-jul-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-nosql-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-nosql-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-nosql-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-slf4j-impl-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-slf4j-impl-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-slf4j-impl-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-taglib-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-taglib-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-taglib-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-to-slf4j-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-to-slf4j-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-to-slf4j-2.8.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-web-2.8.2-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-web-2.8.2-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/apache-log4j-2.8.2-bin/log4j-web-2.8.2.jar" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,24 +56,101 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LexerTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
+      <file leaf-file-name="lexer.flex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="346">
+              <caret line="100" column="36" lean-forward="false" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
               <folding>
-                <element signature="e#567#568#0" expanded="true" />
-                <element signature="e#641#642#0" expanded="true" />
+                <marker date="1493148264466" expanded="true" signature="269:272" ph=" { " />
+                <marker date="1493148264466" expanded="true" signature="269:280" ph=" { " />
+                <marker date="1493148264466" expanded="true" signature="322:328" ph=" }" />
+                <marker date="1493148264466" expanded="true" signature="378:381" ph=" { " />
+                <marker date="1493148264466" expanded="true" signature="378:389" ph=" { " />
+                <marker date="1493148264466" expanded="true" signature="438:444" ph=" }" />
+                <marker date="1493148264466" expanded="true" signature="749:756" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="749:787" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="800:834" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="850:884" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="896:928" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="944:978" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="988:1016" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1027:1057" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1070:1104" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1116:1148" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1163:1199" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1214:1246" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1257:1287" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1302:1340" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1356:1396" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1410:1446" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1486:1542" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1563:1629" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1645:1699" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1715:1748" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1765:1798" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1813:1849" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1864:1903" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1918:1951" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="1966:1997" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2013:2044" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2060:2095" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2110:2142" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2158:2197" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2212:2241" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2257:2293" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2309:2338" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2354:2382" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2397:2428" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2444:2485" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2501:2545" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2561:2608" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2624:2665" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2681:2720" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2736:2771" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2787:2822" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2837:2871" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2886:2916" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2931:2959" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="2974:3015" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3030:3072" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3087:3125" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3140:3179" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3194:3231" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3298:3317" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3363:3382" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3389:3498" ph="{...}" />
+                <marker date="1493148264466" expanded="true" signature="3389:3524" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program_parser_class_fail_4.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program_parser_class_fail_4.mj">
+      <file leaf-file-name="log4j2.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/log4j2.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="240">
+              <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modules.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JFlex.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/libraries/JFlex.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,82 +159,42 @@
       <file leaf-file-name="parser.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="289" column="62" lean-forward="false" selection-start-line="289" selection-start-column="62" selection-end-line="289" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program_parser_method_correct.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program_parser_method_correct.mj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program_parser_method_fail_1.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program_parser_method_fail_1.mj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program_parser_method_fail_2.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program_parser_method_fail_2.mj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program_parser_method_fail_3.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program_parser_method_fail_3.mj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program.mj">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="12" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program_parser_statement_correct.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/program_parser_statement_correct.mj">
+      <file leaf-file-name="java_cup_11a.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/libraries/java_cup_11a.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LexerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="8" selection-end-column="39" />
+              <folding>
+                <element signature="e#719#720#0" expanded="true" />
+                <element signature="e#793#794#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="28" column="0" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="28" selection-end-column="0" />
-              <folding>
-                <element signature="e#568#569#0" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="117">
+              <caret line="41" column="26" lean-forward="false" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,9 +223,15 @@
       <find>Parsed symbol:</find>
       <find>Statement</find>
       <find>Syntax error at</find>
-      <find>Syntax error</find>
       <find>Couldn't repair and continue</find>
       <find>Designator</find>
+      <find>Syntax error</find>
+      <find>l</find>
+      <find>lo</find>
+      <find>log.</find>
+      <find>log.o</find>
+      <find>log.ou</find>
+      <find>log.out</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/test/rosko/bojan</dir>
@@ -198,13 +257,11 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/spec/parser_old.cup" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/Lexer.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
         <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/test/program_test_lexer.mj" />
         <option value="$PROJECT_DIR$/test/program_test_lexer5.mj" />
         <option value="$PROJECT_DIR$/test/program_test_lexer1.mj" />
-        <option value="$PROJECT_DIR$/spec/lexer.flex" />
         <option value="$PROJECT_DIR$/test/program_test_lexer2.mj" />
         <option value="$PROJECT_DIR$/test/program_test_lexer3.mj" />
         <option value="$PROJECT_DIR$/test/program_test_lexer4.mj" />
@@ -226,10 +283,16 @@
         <option value="$PROJECT_DIR$/test/program_parser_method_fail_1.mj" />
         <option value="$PROJECT_DIR$/test/program_parser_method_fail_2.mj" />
         <option value="$PROJECT_DIR$/test/program_parser_method_fail_3.mj" />
-        <option value="$PROJECT_DIR$/spec/parser.cup" />
         <option value="$PROJECT_DIR$/test/program_parser_statement_correct.mj" />
-        <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/Lexer.java" />
+        <option value="$PROJECT_DIR$/config/log4j.properties" />
+        <option value="$PROJECT_DIR$/spec/lexer.flex" />
+        <option value="$PROJECT_DIR$/config/log4j2.properties" />
+        <option value="$PROJECT_DIR$/out/production/pp1/log4j2.properties" />
+        <option value="$PROJECT_DIR$/config/log4j2.xml" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" />
+        <option value="$PROJECT_DIR$/spec/parser.cup" />
+        <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
       </list>
     </option>
   </component>
@@ -336,28 +399,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bojan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Parser.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pp1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pp1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="spec" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -390,8 +431,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="JFlex.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+              <option name="myItemId" value="apache-log4j-2.8.2-bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -422,7 +477,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
@@ -431,6 +486,12 @@
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/test/rosko/bojan" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test/rosko.bojan" />
@@ -623,21 +684,6 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration default="false" name="LexerTest" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="rosko.bojan.LexerTest" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="pp1" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="Parser" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="JAR_PATH" value="$PROJECT_DIR$/lib/java-cup-11a.jar" />
@@ -671,11 +717,26 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="LexerTest" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="rosko.bojan.LexerTest" />
+      <option name="VM_PARAMETERS" value="-Dlog4j.configuration=file:$PROJECT_DIR$/log4j.properties" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="pp1" />
+      <envs />
+      <method />
+    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.LexerTest" />
-      <item index="1" class="java.lang.String" itemvalue="JAR Application.Parser" />
-      <item index="2" class="java.lang.String" itemvalue="Application.ParserTest" />
-      <item index="3" class="java.lang.String" itemvalue="JAR Application.Lexer" />
+      <item index="0" class="java.lang.String" itemvalue="JAR Application.Parser" />
+      <item index="1" class="java.lang.String" itemvalue="Application.ParserTest" />
+      <item index="2" class="java.lang.String" itemvalue="JAR Application.Lexer" />
+      <item index="3" class="java.lang.String" itemvalue="Application.LexerTest" />
       <item index="4" class="java.lang.String" itemvalue="Application.Main" />
     </list>
   </component>
@@ -700,12 +761,12 @@
       <workItem from="1493058726562" duration="6273000" />
       <workItem from="1493065208688" duration="37000" />
       <workItem from="1493106550190" duration="7434000" />
-      <workItem from="1493114720461" duration="12239000" />
+      <workItem from="1493114720461" duration="15996000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55014000" />
+    <option name="totallyTimeSpent" value="58771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -717,7 +778,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47058824" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47058824" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -736,6 +797,9 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.flex" />
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -750,145 +814,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1493115841362" expanded="true" signature="129:132" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="129:140" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="182:188" ph=" }" />
-            <marker date="1493115841362" expanded="true" signature="238:241" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="238:249" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="298:304" ph=" }" />
-            <marker date="1493115841362" expanded="true" signature="609:616" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="609:647" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="660:694" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="710:744" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="756:788" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="804:838" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="848:876" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="887:917" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="930:964" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="976:1008" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1023:1059" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1074:1106" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1117:1147" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1162:1200" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1216:1256" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1270:1306" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1346:1402" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1423:1489" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1505:1559" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1575:1608" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1625:1658" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1673:1709" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1724:1763" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1778:1811" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1826:1857" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1873:1904" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1920:1955" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1970:2002" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2018:2057" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2072:2101" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2117:2153" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2169:2198" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2214:2242" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2257:2288" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2304:2345" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2361:2405" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2421:2468" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2484:2525" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2541:2580" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2596:2631" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2647:2682" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2697:2731" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2746:2776" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2791:2819" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2834:2875" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2890:2932" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2947:2985" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3000:3039" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3054:3091" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3158:3177" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3223:3242" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3249:3364" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3249:3390" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pp1.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/test/rosko/bojan.iml" />
-    <entry file="file://$PROJECT_DIR$/test/rosko.bojan/LexerTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/project-template.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11560">
-          <caret line="578" column="51" lean-forward="false" selection-start-line="578" selection-start-column="51" selection-end-line="578" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -948,6 +873,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1720">
           <caret line="86" column="24" lean-forward="false" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -964,16 +890,6 @@
         <state relative-caret-position="120">
           <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16480">
-          <caret line="936" column="34" lean-forward="false" selection-start-line="936" selection-start-column="34" selection-end-line="936" selection-end-column="34" />
-          <folding>
-            <marker date="1493115841555" expanded="true" signature="30541:31497" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1078,76 +994,8 @@
         <state relative-caret-position="294">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <marker date="1493129900893" expanded="true" signature="52625:52957" ph="{...}" />
-            <marker date="1493129900893" expanded="true" signature="52675:52957" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-619">
-          <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-          <folding>
-            <marker date="1493115841362" expanded="true" signature="129:132" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="129:140" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="182:188" ph=" }" />
-            <marker date="1493115841362" expanded="true" signature="238:241" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="238:249" ph=" { " />
-            <marker date="1493115841362" expanded="true" signature="298:304" ph=" }" />
-            <marker date="1493115841362" expanded="true" signature="609:616" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="609:647" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="660:694" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="710:744" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="756:788" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="804:838" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="848:876" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="887:917" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="930:964" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="976:1008" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1023:1059" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1074:1106" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1117:1147" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1162:1200" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1216:1256" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1270:1306" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1346:1402" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1423:1489" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1505:1559" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1575:1608" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1625:1658" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1673:1709" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1724:1763" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1778:1811" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1826:1857" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1873:1904" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1920:1955" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="1970:2002" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2018:2057" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2072:2101" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2117:2153" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2169:2198" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2214:2242" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2257:2288" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2304:2345" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2361:2405" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2421:2468" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2484:2525" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2541:2580" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2596:2631" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2647:2682" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2697:2731" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2746:2776" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2791:2819" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2834:2875" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2890:2932" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="2947:2985" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3000:3039" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3054:3091" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3158:3177" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3223:3242" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3249:3364" ph="{...}" />
-            <marker date="1493115841362" expanded="true" signature="3249:3390" ph="{...}" />
+            <marker date="1493149000426" expanded="true" signature="53221:53553" ph="{...}" />
+            <marker date="1493149000426" expanded="true" signature="53271:53553" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1227,7 +1075,7 @@
     <entry file="file://$PROJECT_DIR$/test/program_parser_method_fail_2.mj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1235,7 +1083,7 @@
     <entry file="file://$PROJECT_DIR$/test/program_parser_method_fail_3.mj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1243,15 +1091,7 @@
     <entry file="file://$PROJECT_DIR$/test/program.mj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="289" column="62" lean-forward="false" selection-start-line="289" selection-start-column="62" selection-end-line="289" selection-end-column="62" />
+          <caret line="12" column="5" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1264,25 +1104,202 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="3" column="31" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/libraries/JFlex.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/libraries/java_cup_11a.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/log4j2.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/log4j2.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log4j2.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/pp1/log4j2.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/log4j2.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/log4j2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="100" column="36" lean-forward="false" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
           <folding>
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
+            <marker date="1493148264466" expanded="true" signature="269:272" ph=" { " />
+            <marker date="1493148264466" expanded="true" signature="269:280" ph=" { " />
+            <marker date="1493148264466" expanded="true" signature="322:328" ph=" }" />
+            <marker date="1493148264466" expanded="true" signature="378:381" ph=" { " />
+            <marker date="1493148264466" expanded="true" signature="378:389" ph=" { " />
+            <marker date="1493148264466" expanded="true" signature="438:444" ph=" }" />
+            <marker date="1493148264466" expanded="true" signature="749:756" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="749:787" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="800:834" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="850:884" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="896:928" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="944:978" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="988:1016" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1027:1057" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1070:1104" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1116:1148" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1163:1199" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1214:1246" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1257:1287" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1302:1340" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1356:1396" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1410:1446" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1486:1542" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1563:1629" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1645:1699" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1715:1748" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1765:1798" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1813:1849" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1864:1903" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1918:1951" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="1966:1997" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2013:2044" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2060:2095" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2110:2142" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2158:2197" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2212:2241" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2257:2293" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2309:2338" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2354:2382" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2397:2428" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2444:2485" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2501:2545" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2561:2608" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2624:2665" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2681:2720" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2736:2771" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2787:2822" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2837:2871" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2886:2916" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2931:2959" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="2974:3015" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3030:3072" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3087:3125" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3140:3179" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3194:3231" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3298:3317" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3363:3382" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3389:3498" ph="{...}" />
+            <marker date="1493148264466" expanded="true" signature="3389:3524" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        <state relative-caret-position="120">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="8" selection-end-column="39" />
           <folding>
-            <element signature="e#567#568#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
+            <element signature="e#719#720#0" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="41" column="26" lean-forward="false" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1343,6 +1360,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

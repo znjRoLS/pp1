@@ -1,6 +1,8 @@
 package rosko.bojan;
 
 import java_cup.runtime.Symbol;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.regex.Pattern;
@@ -9,6 +11,8 @@ import java.util.regex.Pattern;
  * Created by rols on 4/22/17.
  */
 public class ParserTest {
+
+    static Logger logger = LogManager.getLogger(ParserTest.class);
 
     public static File[] listFilesMatching(File root, String regex) {
         if(!root.isDirectory()) {
@@ -29,16 +33,16 @@ public class ParserTest {
 
             Reader reader = null;
             try {
-                logInfo("Parsing source file: " + sourceCode.getAbsolutePath());
+                logger.info("Parsing source file: " + sourceCode.getAbsolutePath());
                 reader = new BufferedReader(new FileReader(sourceCode));
                 Lexer lexer = new Lexer(reader);
                 Parser parser = new Parser(lexer);
                 Symbol symbol = parser.parse();
-                logInfo("Got symbol " + symbol + " " + symbol.value);
+                logger.info("Got symbol " + symbol + " " + symbol.value);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
-                logInfo("Parser error: " + e);
+                logger.error("Parser error: " + e);
                 //e.printStackTrace();
             } finally {
                 if (reader != null) {
@@ -48,13 +52,9 @@ public class ParserTest {
                         e.printStackTrace();
                     }
                 }
-                logInfo("");
-                logInfo("");
+                logger.info("");
+                logger.info("");
             }
         }
-    }
-
-    public static void logInfo(String msg) {
-        System.err.println("PARSER INFO: " + msg);
     }
 }

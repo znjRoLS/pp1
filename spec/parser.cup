@@ -1,24 +1,25 @@
 package rosko.bojan;
 
 import java_cup.runtime.*;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 
 //////////////////////////////////////////////
 
 parser code {:
-    Logger log = Logger.getLogger(Parser.class.toString());
+    Logger logger = LogManager.getLogger(Parser.class);
     Scanner scanner;
     Symbol currSym;
 
     void report_error(String msg) {
-        //this.parser.log.info("ERROR: " + msg);
+        logger.error(msg);
         System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
-        //this.parser.log.info("INFO: " + msg);
-        System.err.println("INFO: " + msg);
+        logger.info(msg);
+        //System.err.println("INFO: " + msg);
     }
 :}
 
@@ -42,12 +43,12 @@ action code {:
     Struct currentVarDeclType;
 
     void report_error(String msg) {
-        //this.parser.log.info("ERROR: " + msg);
-        System.err.println("ERROR: " + msg);
+        this.parser.logger.error(msg);
+        //System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
-        //this.parser.log.info("INFO: " + msg);
-        System.err.println("INFO: " + msg);
+        this.parser.logger.info(msg);
+        //System.err.println("INFO: " + msg);
     }
 :}
 

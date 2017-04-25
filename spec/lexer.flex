@@ -1,5 +1,7 @@
 package rosko.bojan;
 import java_cup.runtime.Symbol;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 %%
 
@@ -9,6 +11,8 @@ import java_cup.runtime.Symbol;
 %cup
 
 %{
+    Logger logger = LogManager.getLogger(Lexer.class);
+
     private Symbol symbol(int type) {
         return new Symbol(type, yyline, yycolumn);
     }
@@ -94,4 +98,4 @@ DecIntegerLiteral = 0 | [1-9][0-9]*
 <COMMENT> {LineTerminator} {yybegin(YYINITIAL);}
 
 
-. { Successful = false; System.out.println("Error in lexical analysis, token: " + yytext() + ", line: " + (yyline+1)); return symbol(sym.ERROR);}
+. { Successful = false; logger.error("Error in lexical analysis, token: " + yytext() + ", line: " + (yyline+1)); return symbol(sym.ERROR);}

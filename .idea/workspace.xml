@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_old.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/program_old.mj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/lexer.flex" afterPath="$PROJECT_DIR$/spec/lexer.flex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser.cup" afterPath="$PROJECT_DIR$/spec/parser.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/program.mj" afterPath="$PROJECT_DIR$/test/program.mj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" afterPath="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +20,8 @@
       <file leaf-file-name="lexer.flex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-522">
-              <caret line="52" column="81" lean-forward="false" selection-start-line="52" selection-start-column="81" selection-end-line="52" selection-end-column="81" />
+            <state relative-caret-position="646">
+              <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
               <folding>
                 <marker date="1493064873411" expanded="true" signature="129:132" ph=" { " />
                 <marker date="1493064873411" expanded="true" signature="129:140" ph=" { " />
@@ -94,8 +90,8 @@
       <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+            <state relative-caret-position="380">
+              <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,28 +102,9 @@
       <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-521">
-              <caret line="781" column="11" lean-forward="true" selection-start-line="781" selection-start-column="11" selection-end-line="781" selection-end-column="11" />
-              <folding>
-                <element signature="e#11232#11233#0" expanded="true" />
-                <element signature="e#11289#11290#0" expanded="true" />
-                <element signature="e#11341#11342#0" expanded="true" />
-                <element signature="e#11405#11406#0" expanded="true" />
-                <element signature="e#11607#11608#0" expanded="true" />
-                <element signature="e#11635#11636#0" expanded="true" />
-                <element signature="e#11840#11841#0" expanded="true" />
-                <element signature="e#11889#11890#0" expanded="true" />
-                <element signature="e#14869#14870#0" expanded="true" />
-                <element signature="e#14900#14901#0" expanded="true" />
-                <element signature="e#15038#15039#0" expanded="true" />
-                <element signature="e#15073#15074#0" expanded="true" />
-                <element signature="e#15185#15186#0" expanded="true" />
-                <element signature="e#15262#15263#0" expanded="true" />
-                <element signature="e#15620#15621#0" expanded="true" />
-                <element signature="e#15662#15663#0" expanded="true" />
-                <element signature="e#15760#15761#0" expanded="true" />
-                <element signature="e#15800#15801#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="15260">
+              <caret line="781" column="11" lean-forward="false" selection-start-line="781" selection-start-column="11" selection-end-line="781" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,28 +112,30 @@
       <file leaf-file-name="LexerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="380">
+              <caret line="21" column="40" lean-forward="false" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.cup" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parser.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+            <state relative-caret-position="279">
+              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Struct.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
+      <file leaf-file-name="Tab.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="120" column="5" lean-forward="true" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+            <state relative-caret-position="520">
+              <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -172,11 +151,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program.mj" pinned="false" current-in-tab="false">
+      <file leaf-file-name="program.mj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/program.mj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+            <state relative-caret-position="140">
+              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -185,11 +164,21 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3457">
-              <caret line="214" column="39" lean-forward="false" selection-start-line="214" selection-start-column="39" selection-end-line="214" selection-end-column="39" />
+            <state relative-caret-position="471">
+              <caret line="152" column="19" lean-forward="false" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="19" />
               <folding>
-                <marker date="1493065093815" expanded="true" signature="17539:17987" ph="{...}" />
-                <marker date="1493065093815" expanded="true" signature="17705:17987" ph="{...}" />
+                <marker date="1493108824721" expanded="true" signature="6655:6661" ph=" }" />
+                <marker date="1493108824721" expanded="true" signature="6666:6733" ph="/**...*/" />
+                <marker date="1493108824721" expanded="true" signature="6759:20982" ph="{...}" />
+                <marker date="1493108824721" expanded="true" signature="6859:6960" ph="{...}" />
+                <marker date="1493108824721" expanded="true" signature="6994:7093" ph="{...}" />
+                <marker date="1493108824721" expanded="true" signature="7129:7147" ph="/**...*/" />
+                <marker date="1493108824721" expanded="true" signature="7183:7190" ph=" { " />
+                <marker date="1493108824721" expanded="true" signature="7211:7215" ph=" }" />
+                <marker date="1493108824721" expanded="true" signature="7219:7271" ph="/**...*/" />
+                <marker date="1493108824721" expanded="true" signature="7565:20980" ph="{...}" />
+                <marker date="1493108824721" expanded="true" signature="20648:20980" ph="{...}" />
+                <marker date="1493108824721" expanded="true" signature="20698:20980" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -198,8 +187,8 @@
       <file leaf-file-name="parser_old.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser_old.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+            <state relative-caret-position="1720">
+              <caret line="86" column="24" lean-forward="false" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -226,7 +215,12 @@
       <find>program</find>
       <find>Parsed program name</find>
       <find>line</find>
+      <find>Parsed symbol:</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/test/rosko/bojan</dir>
+      <dir>$PROJECT_DIR$/src/rosko/bojan</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -245,13 +239,13 @@
         <option value="$PROJECT_DIR$/spec/syntax.cup" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/spec/parser_old.cup" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Lexer.java" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
         <option value="$PROJECT_DIR$/spec/lexer.flex" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" />
+        <option value="$PROJECT_DIR$/test/program.mj" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
         <option value="$PROJECT_DIR$/spec/parser.cup" />
       </list>
     </option>
@@ -277,6 +271,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -481,9 +478,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -519,7 +513,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.Parser">
+  <component name="RunManager" selected="Application.ParserTest">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="rosko.bojan.Main" />
@@ -768,12 +762,14 @@
       <workItem from="1492934947848" duration="3629000" />
       <workItem from="1492962905827" duration="3289000" />
       <workItem from="1493018913088" duration="7542000" />
-      <workItem from="1493058726562" duration="6193000" />
+      <workItem from="1493058726562" duration="6273000" />
+      <workItem from="1493065208688" duration="37000" />
+      <workItem from="1493106550190" duration="2175000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35224000" />
+    <option name="totallyTimeSpent" value="37516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -781,27 +777,27 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22780749" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5005348" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.72192514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39955848" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3989305" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -809,7 +805,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -939,8 +935,18 @@
         <state relative-caret-position="2640">
           <caret line="132" column="35" lean-forward="false" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
           <folding>
-            <marker date="1493065093815" expanded="true" signature="17539:17987" ph="{...}" />
-            <marker date="1493065093815" expanded="true" signature="17705:17987" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="6655:6661" ph=" }" />
+            <marker date="1493108824721" expanded="true" signature="6666:6733" ph="/**...*/" />
+            <marker date="1493108824721" expanded="true" signature="6759:20982" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="6859:6960" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="6994:7093" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="7129:7147" ph="/**...*/" />
+            <marker date="1493108824721" expanded="true" signature="7183:7190" ph=" { " />
+            <marker date="1493108824721" expanded="true" signature="7211:7215" ph=" }" />
+            <marker date="1493108824721" expanded="true" signature="7219:7271" ph="/**...*/" />
+            <marker date="1493108824721" expanded="true" signature="7565:20980" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="20648:20980" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="20698:20980" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1417,14 +1423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1040">
           <caret line="58" column="32" lean-forward="false" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#492#493#0" expanded="false" />
-            <element signature="e#527#528#0" expanded="false" />
-            <element signature="e#3165#3166#0" expanded="false" />
-            <element signature="e#3196#3197#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1436,20 +1434,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="120" column="5" lean-forward="true" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+        <state relative-caret-position="2020">
+          <caret line="120" column="5" lean-forward="false" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1462,72 +1450,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/program.mj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3457">
-          <caret line="214" column="39" lean-forward="false" selection-start-line="214" selection-start-column="39" selection-end-line="214" selection-end-column="39" />
-          <folding>
-            <marker date="1493065093815" expanded="true" signature="17539:17987" ph="{...}" />
-            <marker date="1493065093815" expanded="true" signature="17705:17987" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser_old.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+        <state relative-caret-position="1720">
+          <caret line="86" column="24" lean-forward="false" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/rosko/bojan/LexerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="380">
+          <caret line="21" column="40" lean-forward="false" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-521">
-          <caret line="781" column="11" lean-forward="true" selection-start-line="781" selection-start-column="11" selection-end-line="781" selection-end-column="11" />
+        <state relative-caret-position="15260">
+          <caret line="781" column="11" lean-forward="false" selection-start-line="781" selection-start-column="11" selection-end-line="781" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
           <folding>
-            <element signature="e#11232#11233#0" expanded="true" />
-            <element signature="e#11289#11290#0" expanded="true" />
-            <element signature="e#11341#11342#0" expanded="true" />
-            <element signature="e#11405#11406#0" expanded="true" />
-            <element signature="e#11607#11608#0" expanded="true" />
-            <element signature="e#11635#11636#0" expanded="true" />
-            <element signature="e#11840#11841#0" expanded="true" />
-            <element signature="e#11889#11890#0" expanded="true" />
-            <element signature="e#14869#14870#0" expanded="true" />
-            <element signature="e#14900#14901#0" expanded="true" />
-            <element signature="e#15038#15039#0" expanded="true" />
-            <element signature="e#15073#15074#0" expanded="true" />
-            <element signature="e#15185#15186#0" expanded="true" />
-            <element signature="e#15262#15263#0" expanded="true" />
-            <element signature="e#15620#15621#0" expanded="true" />
-            <element signature="e#15662#15663#0" expanded="true" />
-            <element signature="e#15760#15761#0" expanded="true" />
-            <element signature="e#15800#15801#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-522">
-          <caret line="52" column="81" lean-forward="false" selection-start-line="52" selection-start-column="81" selection-end-line="52" selection-end-column="81" />
+        <state relative-caret-position="646">
+          <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
           <folding>
             <marker date="1493064873411" expanded="true" signature="129:132" ph=" { " />
             <marker date="1493064873411" expanded="true" signature="129:140" ph=" { " />
@@ -1592,20 +1562,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+        <state relative-caret-position="471">
+          <caret line="152" column="19" lean-forward="false" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1493108824721" expanded="true" signature="6655:6661" ph=" }" />
+            <marker date="1493108824721" expanded="true" signature="6666:6733" ph="/**...*/" />
+            <marker date="1493108824721" expanded="true" signature="6759:20982" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="6859:6960" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="6994:7093" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="7129:7147" ph="/**...*/" />
+            <marker date="1493108824721" expanded="true" signature="7183:7190" ph=" { " />
+            <marker date="1493108824721" expanded="true" signature="7211:7215" ph=" }" />
+            <marker date="1493108824721" expanded="true" signature="7219:7271" ph="/**...*/" />
+            <marker date="1493108824721" expanded="true" signature="7565:20980" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="20648:20980" ph="{...}" />
+            <marker date="1493108824721" expanded="true" signature="20698:20980" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+        <state relative-caret-position="279">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/program.mj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding />
         </state>
       </provider>

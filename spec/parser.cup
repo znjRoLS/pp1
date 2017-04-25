@@ -13,7 +13,12 @@ parser code {:
     Symbol currSym;
 
     void report_error(String msg) {
-        log.info(msg);
+        //this.parser.log.info("ERROR: " + msg);
+        System.out.println("ERROR: " + msg);
+    }
+    void report_info(String msg) {
+        //this.parser.log.info("INFO: " + msg);
+        System.out.println("INFO: " + msg);
     }
 :}
 
@@ -27,7 +32,7 @@ init with {:
 scan with {:
     currSym = scanner.next_token();
     if (currSym != null && currSym.value != null) {
-        log.info("Parsed symbol: " + currSym.value + " - " + currSym);
+        report_info("Parsed symbol: " + currSym.value + " - " + currSym);
     }
     return currSym;
 :}
@@ -37,15 +42,16 @@ action code {:
     Struct currentVarDeclType;
 
     void report_error(String msg) {
-        this.parser.log.info("ERROR: " + msg);
-        //System.out.println("ERROR: " + msg);
+        //this.parser.log.info("ERROR: " + msg);
+        System.out.println("ERROR: " + msg);
     }
     void report_info(String msg) {
-        this.parser.log.info("INFO: " + msg);
-        //System.out.println("INFO: " + msg);
+        //this.parser.log.info("INFO: " + msg);
+        System.out.println("INFO: " + msg);
     }
 :}
 
+////////////////////////////////////////////////
 
 // TERMINALS
 ////////////////////////////////////////////////
@@ -77,16 +83,12 @@ terminal PARENTHESES_LEFT, PARENTHESES_RIGHT, BRACKETS_LEFT, BRACKETS_RIGHT, BRA
 
 non terminal Program, ProgramName;
 non terminal DeclarationList, Declaration;
-non terminal VarDeclarationLine;
+non terminal VarDeclarationLine, VarDeclarationList, VarDeclaration;
 non terminal ConstDeclarationLine, ConstDeclarationList, ConstDeclaration, Const;
 non terminal ClassDeclarationLine;
 non terminal MethodDeclarationList;
 non terminal Type;
 
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-// PARSER RULES START SECTION
-////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
 // PROGRAM
@@ -142,24 +144,36 @@ Type ::= ID:id
 ConstDeclarationLine ::=    CONST Type ConstDeclarationList SEMICOLON;
 
 ConstDeclarationList ::=    ConstDeclarationList COMMA ConstDeclaration
-                          | ConstDeclaration;
+                            | ConstDeclaration;
 
-ConstDeclaration ::= ID ASSIGN Const:constObj
+ConstDeclaration ::= ID:constObj ASSIGN Const
 {:
-    report_info("Assigning to constant " + constObj);
+    report_info("ConstDeclaration " + constObj);
 :};
 
 Const ::= CONST_NUMBER | CONST_CHAR | CONST_BOOL;
 
 ////////////////////////////////////////////////
 
+// VAR DECLARATION
+////////////////////////////////////////////////
+
+VarDeclarationLine ::=  Type VarDeclarationList SEMICOLON;
+
+VarDeclarationList ::=  VarDeclarationList COMMA VarDeclaration
+                        | VarDeclaration;
+
+VarDeclaration ::= ID | ID:varObj BRACKETS_LEFT BRACKETS_RIGHT
+{:
+    report_info("VarDeclaration " + varObj);
+:};
+
+
+////////////////////////////////////////////////
+
 // OTHER
 ////////////////////////////////////////////////
 
-VarDeclarationLine ::= VOID SEMICOLON
-{:
-    report_info("Var decl, not yet implemented");
-:};
 
 ClassDeclarationLine ::= VOID VOID SEMICOLON
 {:

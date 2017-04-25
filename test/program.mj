@@ -1,6 +1,7 @@
 program funky
 const int nekiint  =54, nekidrugi = 0;
-void;
+int varijabla, varijabla2[];
+bool jedanbool;
 void void;
 const bool opetbool = true, herhe=false;
 const char mnjoh='k', hnjoj='H';

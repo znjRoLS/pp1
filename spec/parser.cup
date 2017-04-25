@@ -83,107 +83,132 @@ terminal PARENTHESES_LEFT, PARENTHESES_RIGHT, BRACKETS_LEFT, BRACKETS_RIGHT, BRA
 
 non terminal Program, ProgramName;
 non terminal DeclarationList, Declaration;
-non terminal VarDeclarationLine, VarDeclarationList, VarDeclaration;
-non terminal ConstDeclarationLine, ConstDeclarationList, ConstDeclaration, Const;
-non terminal ClassDeclarationLine;
-non terminal MethodDeclarationList;
+non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList;
+non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
+non terminal ClassDeclaration, ClassExtends;
+non terminal MethodDeclarationSection, OptionalMethodDeclarationSection, MethodDeclarationList;
 non terminal Type;
 
-////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// PROGRAM
-////////////////////////////////////////////////
+//                                      PROGRAM
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Program ::= PROGRAM ProgramName:progObj DeclarationList
-{:
-    report_info("Program just before left braces");
-:}
-BRACES_LEFT MethodDeclarationList BRACES_RIGHT
-{:
-    report_info("Parsed whole program");
-:};
+                                        Program ::= PROGRAM ProgramName:progObj DeclarationList
+                                                    {:
+                                                        report_info("Program just before left braces");
+                                                    :}
+                                                    MethodDeclarationSection
+                                                    {:
+                                                        report_info("Parsed whole program");
+                                                    :};
 
-ProgramName ::= ID:progName
-{:
-    report_info("Parsed program name " + progName);
-:};
+                                    ProgramName ::= ID:progName
+                                                    {:
+                                                        report_info("Parsed program name " + progName);
+                                                    :};
 
-////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// DECLARATIONS
-////////////////////////////////////////////////
+//                                 DECLARATIONS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-DeclarationList ::= DeclarationList Declaration
-{:
-    report_info("Declaration list Declaration");
-:}
-| /* epsilon */
-{:
-    report_info("Declaration list epsilon");
-:};
+                                DeclarationList ::= DeclarationList Declaration
+                                                    {:
+                                                        report_info("Declaration list Declaration");
+                                                    :}
+                                                    | /* epsilon */
+                                                    {:
+                                                        report_info("Declaration list epsilon");
+                                                    :};
 
-Declaration ::=     VarDeclarationLine
-                    | ConstDeclarationLine
-                    | ClassDeclarationLine;
+                                    Declaration ::= VarDeclarationLine
+                                                    | ConstDeclarationLine
+                                                    | ClassDeclaration;
 
-////////////////////////////////////////////////
+                                           Type ::= ID:id
+                                                    {:
+                                                        report_info("Matched type " + id);
+                                                    :};
 
-// RANDOM? DECLARATION
-////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Type ::= ID:id
-{:
-    report_info("Matched type " + id);
-:};
+//                        CONSTANTS DECLARATION
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////
+                           ConstDeclarationLine ::= CONST Type ConstIDList SEMICOLON;
 
-// CONSTANTS DECLARATION
-////////////////////////////////////////////////
+                                    ConstIDList ::= ConstIDList COMMA ConstID
+                                                    | ConstID;
 
-ConstDeclarationLine ::=    CONST Type ConstDeclarationList SEMICOLON;
+                                        ConstID ::= ID:constObj ASSIGN Const
+                                                    {:
+                                                        report_info("ConstDeclaration " + constObj);
+                                                    :};
 
-ConstDeclarationList ::=    ConstDeclarationList COMMA ConstDeclaration
-                            | ConstDeclaration;
+                                          Const ::= CONST_NUMBER
+                                                    | CONST_CHAR
+                                                    | CONST_BOOL;
 
-ConstDeclaration ::= ID:constObj ASSIGN Const
-{:
-    report_info("ConstDeclaration " + constObj);
-:};
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Const ::= CONST_NUMBER | CONST_CHAR | CONST_BOOL;
+//                              VAR DECLARATION
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////
+                             VarDeclarationList ::= VarDeclarationList VarDeclarationLine
+                                                    | /* epsilon */;
 
-// VAR DECLARATION
-////////////////////////////////////////////////
+                             VarDeclarationLine ::= Type VarIDList SEMICOLON;
 
-VarDeclarationLine ::=  Type VarDeclarationList SEMICOLON;
+                                      VarIDList ::= VarIDList COMMA VarID
+                                                    | VarID;
 
-VarDeclarationList ::=  VarDeclarationList COMMA VarDeclaration
-                        | VarDeclaration;
+                                          VarID ::= ID
+                                                    | ID:varObj BRACKETS_LEFT BRACKETS_RIGHT
+                                                    {:
+                                                        report_info("VarDeclaration " + varObj);
+                                                    :};
 
-VarDeclaration ::= ID | ID:varObj BRACKETS_LEFT BRACKETS_RIGHT
-{:
-    report_info("VarDeclaration " + varObj);
-:};
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//                            CLASS DECLARATION
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////
+                               ClassDeclaration ::= CLASS ID ClassExtends BRACES_LEFT VarDeclarationList
+                                                    OptionalMethodDeclarationSection BRACES_RIGHT
+                                                    {:
+                                                        report_info("Parsed class declaration!");
+                                                    :};
 
-// OTHER
-////////////////////////////////////////////////
+                                   ClassExtends ::= EXTENDS Type
+                                                    {:
+                                                        report_info ("Parsed nonempty class extends");
+                                                    :}
+                                                    | /* epsilon */
+                                                    {:
+                                                        report_info ("Parsed empty class extends");
+                                                    :};
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ClassDeclarationLine ::= VOID VOID SEMICOLON
-{:
-    report_info("Class decl, not yet implemented");
-:};
+//                           METHOD DECLARATION
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-MethodDeclarationList ::= VOID VOID VOID SEMICOLON
-{:
-    report_info("Method decl, not yet implemented");
-:};
+                       MethodDeclarationSection ::= BRACES_LEFT MethodDeclarationList BRACES_RIGHT;
+
+               OptionalMethodDeclarationSection ::= MethodDeclarationSection
+                                                    | /* epsilon */;
+
+                          MethodDeclarationList ::= VOID VOID VOID SEMICOLON
+                                                    {:
+                                                        report_info("Method decl, not yet implemented");
+                                                    :};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//                                        OTHER          
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 

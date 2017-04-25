@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser.cup" afterPath="$PROJECT_DIR$/spec/parser.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/program.mj" afterPath="$PROJECT_DIR$/test/program.mj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" afterPath="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,8 +90,8 @@
       <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+            <state relative-caret-position="400">
+              <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.cup" pinned="false" current-in-tab="false">
+      <file leaf-file-name="parser.cup" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="208" column="49" lean-forward="false" selection-start-line="208" selection-start-column="49" selection-end-line="208" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -151,11 +151,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program.mj" pinned="false" current-in-tab="true">
+      <file leaf-file-name="program.mj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/program.mj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            <state relative-caret-position="240">
+              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -164,21 +164,12 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="152" column="19" lean-forward="false" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="19" />
+            <state relative-caret-position="711">
+              <caret line="164" column="19" lean-forward="false" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="19" />
               <folding>
-                <marker date="1493108824721" expanded="true" signature="6655:6661" ph=" }" />
-                <marker date="1493108824721" expanded="true" signature="6666:6733" ph="/**...*/" />
-                <marker date="1493108824721" expanded="true" signature="6759:20982" ph="{...}" />
-                <marker date="1493108824721" expanded="true" signature="6859:6960" ph="{...}" />
-                <marker date="1493108824721" expanded="true" signature="6994:7093" ph="{...}" />
-                <marker date="1493108824721" expanded="true" signature="7129:7147" ph="/**...*/" />
-                <marker date="1493108824721" expanded="true" signature="7183:7190" ph=" { " />
-                <marker date="1493108824721" expanded="true" signature="7211:7215" ph=" }" />
-                <marker date="1493108824721" expanded="true" signature="7219:7271" ph="/**...*/" />
-                <marker date="1493108824721" expanded="true" signature="7565:20980" ph="{...}" />
-                <marker date="1493108824721" expanded="true" signature="20648:20980" ph="{...}" />
-                <marker date="1493108824721" expanded="true" signature="20698:20980" ph="{...}" />
+                <marker date="1493110820641" expanded="true" signature="25686:26018" ph="{...}" />
+                <marker date="1493110820641" expanded="true" signature="25686:26020" ph="{...}" />
+                <marker date="1493110820641" expanded="true" signature="25736:26018" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -241,11 +232,11 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/spec/parser_old.cup" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Lexer.java" />
-        <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
         <option value="$PROJECT_DIR$/spec/lexer.flex" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/LexerTest.java" />
-        <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
+        <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
+        <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/spec/parser.cup" />
       </list>
     </option>
@@ -764,12 +755,12 @@
       <workItem from="1493018913088" duration="7542000" />
       <workItem from="1493058726562" duration="6273000" />
       <workItem from="1493065208688" duration="37000" />
-      <workItem from="1493106550190" duration="2175000" />
+      <workItem from="1493106550190" duration="4148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37516000" />
+    <option name="totallyTimeSpent" value="39489000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -781,7 +772,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.72192514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44171122" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -935,18 +926,9 @@
         <state relative-caret-position="2640">
           <caret line="132" column="35" lean-forward="false" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
           <folding>
-            <marker date="1493108824721" expanded="true" signature="6655:6661" ph=" }" />
-            <marker date="1493108824721" expanded="true" signature="6666:6733" ph="/**...*/" />
-            <marker date="1493108824721" expanded="true" signature="6759:20982" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="6859:6960" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="6994:7093" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="7129:7147" ph="/**...*/" />
-            <marker date="1493108824721" expanded="true" signature="7183:7190" ph=" { " />
-            <marker date="1493108824721" expanded="true" signature="7211:7215" ph=" }" />
-            <marker date="1493108824721" expanded="true" signature="7219:7271" ph="/**...*/" />
-            <marker date="1493108824721" expanded="true" signature="7565:20980" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="20648:20980" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="20698:20980" ph="{...}" />
+            <marker date="1493110820641" expanded="true" signature="25686:26018" ph="{...}" />
+            <marker date="1493110820641" expanded="true" signature="25686:26020" ph="{...}" />
+            <marker date="1493110820641" expanded="true" signature="25736:26018" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1476,16 +1458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
@@ -1564,37 +1536,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="152" column="19" lean-forward="false" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="19" />
+        <state relative-caret-position="711">
+          <caret line="164" column="19" lean-forward="false" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="19" />
           <folding>
-            <marker date="1493108824721" expanded="true" signature="6655:6661" ph=" }" />
-            <marker date="1493108824721" expanded="true" signature="6666:6733" ph="/**...*/" />
-            <marker date="1493108824721" expanded="true" signature="6759:20982" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="6859:6960" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="6994:7093" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="7129:7147" ph="/**...*/" />
-            <marker date="1493108824721" expanded="true" signature="7183:7190" ph=" { " />
-            <marker date="1493108824721" expanded="true" signature="7211:7215" ph=" }" />
-            <marker date="1493108824721" expanded="true" signature="7219:7271" ph="/**...*/" />
-            <marker date="1493108824721" expanded="true" signature="7565:20980" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="20648:20980" ph="{...}" />
-            <marker date="1493108824721" expanded="true" signature="20698:20980" ph="{...}" />
+            <marker date="1493110820641" expanded="true" signature="25686:26018" ph="{...}" />
+            <marker date="1493110820641" expanded="true" signature="25686:26020" ph="{...}" />
+            <marker date="1493110820641" expanded="true" signature="25736:26018" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser.cup">
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="400">
+          <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/program.mj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="240">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="208" column="49" lean-forward="false" selection-start-line="208" selection-start-column="49" selection-end-line="208" selection-end-column="49" />
           <folding />
         </state>
       </provider>

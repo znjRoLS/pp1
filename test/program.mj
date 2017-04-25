@@ -2,9 +2,19 @@ program funky
 const int nekiint  =54, nekidrugi = 0;
 int varijabla, varijabla2[];
 bool jedanbool;
-void void;
 const bool opetbool = true, herhe=false;
 const char mnjoh='k', hnjoj='H';
+
+class nekiclass {
+    int unutrasnji,unitrasnji2[];
+
+}
+class opetclass extends nekiclass {
+    {
+        void void void;
+    }
+}
+
 {
     void void void;
 }

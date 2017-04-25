@@ -16,12 +16,12 @@ public class ParserTest {
         Reader reader = null;
         try {
             File sourceCode = new File("program.mj");
-            log.info("Parsing source file: " + sourceCode.getAbsolutePath());
+            System.out.println("Parsing source file: " + sourceCode.getAbsolutePath());
             reader = new BufferedReader(new FileReader(sourceCode));
             Lexer lexer = new Lexer(reader);
             Parser parser = new Parser(lexer);
             Symbol symbol = parser.parse();
-            log.info("Got symbol " + symbol + " " + symbol.value);
+            System.out.println("Got symbol " + symbol + " " + symbol.value);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

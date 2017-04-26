@@ -29,7 +29,10 @@ public class ParserTest {
 
     public static void main(String[] args) {
 
-        for (File sourceCode : listFilesMatching(new File("./"), "program_parser.*")) {
+        String matchingPattern = "program.mj";
+        //String matchingPattern = "program_parser.*";
+
+        for (File sourceCode : listFilesMatching(new File("./"), matchingPattern)) {
 
             Reader reader = null;
             try {
@@ -39,10 +42,22 @@ public class ParserTest {
                 Parser parser = new Parser(lexer);
                 Symbol symbol = parser.parse();
                 logger.info("Got symbol " + symbol + " " + symbol.value);
+
+                parser.context.symCnt.printAllCounts();
+
+//                logger.info("Found " + parser.symCnt.get("const") + " global constants");
+//                logger.info("Found " + parser.symCnt.get("var") + " global variables");
+//                logger.info("Found " + parser.symCnt.get("class") + " global classes");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 logger.error("Parser error: " + e);
+
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+
+                logger.error(sw.toString());
                 //e.printStackTrace();
             } finally {
                 if (reader != null) {
@@ -55,6 +70,7 @@ public class ParserTest {
                 logger.info("");
                 logger.info("");
             }
+
         }
     }
 }

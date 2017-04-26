@@ -6,12 +6,18 @@ import org.apache.logging.log4j.Logger;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 
+import rosko.bojan.SymbolCounter;
+import rosko.bojan.SemanticContext.SemanticSymbol.*;
+import rosko.bojan.SemanticContext.SemanticSymbol;
+
 //////////////////////////////////////////////
 
 parser code {:
     Logger logger = LogManager.getLogger(Parser.class);
     Scanner scanner;
     Symbol currSym;
+
+    public SemanticContext context = new SemanticContext();
 
     void report_error(String msg) {
         logger.error(msg);
@@ -42,6 +48,7 @@ action code {:
     Obj currentMethod = null;
     Struct currentVarDeclType;
 
+
     void report_error(String msg) {
         this.parser.logger.error(msg);
         //System.err.println("ERROR: " + msg);
@@ -49,6 +56,10 @@ action code {:
     void report_info(String msg) {
         this.parser.logger.info(msg);
         //System.err.println("INFO: " + msg);
+    }
+
+    void foundSymbol(SemanticContext.SemanticSymbol type, String name) {
+        this.parser.context.foundSymbol(type, name);
     }
 :}
 
@@ -84,10 +95,11 @@ terminal PARENTHESES_LEFT, PARENTHESES_RIGHT, BRACKETS_LEFT, BRACKETS_RIGHT, BRA
 
 non terminal Program, ProgramName;
 non terminal DeclarationList, Declaration;
-non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList;
+non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList, VarIDSingle;
 non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
-non terminal ClassDeclaration, ClassExtends;
-non terminal MethodDeclarationSection, OptionalMethodDeclarationSection, MethodDeclarationList, MethodDeclaration;
+non terminal ClassDeclaration, ClassExtends, ClassName;
+non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
+non terminal MethodDeclarationList, MethodDeclaration, MethodName;
 non terminal FormalParameterSection, FormalParameterList, FormalParameter;
 non terminal Type, MethodType, OptionalStatic;
 non terminal StatementBlock, StatementList, Statement;
@@ -112,17 +124,26 @@ precedence left ELSE;
 //                                      PROGRAM
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                                        Program ::= PROGRAM ProgramName:progObj DeclarationList
+                                        Program ::= PROGRAM
                                                     {:
-                                                        report_info("Program just before left braces");
+                                                        report_info("Program 1");
+                                                    :}
+                                                    ProgramName
+                                                    {:
+                                                        report_info("Program 2");
+                                                    :}
+                                                    DeclarationList
+                                                    {:
+                                                        report_info("Program 3");
                                                     :}
                                                     MethodDeclarationSection
                                                     {:
-                                                        report_info("Parsed whole program");
+                                                        report_info("Program 4");
                                                     :};
 
                                     ProgramName ::= ID:progName
                                                     {:
+                                                        Tab.insert(Obj.Prog, progName.toString(), Tab.noType);
                                                         report_info("Parsed program name " + progName);
                                                     :};
 
@@ -166,6 +187,7 @@ precedence left ELSE;
 
                                         ConstID ::= ID:constObj ASSIGN Const
                                                     {:
+                                                        foundSymbol(SemanticSymbol.CONST, constObj.toString());
                                                         report_info("ConstDeclaration " + constObj);
                                                     :};
 
@@ -183,13 +205,31 @@ precedence left ELSE;
 
                              VarDeclarationLine ::= Type VarIDList SEMICOLON;
 
-                                      VarIDList ::= VarIDList COMMA VarID
-                                                    | VarID;
+                                      VarIDList ::= VarIDList COMMA VarIDSingle
+                                                    | VarIDSingle;
 
-                                          VarID ::= ID
-                                                    | ID:varObj BRACKETS_LEFT BRACKETS_RIGHT
+                                    VarIDSingle ::= VarID:varObj
                                                     {:
-                                                        report_info("VarDeclaration " + varObj);
+                                                        foundSymbol(SemanticSymbol.VAR, varObj.toString());
+                                                        report_info("VarDeclaration 1 " + varObj);
+                                                    :}
+                                                    | VarID:varObj
+                                                    {:
+                                                        report_info("VarDeclaration 3 " + varObj);
+                                                    :}
+                                                    BRACKETS_LEFT
+                                                    {:
+                                                        report_info("VarDeclaration 4 " + varObj);
+                                                    :}
+                                                    BRACKETS_RIGHT
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.ARRAY, varObj.toString());
+                                                        report_info("VarDeclaration 2 " + varObj);
+                                                    :};
+
+                                          VarID ::= ID:id
+                                                    {:
+                                                        RESULT = id;
                                                     :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -197,11 +237,17 @@ precedence left ELSE;
 //                            CLASS DECLARATION
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                               ClassDeclaration ::= CLASS ID ClassExtends
+                               ClassDeclaration ::= CLASS ClassName ClassExtends
                                                     BRACES_LEFT VarDeclarationList
                                                     OptionalMethodDeclarationSection BRACES_RIGHT
                                                     {:
-                                                        report_info("Parsed class declaration!");
+                                                        foundSymbol(SemanticSymbol.CLASS_EXIT, null);
+                                                    :};
+
+                                      ClassName ::= ID:id
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.CLASS, id.toString());
+                                                        report_info("Entered class: " + id);
                                                     :};
 
                                    ClassExtends ::= EXTENDS Type
@@ -226,12 +272,18 @@ precedence left ELSE;
                           MethodDeclarationList ::= MethodDeclarationList MethodDeclaration
                                                     | /* epsilon */;
 
-                              MethodDeclaration ::= OptionalStatic MethodType ID:id
+                              MethodDeclaration ::= OptionalStatic MethodType MethodName
                                                     PARENTHESES_LEFT FormalParameterSection PARENTHESES_RIGHT
                                                     VarDeclarationList
                                                     StatementBlock
                                                     {:
-                                                        report_info("Matched method " + id);
+                                                        foundSymbol(SemanticSymbol.METHOD_EXIT, null);
+                                                    :};
+
+                                    MethodName ::= ID:id
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.METHOD, id.toString());
+                                                        report_info("Entered method: " + id);
                                                     :};
 
                         FormalParameterSection ::= FormalParameterList
@@ -294,8 +346,8 @@ precedence left ELSE;
                     OptionalDesignatorStatement ::= DesignatorStatement
                                                     | /* epsilon */;
 
-                            DesignatorStatement ::= AssignOperator Expression
-                                                    | MethodCall
+                            DesignatorStatement ::= Designator AssignOperator Expression
+                                                    | Designator MethodCall
                                                     | Designator INCREMENT
                                                     | Designator DECREMENT;
 

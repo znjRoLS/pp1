@@ -12,7 +12,7 @@ class nekiclass {
 class opetclass extends nekiclass {
     {
         int metoda1() {
-            void void void;
+            return;
         }
     }
 }
@@ -22,6 +22,6 @@ class opetclass extends nekiclass {
         char currChar;
         char currString[];
     {
-        void void void;
+        varijabla = varijabla2[0] + varijabla2[0+1*1];
     }
 }

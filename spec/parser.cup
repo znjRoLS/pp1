@@ -94,8 +94,16 @@ non terminal StatementBlock, StatementList, Statement;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
 non terminal DesignatorStatement, OptionalDesignatorStatement, Designator;
-non terminal Condition, OptionalCondition;
-non terminal Expression;
+non terminal ActualParameterSection, ActualParameterList, ActualParameter;
+non terminal MemberList, Member;
+non terminal OptionalDimension, Dimension;
+non terminal OptionalMethodCall, MethodCall;
+non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
+non terminal OptionalUnaryMinus, Expression;
+non terminal Term, AdditionTermList, Factor, MultiplicationFactorList;
+non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
+non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
+non terminal RelationalOperator, AssignOperator;
 
 precedence left ELSE;
 
@@ -286,9 +294,36 @@ precedence left ELSE;
                     OptionalDesignatorStatement ::= DesignatorStatement
                                                     | /* epsilon */;
 
-                            DesignatorStatement ::= VOID VOID VOID SEMICOLON;
+                            DesignatorStatement ::= AssignOperator Expression
+                                                    | MethodCall
+                                                    | Designator INCREMENT
+                                                    | Designator DECREMENT;
 
-                                     Designator ::= VOID VOID SEMICOLON;
+                         ActualParameterSection ::= ActualParameterList
+                                                    | /* epsilon */;
+
+                            ActualParameterList ::= ActualParameterList COMMA ActualParameter
+                                                    | ActualParameter;
+
+                                ActualParameter ::= Expression;
+
+                                     Designator ::= ID MemberList;
+
+                                     MemberList ::= MemberList Member
+                                                    | /* epsilon */;
+
+                                         Member ::= DOT ID
+                                                    | Dimension;
+
+                              OptionalDimension ::= Dimension
+                                                    | /* epsilon */;
+
+                             OptionalMethodCall ::= MethodCall
+                                                    | /* epsilon */;
+
+                                     MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT;
+
+                                      Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -298,13 +333,80 @@ precedence left ELSE;
                               OptionalCondition ::= Condition
                                                     | /* epsilon */;
 
-                                      Condition ::= VOID VOID VOID VOID SEMICOLON;
+                                      Condition ::= ConditionTermList ;
+
+                              ConditionTermList ::= ConditionTermList OR ConditionTerm
+                                                    | ConditionTerm;
+
+                                  ConditionTerm ::= ConditionFactorList;
+
+                            ConditionFactorList ::= ConditionFactorList AND ConditionFactor
+                                                    | ConditionFactor;
+
+                                ConditionFactor ::= Expression
+                                                    | Expression RelationalOperator Expression;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//                                        OTHER
+//                                   Expression
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+                                     Expression ::= OptionalUnaryMinus AdditionTermList;
 
-Expression ::= VOID VOID VOID VOID VOID SEMICOLON;
+                             OptionalUnaryMinus ::= SUBTRACTION
+                                                    | /* epsilon */;
+
+                               AdditionTermList ::= AdditionTermList AdditionOperator Term
+                                                    | Term;
+
+                                           Term ::= MultiplicationFactorList;
+
+                       MultiplicationFactorList ::= MultiplicationFactorList MultiplicationOperator Factor
+                                                    | Factor;
+
+                                         Factor ::= Designator OptionalMethodCall
+                                                    | CONST_NUMBER
+                                                    | CONST_CHAR
+                                                    | CONST_BOOL
+                                                    | NEW Type OptionalDimension
+                                                    | PARENTHESES_LEFT Expression PARENTHESES_RIGHT;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//                                    OPERATORS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                               AdditionOperator ::= AdditionOperatorLeft
+                                                    | AdditionOperatorRight;
+
+                           AdditionOperatorLeft ::= ADDITION
+                                                    | SUBTRACTION;
+
+                          AdditionOperatorRight ::= ASSIGN_ADDITION
+                                                    | ASSIGN_SUBTRACTION;
+
+                         MultiplicationOperator ::= MultiplicationOperatorLeft
+                                                    | MultiplicationOperatorRight;
+
+                     MultiplicationOperatorLeft ::= MULTIPLICATION
+                                                    | DIVISION
+                                                    | MODULO;
+
+                    MultiplicationOperatorRight ::= ASSIGN_MULTIPLICATION
+                                                    | ASSIGN_DIVISION
+                                                    | ASSIGN_MODULO;
+
+                             RelationalOperator ::= EQUAL
+                                                    | NOT_EQUAL
+                                                    | GREATER
+                                                    | GREATER_EQUAL
+                                                    | LESS
+                                                    | LESS_EQUAL;
+
+                                 AssignOperator ::= ASSIGN
+                                                    | AdditionOperatorRight
+                                                    | MultiplicationOperatorRight;
+
+
 

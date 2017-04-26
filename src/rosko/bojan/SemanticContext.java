@@ -2,6 +2,7 @@ package rosko.bojan;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sun.awt.Symbol;
 
 import static rosko.bojan.SemanticContext.SemanticSymbol.*;
 
@@ -10,7 +11,24 @@ import static rosko.bojan.SemanticContext.SemanticSymbol.*;
  */
 public class SemanticContext {
 
-    public SymbolCounter symCnt = new SymbolCounter();
+    public enum CountType {
+        GLOBAL_VAR,
+        MAIN_VAR,
+        GLOBAL_CONST,
+        GLOBAL_ARRAY,
+        GLOBAL_METHOD,
+        CLASS_STATIC_METHOD,
+        STATEMENT_BLOCK,
+        MAIN_METHOD_CALL,
+        FORMAL_ARGUMENT,
+        CLASS,
+        CLASS_METHOD,
+        CLASS_VAR
+    }
+
+    public SymbolCounter<String> symbolByNameCounter = new SymbolCounter<String>();
+    public SymbolCounter<CountType> symbolCounter = new SymbolCounter<CountType>();
+
 
     public enum SemanticSymbol {
         CONST,
@@ -20,10 +38,15 @@ public class SemanticContext {
         METHOD_EXIT,
         CLASS,
         CLASS_EXIT,
+        FORMAL_PARAMETER,
+        STATEMENT_BLOCK,
+        STATEMENT_BLOCK_EXIT,
+        METHOD_CALL
     }
 
     String currClass;
     String currMethod;
+    int statementBlockLevel;
     boolean isCurrMethodStatic;
     Logger logger = LogManager.getLogger(SemanticContext.class);
 
@@ -31,6 +54,7 @@ public class SemanticContext {
         currClass = null;
         currMethod = null;
         isCurrMethodStatic = false;
+        statementBlockLevel = 0;
     }
 
     public void setCurrMethodStatic() {
@@ -71,38 +95,88 @@ public class SemanticContext {
         report_info("foundsymbol " + type + " - " + name);
 
         if (type == CONST) {
-            symCnt.inc(getContext() + "const");
+            symbolByNameCounter.inc(getContext() + "const");
+            if(currMethod != null || currClass != null) {
+                System.err.println("error?");
+            }
+            symbolCounter.inc(CountType.GLOBAL_CONST);
         }
         if (type == VAR) {
-            symCnt.inc(getContext() +"var");
+            symbolByNameCounter.inc(getContext() +"var");
+            if (currClass != null && currMethod != null) {
+                // what here?
+            } else if (currClass != null) {
+                symbolCounter.inc(CountType.CLASS_VAR);
+            } else if (currMethod != null) {
+                // what here?
+                if (currMethod == "main") {
+                    symbolCounter.inc(CountType.MAIN_VAR);
+                }
+            } else {
+                symbolCounter.inc(CountType.GLOBAL_VAR);
+            }
         }
         if (type == ARRAY) {
-            symCnt.inc(getContext() + "array");
+            if (currMethod == null && currClass == null) {
+                symbolCounter.inc(CountType.GLOBAL_ARRAY);
+            }
+            symbolByNameCounter.inc(getContext() + "array");
         }
         if (type == METHOD) {
-            symCnt.inc(getContext() + "method");
+            if (currClass != null) {
+                if (isCurrMethodStatic) {
+                    symbolCounter.inc(CountType.CLASS_STATIC_METHOD);
+                } else {
+                    symbolCounter.inc(CountType.CLASS_METHOD);
+                }
+            } else {
+                symbolCounter.inc(CountType.GLOBAL_METHOD);
+            }
+            symbolByNameCounter.inc(getContext() + "method");
             enterMethod(name);
         }
         if (type == METHOD_EXIT) {
             exitMethod();
         }
         if (type == CLASS) {
-            symCnt.inc(getContext() + "class");
+            symbolCounter.inc(CountType.CLASS);
+            symbolByNameCounter.inc(getContext() + "class");
             enterClass(name);
         }
         if (type == CLASS_EXIT) {
             exitClass();
         }
+        if (type == FORMAL_PARAMETER) {
+            symbolCounter.inc(CountType.FORMAL_ARGUMENT);
+            symbolByNameCounter.inc(getContext() + "formal");
+        }
+        if (type == STATEMENT_BLOCK) {
+            statementBlockLevel ++;
+            symbolCounter.inc(CountType.STATEMENT_BLOCK);
+        }
+        if (type == STATEMENT_BLOCK_EXIT) {
+            statementBlockLevel--;
+        }
+        if (type == METHOD_CALL) {
+            if (currMethod == "main") {
+                symbolCounter.inc(CountType.MAIN_METHOD_CALL);
+            }
+        }
     }
 
     public String getContext() {
         String res = "";
+        for(int i = 0 ; i < statementBlockLevel; i ++) {
+            res = "{} | " + res;
+        }
+
         if (currMethod != null) {
-            res = currMethod + "|" + res;
+            res = currMethod + " | " + res;
         }
         if (currClass != null) {
-            res = currClass + "|" + res;
+            res = currClass + " | " + res;
         }
+
         return res;
     }
 

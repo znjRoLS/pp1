@@ -43,7 +43,8 @@ public class ParserTest {
                 Symbol symbol = parser.parse();
                 logger.info("Got symbol " + symbol + " " + symbol.value);
 
-                parser.context.symCnt.printAllCounts();
+                parser.context.symbolCounter.printAllCounts();
+                parser.context.symbolByNameCounter.printAllCounts();
 
 //                logger.info("Found " + parser.symCnt.get("const") + " global constants");
 //                logger.info("Found " + parser.symCnt.get("var") + " global variables");

@@ -275,7 +275,7 @@ precedence left ELSE;
                               MethodDeclaration ::= OptionalStatic MethodType MethodName
                                                     PARENTHESES_LEFT FormalParameterSection PARENTHESES_RIGHT
                                                     VarDeclarationList
-                                                    StatementBlock
+                                                    BRACES_LEFT StatementList BRACES_RIGHT
                                                     {:
                                                         foundSymbol(SemanticSymbol.METHOD_EXIT, null);
                                                     :};
@@ -292,15 +292,29 @@ precedence left ELSE;
                            FormalParameterList ::= FormalParameterList COMMA FormalParameter
                                                     | FormalParameter;
 
-                                FormalParameter ::= Type ID
-                                                    | Type ID BRACKETS_LEFT BRACKETS_RIGHT;
+                                FormalParameter ::= Type ID:id
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                                    :}
+                                                    | Type ID:id
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                                    :}
+                                                    BRACKETS_LEFT BRACKETS_RIGHT;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //                                   STATEMENTS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                                 StatementBlock ::= BRACES_LEFT StatementList BRACES_RIGHT;
+                                 StatementBlock ::= BRACES_LEFT
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.STATEMENT_BLOCK, null);
+                                                    :}
+                                                    StatementList BRACES_RIGHT
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.STATEMENT_BLOCK_EXIT, null);
+                                                    :};
 
                                   StatementList ::= StatementList Statement
                                                     | /* epsilon */;
@@ -373,7 +387,10 @@ precedence left ELSE;
                              OptionalMethodCall ::= MethodCall
                                                     | /* epsilon */;
 
-                                     MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT;
+                                     MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.METHOD_CALL, null);
+                                                    :};
 
                                       Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;
 

@@ -45,6 +45,7 @@ public class ParserTest {
 
                 parser.context.symbolCounter.printAllCounts();
                 parser.context.symbolByNameCounter.printAllCounts();
+                parser.dump();
 
 //                logger.info("Found " + parser.symCnt.get("const") + " global constants");
 //                logger.info("Found " + parser.symCnt.get("var") + " global variables");

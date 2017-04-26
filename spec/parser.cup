@@ -27,6 +27,9 @@ parser code {:
         logger.info(msg);
         //System.err.println("INFO: " + msg);
     }
+    void dump() {
+        context.dumpTable();
+    }
 :}
 
 init with {:
@@ -167,14 +170,21 @@ precedence left ELSE;
 
                                            Type ::= ID:id
                                                     {:
+                                                        foundSymbol(SemanticSymbol.TYPE, id.toString());
                                                         report_info("Matched type " + id);
                                                     :};
 
                                  OptionalStatic ::= STATIC
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.STATIC, null);
+                                                    :}
                                                     | /* epsilon */;
 
                                      MethodType ::= Type:id
-                                                    | VOID;
+                                                    | VOID
+                                                    {:
+                                                        foundSymbol(SemanticSymbol.TYPE, "void");
+                                                    :};
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //                        CONSTANTS DECLARATION

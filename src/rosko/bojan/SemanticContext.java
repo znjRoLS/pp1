@@ -2,7 +2,12 @@ package rosko.bojan;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rs.etf.pp1.symboltable.Tab;
+import rs.etf.pp1.symboltable.concepts.Obj;
+import rs.etf.pp1.symboltable.concepts.Struct;
 import sun.awt.Symbol;
+
+import java.util.HashMap;
 
 import static rosko.bojan.SemanticContext.SemanticSymbol.*;
 
@@ -11,6 +16,7 @@ import static rosko.bojan.SemanticContext.SemanticSymbol.*;
  */
 public class SemanticContext {
 
+    // for communication with counter
     public enum CountType {
         GLOBAL_VAR,
         MAIN_VAR,
@@ -26,10 +32,8 @@ public class SemanticContext {
         CLASS_VAR
     }
 
-    public SymbolCounter<String> symbolByNameCounter = new SymbolCounter<String>();
-    public SymbolCounter<CountType> symbolCounter = new SymbolCounter<CountType>();
 
-
+    // for communication from parser
     public enum SemanticSymbol {
         CONST,
         VAR,
@@ -41,75 +45,114 @@ public class SemanticContext {
         FORMAL_PARAMETER,
         STATEMENT_BLOCK,
         STATEMENT_BLOCK_EXIT,
-        METHOD_CALL
+        METHOD_CALL,
+        STATIC,
+        TYPE
     }
 
-    String currClass;
-    String currMethod;
-    int statementBlockLevel;
-    boolean isCurrMethodStatic;
-    Logger logger = LogManager.getLogger(SemanticContext.class);
+    private static HashMap<String,Integer> objectType = new HashMap<String,Integer>(){
+        {
+            put("int", Struct.Int);
+            put("char", Struct.Char);
+            put("bool", Struct.Bool);
+            put("void", Struct.None);
+            put("class", Struct.Class);
+        }
+    };
+
+    public SymbolCounter<String> symbolByNameCounter;
+    public SymbolCounter<CountType> symbolCounter;
+
+    private String currClassName;
+    private String currMethodName;
+    private Obj currMethod;
+    private Obj currClass;
+    private Struct currClassStruct;
+    private int statementBlockLevel;
+    private boolean isCurrMethodStatic;
+    private int currentDeclarationType;
+    private Logger logger = LogManager.getLogger(SemanticContext.class);
 
     SemanticContext() {
-        currClass = null;
-        currMethod = null;
+        currClassName = null;
+        currMethodName = null;
         isCurrMethodStatic = false;
         statementBlockLevel = 0;
+        symbolByNameCounter = new SymbolCounter<String>();
+        symbolCounter = new SymbolCounter<CountType>();
     }
 
-    public void setCurrMethodStatic() {
+    public void dumpTable() {
+        Tab.dump();
+    }
+
+    private void setCurrMethodStatic() {
         isCurrMethodStatic = true;
     }
 
-    public void enterClass(String name) {
-        report_info("Entered clas: " + currClass);
-        currClass = name;
-    }
-
-    public void exitClass() {
-        report_info("Exited class: " + currClass);
-        currClass = null;
-    }
-
-    public void enterMethod(String name) {
-        report_info("Entered method: " + currMethod);
-        currMethod = name;
-        isCurrMethodStatic = false;
-    }
-
-    public void exitMethod() {
-        report_info("Exited method: " + currMethod);
-        currMethod = null;
-    }
-
     public String getCurrMethod() {
-        return currMethod;
+        return currMethodName;
     }
 
     public String getCurrClass() {
-        return currClass;
+        return currClassName;
     }
 
-    public void foundSymbol(SemanticSymbol type, String name) {
 
+
+    public void foundSymbol(SemanticSymbol type, String name) {
         report_info("foundsymbol " + type + " - " + name);
 
+        updateCounters(type, name);
+        updateSymbolTable(type, name);
+        updateContext(type, name);
+    }
+
+
+
+    public void updateSymbolTable(SemanticSymbol type, String name) {
+        if (type == CONST) {
+            Tab.insert(Obj.Con, name, new Struct(currentDeclarationType));
+        }
+        if (type == VAR) {
+            Tab.insert(Obj.Var, name, new Struct(currentDeclarationType));
+        }
+        if (type == METHOD) {
+            currMethod = Tab.insert(Obj.Meth, name, new Struct(currentDeclarationType));
+            Tab.openScope();
+        }
+        if (type == METHOD_EXIT) {
+            Tab.chainLocalSymbols(currMethod);
+            Tab.closeScope();
+        }
+        if (type == CLASS) {
+            currClassStruct = new Struct(Struct.Class);
+            currClass = Tab.insert(Obj.Type, name, currClassStruct);
+            Tab.openScope();
+        }
+        if (type == CLASS_EXIT) {
+            Tab.chainLocalSymbols(currClassStruct);
+            Tab.closeScope();
+        }
+    }
+
+    public void updateCounters(SemanticSymbol type, String name) {
         if (type == CONST) {
             symbolByNameCounter.inc(getContext() + "const");
-            if(currMethod != null || currClass != null) {
+            if(currMethodName != null || currClassName != null) {
                 System.err.println("error?");
             }
             symbolCounter.inc(CountType.GLOBAL_CONST);
         }
         if (type == VAR) {
             symbolByNameCounter.inc(getContext() +"var");
-            if (currClass != null && currMethod != null) {
+            if (currClassName != null && currMethodName != null) {
                 // what here?
-            } else if (currClass != null) {
+            } else if (currClassName != null) {
                 symbolCounter.inc(CountType.CLASS_VAR);
-            } else if (currMethod != null) {
+            } else if (currMethodName != null) {
                 // what here?
-                if (currMethod == "main") {
+                if (currMethodName == "main") {
                     symbolCounter.inc(CountType.MAIN_VAR);
                 }
             } else {
@@ -117,13 +160,13 @@ public class SemanticContext {
             }
         }
         if (type == ARRAY) {
-            if (currMethod == null && currClass == null) {
+            if (currMethodName == null && currClassName == null) {
                 symbolCounter.inc(CountType.GLOBAL_ARRAY);
             }
             symbolByNameCounter.inc(getContext() + "array");
         }
         if (type == METHOD) {
-            if (currClass != null) {
+            if (currClassName != null) {
                 if (isCurrMethodStatic) {
                     symbolCounter.inc(CountType.CLASS_STATIC_METHOD);
                 } else {
@@ -133,34 +176,61 @@ public class SemanticContext {
                 symbolCounter.inc(CountType.GLOBAL_METHOD);
             }
             symbolByNameCounter.inc(getContext() + "method");
-            enterMethod(name);
-        }
-        if (type == METHOD_EXIT) {
-            exitMethod();
         }
         if (type == CLASS) {
             symbolCounter.inc(CountType.CLASS);
             symbolByNameCounter.inc(getContext() + "class");
-            enterClass(name);
-        }
-        if (type == CLASS_EXIT) {
-            exitClass();
         }
         if (type == FORMAL_PARAMETER) {
             symbolCounter.inc(CountType.FORMAL_ARGUMENT);
             symbolByNameCounter.inc(getContext() + "formal");
         }
         if (type == STATEMENT_BLOCK) {
-            statementBlockLevel ++;
             symbolCounter.inc(CountType.STATEMENT_BLOCK);
+        }
+        if (type == METHOD_CALL) {
+            if (currMethodName == "main") {
+                symbolCounter.inc(CountType.MAIN_METHOD_CALL);
+            }
+        }
+    }
+
+    public void updateContext(SemanticSymbol type, String name) {
+        if (type == METHOD) {
+            report_info("Entered method: " + currMethodName);
+            currMethodName = name;
+            isCurrMethodStatic = false;
+        }
+        if (type == METHOD_EXIT) {
+            report_info("Exited method: " + currMethodName);
+            currMethodName = null;
+            currMethod = null;
+        }
+        if (type == CLASS) {
+            report_info("Entered clas: " + currClassName);
+            currClassName = name;
+        }
+        if (type == CLASS_EXIT) {
+            report_info("Exited class: " + currClassName);
+            currClassName = null;
+            currClass = null;
+        }
+        if (type == STATEMENT_BLOCK) {
+            statementBlockLevel ++;
         }
         if (type == STATEMENT_BLOCK_EXIT) {
             statementBlockLevel--;
         }
-        if (type == METHOD_CALL) {
-            if (currMethod == "main") {
-                symbolCounter.inc(CountType.MAIN_METHOD_CALL);
+        if (type == STATIC) {
+            setCurrMethodStatic();
+        }
+        if (type == TYPE) {
+            if (objectType.containsKey(name)) {
+                currentDeclarationType = objectType.get(name);
+            } else {
+                currentDeclarationType = objectType.get("class");
             }
+
         }
     }
 
@@ -170,11 +240,11 @@ public class SemanticContext {
             res = "{} | " + res;
         }
 
-        if (currMethod != null) {
-            res = currMethod + " | " + res;
+        if (currMethodName != null) {
+            res = currMethodName + " | " + res;
         }
-        if (currClass != null) {
-            res = currClass + " | " + res;
+        if (currClassName != null) {
+            res = currClassName + " | " + res;
         }
 
         return res;

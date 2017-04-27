@@ -1,0 +1,46 @@
+OptionalDesignatorStatement ::= DesignatorStatement
+                                | /* epsilon */;
+
+        DesignatorStatement ::= Designator AssignOperator Expression
+                                | Designator MethodCall
+                                | Designator INCREMENT
+                                | Designator DECREMENT;
+
+     ActualParameterSection ::= ActualParameterList
+                                | /* epsilon */;
+
+        ActualParameterList ::= ActualParameterList COMMA ActualParameter
+                                | ActualParameter;
+
+            ActualParameter ::= Expression;
+
+                 Designator ::= ID:id
+                                {:
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR, id.toString());
+                                    Obj found = Tab.find(id.toString());
+                                    if (found == Tab.noObj) {
+                                        RESULT = EMPTY_VALUE;
+                                    } else {
+                                        RESULT = new Pair<Integer, ValueType>(found.getType().getKind(), (found.getType().getKind() == Obj.Var)?ValueType.LVALUE:ValueType.RVALUE);
+                                    }
+                                :}
+                                MemberList;
+
+                 MemberList ::= MemberList Member
+                                | /* epsilon */;
+
+                     Member ::= DOT ID
+                                | Dimension;
+
+          OptionalDimension ::= Dimension
+                                | /* epsilon */;
+
+         OptionalMethodCall ::= MethodCall
+                                | /* epsilon */;
+
+                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT
+                                {:
+                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL, null);
+                                :};
+
+                  Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;

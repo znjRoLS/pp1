@@ -1,0 +1,31 @@
+ VarDeclarationList ::= VarDeclarationList VarDeclarationLine
+                        | /* epsilon */;
+
+ VarDeclarationLine ::= Type VarIDList SEMICOLON;
+
+          VarIDList ::= VarIDList COMMA VarIDSingle
+                        | VarIDSingle;
+
+        VarIDSingle ::= VarID:varObj
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.VAR, varObj.toString());
+                            report_info("VarDeclaration 1 " + varObj);
+                        :}
+                        | VarID:varObj
+                        {:
+                            report_info("VarDeclaration 3 " + varObj);
+                        :}
+                        BRACKETS_LEFT
+                        {:
+                            report_info("VarDeclaration 4 " + varObj);
+                        :}
+                        BRACKETS_RIGHT
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.ARRAY, varObj.toString());
+                            report_info("VarDeclaration 2 " + varObj);
+                        :};
+
+              VarID ::= ID:id
+                        {:
+                            RESULT = id;
+                        :};

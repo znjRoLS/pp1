@@ -1,0 +1,44 @@
+     StatementBlock ::= BRACES_LEFT
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.STATEMENT_BLOCK, null);
+                        :}
+                        StatementList BRACES_RIGHT
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.STATEMENT_BLOCK_EXIT, null);
+                        :};
+
+      StatementList ::= StatementList Statement
+                        | /* epsilon */;
+
+          Statement ::= StatementDesignator
+                        | StatementIf
+                        | StatementFor
+                        | StatementBreak
+                        | StatementContinue
+                        | StatementReturn
+                        | StatementRead
+                        | StatementPrint
+                        | StatementBlock;
+
+StatementDesignator ::= DesignatorStatement SEMICOLON;
+
+        StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
+                        | IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
+                        ELSE Statement;
+
+       StatementFor ::= FOR PARENTHESES_LEFT
+                        OptionalDesignatorStatement SEMICOLON
+                        OptionalCondition SEMICOLON
+                        OptionalDesignatorStatement SEMICOLON
+                        PARENTHESES_RIGHT Statement;
+
+     StatementBreak ::= BREAK SEMICOLON;
+
+  StatementContinue ::= CONTINUE SEMICOLON;
+
+    StatementReturn ::= RETURN SEMICOLON
+                        | RETURN Expression SEMICOLON;
+
+      StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
+
+     StatementPrint ::= PRINT PARENTHESES_LEFT Expression PARENTHESES_RIGHT;

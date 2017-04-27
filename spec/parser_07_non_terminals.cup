@@ -1,0 +1,27 @@
+non terminal Program, ProgramName;
+non terminal DeclarationList, Declaration;
+non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList, VarIDSingle;
+non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
+non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
+non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
+non terminal MethodDeclarationList, MethodDeclaration, MethodName;
+non terminal FormalParameterSection, FormalParameterList, FormalParameter;
+non terminal Type, MethodType, OptionalStatic;
+non terminal StatementBlock, StatementList, Statement;
+non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
+non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
+non terminal DesignatorStatement, OptionalDesignatorStatement;
+non terminal Pair<Integer, ValueType> Designator;
+non terminal ActualParameterSection, ActualParameterList, ActualParameter;
+non terminal MemberList, Member;
+non terminal OptionalDimension, Dimension;
+non terminal OptionalMethodCall, MethodCall;
+non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
+non terminal OptionalUnaryMinus;
+non terminal Pair<Integer, ValueType> Expression;
+non terminal Pair<Integer, ValueType> Term, AdditionTermList, Factor, MultiplicationFactorList;
+non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
+non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
+non terminal RelationalOperator, AssignOperator;
+
+precedence left ELSE;

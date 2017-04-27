@@ -1,0 +1,25 @@
+action code {:
+
+    enum ValueType {
+        LVALUE,
+        RVALUE
+    }
+
+    final Pair<Integer, ValueType> EMPTY_VALUE = new Pair<Integer, ValueType>(-1, ValueType.RVALUE);
+
+    Obj currentMethod = null;
+    Struct currentVarDeclType;
+
+    SemanticContext ctx;
+
+
+    void report_error(String msg) {
+        this.parser.logger.error(msg);
+        //System.err.println("ERROR: " + msg);
+    }
+    void report_info(String msg) {
+        this.parser.logger.info(msg);
+        //System.err.println("INFO: " + msg);
+    }
+
+:}

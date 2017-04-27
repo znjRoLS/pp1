@@ -1,0 +1,82 @@
+                 Expression ::= AdditionTermList:pair
+                                {:
+                                    RESULT = pair;
+                                :}
+                                | SUBTRACTION AdditionTermList:pair
+                                {:
+                                    if (pair.getFirst() != Struct.Int) {
+                                        //error!
+                                    }
+                                    RESULT = pair;
+                                :};
+
+
+           AdditionTermList ::= AdditionTermList:pair1 AdditionOperator Term:pair2
+                                {:
+                                    if (pair1.getFirst() != pair2.getFirst()) {
+                                        report_error("not compatible types: " + pair1.getFirst() + " " + pair2.getFirst());
+                                        RESULT = EMPTY_VALUE;
+                                    } else if (pair1.getFirst() != Struct.Int) {
+                                        report_error("types same, but not integer: " + pair1.getFirst());
+                                        RESULT = EMPTY_VALUE;
+                                    } else {
+                                        RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                    }
+
+                                :}
+                                | Term:pair
+                                {:
+                                    RESULT = pair;
+                                :};
+
+                       Term ::= MultiplicationFactorList:pair
+                                {:
+                                    RESULT = pair;
+                                :};
+
+   MultiplicationFactorList ::= MultiplicationFactorList:pair1 MultiplicationOperator Factor:pair2
+                                {:
+                                    if (pair1.getFirst() != pair2.getFirst()) {
+                                        report_error("not compatible types " + pair1.getFirst() + " " + pair2.getFirst());
+                                        RESULT = EMPTY_VALUE;
+                                    } else if (pair1.getFirst() != Struct.Int) {
+                                        report_error("types same, but not integer: " + pair1.getFirst());
+                                        RESULT = EMPTY_VALUE;
+                                    } else {
+                                        RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                    }
+
+                                :}
+                                | Factor:pair
+                                {:
+                                    RESULT = pair;
+                                :};
+
+                     Factor ::= Designator:pair
+                                {:
+                                    RESULT = pair;
+                                :}
+                                | Designator:pair MethodCall
+                                {:
+                                    RESULT = pair;
+                                :}
+                                | CONST_NUMBER
+                                {:
+                                    RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                :}
+                                | CONST_CHAR
+                                {:
+                                    RESULT = new Pair<Integer, ValueType>(Struct.Char, ValueType.RVALUE);
+                                :}
+                                | CONST_BOOL
+                                {:
+                                    RESULT = new Pair<Integer, ValueType>(Struct.Bool, ValueType.RVALUE);
+                                :}
+                                | NEW Type OptionalDimension
+                                {:
+                                    RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                :}
+                                | PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT
+                                {:
+                                    RESULT = pair;
+                                :};

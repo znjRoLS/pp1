@@ -1,0 +1,26 @@
+   ClassDeclaration ::= CLASS ClassName ClassExtends
+                        BRACES_LEFT VarDeclarationList
+                        OptionalMethodDeclarationSection BRACES_RIGHT
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.CLASS_EXIT, null);
+                        :};
+
+          ClassName ::= ID:id
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.CLASS, id.toString());
+                            report_info("Entered class: " + id);
+                        :};
+
+       ClassExtends ::= EXTENDS ClassType
+                        {:
+                            report_info ("Parsed nonempty class extends");
+                        :}
+                        | /* epsilon */
+                        {:
+                            report_info ("Parsed empty class extends");
+                        :};
+
+          ClassType ::= Type:type
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
+                        :};

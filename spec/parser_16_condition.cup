@@ -1,0 +1,15 @@
+  OptionalCondition ::= Condition
+                        | /* epsilon */;
+
+          Condition ::= ConditionTermList ;
+
+  ConditionTermList ::= ConditionTermList OR ConditionTerm
+                        | ConditionTerm;
+
+      ConditionTerm ::= ConditionFactorList;
+
+ConditionFactorList ::= ConditionFactorList AND ConditionFactor
+                        | ConditionFactor;
+
+    ConditionFactor ::= Expression
+                        | Expression RelationalOperator Expression;

@@ -110,10 +110,10 @@ public class SemanticContext {
 
     public void setConstValue(int value) {
         if (currentDeclarationType != Struct.Int) {
-            System.err.println("what now?");
+            report_error("what now?");
         }
         if (lastConstDeclared == null) {
-            System.err.println("what now?");
+            report_error("what now?");
         }
         lastConstDeclared.setAdr(value);
         lastConstDeclared = null;
@@ -121,7 +121,7 @@ public class SemanticContext {
 
     public void setConstValue(char value) {
         if (currentDeclarationType != Struct.Char) {
-            System.err.println("what now?");
+            report_error("what now?");
         }
         setConstValue((int)value);
 
@@ -129,7 +129,7 @@ public class SemanticContext {
 
     public void setConstValue(boolean value) {
         if (currentDeclarationType != Struct.Bool) {
-            System.err.println("what now?");
+            report_error("what now?");
         }
         setConstValue(value?1:0);
     }
@@ -187,7 +187,7 @@ public class SemanticContext {
         if (type == DESIGNATOR) {
             Obj node = Tab.find(name);
             if (node == Tab.noObj) {
-                System.err.println("what now?");
+                report_error("what now?");
             }
             else {
 
@@ -196,19 +196,19 @@ public class SemanticContext {
         if (type == TYPE) {
             Obj node = Tab.find(name);
             if (node == Tab.noObj) {
-                System.err.println("Type not declared: " + name);
+                report_error("Type not declared: " + name);
             } else if (node.getKind() != Obj.Type) {
-                System.err.println("Token doesn't represent type: " + name);
+                report_error("Token doesn't represent type: " + name);
             }
         }
         if (type == TYPE_CLASS) {
             Obj node = Tab.find(name);
             if (node == Tab.noObj) {
-                System.err.println("Type not declared: " + name);
+                report_error("Type not declared: " + name);
             } else if (node.getKind() != Obj.Type) {
-                System.err.println("Token doesn't represent type: " + name);
+                report_error("Token doesn't represent type: " + name);
             } else if (node.getType() != new Struct(Struct.Class)) {
-                System.err.println("Token not of class type: " + name);
+                report_error("Token not of class type: " + name);
             }
         }
     }
@@ -255,7 +255,7 @@ public class SemanticContext {
         if (type == CONST) {
             symbolByNameCounter.inc(getContext() + "const");
             if(currMethodName != null || currClassName != null) {
-                System.err.println("error?");
+                report_error("error?");
             }
             symbolCounter.inc(CountType.GLOBAL_CONST);
         }
@@ -330,6 +330,10 @@ public class SemanticContext {
 
     private void report_info(String msg) {
         logger.info(msg);
+    }
+    
+    private void report_error(String msg) {
+        logger.error(msg);
     }
 
 }

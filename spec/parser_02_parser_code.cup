@@ -1,0 +1,19 @@
+parser code {:
+    Logger logger = LogManager.getLogger(Parser.class);
+    Scanner scanner;
+    Symbol currSym;
+
+    public SemanticContext context = new SemanticContext();
+
+    void report_error(String msg) {
+        logger.error(msg);
+        System.err.println("ERROR: " + msg);
+    }
+    void report_info(String msg) {
+        logger.info(msg);
+        //System.err.println("INFO: " + msg);
+    }
+    void dump() {
+        context.dumpTable();
+    }
+:}

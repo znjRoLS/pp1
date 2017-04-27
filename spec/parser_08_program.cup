@@ -1,0 +1,23 @@
+    Program ::= PROGRAM
+                {:
+                    //report_info("Program 1");
+                :}
+                ProgramName
+                {:
+                    //report_info("Program 2");
+                :}
+                DeclarationList
+                {:
+                    //report_info("Program 3");
+                :}
+                MethodDeclarationSection
+                {:
+                    //report_info("Program 4");
+                    ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT, null);
+                :};
+
+ProgramName ::= ID:progName
+                {:
+                    ctx.foundSymbol(SemanticSymbol.PROGRAM, progName.toString());
+                    //report_info("Parsed program name " + progName);
+                :};

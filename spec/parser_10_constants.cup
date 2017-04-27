@@ -1,0 +1,24 @@
+   ConstDeclarationLine ::= CONST Type ConstIDList SEMICOLON;
+
+            ConstIDList ::= ConstIDList COMMA ConstID
+                            | ConstID;
+
+                ConstID ::= ID:constObj
+                            {:
+                                ctx.foundSymbol(SemanticSymbol.CONST, constObj.toString());
+                                //report_info("ConstDeclaration " + constObj);
+                            :}
+                            ASSIGN Const;
+
+                  Const ::= CONST_NUMBER:val
+                            {:
+                                ctx.setConstValue(Integer.parseInt(val.toString()));
+                            :}
+                            | CONST_CHAR:val
+                            {:
+                                ctx.setConstValue(val.toString().charAt(0));
+                            :}
+                            | CONST_BOOL:val
+                            {:
+                                ctx.setConstValue(val.toString() == "true");
+                            :};

@@ -1,0 +1,30 @@
+           AdditionOperator ::= AdditionOperatorLeft
+                                | AdditionOperatorRight;
+
+       AdditionOperatorLeft ::= ADDITION
+                                | SUBTRACTION;
+
+      AdditionOperatorRight ::= ASSIGN_ADDITION
+                                | ASSIGN_SUBTRACTION;
+
+     MultiplicationOperator ::= MultiplicationOperatorLeft
+                                | MultiplicationOperatorRight;
+
+ MultiplicationOperatorLeft ::= MULTIPLICATION
+                                | DIVISION
+                                | MODULO;
+
+MultiplicationOperatorRight ::= ASSIGN_MULTIPLICATION
+                                | ASSIGN_DIVISION
+                                | ASSIGN_MODULO;
+
+         RelationalOperator ::= EQUAL
+                                | NOT_EQUAL
+                                | GREATER
+                                | GREATER_EQUAL
+                                | LESS
+                                | LESS_EQUAL;
+
+             AssignOperator ::= ASSIGN
+                                | AdditionOperatorRight
+                                | MultiplicationOperatorRight;

@@ -1,0 +1,31 @@
+DeclarationList ::= DeclarationList Declaration
+                    {:
+                        report_info("Declaration list Declaration");
+                    :}
+                    | /* epsilon */
+                    {:
+                        report_info("Declaration list epsilon");
+                    :};
+
+    Declaration ::= VarDeclarationLine
+                    | ConstDeclarationLine
+                    | ClassDeclaration;
+
+           Type ::= ID:id
+                    {:
+                        ctx.foundSymbol(SemanticSymbol.TYPE, id.toString());
+                        report_info("Matched type " + id);
+                        RESULT = id;
+                    :};
+
+ OptionalStatic ::= STATIC
+                    {:
+                        ctx.foundSymbol(SemanticSymbol.STATIC, null);
+                    :}
+                    | /* epsilon */;
+
+     MethodType ::= Type:id
+                    | VOID
+                    {:
+                        ctx.foundSymbol(SemanticSymbol.TYPE, "void");
+                    :};

@@ -1,0 +1,8 @@
+init with {:
+    scanner = this.getScanner();
+    Tab.init();
+
+    Tab.insert(Obj.Con, "void", Tab.nullType);
+
+    action_obj.ctx = context;
+:}

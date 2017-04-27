@@ -1,0 +1,37 @@
+           MethodDeclarationSection ::= BRACES_LEFT MethodDeclarationList BRACES_RIGHT;
+
+   OptionalMethodDeclarationSection ::= MethodDeclarationSection
+                                        | /* epsilon */;
+
+              MethodDeclarationList ::= MethodDeclarationList MethodDeclaration
+                                        | /* epsilon */;
+
+                  MethodDeclaration ::= OptionalStatic MethodType MethodName
+                                        PARENTHESES_LEFT FormalParameterSection PARENTHESES_RIGHT
+                                        VarDeclarationList
+                                        BRACES_LEFT StatementList BRACES_RIGHT
+                                        {:
+                                            ctx.foundSymbol(SemanticSymbol.METHOD_EXIT, null);
+                                        :};
+
+                        MethodName ::= ID:id
+                                        {:
+                                            ctx.foundSymbol(SemanticSymbol.METHOD, id.toString());
+                                            report_info("Entered method: " + id);
+                                        :};
+
+            FormalParameterSection ::= FormalParameterList
+                                        | /* epsilon */;
+
+               FormalParameterList ::= FormalParameterList COMMA FormalParameter
+                                        | FormalParameter;
+
+                    FormalParameter ::= Type ID:id
+                                        {:
+                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                        :}
+                                        | Type ID:id
+                                        {:
+                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                        :}
+                                        BRACKETS_LEFT BRACKETS_RIGHT;

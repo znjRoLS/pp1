@@ -47,7 +47,9 @@ public class SemanticContext {
         STATEMENT_BLOCK_EXIT,
         METHOD_CALL,
         STATIC,
-        TYPE
+        TYPE,
+        PROGRAM,
+        PROGRAM_EXIT
     }
 
     private static HashMap<String,Integer> objectType = new HashMap<String,Integer>(){
@@ -67,7 +69,9 @@ public class SemanticContext {
     private String currMethodName;
     private Obj currMethod;
     private Obj currClass;
+    private Obj programObj;
     private Struct currClassStruct;
+    private Obj lastConstDeclared;
     private int statementBlockLevel;
     private boolean isCurrMethodStatic;
     private int currentDeclarationType;
@@ -80,6 +84,9 @@ public class SemanticContext {
         statementBlockLevel = 0;
         symbolByNameCounter = new SymbolCounter<String>();
         symbolCounter = new SymbolCounter<CountType>();
+        lastConstDeclared = null;
+        currMethod = null;
+        currClass = null;
     }
 
     public void dumpTable() {
@@ -99,6 +106,31 @@ public class SemanticContext {
     }
 
 
+    public void setConstValue(int value) {
+        if (currentDeclarationType != Struct.Int) {
+            System.err.println("what now?");
+        }
+        if (lastConstDeclared == null) {
+            System.err.println("what now?");
+        }
+        lastConstDeclared.setAdr(value);
+        lastConstDeclared = null;
+    }
+
+    public void setConstValue(char value) {
+        if (currentDeclarationType != Struct.Char) {
+            System.err.println("what now?");
+        }
+        setConstValue((int)value);
+
+    }
+
+    public void setConstValue(boolean value) {
+        if (currentDeclarationType != Struct.Bool) {
+            System.err.println("what now?");
+        }
+        setConstValue(value?1:0);
+    }
 
     public void foundSymbol(SemanticSymbol type, String name) {
         report_info("foundsymbol " + type + " - " + name);
@@ -112,9 +144,17 @@ public class SemanticContext {
 
     public void updateSymbolTable(SemanticSymbol type, String name) {
         if (type == CONST) {
-            Tab.insert(Obj.Con, name, new Struct(currentDeclarationType));
+            lastConstDeclared = Tab.insert(Obj.Con, name, new Struct(currentDeclarationType));
         }
         if (type == VAR) {
+            Tab.insert(Obj.Var, name, new Struct(currentDeclarationType));
+        }
+        if (type == ARRAY) {
+            Struct arrType = new Struct(Struct.Array);
+            arrType.setElementType(new Struct(currentDeclarationType));
+            Tab.insert(Obj.Var, name, arrType);
+        }
+        if (type == FORMAL_PARAMETER) {
             Tab.insert(Obj.Var, name, new Struct(currentDeclarationType));
         }
         if (type == METHOD) {
@@ -134,7 +174,53 @@ public class SemanticContext {
             Tab.chainLocalSymbols(currClassStruct);
             Tab.closeScope();
         }
+        if (type == PROGRAM) {
+            programObj = Tab.insert(Obj.Prog, name, Tab.noType);
+            Tab.openScope();
+        }
+        if (type == PROGRAM_EXIT) {
+            Tab.chainLocalSymbols(programObj);
+            Tab.closeScope();
+        }
     }
+    public void updateContext(SemanticSymbol type, String name) {
+        if (type == METHOD) {
+            report_info("Entered method: " + currMethodName);
+            currMethodName = name;
+            isCurrMethodStatic = false;
+        }
+        if (type == METHOD_EXIT) {
+            report_info("Exited method: " + currMethodName);
+            currMethodName = null;
+            currMethod = null;
+        }
+        if (type == CLASS) {
+            report_info("Entered clas: " + currClassName);
+            currClassName = name;
+        }
+        if (type == CLASS_EXIT) {
+            report_info("Exited class: " + currClassName);
+            currClassName = null;
+            currClass = null;
+        }
+        if (type == STATEMENT_BLOCK) {
+            statementBlockLevel ++;
+        }
+        if (type == STATEMENT_BLOCK_EXIT) {
+            statementBlockLevel--;
+        }
+        if (type == STATIC) {
+            setCurrMethodStatic();
+        }
+        if (type == TYPE) {
+            if (objectType.containsKey(name)) {
+                currentDeclarationType = objectType.get(name);
+            } else {
+                currentDeclarationType = objectType.get("class");
+            }
+        }
+    }
+
 
     public void updateCounters(SemanticSymbol type, String name) {
         if (type == CONST) {
@@ -195,44 +281,7 @@ public class SemanticContext {
         }
     }
 
-    public void updateContext(SemanticSymbol type, String name) {
-        if (type == METHOD) {
-            report_info("Entered method: " + currMethodName);
-            currMethodName = name;
-            isCurrMethodStatic = false;
-        }
-        if (type == METHOD_EXIT) {
-            report_info("Exited method: " + currMethodName);
-            currMethodName = null;
-            currMethod = null;
-        }
-        if (type == CLASS) {
-            report_info("Entered clas: " + currClassName);
-            currClassName = name;
-        }
-        if (type == CLASS_EXIT) {
-            report_info("Exited class: " + currClassName);
-            currClassName = null;
-            currClass = null;
-        }
-        if (type == STATEMENT_BLOCK) {
-            statementBlockLevel ++;
-        }
-        if (type == STATEMENT_BLOCK_EXIT) {
-            statementBlockLevel--;
-        }
-        if (type == STATIC) {
-            setCurrMethodStatic();
-        }
-        if (type == TYPE) {
-            if (objectType.containsKey(name)) {
-                currentDeclarationType = objectType.get(name);
-            } else {
-                currentDeclarationType = objectType.get("class");
-            }
 
-        }
-    }
 
     public String getContext() {
         String res = "";

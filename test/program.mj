@@ -11,7 +11,7 @@ class nekiclass {
 }
 class opetclass extends nekiclass {
     {
-        int metoda1() {
+        int metoda1(char ugnezd) {
             return;
         }
     }

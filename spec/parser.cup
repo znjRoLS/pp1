@@ -37,6 +37,8 @@ init with {:
     Tab.init();
 
     Tab.insert(Obj.Con, "void", Tab.nullType);
+
+    action_obj.ctx = context;
 :}
 
 scan with {:
@@ -50,6 +52,8 @@ scan with {:
 action code {:
     Obj currentMethod = null;
     Struct currentVarDeclType;
+
+    SemanticContext ctx;
 
 
     void report_error(String msg) {
@@ -129,25 +133,26 @@ precedence left ELSE;
 
                                         Program ::= PROGRAM
                                                     {:
-                                                        report_info("Program 1");
+                                                        //report_info("Program 1");
                                                     :}
                                                     ProgramName
                                                     {:
-                                                        report_info("Program 2");
+                                                        //report_info("Program 2");
                                                     :}
                                                     DeclarationList
                                                     {:
-                                                        report_info("Program 3");
+                                                        //report_info("Program 3");
                                                     :}
                                                     MethodDeclarationSection
                                                     {:
-                                                        report_info("Program 4");
+                                                        //report_info("Program 4");
+                                                        foundSymbol(SemanticSymbol.PROGRAM_EXIT, null);
                                                     :};
 
                                     ProgramName ::= ID:progName
                                                     {:
-                                                        Tab.insert(Obj.Prog, progName.toString(), Tab.noType);
-                                                        report_info("Parsed program name " + progName);
+                                                        foundSymbol(SemanticSymbol.PROGRAM, progName.toString());
+                                                        //report_info("Parsed program name " + progName);
                                                     :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,15 +200,25 @@ precedence left ELSE;
                                     ConstIDList ::= ConstIDList COMMA ConstID
                                                     | ConstID;
 
-                                        ConstID ::= ID:constObj ASSIGN Const
+                                        ConstID ::= ID:constObj
                                                     {:
                                                         foundSymbol(SemanticSymbol.CONST, constObj.toString());
-                                                        report_info("ConstDeclaration " + constObj);
-                                                    :};
+                                                        //report_info("ConstDeclaration " + constObj);
+                                                    :}
+                                                    ASSIGN Const;
 
-                                          Const ::= CONST_NUMBER
-                                                    | CONST_CHAR
-                                                    | CONST_BOOL;
+                                          Const ::= CONST_NUMBER:val
+                                                    {:
+                                                        ctx.setConstValue(Integer.parseInt(val.toString()));
+                                                    :}
+                                                    | CONST_CHAR:val
+                                                    {:
+                                                        ctx.setConstValue(val.toString().charAt(0));
+                                                    :}
+                                                    | CONST_BOOL:val
+                                                    {:
+                                                        ctx.setConstValue(val.toString() == "true");
+                                                    :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

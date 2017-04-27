@@ -2,6 +2,7 @@ package rosko.bojan;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
@@ -39,6 +40,7 @@ public class SemanticContext {
         VAR,
         ARRAY,
         METHOD,
+        METHOD_START,
         METHOD_EXIT,
         CLASS,
         CLASS_EXIT,
@@ -142,9 +144,25 @@ public class SemanticContext {
 
         updateCounters(type, name);
         updateSymbolTable(type, name);
+        generateCode(type,name);
         updateContext(type, name);
     }
 
+    public void generateCode(SemanticSymbol type, String name) {
+        if (type == METHOD_START) {
+            currMethod.setAdr(Code.pc);
+            if (currMethodName.equals("main")) {
+                Code.mainPc = Code.pc;
+            }
+            Code.put(Code.enter);
+            Code.put(currMethod.getLevel());
+            Code.put(Tab.currentScope().getnVars());
+        }
+        if (type == METHOD_EXIT) {
+            Code.put(Code.exit);
+            Code.put(Code.return_);
+        }
+    }
 
 
     public void updateSymbolTable(SemanticSymbol type, String name) {

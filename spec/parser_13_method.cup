@@ -9,7 +9,11 @@
                   MethodDeclaration ::= OptionalStatic MethodType MethodName
                                         PARENTHESES_LEFT FormalParameterSection PARENTHESES_RIGHT
                                         VarDeclarationList
-                                        BRACES_LEFT StatementList BRACES_RIGHT
+                                        BRACES_LEFT
+                                        {:
+                                            ctx.foundSymbol(SemanticSymbol.METHOD_START, null);
+                                        :}
+                                        StatementList BRACES_RIGHT
                                         {:
                                             ctx.foundSymbol(SemanticSymbol.METHOD_EXIT, null);
                                         :};

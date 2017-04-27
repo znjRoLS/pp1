@@ -51,7 +51,7 @@ public class ParserTest {
                 if (parser.errorDetected) {
                     logger.error("Parsing not successful!");
                 } else {
-                    logger.error("Parsing successful, writing code to file...");
+                    logger.info("Parsing successful, writing code to file...");
                     Code.write(new FileOutputStream("program.obj", false));
                 }
 

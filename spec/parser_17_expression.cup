@@ -60,12 +60,20 @@
                                 {:
                                     RESULT = pair;
                                 :}
-                                | CONST_NUMBER
+                                | CONST_NUMBER:val
                                 {:
+                                    // Integer val;
+                                    Obj c = Tab.insert(Obj.Con, null, Tab.intType);
+                                    c.setAdr(val);
+                                    Code.load(c);
                                     RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
                                 :}
-                                | CONST_CHAR
+                                | CONST_CHAR:val
                                 {:
+                                    // char val;
+                                    Obj c = Tab.insert(Obj.Con, null, Tab.charType);
+                                    c.setAdr(val);
+                                    Code.load(c);
                                     RESULT = new Pair<Integer, ValueType>(Struct.Char, ValueType.RVALUE);
                                 :}
                                 | CONST_BOOL

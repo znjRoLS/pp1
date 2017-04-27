@@ -2,10 +2,12 @@ parser code {:
     Logger logger = LogManager.getLogger(Parser.class);
     Scanner scanner;
     Symbol currSym;
+    Boolean errorDetected;
 
     public SemanticContext context = new SemanticContext();
 
     void report_error(String msg) {
+        errorDetected = true;
         logger.error(msg);
         System.err.println("ERROR: " + msg);
     }

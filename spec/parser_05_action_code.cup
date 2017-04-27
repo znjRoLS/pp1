@@ -14,11 +14,11 @@ action code {:
 
 
     void report_error(String msg) {
-        this.parser.logger.error(msg);
+        this.parser.report_error(msg);
         //System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
-        this.parser.logger.info(msg);
+        this.parser.report_info(msg);
         //System.err.println("INFO: " + msg);
     }
 

@@ -3,6 +3,7 @@ package rosko.bojan;
 import java_cup.runtime.Symbol;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rs.etf.pp1.mj.runtime.Code;
 
 import java.io.*;
 import java.util.regex.Pattern;
@@ -46,6 +47,13 @@ public class ParserTest {
                 parser.context.symbolCounter.printAllCounts();
                 parser.context.symbolByNameCounter.printAllCounts();
                 parser.dump();
+
+                if (parser.errorDetected) {
+                    logger.error("Parsing not successful!");
+                } else {
+                    logger.error("Parsing successful, writing code to file...");
+                    Code.write(new FileOutputStream("program.obj", false));
+                }
 
 //                logger.info("Found " + parser.symCnt.get("const") + " global constants");
 //                logger.info("Found " + parser.symCnt.get("var") + " global variables");

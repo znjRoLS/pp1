@@ -20,7 +20,14 @@
                         | StatementPrint
                         | StatementBlock;
 
-StatementDesignator ::= DesignatorStatement SEMICOLON;
+StatementDesignator ::= DesignatorStatement
+                        {:
+                            report_info("mypath6");
+                        :}
+                        SEMICOLON
+                        {:
+                            report_info("mypath6");
+                        :};
 
         StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
                         | IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
@@ -41,4 +48,15 @@ StatementDesignator ::= DesignatorStatement SEMICOLON;
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
 
-     StatementPrint ::= PRINT PARENTHESES_LEFT Expression PARENTHESES_RIGHT;
+     StatementPrint ::= PRINT PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT SEMICOLON
+                        {:
+                            report_info("mypath6");
+                            // Pair<Integer, ValueType> pair;
+                            if (pair.getFirst() == Struct.Int) {
+                                Code.loadConst(5);
+                                Code.put(Code.print);
+                            } else if (pair.getFirst() == Struct.Char) {
+                                Code.loadConst(1);
+                                Code.put(Code.bprint);
+                            }
+                        :};

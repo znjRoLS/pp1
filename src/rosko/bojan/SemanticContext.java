@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
-import sun.awt.Symbol;
+
 
 import java.util.HashMap;
 

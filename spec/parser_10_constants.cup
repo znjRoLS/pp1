@@ -12,13 +12,16 @@
 
                   Const ::= CONST_NUMBER:val
                             {:
-                                ctx.setConstValue(Integer.parseInt(val.toString()));
+                                // Integer val;
+                                ctx.setConstValue(val);
                             :}
                             | CONST_CHAR:val
                             {:
-                                ctx.setConstValue(val.toString().charAt(0));
+                                // char val;
+                                ctx.setConstValue(val);
                             :}
                             | CONST_BOOL:val
                             {:
-                                ctx.setConstValue(val.toString() == "true");
+                                // bool val;
+                                ctx.setConstValue(val);
                             :};

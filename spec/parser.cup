@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
+import rs.etf.pp1.mj.runtime.Code;
 
 import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
@@ -26,10 +27,12 @@ parser code {:
     Logger logger = LogManager.getLogger(Parser.class);
     Scanner scanner;
     Symbol currSym;
+    Boolean errorDetected;
 
     public SemanticContext context = new SemanticContext();
 
     void report_error(String msg) {
+        errorDetected = true;
         logger.error(msg);
         System.err.println("ERROR: " + msg);
     }
@@ -59,6 +62,7 @@ scan with {:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 init with {:
+    errorDetected = false;
     scanner = this.getScanner();
     Tab.init();
 
@@ -93,11 +97,11 @@ action code {:
 
 
     void report_error(String msg) {
-        this.parser.logger.error(msg);
+        this.parser.report_error(msg);
         //System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
-        this.parser.logger.info(msg);
+        this.parser.report_info(msg);
         //System.err.println("INFO: " + msg);
     }
 
@@ -116,7 +120,10 @@ terminal IF, ELSE;
 terminal PRINT, READ;
 
 // IDENTIFICATOR AND LITERALS
-terminal ID, CONST_NUMBER, CONST_CHAR, CONST_BOOL;
+terminal ID;
+terminal Integer CONST_NUMBER;
+terminal char CONST_CHAR;
+terminal Boolean CONST_BOOL;
 
 // OPERATORS
 terminal ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION, MODULO;
@@ -241,15 +248,18 @@ DeclarationList ::= DeclarationList Declaration
 
                   Const ::= CONST_NUMBER:val
                             {:
-                                ctx.setConstValue(Integer.parseInt(val.toString()));
+                                // Integer val;
+                                ctx.setConstValue(val);
                             :}
                             | CONST_CHAR:val
                             {:
-                                ctx.setConstValue(val.toString().charAt(0));
+                                // char val;
+                                ctx.setConstValue(val);
                             :}
                             | CONST_BOOL:val
                             {:
-                                ctx.setConstValue(val.toString() == "true");
+                                // bool val;
+                                ctx.setConstValue(val);
                             :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -387,7 +397,14 @@ DeclarationList ::= DeclarationList Declaration
                         | StatementPrint
                         | StatementBlock;
 
-StatementDesignator ::= DesignatorStatement SEMICOLON;
+StatementDesignator ::= DesignatorStatement
+                        {:
+                            report_info("mypath6");
+                        :}
+                        SEMICOLON
+                        {:
+                            report_info("mypath6");
+                        :};
 
         StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
                         | IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
@@ -408,7 +425,18 @@ StatementDesignator ::= DesignatorStatement SEMICOLON;
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
 
-     StatementPrint ::= PRINT PARENTHESES_LEFT Expression PARENTHESES_RIGHT;
+     StatementPrint ::= PRINT PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT SEMICOLON
+                        {:
+                            report_info("mypath6");
+                            // Pair<Integer, ValueType> pair;
+                            if (pair.getFirst() == Struct.Int) {
+                                Code.loadConst(5);
+                                Code.put(Code.print);
+                            } else if (pair.getFirst() == Struct.Char) {
+                                Code.loadConst(1);
+                                Code.put(Code.bprint);
+                            }
+                        :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // parser_15_designator.cup
@@ -547,12 +575,20 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                 {:
                                     RESULT = pair;
                                 :}
-                                | CONST_NUMBER
+                                | CONST_NUMBER:val
                                 {:
+                                    // Integer val;
+                                    Obj c = Tab.insert(Obj.Con, null, Tab.intType);
+                                    c.setAdr(val);
+                                    Code.load(c);
                                     RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
                                 :}
-                                | CONST_CHAR
+                                | CONST_CHAR:val
                                 {:
+                                    // char val;
+                                    Obj c = Tab.insert(Obj.Con, null, Tab.charType);
+                                    c.setAdr(val);
+                                    Code.load(c);
                                     RESULT = new Pair<Integer, ValueType>(Struct.Char, ValueType.RVALUE);
                                 :}
                                 | CONST_BOOL

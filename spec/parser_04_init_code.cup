@@ -1,4 +1,5 @@
 init with {:
+    errorDetected = false;
     scanner = this.getScanner();
     Tab.init();
 

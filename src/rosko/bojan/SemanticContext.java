@@ -107,11 +107,7 @@ public class SemanticContext {
         return currClassName;
     }
 
-
-    public void setConstValue(int value) {
-        if (currentDeclarationType != Struct.Int) {
-            report_error("what now?");
-        }
+    private void setConstIntValue(int value) {
         if (lastConstDeclared == null) {
             report_error("what now?");
         }
@@ -119,11 +115,18 @@ public class SemanticContext {
         lastConstDeclared = null;
     }
 
+    public void setConstValue(int value) {
+        if (currentDeclarationType != Struct.Int) {
+            report_error("what now?");
+        }
+        setConstIntValue(value);
+    }
+
     public void setConstValue(char value) {
         if (currentDeclarationType != Struct.Char) {
             report_error("what now?");
         }
-        setConstValue((int)value);
+        setConstIntValue((int)value);
 
     }
 
@@ -131,7 +134,7 @@ public class SemanticContext {
         if (currentDeclarationType != Struct.Bool) {
             report_error("what now?");
         }
-        setConstValue(value?1:0);
+        setConstIntValue(value?1:0);
     }
 
     public void foundSymbol(SemanticSymbol type, String name) {
@@ -207,7 +210,7 @@ public class SemanticContext {
                 report_error("Type not declared: " + name);
             } else if (node.getKind() != Obj.Type) {
                 report_error("Token doesn't represent type: " + name);
-            } else if (node.getType() != new Struct(Struct.Class)) {
+            } else if (node.getType().getKind() != Struct.Class) {
                 report_error("Token not of class type: " + name);
             }
         }

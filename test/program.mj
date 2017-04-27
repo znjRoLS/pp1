@@ -22,6 +22,6 @@ class opetclass extends nekiclass {
         char currChar;
         char currString[];
     {
-        varijabla = varijabla2[0] + varijabla2[0+1*1];
+        varijabla = nekiint + 10*459;
     }
 }

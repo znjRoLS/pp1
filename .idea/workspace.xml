@@ -2,30 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_01_import.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_02_parser_code.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_03_scan_code.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_04_init_code.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_05_action_code.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_06_terminals.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_07_non_terminals.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_08_program.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_09_declarations.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_10_constants.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_11_variables.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_12_class.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_13_method.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_14_statements.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_15_designator.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_16_condition.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_17_expression.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/parser_18_operators.cup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rosko/bojan/merger/merger.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rosko/bojan/merger/src/ParserConfigMerger.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/parser.cup" afterPath="$PROJECT_DIR$/spec/parseroldold.cup" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/parser_old.cup" afterPath="$PROJECT_DIR$/spec/parserold.cup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/zivan.mj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser.cup" afterPath="$PROJECT_DIR$/spec/parser.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_04_init_code.cup" afterPath="$PROJECT_DIR$/spec/parser_04_init_code.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/program.mj" afterPath="$PROJECT_DIR$/test/program.mj" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,26 +20,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="parseroldold.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/parseroldold.cup">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2740">
-              <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="120" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="34" column="55" lean-forward="false" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ParserConfigMerger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/merger/src/ParserConfigMerger.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -70,18 +32,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SemanticContext.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SemanticContext.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="194" column="9" lean-forward="true" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
+            <state relative-caret-position="424">
+              <caret line="125" column="52" lean-forward="true" selection-start-line="125" selection-start-column="52" selection-end-line="125" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1493301511672" expanded="false" signature="9931:9942" ph=" { " />
-                <marker date="1493301511672" expanded="false" signature="9959:9965" ph=" }" />
-                <marker date="1493301511672" expanded="false" signature="10012:10023" ph=" { " />
-                <marker date="1493301511672" expanded="false" signature="10041:10047" ph=" }" />
+                <marker date="1493302384276" expanded="false" signature="10021:10032" ph=" { " />
+                <marker date="1493302384276" expanded="false" signature="10049:10055" ph=" }" />
+                <marker date="1493302384276" expanded="false" signature="10102:10113" ph=" { " />
+                <marker date="1493302384276" expanded="false" signature="10131:10137" ph=" }" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zivan.mj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/zivan.mj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/spec/parser.cup">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="66" column="28" lean-forward="false" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="28" />
+              <caret line="72" column="28" lean-forward="false" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -100,26 +72,26 @@
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
-              <caret line="529" column="2" lean-forward="false" selection-start-line="529" selection-start-column="2" selection-end-line="529" selection-end-column="2" />
+              <caret line="535" column="2" lean-forward="false" selection-start-line="535" selection-start-column="2" selection-end-line="535" selection-end-column="2" />
               <folding>
-                <marker date="1493301530830" expanded="true" signature="31360:31557" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="31753:31832" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="31866:31945" ph="{...}" />
-                <marker date="1493301530830" expanded="false" signature="31961:31972" ph=" { " />
-                <marker date="1493301530830" expanded="false" signature="31992:31998" ph=" }" />
-                <marker date="1493301530830" expanded="true" signature="32003:32070" ph="/**...*/" />
-                <marker date="1493301530830" expanded="true" signature="32096:113873" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="32120:32158" ph="{...}" />
-                <marker date="1493301530830" expanded="false" signature="32217:32237" ph="&lt;~&gt;" />
-                <marker date="1493301530830" expanded="true" signature="32385:32478" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="32512:32603" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="32640:32658" ph="/**...*/" />
-                <marker date="1493301530830" expanded="false" signature="32694:32701" ph=" { " />
-                <marker date="1493301530830" expanded="false" signature="32722:32726" ph=" }" />
-                <marker date="1493301530830" expanded="true" signature="32730:32782" ph="/**...*/" />
-                <marker date="1493301530830" expanded="true" signature="33076:113871" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="113539:113871" ph="{...}" />
-                <marker date="1493301530830" expanded="true" signature="113589:113871" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="31560:31757" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="31953:32032" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="32066:32145" ph="{...}" />
+                <marker date="1493302385823" expanded="false" signature="32161:32172" ph=" { " />
+                <marker date="1493302385823" expanded="false" signature="32192:32198" ph=" }" />
+                <marker date="1493302385823" expanded="true" signature="32203:32270" ph="/**...*/" />
+                <marker date="1493302385823" expanded="true" signature="32296:114073" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="32320:32358" ph="{...}" />
+                <marker date="1493302385823" expanded="false" signature="32417:32437" ph="&lt;~&gt;" />
+                <marker date="1493302385823" expanded="true" signature="32585:32678" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="32712:32803" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="32840:32858" ph="/**...*/" />
+                <marker date="1493302385823" expanded="false" signature="32894:32901" ph=" { " />
+                <marker date="1493302385823" expanded="false" signature="32922:32926" ph=" }" />
+                <marker date="1493302385823" expanded="true" signature="32930:32982" ph="/**...*/" />
+                <marker date="1493302385823" expanded="true" signature="33276:114071" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="113739:114071" ph="{...}" />
+                <marker date="1493302385823" expanded="true" signature="113789:114071" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -135,31 +107,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser_05_action_code.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/parser_05_action_code.cup">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="5" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser_04_init_code.cup" pinned="false" current-in-tab="false">
+      <file leaf-file-name="parser_04_init_code.cup" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/parser_04_init_code.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+            <state relative-caret-position="200">
+              <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser_11_variables.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/parser_11_variables.cup">
+      <file leaf-file-name="program.mj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/program.mj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="480">
+              <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DumpSymbolTableVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/visitors/DumpSymbolTableVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="55" column="41" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Struct.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -176,8 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Parsed symbol:</find>
-      <find>Statement</find>
       <find>Syntax error at</find>
       <find>Couldn't repair and continue</find>
       <find>Designator</find>
@@ -205,7 +185,9 @@
       <find>type2</find>
       <find>getT</find>
       <find>EMPTY_</find>
+      <find>System.err.println</find>
       <find>Parser</find>
+      <find>what no</find>
     </findStrings>
     <replaceStrings>
       <replace>symbolByNameCounter</replace>
@@ -254,7 +236,6 @@
         <option value="$PROJECT_DIR$/src/rosko/bojan/SymbolCounter.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/StringSymbolCounter.java" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
-        <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Pair.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
         <option value="$PROJECT_DIR$/spec/parser_01_import.cup" />
@@ -276,12 +257,13 @@
         <option value="$PROJECT_DIR$/spec/parser_05_action_code.cup" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/spec/parser.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_04_init_code.cup" />
         <option value="$PROJECT_DIR$/src/neki/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/test/parsermerger/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/src/parsermerger/src/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/parsermerger/parsermerger.iml" />
+        <option value="$PROJECT_DIR$/spec/parser_04_init_code.cup" />
+        <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" />
       </list>
     </option>
@@ -340,24 +322,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pp1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pp1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bojan" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -438,6 +402,112 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="visitors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="concepts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="symboltable.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pp1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -787,15 +857,16 @@
       <workItem from="1493114720461" duration="16141000" />
       <workItem from="1493196242100" duration="26252000" />
       <workItem from="1493282734777" duration="11326000" />
-      <workItem from="1493300568957" duration="997000" />
+      <workItem from="1493300568957" duration="2644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97491000" />
+    <option name="totallyTimeSpent" value="99138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -807,7 +878,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -833,7 +904,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/rosko/bojan/Parser.java</url>
-          <line>1777</line>
+          <line>1783</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -845,7 +916,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/rosko/bojan/Parser.java</url>
-          <line>1714</line>
+          <line>1720</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -877,8 +948,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/log4j2.properties" />
-    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/log4j2.properties" />
     <entry file="file://$PROJECT_DIR$/test/log4j2.properties" />
     <entry file="file://$PROJECT_DIR$/out/production/pp1/log4j2.properties" />
     <entry file="file://$PROJECT_DIR$/config/log4j2.properties" />
@@ -969,21 +1038,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/visitors/DumpSymbolTableVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="980">
-          <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/program.mj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="20" column="44" lean-forward="true" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/parserold.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
@@ -1018,17 +1072,6 @@
           <folding>
             <element signature="e#3352#3353#0" expanded="false" />
             <element signature="e#3381#3382#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="27" />
-          <folding>
-            <element signature="e#3132#3133#0" expanded="false" />
-            <element signature="e#3164#3165#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1182,15 +1225,7 @@
     <entry file="file://$PROJECT_DIR$/spec/parser.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="66" column="28" lean-forward="false" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_04_init_code.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <caret line="72" column="28" lean-forward="false" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1198,26 +1233,26 @@
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="529" column="2" lean-forward="false" selection-start-line="529" selection-start-column="2" selection-end-line="529" selection-end-column="2" />
+          <caret line="535" column="2" lean-forward="false" selection-start-line="535" selection-start-column="2" selection-end-line="535" selection-end-column="2" />
           <folding>
-            <marker date="1493301530830" expanded="true" signature="31360:31557" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="31753:31832" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="31866:31945" ph="{...}" />
-            <marker date="1493301530830" expanded="false" signature="31961:31972" ph=" { " />
-            <marker date="1493301530830" expanded="false" signature="31992:31998" ph=" }" />
-            <marker date="1493301530830" expanded="true" signature="32003:32070" ph="/**...*/" />
-            <marker date="1493301530830" expanded="true" signature="32096:113873" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="32120:32158" ph="{...}" />
-            <marker date="1493301530830" expanded="false" signature="32217:32237" ph="&lt;~&gt;" />
-            <marker date="1493301530830" expanded="true" signature="32385:32478" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="32512:32603" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="32640:32658" ph="/**...*/" />
-            <marker date="1493301530830" expanded="false" signature="32694:32701" ph=" { " />
-            <marker date="1493301530830" expanded="false" signature="32722:32726" ph=" }" />
-            <marker date="1493301530830" expanded="true" signature="32730:32782" ph="/**...*/" />
-            <marker date="1493301530830" expanded="true" signature="33076:113871" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="113539:113871" ph="{...}" />
-            <marker date="1493301530830" expanded="true" signature="113589:113871" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="31560:31757" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="31953:32032" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="32066:32145" ph="{...}" />
+            <marker date="1493302385823" expanded="false" signature="32161:32172" ph=" { " />
+            <marker date="1493302385823" expanded="false" signature="32192:32198" ph=" }" />
+            <marker date="1493302385823" expanded="true" signature="32203:32270" ph="/**...*/" />
+            <marker date="1493302385823" expanded="true" signature="32296:114073" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="32320:32358" ph="{...}" />
+            <marker date="1493302385823" expanded="false" signature="32417:32437" ph="&lt;~&gt;" />
+            <marker date="1493302385823" expanded="true" signature="32585:32678" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="32712:32803" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="32840:32858" ph="/**...*/" />
+            <marker date="1493302385823" expanded="false" signature="32894:32901" ph=" { " />
+            <marker date="1493302385823" expanded="false" signature="32922:32926" ph=" }" />
+            <marker date="1493302385823" expanded="true" signature="32930:32982" ph="/**...*/" />
+            <marker date="1493302385823" expanded="true" signature="33276:114071" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="113739:114071" ph="{...}" />
+            <marker date="1493302385823" expanded="true" signature="113789:114071" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1240,17 +1275,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/visitors/DumpSymbolTableVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="55" column="41" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/program.mj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/program_zivan/mj.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="194" column="9" lean-forward="true" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
+        <state relative-caret-position="424">
+          <caret line="125" column="52" lean-forward="true" selection-start-line="125" selection-start-column="52" selection-end-line="125" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1493301511672" expanded="false" signature="9931:9942" ph=" { " />
-            <marker date="1493301511672" expanded="false" signature="9959:9965" ph=" }" />
-            <marker date="1493301511672" expanded="false" signature="10012:10023" ph=" { " />
-            <marker date="1493301511672" expanded="false" signature="10041:10047" ph=" }" />
+            <marker date="1493302384276" expanded="false" signature="10021:10032" ph=" { " />
+            <marker date="1493302384276" expanded="false" signature="10049:10055" ph=" }" />
+            <marker date="1493302384276" expanded="false" signature="10102:10113" ph=" { " />
+            <marker date="1493302384276" expanded="false" signature="10131:10137" ph=" }" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/zivan.mj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_04_init_code.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -49,7 +49,9 @@ public class SemanticContext {
         STATIC,
         TYPE,
         PROGRAM,
-        PROGRAM_EXIT
+        PROGRAM_EXIT,
+        DESIGNATOR,
+        TYPE_CLASS
     }
 
     private static HashMap<String,Integer> objectType = new HashMap<String,Integer>(){
@@ -181,6 +183,33 @@ public class SemanticContext {
         if (type == PROGRAM_EXIT) {
             Tab.chainLocalSymbols(programObj);
             Tab.closeScope();
+        }
+        if (type == DESIGNATOR) {
+            Obj node = Tab.find(name);
+            if (node == Tab.noObj) {
+                System.err.println("what now?");
+            }
+            else {
+
+            }
+        }
+        if (type == TYPE) {
+            Obj node = Tab.find(name);
+            if (node == Tab.noObj) {
+                System.err.println("Type not declared: " + name);
+            } else if (node.getKind() != Obj.Type) {
+                System.err.println("Token doesn't represent type: " + name);
+            }
+        }
+        if (type == TYPE_CLASS) {
+            Obj node = Tab.find(name);
+            if (node == Tab.noObj) {
+                System.err.println("Type not declared: " + name);
+            } else if (node.getKind() != Obj.Type) {
+                System.err.println("Token doesn't represent type: " + name);
+            } else if (node.getType() != new Struct(Struct.Class)) {
+                System.err.println("Token not of class type: " + name);
+            }
         }
     }
     public void updateContext(SemanticSymbol type, String name) {

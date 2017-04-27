@@ -10,6 +10,8 @@ import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
 
+import rosko.bojan.Pair;
+
 //////////////////////////////////////////////
 
 parser code {:
@@ -50,6 +52,14 @@ scan with {:
 :}
 
 action code {:
+
+    enum ValueType {
+        LVALUE,
+        RVALUE
+    }
+
+    final Pair<Integer, ValueType> EMPTY_VALUE = new Pair<Integer, ValueType>(-1, ValueType.RVALUE);
+
     Obj currentMethod = null;
     Struct currentVarDeclType;
 
@@ -65,9 +75,6 @@ action code {:
         //System.err.println("INFO: " + msg);
     }
 
-    void foundSymbol(SemanticContext.SemanticSymbol type, String name) {
-        this.parser.context.foundSymbol(type, name);
-    }
 :}
 
 ////////////////////////////////////////////////
@@ -104,7 +111,7 @@ non terminal Program, ProgramName;
 non terminal DeclarationList, Declaration;
 non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList, VarIDSingle;
 non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
-non terminal ClassDeclaration, ClassExtends, ClassName;
+non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
 non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
 non terminal MethodDeclarationList, MethodDeclaration, MethodName;
 non terminal FormalParameterSection, FormalParameterList, FormalParameter;
@@ -112,14 +119,16 @@ non terminal Type, MethodType, OptionalStatic;
 non terminal StatementBlock, StatementList, Statement;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
-non terminal DesignatorStatement, OptionalDesignatorStatement, Designator;
+non terminal DesignatorStatement, OptionalDesignatorStatement;
+non terminal Pair<Integer, ValueType> Designator;
 non terminal ActualParameterSection, ActualParameterList, ActualParameter;
 non terminal MemberList, Member;
 non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
-non terminal OptionalUnaryMinus, Expression;
-non terminal Term, AdditionTermList, Factor, MultiplicationFactorList;
+non terminal OptionalUnaryMinus;
+non terminal Pair<Integer, ValueType> Expression;
+non terminal Pair<Integer, ValueType> Term, AdditionTermList, Factor, MultiplicationFactorList;
 non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
 non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 non terminal RelationalOperator, AssignOperator;
@@ -146,12 +155,12 @@ precedence left ELSE;
                                                     MethodDeclarationSection
                                                     {:
                                                         //report_info("Program 4");
-                                                        foundSymbol(SemanticSymbol.PROGRAM_EXIT, null);
+                                                        ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT, null);
                                                     :};
 
                                     ProgramName ::= ID:progName
                                                     {:
-                                                        foundSymbol(SemanticSymbol.PROGRAM, progName.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.PROGRAM, progName.toString());
                                                         //report_info("Parsed program name " + progName);
                                                     :};
 
@@ -175,20 +184,21 @@ precedence left ELSE;
 
                                            Type ::= ID:id
                                                     {:
-                                                        foundSymbol(SemanticSymbol.TYPE, id.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.TYPE, id.toString());
                                                         report_info("Matched type " + id);
+                                                        RESULT = id;
                                                     :};
 
                                  OptionalStatic ::= STATIC
                                                     {:
-                                                        foundSymbol(SemanticSymbol.STATIC, null);
+                                                        ctx.foundSymbol(SemanticSymbol.STATIC, null);
                                                     :}
                                                     | /* epsilon */;
 
                                      MethodType ::= Type:id
                                                     | VOID
                                                     {:
-                                                        foundSymbol(SemanticSymbol.TYPE, "void");
+                                                        ctx.foundSymbol(SemanticSymbol.TYPE, "void");
                                                     :};
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -202,7 +212,7 @@ precedence left ELSE;
 
                                         ConstID ::= ID:constObj
                                                     {:
-                                                        foundSymbol(SemanticSymbol.CONST, constObj.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.CONST, constObj.toString());
                                                         //report_info("ConstDeclaration " + constObj);
                                                     :}
                                                     ASSIGN Const;
@@ -235,7 +245,7 @@ precedence left ELSE;
 
                                     VarIDSingle ::= VarID:varObj
                                                     {:
-                                                        foundSymbol(SemanticSymbol.VAR, varObj.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.VAR, varObj.toString());
                                                         report_info("VarDeclaration 1 " + varObj);
                                                     :}
                                                     | VarID:varObj
@@ -248,7 +258,7 @@ precedence left ELSE;
                                                     :}
                                                     BRACKETS_RIGHT
                                                     {:
-                                                        foundSymbol(SemanticSymbol.ARRAY, varObj.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.ARRAY, varObj.toString());
                                                         report_info("VarDeclaration 2 " + varObj);
                                                     :};
 
@@ -266,16 +276,16 @@ precedence left ELSE;
                                                     BRACES_LEFT VarDeclarationList
                                                     OptionalMethodDeclarationSection BRACES_RIGHT
                                                     {:
-                                                        foundSymbol(SemanticSymbol.CLASS_EXIT, null);
+                                                        ctx.foundSymbol(SemanticSymbol.CLASS_EXIT, null);
                                                     :};
 
                                       ClassName ::= ID:id
                                                     {:
-                                                        foundSymbol(SemanticSymbol.CLASS, id.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.CLASS, id.toString());
                                                         report_info("Entered class: " + id);
                                                     :};
 
-                                   ClassExtends ::= EXTENDS Type
+                                   ClassExtends ::= EXTENDS ClassType
                                                     {:
                                                         report_info ("Parsed nonempty class extends");
                                                     :}
@@ -283,6 +293,12 @@ precedence left ELSE;
                                                     {:
                                                         report_info ("Parsed empty class extends");
                                                     :};
+
+                                      ClassType ::= Type:type
+                                                    {:
+                                                        ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
+                                                    :};
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -302,12 +318,12 @@ precedence left ELSE;
                                                     VarDeclarationList
                                                     BRACES_LEFT StatementList BRACES_RIGHT
                                                     {:
-                                                        foundSymbol(SemanticSymbol.METHOD_EXIT, null);
+                                                        ctx.foundSymbol(SemanticSymbol.METHOD_EXIT, null);
                                                     :};
 
                                     MethodName ::= ID:id
                                                     {:
-                                                        foundSymbol(SemanticSymbol.METHOD, id.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.METHOD, id.toString());
                                                         report_info("Entered method: " + id);
                                                     :};
 
@@ -319,11 +335,11 @@ precedence left ELSE;
 
                                 FormalParameter ::= Type ID:id
                                                     {:
-                                                        foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
                                                     :}
                                                     | Type ID:id
                                                     {:
-                                                        foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                                        ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
                                                     :}
                                                     BRACKETS_LEFT BRACKETS_RIGHT;
 
@@ -334,11 +350,11 @@ precedence left ELSE;
 
                                  StatementBlock ::= BRACES_LEFT
                                                     {:
-                                                        foundSymbol(SemanticSymbol.STATEMENT_BLOCK, null);
+                                                        ctx.foundSymbol(SemanticSymbol.STATEMENT_BLOCK, null);
                                                     :}
                                                     StatementList BRACES_RIGHT
                                                     {:
-                                                        foundSymbol(SemanticSymbol.STATEMENT_BLOCK_EXIT, null);
+                                                        ctx.foundSymbol(SemanticSymbol.STATEMENT_BLOCK_EXIT, null);
                                                     :};
 
                                   StatementList ::= StatementList Statement
@@ -398,7 +414,17 @@ precedence left ELSE;
 
                                 ActualParameter ::= Expression;
 
-                                     Designator ::= ID MemberList;
+                                     Designator ::= ID:id
+                                                    {:
+                                                        ctx.foundSymbol(SemanticSymbol.DESIGNATOR, id.toString());
+                                                        Obj found = Tab.find(id.toString());
+                                                        if (found == Tab.noObj) {
+                                                            RESULT = EMPTY_VALUE;
+                                                        } else {
+                                                            RESULT = new Pair<Integer, ValueType>(found.getType().getKind(), (found.getType().getKind() == Obj.Var)?ValueType.LVALUE:ValueType.RVALUE);
+                                                        }
+                                                    :}
+                                                    MemberList;
 
                                      MemberList ::= MemberList Member
                                                     | /* epsilon */;
@@ -414,7 +440,7 @@ precedence left ELSE;
 
                                      MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT
                                                     {:
-                                                        foundSymbol(SemanticSymbol.METHOD_CALL, null);
+                                                        ctx.foundSymbol(SemanticSymbol.METHOD_CALL, null);
                                                     :};
 
                                       Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;
@@ -445,25 +471,88 @@ precedence left ELSE;
 //                                   Expression
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                                     Expression ::= OptionalUnaryMinus AdditionTermList;
+                                     Expression ::= AdditionTermList:pair
+                                                    {:
+                                                        RESULT = pair;
+                                                    :}
+                                                    | SUBTRACTION AdditionTermList:pair
+                                                    {:
+                                                        if (pair.getFirst() != Struct.Int) {
+                                                            //error!
+                                                        }
+                                                        RESULT = pair;
+                                                    :};
 
-                             OptionalUnaryMinus ::= SUBTRACTION
-                                                    | /* epsilon */;
 
-                               AdditionTermList ::= AdditionTermList AdditionOperator Term
-                                                    | Term;
+                               AdditionTermList ::= AdditionTermList:pair1 AdditionOperator Term:pair2
+                                                    {:
+                                                        if (pair1.getFirst() != pair2.getFirst()) {
+                                                            report_error("not compatible types: " + pair1.getFirst() + " " + pair2.getFirst());
+                                                            RESULT = EMPTY_VALUE;
+                                                        } else if (pair1.getFirst() != Struct.Int) {
+                                                            report_error("types same, but not integer: " + pair1.getFirst());
+                                                            RESULT = EMPTY_VALUE;
+                                                        } else {
+                                                            RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                                        }
 
-                                           Term ::= MultiplicationFactorList;
+                                                    :}
+                                                    | Term:pair
+                                                    {:
+                                                        RESULT = pair;
+                                                    :};
 
-                       MultiplicationFactorList ::= MultiplicationFactorList MultiplicationOperator Factor
-                                                    | Factor;
+                                           Term ::= MultiplicationFactorList:pair
+                                                    {:
+                                                        RESULT = pair;
+                                                    :};
 
-                                         Factor ::= Designator OptionalMethodCall
+                       MultiplicationFactorList ::= MultiplicationFactorList:pair1 MultiplicationOperator Factor:pair2
+                                                    {:
+                                                        if (pair1.getFirst() != pair2.getFirst()) {
+                                                            report_error("not compatible types " + pair1.getFirst() + " " + pair2.getFirst());
+                                                            RESULT = EMPTY_VALUE;
+                                                        } else if (pair1.getFirst() != Struct.Int) {
+                                                            report_error("types same, but not integer: " + pair1.getFirst());
+                                                            RESULT = EMPTY_VALUE;
+                                                        } else {
+                                                            RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                                        }
+
+                                                    :}
+                                                    | Factor:pair
+                                                    {:
+                                                        RESULT = pair;
+                                                    :};
+
+                                         Factor ::= Designator:pair
+                                                    {:
+                                                        RESULT = pair;
+                                                    :}
+                                                    | Designator:pair MethodCall
+                                                    {:
+                                                        RESULT = pair;
+                                                    :}
                                                     | CONST_NUMBER
+                                                    {:
+                                                        RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                                    :}
                                                     | CONST_CHAR
+                                                    {:
+                                                        RESULT = new Pair<Integer, ValueType>(Struct.Char, ValueType.RVALUE);
+                                                    :}
                                                     | CONST_BOOL
+                                                    {:
+                                                        RESULT = new Pair<Integer, ValueType>(Struct.Bool, ValueType.RVALUE);
+                                                    :}
                                                     | NEW Type OptionalDimension
-                                                    | PARENTHESES_LEFT Expression PARENTHESES_RIGHT;
+                                                    {:
+                                                        RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                                    :}
+                                                    | PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT
+                                                    {:
+                                                        RESULT = pair;
+                                                    :};
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

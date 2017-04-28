@@ -1,0 +1,99 @@
+<configuration default="false" name="Parser" type="JarApplication" factoryName="JAR Application">
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <option name="JAR_PATH" value="$PROJECT_DIR$/lib/java-cup-11a.jar" />
+    <option name="PROGRAM_PARAMETERS" value="-dump -destdir src/rosko/bojan -parser Parser spec/parser.cup" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs />
+    <method />
+</configuration>
+<configuration default="false" name="ParserTest" type="Application" factoryName="Application">
+<extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+<option name="MAIN_CLASS_NAME" value="rosko.bojan.ParserTest" />
+<option name="VM_PARAMETERS" value="" />
+<option name="PROGRAM_PARAMETERS" value="" />
+<option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/test" />
+<option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+<option name="ALTERNATIVE_JRE_PATH" />
+<option name="ENABLE_SWING_INSPECTOR" value="false" />
+<option name="ENV_VARIABLES" />
+<option name="PASS_PARENT_ENVS" value="true" />
+<module name="pp1" />
+<envs />
+<method />
+</configuration>
+<configuration default="false" name="Lexer" type="JarApplication" factoryName="JAR Application">
+<extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+<option name="JAR_PATH" value="$PROJECT_DIR$/lib/JFlex.jar" />
+<option name="PROGRAM_PARAMETERS" value="-d  src/rosko/bojan/ spec/lexer.flex" />
+<option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+<option name="ALTERNATIVE_JRE_PATH" />
+<envs />
+<method />
+</configuration>
+<configuration default="false" name="LexerTest" type="Application" factoryName="Application">
+<extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+<option name="MAIN_CLASS_NAME" value="rosko.bojan.LexerTest" />
+<option name="VM_PARAMETERS" value="-Dlog4j.configuration=file:$PROJECT_DIR$/log4j.properties" />
+<option name="PROGRAM_PARAMETERS" value="" />
+<option name="WORKING_DIRECTORY" value="file://test" />
+<option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+<option name="ALTERNATIVE_JRE_PATH" />
+<option name="ENABLE_SWING_INSPECTOR" value="false" />
+<option name="ENV_VARIABLES" />
+<option name="PASS_PARENT_ENVS" value="true" />
+<module name="pp1" />
+<envs />
+<method />
+</configuration>
+<configuration default="false" name="ParserConfigMerger" type="Application" factoryName="Application">
+<extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+<option name="MAIN_CLASS_NAME" value="ParserConfigMerger" />
+<option name="VM_PARAMETERS" value="" />
+<option name="PROGRAM_PARAMETERS" value="" />
+<option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+<option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+<option name="ALTERNATIVE_JRE_PATH" />
+<option name="ENABLE_SWING_INSPECTOR" value="false" />
+<option name="ENV_VARIABLES" />
+<option name="PASS_PARENT_ENVS" value="true" />
+<module name="merger" />
+<envs />
+<method />
+</configuration>
+<configuration default="false" name="ParserAll" type="Multirun" factoryName="Multirun" singleton="true" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="1">
+<runConfiguration name="ParserConfigMerger" type="Application" />
+<runConfiguration name="Parser" type="JAR Application" />
+<runConfiguration name="ParserTest" type="Application" />
+<method />
+</configuration>
+<configuration default="false" name="Disasm" type="Application" factoryName="Application">
+<extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+<option name="MAIN_CLASS_NAME" value="rs.etf.pp1.mj.runtime.disasm" />
+<option name="VM_PARAMETERS" value="" />
+<option name="PROGRAM_PARAMETERS" value="test/program.obj" />
+<option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+<option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+<option name="ALTERNATIVE_JRE_PATH" />
+<option name="ENABLE_SWING_INSPECTOR" value="false" />
+<option name="ENV_VARIABLES" />
+<option name="PASS_PARENT_ENVS" value="true" />
+<module name="pp1" />
+<envs />
+<method />
+</configuration>
+<configuration default="false" name="Run" type="Application" factoryName="Application">
+<extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+<option name="MAIN_CLASS_NAME" value="rs.etf.pp1.mj.runtime.Run" />
+<option name="VM_PARAMETERS" value="" />
+<option name="PROGRAM_PARAMETERS" value="-debug test/program.obj" />
+<option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+<option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+<option name="ALTERNATIVE_JRE_PATH" />
+<option name="ENABLE_SWING_INSPECTOR" value="false" />
+<option name="ENV_VARIABLES" />
+<option name="PASS_PARENT_ENVS" value="true" />
+<module name="pp1" />
+<envs />
+<method />
+</configuration>

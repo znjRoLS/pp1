@@ -1,7 +1,10 @@
 OptionalDesignatorStatement ::= DesignatorStatement
                                 | /* epsilon */;
 
-        DesignatorStatement ::= Designator AssignOperator Expression
+        DesignatorStatement ::= Designator:pair1 AssignOperator Expression:pair2
+                                {:
+
+                                :}
                                 | Designator MethodCall
                                 | Designator INCREMENT
                                 | Designator DECREMENT;
@@ -19,9 +22,10 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     ctx.foundSymbol(SemanticSymbol.DESIGNATOR, id.toString());
                                     Obj found = Tab.find(id.toString());
                                     if (found == Tab.noObj) {
-                                        RESULT = EMPTY_VALUE;
+                                        report_error("Identifier name not declared: " + id.toString());
+                                        RESULT = null;
                                     } else {
-                                        RESULT = new Pair<Integer, ValueType>(found.getType().getKind(), (found.getType().getKind() == Obj.Var)?ValueType.LVALUE:ValueType.RVALUE);
+                                        RESULT = new ExpressionToken(found.getType().getKind(), found.getType().getKind() == Obj.Var);
                                     }
                                 :}
                                 MemberList;

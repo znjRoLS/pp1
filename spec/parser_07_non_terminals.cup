@@ -11,17 +11,18 @@ non terminal StatementBlock, StatementList, Statement;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
 non terminal DesignatorStatement, OptionalDesignatorStatement;
-non terminal Pair<Integer, ValueType> Designator;
 non terminal ActualParameterSection, ActualParameterList, ActualParameter;
 non terminal MemberList, Member;
 non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
 non terminal OptionalUnaryMinus;
-non terminal Pair<Integer, ValueType> Expression;
-non terminal Pair<Integer, ValueType> Term, AdditionTermList, Factor, MultiplicationFactorList;
 non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
 non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 non terminal RelationalOperator, AssignOperator;
+
+non terminal Obj Designator;
+non terminal ExpressionToken Expression;
+non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
 
 precedence left ELSE;

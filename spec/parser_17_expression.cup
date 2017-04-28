@@ -1,64 +1,81 @@
-                 Expression ::= AdditionTermList:pair
+                 Expression ::= AdditionTermList:expression
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :}
-                                | SUBTRACTION AdditionTermList:pair
+                                | SUBTRACTION AdditionTermList:expression
                                 {:
-                                    if (pair.getFirst() != Struct.Int) {
-                                        //error!
+                                    if (expression.varType != Struct.Int) {
+                                        report_error("Type not int: " + printExpr(expression) );
+                                        RESULT = null;
                                     }
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :};
 
 
-           AdditionTermList ::= AdditionTermList:pair1 AdditionOperator Term:pair2
+           AdditionTermList ::= AdditionTermList:expression1 AdditionOperator Term:expression2
                                 {:
-                                    if (pair1.getFirst() != pair2.getFirst()) {
-                                        report_error("not compatible types: " + pair1.getFirst() + " " + pair2.getFirst());
-                                        RESULT = EMPTY_VALUE;
+                                    if (expression1.varType != expression2.varType) {
+                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
+                                        RESULT = null;
                                     } else if (pair1.getFirst() != Struct.Int) {
-                                        report_error("types same, but not integer: " + pair1.getFirst());
-                                        RESULT = EMPTY_VALUE;
+                                        report_error("Types same, but not integer: " + printExpr(expression1));
+                                        RESULT = null;
                                     } else {
-                                        RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                        RESULT = new ExpressionToken(expression1.varType, false);
                                     }
 
                                 :}
-                                | Term:pair
+                                | Term:expression
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :};
 
-                       Term ::= MultiplicationFactorList:pair
+                       Term ::= MultiplicationFactorList:expression
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :};
 
-   MultiplicationFactorList ::= MultiplicationFactorList:pair1 MultiplicationOperator Factor:pair2
+   MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator Factor:expression2
                                 {:
-                                    if (pair1.getFirst() != pair2.getFirst()) {
-                                        report_error("not compatible types " + pair1.getFirst() + " " + pair2.getFirst());
-                                        RESULT = EMPTY_VALUE;
+                                    if (expression1.varType != expression2.varType) {
+                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
+                                        RESULT = null;
                                     } else if (pair1.getFirst() != Struct.Int) {
-                                        report_error("types same, but not integer: " + pair1.getFirst());
-                                        RESULT = EMPTY_VALUE;
+                                        report_error("Types same, but not integer: " + printExpr(expression1));
+                                        RESULT = null;
                                     } else {
-                                        RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                        RESULT = new ExpressionToken(expression1.varType, false);
                                     }
 
                                 :}
-                                | Factor:pair
+                                | Factor:expression
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :};
 
-                     Factor ::= Designator:pair
+                     Factor ::= Designator:varObj
                                 {:
-                                    RESULT = pair;
+                                    // Obj varObj;
+                                    int objectType = varObj.getType();
+                                    if (objectType != Obj.Var && objectType != Obj.Con) {
+                                        report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
+                                        RESULT = null;
+                                    } else {
+                                        int varType = varObj.getKind();
+                                        RESULT = new ExpressionToken(varType, false);
+                                    }
                                 :}
-                                | Designator:pair MethodCall
+                                | Designator:varObj MethodCall
                                 {:
-                                    RESULT = pair;
+                                    // Obj varObj;
+                                    int objectType = varObj.getType();
+                                    if (objectType != Obj.Meth) {
+                                        report_error("Object not a method: " + printObj(varObj));
+                                        RESULT = null;
+                                    } else {
+                                        int methodReturnType = varObj.getKind();
+                                        RESULT = new ExpressionToken(methodReturnType, false);
+                                    }
                                 :}
                                 | CONST_NUMBER:val
                                 {:
@@ -66,7 +83,7 @@
                                     Obj c = Tab.insert(Obj.Con, null, Tab.intType);
                                     c.setAdr(val);
                                     Code.load(c);
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                    RESULT = new ExpressionToken(Struct.Int, false);
                                 :}
                                 | CONST_CHAR:val
                                 {:
@@ -74,11 +91,15 @@
                                     Obj c = Tab.insert(Obj.Con, null, Tab.charType);
                                     c.setAdr(val);
                                     Code.load(c);
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Char, ValueType.RVALUE);
+                                    RESULT = new ExpressionToken(Struct.Char, false);
                                 :}
-                                | CONST_BOOL
+                                | CONST_BOOL:val
                                 {:
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Bool, ValueType.RVALUE);
+                                    // boolean val;
+                                    Obj c = Tab.insert(Obj.Con, null, new Struct(Struct.Bool);
+                                    c.setAdr(val);
+                                    Code.load(c);
+                                    RESULT = new ExpressionToken(Struct.Bool, false);
                                 :}
                                 | NEW Type OptionalDimension
                                 {:

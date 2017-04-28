@@ -22,4 +22,12 @@ action code {:
         //System.err.println("INFO: " + msg);
     }
 
+    String printObj(Obj object) {
+        return this.parser.printObj(object);
+    }
+
+    String printExpr(ExpressionToken expr) {
+        return this.parser.printExpr(expr);
+    }
+
 :}

@@ -11,4 +11,4 @@ import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
 
-import rosko.bojan.Pair;
+import rosko.bojan.Expression;

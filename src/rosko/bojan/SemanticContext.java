@@ -202,6 +202,7 @@ public class SemanticContext {
             Tab.openScope();
         }
         if (type == PROGRAM_EXIT) {
+            Code.dataSize = Tab.currentScope().getnVars();
             Tab.chainLocalSymbols(programObj);
             Tab.closeScope();
         }

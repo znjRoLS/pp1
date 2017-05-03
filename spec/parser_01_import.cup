@@ -11,4 +11,6 @@ import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
 
-import rosko.bojan.Expression;
+import rosko.bojan.ExpressionToken;
+
+import java.util.HashMap;

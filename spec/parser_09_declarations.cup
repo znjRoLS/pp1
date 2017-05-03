@@ -13,9 +13,16 @@ DeclarationList ::= DeclarationList Declaration
 
            Type ::= ID:id
                     {:
+                        String name = id.toString();
+                        Obj node = Tab.find(name);
+                        if (node == Tab.noObj) {
+                            report_error("Type not declared: " + name);
+                        } else if (node.getKind() != Obj.Type) {
+                            report_error("Token doesn't represent type: " + name);
+                        }
                         ctx.foundSymbol(SemanticSymbol.TYPE, id.toString());
                         report_info("Matched type " + id);
-                        RESULT = id;
+                        RESULT = node;
                     :};
 
  OptionalStatic ::= STATIC

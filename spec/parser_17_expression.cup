@@ -4,7 +4,7 @@
                                 :}
                                 | SUBTRACTION AdditionTermList:expression
                                 {:
-                                    if (expression.varType != Struct.Int) {
+                                    if (expression.objType.getKind() != Struct.Int) {
                                         report_error("Type not int: " + printExpr(expression) );
                                         RESULT = null;
                                     }
@@ -14,37 +14,40 @@
 
            AdditionTermList ::= AdditionTermList:expression1 AdditionOperator Term:expression2
                                 {:
-                                    if (expression1.varType != expression2.varType) {
+                                    //report_info("TEST ovde sam valjda " + expression1.objType.getKind() + " " + expression2.objType.getKind());
+                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
                                         RESULT = null;
-                                    } else if (pair1.getFirst() != Struct.Int) {
+                                    } else if (expression1.objType.getKind() != Struct.Int) {
                                         report_error("Types same, but not integer: " + printExpr(expression1));
                                         RESULT = null;
                                     } else {
-                                        RESULT = new ExpressionToken(expression1.varType, false);
+                                        RESULT = new ExpressionToken(expression1.objType, false);
                                     }
 
                                 :}
                                 | Term:expression
                                 {:
+                                    //report_info("TEST1 ovde sam valjda " + expression.objType.getKind());
                                     RESULT = expression;
                                 :};
 
                        Term ::= MultiplicationFactorList:expression
                                 {:
+                                    //report_info("TEST2 ovde sam valjda " + expression.objType.getKind());
                                     RESULT = expression;
                                 :};
 
    MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator Factor:expression2
                                 {:
-                                    if (expression1.varType != expression2.varType) {
+                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
                                         RESULT = null;
-                                    } else if (pair1.getFirst() != Struct.Int) {
+                                    } else if (expression1.objType.getKind() != Struct.Int) {
                                         report_error("Types same, but not integer: " + printExpr(expression1));
                                         RESULT = null;
                                     } else {
-                                        RESULT = new ExpressionToken(expression1.varType, false);
+                                        RESULT = new ExpressionToken(expression1.objType, false);
                                     }
 
                                 :}
@@ -56,24 +59,25 @@
                      Factor ::= Designator:varObj
                                 {:
                                     // Obj varObj;
-                                    int objectType = varObj.getType();
+                                    int objectType = varObj.getKind();
                                     if (objectType != Obj.Var && objectType != Obj.Con) {
                                         report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
                                         RESULT = null;
                                     } else {
-                                        int varType = varObj.getKind();
-                                        RESULT = new ExpressionToken(varType, false);
+                                        //report_info("TEST5 ovde sam valjda " + varObj.getType().getKind());
+                                        Struct objType = varObj.getType();
+                                        RESULT = new ExpressionToken(objType, false);
                                     }
                                 :}
                                 | Designator:varObj MethodCall
                                 {:
                                     // Obj varObj;
-                                    int objectType = varObj.getType();
+                                    int objectType = varObj.getKind();
                                     if (objectType != Obj.Meth) {
                                         report_error("Object not a method: " + printObj(varObj));
                                         RESULT = null;
                                     } else {
-                                        int methodReturnType = varObj.getKind();
+                                        Struct methodReturnType = varObj.getType();
                                         RESULT = new ExpressionToken(methodReturnType, false);
                                     }
                                 :}
@@ -83,7 +87,8 @@
                                     Obj c = Tab.insert(Obj.Con, null, Tab.intType);
                                     c.setAdr(val);
                                     Code.load(c);
-                                    RESULT = new ExpressionToken(Struct.Int, false);
+                                    //report_info("nesto " + val);
+                                    RESULT = new ExpressionToken(Tab.intType, false);
                                 :}
                                 | CONST_CHAR:val
                                 {:
@@ -91,21 +96,22 @@
                                     Obj c = Tab.insert(Obj.Con, null, Tab.charType);
                                     c.setAdr(val);
                                     Code.load(c);
-                                    RESULT = new ExpressionToken(Struct.Char, false);
+                                    RESULT = new ExpressionToken(Tab.charType, false);
                                 :}
                                 | CONST_BOOL:val
                                 {:
                                     // boolean val;
-                                    Obj c = Tab.insert(Obj.Con, null, new Struct(Struct.Bool);
-                                    c.setAdr(val);
+                                    Struct boolType = new Struct(Struct.Bool);
+                                    Obj c = Tab.insert(Obj.Con, null, boolType);
+                                    c.setAdr(val?1:0);
                                     Code.load(c);
-                                    RESULT = new ExpressionToken(Struct.Bool, false);
+                                    RESULT = new ExpressionToken(boolType, false);
                                 :}
-                                | NEW Type OptionalDimension
+                                | NEW Type:type OptionalDimension
                                 {:
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                    RESULT = new ExpressionToken(type.getType(), false);
                                 :}
-                                | PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT
+                                | PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expr;
                                 :};

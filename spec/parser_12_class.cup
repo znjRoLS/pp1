@@ -22,5 +22,9 @@
 
           ClassType ::= Type:type
                         {:
-                            ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
+                            //ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
+                            // Struct type;
+                            if (type.getType().getKind() != Struct.Class) {
+                                report_error("Token not of class type: " + type.getName() + " " + printObj(type));
+                            }
                         :};

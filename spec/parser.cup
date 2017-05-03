@@ -17,7 +17,9 @@ import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
 
-import rosko.bojan.Pair;
+import rosko.bojan.ExpressionToken;
+
+import java.util.HashMap;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // parser_02_parser_code.cup
@@ -34,7 +36,7 @@ parser code {:
     void report_error(String msg) {
         errorDetected = true;
         logger.error(msg);
-        System.err.println("ERROR: " + msg);
+        //System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
         logger.info(msg);
@@ -43,6 +45,57 @@ parser code {:
     void dump() {
         context.dumpTable();
     }
+
+    public static String printExpr(ExpressionToken expr) {
+        return "type: " + printObjKind(expr.objType.getKind()) + ", val: " + (expr.isVar?"lvalue":"rvalue");
+    }
+
+    public static String printObj(Obj object){
+        return "name: " + object.getName() +
+                ", type: " + printObjKind(object.getType().getKind()) +
+                ", kind: " + printObjType(object.getKind());
+    }
+
+    public static String printObjType(int type) {
+            // public static final int Con = 0, Var = 1, Type = 2, Meth = 3, Fld = 4, Elem=5, Prog = 6;
+            final HashMap<Integer, String> typeMap = new HashMap<Integer, String>() {
+                {
+                    put(0, "Con");
+                    put(1, "Var");
+                    put(2, "Type");
+                    put(3, "Meth");
+                    put(4, "Fld");
+                    put(5, "Elem");
+                    put(6, "Prog");
+                }
+            };
+
+            return typeMap.get(type);
+        }
+
+        public static String printObjKind(int type) {
+            // kodiranje tipova
+            // public static final int None = 0;
+            // public static final int Int = 1;
+            // public static final int Char = 2;
+            // public static final int Array = 3;
+            // public static final int Class = 4;
+            // public static final int Bool = 5;
+            final HashMap<Integer, String> typeMap = new HashMap<Integer, String>() {
+                {
+                    put(0, "None");
+                    put(1, "Int");
+                    put(2, "Char");
+                    put(3, "Array");
+                    put(4, "Class");
+                    put(5, "Bool");
+                }
+            };
+
+            return typeMap.get(type);
+
+        }
+
 :}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +158,14 @@ action code {:
         //System.err.println("INFO: " + msg);
     }
 
+    String printObj(Obj object) {
+        return this.parser.printObj(object);
+    }
+
+    String printExpr(ExpressionToken expr) {
+        return this.parser.printExpr(expr);
+    }
+
 :}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,23 +207,25 @@ non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
 non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
 non terminal MethodDeclarationList, MethodDeclaration, MethodName;
 non terminal FormalParameterSection, FormalParameterList, FormalParameter;
-non terminal Type, MethodType, OptionalStatic;
+non terminal OptionalStatic;
 non terminal StatementBlock, StatementList, Statement;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
 non terminal DesignatorStatement, OptionalDesignatorStatement;
-non terminal Pair<Integer, ValueType> Designator;
 non terminal ActualParameterSection, ActualParameterList, ActualParameter;
 non terminal MemberList, Member;
 non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
 non terminal OptionalUnaryMinus;
-non terminal Pair<Integer, ValueType> Expression;
-non terminal Pair<Integer, ValueType> Term, AdditionTermList, Factor, MultiplicationFactorList;
 non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
 non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 non terminal RelationalOperator, AssignOperator;
+
+non terminal Obj Designator;
+non terminal ExpressionToken Expression;
+non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
+non terminal Obj Type, MethodType;
 
 precedence left ELSE;
 
@@ -213,9 +276,16 @@ DeclarationList ::= DeclarationList Declaration
 
            Type ::= ID:id
                     {:
+                        String name = id.toString();
+                        Obj node = Tab.find(name);
+                        if (node == Tab.noObj) {
+                            report_error("Type not declared: " + name);
+                        } else if (node.getKind() != Obj.Type) {
+                            report_error("Token doesn't represent type: " + name);
+                        }
                         ctx.foundSymbol(SemanticSymbol.TYPE, id.toString());
                         report_info("Matched type " + id);
-                        RESULT = id;
+                        RESULT = node;
                     :};
 
  OptionalStatic ::= STATIC
@@ -326,7 +396,11 @@ DeclarationList ::= DeclarationList Declaration
 
           ClassType ::= Type:type
                         {:
-                            ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
+                            //ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
+                            // Struct type;
+                            if (type.getType().getKind() != Struct.Class) {
+                                report_error("Token not of class type: " + type.getName() + " " + printObj(type));
+                            }
                         :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -403,11 +477,9 @@ DeclarationList ::= DeclarationList Declaration
 
 StatementDesignator ::= DesignatorStatement
                         {:
-                            report_info("mypath6");
                         :}
                         SEMICOLON
                         {:
-                            report_info("mypath6");
                         :};
 
         StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
@@ -429,14 +501,13 @@ StatementDesignator ::= DesignatorStatement
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
 
-     StatementPrint ::= PRINT PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT SEMICOLON
+     StatementPrint ::= PRINT PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:
-                            report_info("mypath6");
-                            // Pair<Integer, ValueType> pair;
-                            if (pair.getFirst() == Struct.Int) {
+                            // ExpressionToken expr;
+                            if (expr.objType == Tab.intType) {
                                 Code.loadConst(5);
                                 Code.put(Code.print);
-                            } else if (pair.getFirst() == Struct.Char) {
+                            } else if (expr.objType == Tab.charType) {
                                 Code.loadConst(1);
                                 Code.put(Code.bprint);
                             }
@@ -449,7 +520,20 @@ StatementDesignator ::= DesignatorStatement
 OptionalDesignatorStatement ::= DesignatorStatement
                                 | /* epsilon */;
 
-        DesignatorStatement ::= Designator AssignOperator Expression
+        DesignatorStatement ::= Designator:design AssignOperator Expression:expr
+                                {:
+                                    // ExpressionToken expr;
+                                    // Obj design;
+
+                                    if (expr.objType.getKind() != design.getType().getKind()) {
+                                        //report_info("expr " + printExpr(expr) + "| design " + printObj(design));
+                                        //report_info(expr.objType.getKind() + " " + design.getType().getKind());
+                                        report_error("Not assignable!");
+                                    } else {
+                                        Code.store(design);
+                                    }
+
+                                :}
                                 | Designator MethodCall
                                 | Designator INCREMENT
                                 | Designator DECREMENT;
@@ -467,9 +551,12 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     ctx.foundSymbol(SemanticSymbol.DESIGNATOR, id.toString());
                                     Obj found = Tab.find(id.toString());
                                     if (found == Tab.noObj) {
-                                        RESULT = EMPTY_VALUE;
+                                        report_error("Identifier name not declared: " + id.toString());
+                                        RESULT = null;
                                     } else {
-                                        RESULT = new Pair<Integer, ValueType>(found.getType().getKind(), (found.getType().getKind() == Obj.Var)?ValueType.LVALUE:ValueType.RVALUE);
+                                        //RESULT = new ExpressionToken(found.getType(), found.getType().getKind() == Obj.Var);
+                                        //report_info("nestoasdasd " + printObj(found));
+                                        RESULT = found;
                                     }
                                 :}
                                 MemberList;
@@ -517,67 +604,88 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
 // parser_17_expression.cup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                 Expression ::= AdditionTermList:pair
+                 Expression ::= AdditionTermList:expression
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :}
-                                | SUBTRACTION AdditionTermList:pair
+                                | SUBTRACTION AdditionTermList:expression
                                 {:
-                                    if (pair.getFirst() != Struct.Int) {
-                                        //error!
+                                    if (expression.objType.getKind() != Struct.Int) {
+                                        report_error("Type not int: " + printExpr(expression) );
+                                        RESULT = null;
                                     }
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :};
 
 
-           AdditionTermList ::= AdditionTermList:pair1 AdditionOperator Term:pair2
+           AdditionTermList ::= AdditionTermList:expression1 AdditionOperator Term:expression2
                                 {:
-                                    if (pair1.getFirst() != pair2.getFirst()) {
-                                        report_error("not compatible types: " + pair1.getFirst() + " " + pair2.getFirst());
-                                        RESULT = EMPTY_VALUE;
-                                    } else if (pair1.getFirst() != Struct.Int) {
-                                        report_error("types same, but not integer: " + pair1.getFirst());
-                                        RESULT = EMPTY_VALUE;
+                                    //report_info("TEST ovde sam valjda " + expression1.objType.getKind() + " " + expression2.objType.getKind());
+                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
+                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
+                                        RESULT = null;
+                                    } else if (expression1.objType.getKind() != Struct.Int) {
+                                        report_error("Types same, but not integer: " + printExpr(expression1));
+                                        RESULT = null;
                                     } else {
-                                        RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                        RESULT = new ExpressionToken(expression1.objType, false);
                                     }
 
                                 :}
-                                | Term:pair
+                                | Term:expression
                                 {:
-                                    RESULT = pair;
+                                    //report_info("TEST1 ovde sam valjda " + expression.objType.getKind());
+                                    RESULT = expression;
                                 :};
 
-                       Term ::= MultiplicationFactorList:pair
+                       Term ::= MultiplicationFactorList:expression
                                 {:
-                                    RESULT = pair;
+                                    //report_info("TEST2 ovde sam valjda " + expression.objType.getKind());
+                                    RESULT = expression;
                                 :};
 
-   MultiplicationFactorList ::= MultiplicationFactorList:pair1 MultiplicationOperator Factor:pair2
+   MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator Factor:expression2
                                 {:
-                                    if (pair1.getFirst() != pair2.getFirst()) {
-                                        report_error("not compatible types " + pair1.getFirst() + " " + pair2.getFirst());
-                                        RESULT = EMPTY_VALUE;
-                                    } else if (pair1.getFirst() != Struct.Int) {
-                                        report_error("types same, but not integer: " + pair1.getFirst());
-                                        RESULT = EMPTY_VALUE;
+                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
+                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
+                                        RESULT = null;
+                                    } else if (expression1.objType.getKind() != Struct.Int) {
+                                        report_error("Types same, but not integer: " + printExpr(expression1));
+                                        RESULT = null;
                                     } else {
-                                        RESULT = new Pair(pair1.getFirst(), ValueType.RVALUE);
+                                        RESULT = new ExpressionToken(expression1.objType, false);
                                     }
 
                                 :}
-                                | Factor:pair
+                                | Factor:expression
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expression;
                                 :};
 
-                     Factor ::= Designator:pair
+                     Factor ::= Designator:varObj
                                 {:
-                                    RESULT = pair;
+                                    // Obj varObj;
+                                    int objectType = varObj.getKind();
+                                    if (objectType != Obj.Var && objectType != Obj.Con) {
+                                        report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
+                                        RESULT = null;
+                                    } else {
+                                        //report_info("TEST5 ovde sam valjda " + varObj.getType().getKind());
+                                        Struct objType = varObj.getType();
+                                        RESULT = new ExpressionToken(objType, false);
+                                    }
                                 :}
-                                | Designator:pair MethodCall
+                                | Designator:varObj MethodCall
                                 {:
-                                    RESULT = pair;
+                                    // Obj varObj;
+                                    int objectType = varObj.getKind();
+                                    if (objectType != Obj.Meth) {
+                                        report_error("Object not a method: " + printObj(varObj));
+                                        RESULT = null;
+                                    } else {
+                                        Struct methodReturnType = varObj.getType();
+                                        RESULT = new ExpressionToken(methodReturnType, false);
+                                    }
                                 :}
                                 | CONST_NUMBER:val
                                 {:
@@ -585,7 +693,8 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                     Obj c = Tab.insert(Obj.Con, null, Tab.intType);
                                     c.setAdr(val);
                                     Code.load(c);
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                    //report_info("nesto " + val);
+                                    RESULT = new ExpressionToken(Tab.intType, false);
                                 :}
                                 | CONST_CHAR:val
                                 {:
@@ -593,19 +702,24 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                     Obj c = Tab.insert(Obj.Con, null, Tab.charType);
                                     c.setAdr(val);
                                     Code.load(c);
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Char, ValueType.RVALUE);
+                                    RESULT = new ExpressionToken(Tab.charType, false);
                                 :}
-                                | CONST_BOOL
+                                | CONST_BOOL:val
                                 {:
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Bool, ValueType.RVALUE);
+                                    // boolean val;
+                                    Struct boolType = new Struct(Struct.Bool);
+                                    Obj c = Tab.insert(Obj.Con, null, boolType);
+                                    c.setAdr(val?1:0);
+                                    Code.load(c);
+                                    RESULT = new ExpressionToken(boolType, false);
                                 :}
-                                | NEW Type OptionalDimension
+                                | NEW Type:type OptionalDimension
                                 {:
-                                    RESULT = new Pair<Integer, ValueType>(Struct.Int, ValueType.RVALUE);
+                                    RESULT = new ExpressionToken(type.getType(), false);
                                 :}
-                                | PARENTHESES_LEFT Expression:pair PARENTHESES_RIGHT
+                                | PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT
                                 {:
-                                    RESULT = pair;
+                                    RESULT = expr;
                                 :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

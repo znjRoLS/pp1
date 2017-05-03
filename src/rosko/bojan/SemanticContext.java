@@ -216,12 +216,12 @@ public class SemanticContext {
             }
         }
         if (type == TYPE) {
-            Obj node = Tab.find(name);
-            if (node == Tab.noObj) {
-                report_error("Type not declared: " + name);
-            } else if (node.getKind() != Obj.Type) {
-                report_error("Token doesn't represent type: " + name);
-            }
+//            Obj node = Tab.find(name);
+//            if (node == Tab.noObj) {
+//                report_error("Type not declared: " + name);
+//            } else if (node.getKind() != Obj.Type) {
+//                report_error("Token doesn't represent type: " + name);
+//            }
         }
         if (type == TYPE_CLASS) {
             Obj node = Tab.find(name);

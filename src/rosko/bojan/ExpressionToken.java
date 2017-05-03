@@ -1,11 +1,14 @@
 package rosko.bojan;
 
+
+import rs.etf.pp1.symboltable.concepts.Struct;
+
 /**
  * Created by rols on 4/28/17.
  */
 public class ExpressionToken {
 
-    public ExpressionToken(int obj, boolean var) {
+    public ExpressionToken(Struct obj, boolean var) {
         objType = obj;
         isVar = var;
     }
@@ -16,5 +19,5 @@ public class ExpressionToken {
 
     //public ValueType varType;
     public boolean isVar;
-    public int objType;
+    public Struct objType;
 }

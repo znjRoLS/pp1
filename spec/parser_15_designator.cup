@@ -1,8 +1,18 @@
 OptionalDesignatorStatement ::= DesignatorStatement
                                 | /* epsilon */;
 
-        DesignatorStatement ::= Designator:pair1 AssignOperator Expression:pair2
+        DesignatorStatement ::= Designator:design AssignOperator Expression:expr
                                 {:
+                                    // ExpressionToken expr;
+                                    // Obj design;
+
+                                    if (expr.objType.getKind() != design.getType().getKind()) {
+                                        //report_info("expr " + printExpr(expr) + "| design " + printObj(design));
+                                        //report_info(expr.objType.getKind() + " " + design.getType().getKind());
+                                        report_error("Not assignable!");
+                                    } else {
+                                        Code.store(design);
+                                    }
 
                                 :}
                                 | Designator MethodCall
@@ -25,7 +35,9 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                         report_error("Identifier name not declared: " + id.toString());
                                         RESULT = null;
                                     } else {
-                                        RESULT = new ExpressionToken(found.getType().getKind(), found.getType().getKind() == Obj.Var);
+                                        //RESULT = new ExpressionToken(found.getType(), found.getType().getKind() == Obj.Var);
+                                        //report_info("nestoasdasd " + printObj(found));
+                                        RESULT = found;
                                     }
                                 :}
                                 MemberList;

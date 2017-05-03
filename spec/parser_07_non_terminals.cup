@@ -6,7 +6,7 @@ non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
 non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
 non terminal MethodDeclarationList, MethodDeclaration, MethodName;
 non terminal FormalParameterSection, FormalParameterList, FormalParameter;
-non terminal Type, MethodType, OptionalStatic;
+non terminal OptionalStatic;
 non terminal StatementBlock, StatementList, Statement;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
@@ -24,5 +24,6 @@ non terminal RelationalOperator, AssignOperator;
 non terminal Obj Designator;
 non terminal ExpressionToken Expression;
 non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
+non terminal Obj Type, MethodType;
 
 precedence left ELSE;

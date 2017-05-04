@@ -42,7 +42,10 @@ StatementDesignator ::= DesignatorStatement
   StatementContinue ::= CONTINUE SEMICOLON;
 
     StatementReturn ::= RETURN SEMICOLON
-                        | RETURN Expression SEMICOLON;
+                        | RETURN Expression:expression SEMICOLON
+                        {:
+                            //Code.load(expression);
+                        :};
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
 

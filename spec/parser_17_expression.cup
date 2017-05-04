@@ -14,7 +14,6 @@
 
            AdditionTermList ::= AdditionTermList:expression1 AdditionOperator Term:expression2
                                 {:
-                                    //report_info("TEST ovde sam valjda " + expression1.objType.getKind() + " " + expression2.objType.getKind());
                                     if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
                                         RESULT = null;
@@ -28,13 +27,11 @@
                                 :}
                                 | Term:expression
                                 {:
-                                    //report_info("TEST1 ovde sam valjda " + expression.objType.getKind());
                                     RESULT = expression;
                                 :};
 
                        Term ::= MultiplicationFactorList:expression
                                 {:
-                                    //report_info("TEST2 ovde sam valjda " + expression.objType.getKind());
                                     RESULT = expression;
                                 :};
 
@@ -59,6 +56,8 @@
                      Factor ::= Designator:varObj
                                 {:
                                     // Obj varObj;
+
+                                    report_info("Found designator factor: " + varObj.getName());
                                     int objectType = varObj.getKind();
                                     if (objectType != Obj.Var && objectType != Obj.Con) {
                                         report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
@@ -69,15 +68,20 @@
                                     }
                                     Code.load(varObj);
                                 :}
-                                | Designator:varObj MethodCall
+                                | Designator:function MethodCall
                                 {:
-                                    // Obj varObj;
-                                    int objectType = varObj.getKind();
+                                    // Obj function;
+                                    report_info("Function expression call: " + function.getName());
+                                    int objectType = function.getKind();
                                     if (objectType != Obj.Meth) {
-                                        report_error("Object not a method: " + printObj(varObj));
+                                        report_error("Object not a method: " + printObj(function));
                                         RESULT = null;
                                     } else {
-                                        Struct methodReturnType = varObj.getType();
+                                        int functionAdr = function.getAdr() - Code.pc;
+                                        Code.put(Code.call);
+                                        Code.put2(functionAdr);
+
+                                        Struct methodReturnType = function.getType();
                                         RESULT = new ExpressionToken(methodReturnType, false);
                                     }
                                 :}

@@ -1,6 +1,6 @@
 program funky
 const int nekiint  =54;
-int varijabla;
+int var1, var2;
 char hhnjoh;
 
 {
@@ -8,16 +8,18 @@ char hhnjoh;
         print('y');
         print('a');
         print('y');
+
+        return 78;
     }
 
     int main(){
-        hhnjoh = 'T';
-        varijabla = 4;
-        print(varijabla);
-        print(nekiint);
-        print(6);
-        print(hhnjoh);
+        //hhnjoh = 'T';
+        //var1 = 2+3-4;
         metoda2();
+        var1 = metoda2();
+        print(var1);
+        print(metoda2());
+        //metoda2();
         //print(1);
         //print('a');
 

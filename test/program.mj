@@ -1,62 +1,23 @@
 program funky
 const int nekiint  =54;
 int var1, var2;
-char hhnjoh;
 
 {
-    int metoda2() {
-        print('y');
-        print('a');
-        print('y');
-
-        return 78;
+    int sqr(int p) {
+        return p*p;
     }
 
-    //int matoda1() {
-    //    print(2);
-     //   return 'a';
-    //}
+    int main()
+        int i;
+        int j,k;
+        {
+            i = 2;
+            j = i % 1;
+            print(i);
+            print(sqr(i));
+            print(j);
+            print(sqr(j));
 
-    //void mer() {
-    //    return 2;
-    //}
-
-    //oid merr() {
-     //   return;
-    //}
-
-    //void merrrr() {
-    //    return;
-    //    return;
-    //}
-
-    //int alfa() {
-    //    return 3;
-    //    return 4;
-
-    //}
-
-    int main(){
-
-        metoda2();
-
-
-        //var1 = 5 + 10 * 8 - 2*10;
-        //print(var1);
-
-
-        //hhnjoh = 'T';
-        //var1 = 2+3-4;
-
-        //metoda2();
-        //var1 = metoda2();
-        //print(var1);
-        //print(metoda2());
-
-        //metoda2();
-        //print(1);
-        //print('a');
-
-        return 0;
-    }
+            return 0;
+        }
 }

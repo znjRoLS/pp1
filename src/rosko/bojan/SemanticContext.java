@@ -122,7 +122,25 @@ public class SemanticContext {
             report_error("Method declaration and return expression are not of same type!");
         }
         returnFound = true;
+    }
 
+    public void symbolFormalParameter(Struct type, String name){
+        Tab.insert(Obj.Var, name, type);
+    }
+    public void symbolFormalParameterArr(Struct type, String name){
+        Tab.insert(Obj.Var, name, new Struct(Struct.Array,type));
+
+    }
+
+    public void symbolMethodStart(Integer numFormal){
+        currMethod.setAdr(Code.pc);
+        currMethod.setLevel(numFormal);
+        if (currMethodName.equals("main")) {
+            Code.mainPc = Code.pc;
+        }
+        Code.put(Code.enter);
+        Code.put(currMethod.getLevel());
+        Code.put(Tab.currentScope().getnVars());
     }
 
     private void setConstIntValue(int value) {
@@ -165,15 +183,6 @@ public class SemanticContext {
     }
 
     public void generateCode(SemanticSymbol type, String name) {
-        if (type == METHOD_START) {
-            currMethod.setAdr(Code.pc);
-            if (currMethodName.equals("main")) {
-                Code.mainPc = Code.pc;
-            }
-            Code.put(Code.enter);
-            Code.put(currMethod.getLevel());
-            Code.put(Tab.currentScope().getnVars());
-        }
         if (type == METHOD_EXIT) {
             Code.put(Code.exit);
             Code.put(Code.return_);

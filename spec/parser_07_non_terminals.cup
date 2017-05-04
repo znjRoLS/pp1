@@ -5,7 +5,6 @@ non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
 non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
 non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
 non terminal MethodDeclarationList, MethodDeclaration, MethodName;
-non terminal FormalParameterSection, FormalParameterList, FormalParameter;
 non terminal OptionalStatic;
 non terminal StatementBlock, StatementList, Statement;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
@@ -26,5 +25,7 @@ non terminal Obj Type, MethodType;
 
 non terminal Integer AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
 non terminal Integer MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
+
+non terminal Integer FormalParameterSection, FormalParameterList, FormalParameter;
 
 precedence left ELSE;

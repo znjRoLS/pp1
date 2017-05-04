@@ -42,7 +42,7 @@ OptionalDesignatorStatement ::= DesignatorStatement
         ActualParameterList ::= ActualParameterList COMMA ActualParameter
                                 | ActualParameter;
 
-            ActualParameter ::= Expression;
+            ActualParameter ::= Expression:expression;
 
                  Designator ::= ID:id
                                 {:

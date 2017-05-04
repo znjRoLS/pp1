@@ -34,3 +34,70 @@ class opetclass extends nekiclass {
         return 0;
     }
 }
+
+
+
+///////////////////////////////
+
+program funky
+const int nekiint  =54;
+int var1, var2;
+char hhnjoh;
+
+{
+    int metoda2() {
+        print('y');
+        print('a');
+        print('y');
+
+        return 78;
+    }
+
+    //int matoda1() {
+    //    print(2);
+     //   return 'a';
+    //}
+
+    //void mer() {
+    //    return 2;
+    //}
+
+    //oid merr() {
+     //   return;
+    //}
+
+    //void merrrr() {
+    //    return;
+    //    return;
+    //}
+
+    //int alfa() {
+    //    return 3;
+    //    return 4;
+
+    //}
+
+    int main(){
+
+        metoda2();
+
+
+        //var1 = 5 + 10 * 8 - 2*10;
+        //print(var1);
+
+
+        //hhnjoh = 'T';
+        //var1 = 2+3-4;
+
+        //metoda2();
+        //var1 = metoda2();
+        //print(var1);
+        //print(metoda2());
+
+        //metoda2();
+        //print(1);
+        //print('a');
+
+        return 0;
+    }
+}

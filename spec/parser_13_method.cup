@@ -7,35 +7,49 @@
                                         | /* epsilon */;
 
                   MethodDeclaration ::= OptionalStatic MethodType MethodName
-                                        PARENTHESES_LEFT FormalParameterSection PARENTHESES_RIGHT
+                                        PARENTHESES_LEFT FormalParameterSection:num PARENTHESES_RIGHT
                                         VarDeclarationList
                                         BRACES_LEFT
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.METHOD_START, null);
+                                            //ctx.foundSymbol(SemanticSymbol.METHOD_START, null);
+                                            ctx.symbolMethodStart(num);
                                         :}
                                         StatementList BRACES_RIGHT
                                         {:
                                             ctx.foundSymbol(SemanticSymbol.METHOD_EXIT, null);
                                         :};
 
-                        MethodName ::= ID:id
+                         MethodName ::= ID:id
                                         {:
                                             ctx.foundSymbol(SemanticSymbol.METHOD, id.toString());
                                             report_info("Entered method: " + id);
                                         :};
 
-            FormalParameterSection ::= FormalParameterList
-                                        | /* epsilon */;
-
-               FormalParameterList ::= FormalParameterList COMMA FormalParameter
-                                        | FormalParameter;
-
-                    FormalParameter ::= Type ID:id
+             FormalParameterSection ::= FormalParameterList:num
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                            RESULT = num;
                                         :}
-                                        | Type ID:id
+                                        | /* epsilon */
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                            RESULT = 0;
+                                        :};
+
+                FormalParameterList ::= FormalParameterList:num1 COMMA FormalParameter
+                                        {:
+                                            RESULT = num1 + 1;
+                                        :}
+                                        | FormalParameter
+                                        {:
+                                            RESULT = 1;
+                                        :};
+
+                    FormalParameter ::= Type:type ID:id
+                                        {:
+                                            //ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
+                                            ctx.symbolFormalParameter(type.getType(), id.toString());
+                                        :}
+                                        | Type:type ID:id
+                                        {:
+                                            ctx.symbolFormalParameterArr(type.getType(), id.toString());
                                         :}
                                         BRACKETS_LEFT BRACKETS_RIGHT;

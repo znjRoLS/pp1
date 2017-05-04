@@ -49,11 +49,29 @@ MultiplicationOperatorRight ::= ASSIGN_MULTIPLICATION
                                 | ASSIGN_MODULO;
 
          RelationalOperator ::= EQUAL
+                                {:
+                                    RESULT = Code.eq;
+                                :}
                                 | NOT_EQUAL
+                                {:
+                                    RESULT = Code.ne;
+                                :}
                                 | GREATER
+                                {:
+                                    RESULT = Code.gt;
+                                :}
                                 | GREATER_EQUAL
+                                {:
+                                    RESULT = Code.ge;
+                                :}
                                 | LESS
-                                | LESS_EQUAL;
+                                {:
+                                    RESULT = Code.lt;
+                                :}
+                                | LESS_EQUAL
+                                {:
+                                    RESULT = Code.le;
+                                :};
 
              AssignOperator ::= ASSIGN
                                 | AdditionOperatorRight

@@ -20,4 +20,8 @@ public class ExpressionToken {
     //public ValueType varType;
     public boolean isVar;
     public Struct objType;
+
+    public boolean compatible(ExpressionToken other) {
+        return other.objType.getKind() == objType.getKind();
+    }
 }

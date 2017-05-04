@@ -83,6 +83,8 @@ public class SemanticContext {
     private Logger logger = LogManager.getLogger(SemanticContext.class);
     private Parser parser;
 
+    private int adrFalseJump, adrTrueJump;
+
     SemanticContext(Parser parser) {
         currClassName = null;
         currMethodName = null;
@@ -124,9 +126,40 @@ public class SemanticContext {
         returnFound = true;
     }
 
+    public void symbolRelop(int relop) {
+        Code.putFalseJump(relop,0);
+        int adrFalseJump = Code.pc - 2;
+        Code.loadConst(1);
+        Code.putJump(0);
+        int adrTrueJump = Code.pc - 2;
+        Code.fixup(adrFalseJump);
+        Code.loadConst(0);
+        Code.fixup(adrTrueJump);
+    }
+
+    public void symbolIf() {
+        Code.loadConst(0);
+        Code.putFalseJump(Code.ne, 0);
+        adrFalseJump = Code.pc - 2;
+    }
+    public void symbolIfEnd() {
+        Code.fixup(adrFalseJump);
+    }
+
+    public void symbolIfElse() {
+        Code.putJump(0);
+        adrTrueJump = Code.pc - 2;
+        Code.fixup(adrFalseJump);
+    }
+
+    public void symbolIfElseEnd() {
+        Code.fixup(adrTrueJump);
+    }
+
     public void symbolFormalParameter(Struct type, String name){
         Tab.insert(Obj.Var, name, type);
     }
+
     public void symbolFormalParameterArr(Struct type, String name){
         Tab.insert(Obj.Var, name, new Struct(Struct.Array,type));
 

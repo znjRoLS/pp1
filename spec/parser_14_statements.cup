@@ -27,9 +27,24 @@ StatementDesignator ::= DesignatorStatement
                         {:
                         :};
 
-        StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
-                        | IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT Statement
-                        ELSE Statement;
+        StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT
+                        {:
+                            ctx.symbolIf();
+                        :}
+                        Statement OptionalElse;
+
+       OptionalElse ::= ELSE
+                        {:
+                            ctx.symbolIfElse();
+                        :}
+                        Statement
+                        {:
+                            ctx.symbolIfElseEnd();
+                        :}
+                        | /* epsilon */
+                        {:
+                            ctx.symbolIfEnd();
+                        :};
 
        StatementFor ::= FOR PARENTHESES_LEFT
                         OptionalDesignatorStatement SEMICOLON

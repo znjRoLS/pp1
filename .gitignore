@@ -5,7 +5,7 @@ out
 src/rosko/bojan/Lexer.java
 src/rosko/bojan/Parser.java
 src/rosko/bojan/sym.java
-
+test/program.obj
 
 
 # Created by https://www.gitignore.io/api/intellij

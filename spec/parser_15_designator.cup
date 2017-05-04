@@ -15,7 +15,17 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     }
 
                                 :}
-                                | Designator MethodCall
+                                | Designator:function MethodCall
+                                {:
+                                    // Obj function;
+                                    report_info("Function call: " + function.getName());
+                                    if (function.getKind() != Obj.Meth) {
+                                        report_error("Not a function!");
+                                    }
+                                    int functionAdr = function.getAdr() - Code.pc;
+                                    Code.put(Code.call);
+                                    Code.put2(functionAdr);
+                                :}
                                 | Designator INCREMENT
                                 | Designator DECREMENT;
 

@@ -4,6 +4,12 @@ int varijabla;
 char hhnjoh;
 
 {
+    int metoda2() {
+        print('y');
+        print('a');
+        print('y');
+    }
+
     int main(){
         hhnjoh = 'T';
         varijabla = 4;
@@ -11,6 +17,7 @@ char hhnjoh;
         print(nekiint);
         print(6);
         print(hhnjoh);
+        metoda2();
         //print(1);
         //print('a');
 

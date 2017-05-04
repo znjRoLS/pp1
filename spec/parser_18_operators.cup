@@ -1,18 +1,48 @@
-           AdditionOperator ::= AdditionOperatorLeft
-                                | AdditionOperatorRight;
+           AdditionOperator ::= AdditionOperatorLeft:operator
+                                {:
+                                    RESULT = operator;
+                                :}
+                                | AdditionOperatorRight:operator
+                                {:
+                                    RESULT = operator;
+                                :}
+                                ;
 
        AdditionOperatorLeft ::= ADDITION
-                                | SUBTRACTION;
+                                {:
+                                    RESULT = Code.add;
+                                :}
+                                | SUBTRACTION
+                                {:
+                                    RESULT = Code.sub;
+                                :}
+                                ;
 
       AdditionOperatorRight ::= ASSIGN_ADDITION
                                 | ASSIGN_SUBTRACTION;
 
-     MultiplicationOperator ::= MultiplicationOperatorLeft
-                                | MultiplicationOperatorRight;
+     MultiplicationOperator ::= MultiplicationOperatorLeft:operator
+                                {:
+                                    RESULT = operator;
+                                :}
+                                | MultiplicationOperatorRight:operator
+                                {:
+                                    RESULT = operator;
+                                :};
 
  MultiplicationOperatorLeft ::= MULTIPLICATION
+                                {:
+                                    RESULT = Code.mul;
+                                :}
                                 | DIVISION
-                                | MODULO;
+                                {:
+                                    RESULT = Code.div;
+                                :}
+                                | MODULO
+                                {:
+                                    RESULT = Code.rem;
+                                :}
+                                ;
 
 MultiplicationOperatorRight ::= ASSIGN_MULTIPLICATION
                                 | ASSIGN_DIVISION

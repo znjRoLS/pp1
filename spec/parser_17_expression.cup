@@ -12,7 +12,7 @@
                                 :};
 
 
-           AdditionTermList ::= AdditionTermList:expression1 AdditionOperator Term:expression2
+           AdditionTermList ::= AdditionTermList:expression1 AdditionOperator:operator Term:expression2
                                 {:
                                     if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
@@ -23,7 +23,7 @@
                                     } else {
                                         RESULT = new ExpressionToken(expression1.objType, false);
                                     }
-
+                                    Code.put(operator);
                                 :}
                                 | Term:expression
                                 {:
@@ -35,7 +35,7 @@
                                     RESULT = expression;
                                 :};
 
-   MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator Factor:expression2
+   MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator:operator Factor:expression2
                                 {:
                                     if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
@@ -46,7 +46,7 @@
                                     } else {
                                         RESULT = new ExpressionToken(expression1.objType, false);
                                     }
-
+                                    Code.put(operator);
                                 :}
                                 | Factor:expression
                                 {:

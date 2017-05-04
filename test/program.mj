@@ -13,12 +13,19 @@ char hhnjoh;
     }
 
     int main(){
+
+        //var1 = 5 + 10 * 8 - 2*10;
+        //print(var1);
+
+
         //hhnjoh = 'T';
         //var1 = 2+3-4;
-        metoda2();
-        var1 = metoda2();
-        print(var1);
-        print(metoda2());
+
+        //metoda2();
+        //var1 = metoda2();
+        //print(var1);
+        //print(metoda2());
+
         //metoda2();
         //print(1);
         //print('a');

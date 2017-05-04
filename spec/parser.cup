@@ -225,14 +225,15 @@ non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
 non terminal OptionalUnaryMinus;
-non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
-non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 non terminal RelationalOperator, AssignOperator;
 
 non terminal Obj Designator;
 non terminal ExpressionToken Expression;
 non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
 non terminal Obj Type, MethodType;
+
+non terminal Integer AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
+non terminal Integer MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 
 precedence left ELSE;
 
@@ -646,7 +647,7 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                 :};
 
 
-           AdditionTermList ::= AdditionTermList:expression1 AdditionOperator Term:expression2
+           AdditionTermList ::= AdditionTermList:expression1 AdditionOperator:operator Term:expression2
                                 {:
                                     if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
@@ -657,7 +658,7 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                     } else {
                                         RESULT = new ExpressionToken(expression1.objType, false);
                                     }
-
+                                    Code.put(operator);
                                 :}
                                 | Term:expression
                                 {:
@@ -669,7 +670,7 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                     RESULT = expression;
                                 :};
 
-   MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator Factor:expression2
+   MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator:operator Factor:expression2
                                 {:
                                     if (expression1.objType.getKind() != expression2.objType.getKind()) {
                                         report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
@@ -680,7 +681,7 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                     } else {
                                         RESULT = new ExpressionToken(expression1.objType, false);
                                     }
-
+                                    Code.put(operator);
                                 :}
                                 | Factor:expression
                                 {:
@@ -758,21 +759,51 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
 // parser_18_operators.cup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-           AdditionOperator ::= AdditionOperatorLeft
-                                | AdditionOperatorRight;
+           AdditionOperator ::= AdditionOperatorLeft:operator
+                                {:
+                                    RESULT = operator;
+                                :}
+                                | AdditionOperatorRight:operator
+                                {:
+                                    RESULT = operator;
+                                :}
+                                ;
 
        AdditionOperatorLeft ::= ADDITION
-                                | SUBTRACTION;
+                                {:
+                                    RESULT = Code.add;
+                                :}
+                                | SUBTRACTION
+                                {:
+                                    RESULT = Code.sub;
+                                :}
+                                ;
 
       AdditionOperatorRight ::= ASSIGN_ADDITION
                                 | ASSIGN_SUBTRACTION;
 
-     MultiplicationOperator ::= MultiplicationOperatorLeft
-                                | MultiplicationOperatorRight;
+     MultiplicationOperator ::= MultiplicationOperatorLeft:operator
+                                {:
+                                    RESULT = operator;
+                                :}
+                                | MultiplicationOperatorRight:operator
+                                {:
+                                    RESULT = operator;
+                                :};
 
  MultiplicationOperatorLeft ::= MULTIPLICATION
+                                {:
+                                    RESULT = Code.mul;
+                                :}
                                 | DIVISION
-                                | MODULO;
+                                {:
+                                    RESULT = Code.div;
+                                :}
+                                | MODULO
+                                {:
+                                    RESULT = Code.rem;
+                                :}
+                                ;
 
 MultiplicationOperatorRight ::= ASSIGN_MULTIPLICATION
                                 | ASSIGN_DIVISION

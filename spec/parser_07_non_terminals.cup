@@ -17,13 +17,14 @@ non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
 non terminal OptionalUnaryMinus;
-non terminal AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
-non terminal MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 non terminal RelationalOperator, AssignOperator;
 
 non terminal Obj Designator;
 non terminal ExpressionToken Expression;
 non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
 non terminal Obj Type, MethodType;
+
+non terminal Integer AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
+non terminal Integer MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
 
 precedence left ELSE;

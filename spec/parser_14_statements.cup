@@ -49,11 +49,15 @@ StatementDesignator ::= DesignatorStatement
      StatementPrint ::= PRINT PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:
                             // ExpressionToken expr;
-                            if (expr.objType == Tab.intType) {
+                            report_debug(printExpr(expr));
+                            if (expr.objType.getKind() == Struct.Int) {
+                            report_debug("found printint statement!");
                                 Code.loadConst(5);
                                 Code.put(Code.print);
-                            } else if (expr.objType == Tab.charType) {
+                            } else if (expr.objType.getKind() == Struct.Char) {
+                            report_debug("found printchar statement!");
                                 Code.loadConst(1);
                                 Code.put(Code.bprint);
                             }
+                            report_debug("found print statement!");
                         :};

@@ -1,33 +1,18 @@
 program funky
-const int nekiint  =54, nekidrugi = 0;
-int varijabla, varijabla2[];
-bool jedanbool;
-const bool opetbool = true, herhe=false;
-const char mnjoh='k', hnjoj='H';
-
-class nekiclass {
-    int unutrasnji,unitrasnji2[];
-
-}
-class opetclass extends nekiclass {
-    {
-        int metoda1(char ugnezd) {
-            return;
-        }
-    }
-}
+const int nekiint  =54;
+int varijabla;
+char hhnjoh;
 
 {
-    void metoda2(int osama[], bool binladen)
-        char currChar;
-        char currString[];
-    {
-        varijabla = nekiint + 10*459;
-    }
-
     int main(){
-        print(1);
-        print('a');
+        hhnjoh = 'T';
+        varijabla = 4;
+        print(varijabla);
+        print(nekiint);
+        print(6);
+        print(hhnjoh);
+        //print(1);
+        //print('a');
 
         return 0;
     }

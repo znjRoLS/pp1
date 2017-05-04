@@ -15,6 +15,10 @@ parser code {:
         logger.info(msg);
         //System.err.println("INFO: " + msg);
     }
+    void report_debug(String msg) {
+        logger.debug(msg);
+        //System.err.println("INFO: " + msg);
+    }
     void dump() {
         context.dumpTable();
     }

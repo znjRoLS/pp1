@@ -42,6 +42,10 @@ parser code {:
         logger.info(msg);
         //System.err.println("INFO: " + msg);
     }
+    void report_debug(String msg) {
+        logger.debug(msg);
+        //System.err.println("INFO: " + msg);
+    }
     void dump() {
         context.dumpTable();
     }
@@ -156,6 +160,9 @@ action code {:
     void report_info(String msg) {
         this.parser.report_info(msg);
         //System.err.println("INFO: " + msg);
+    }
+    void report_debug(String msg) {
+        this.parser.report_debug(msg);
     }
 
     String printObj(Obj object) {
@@ -504,13 +511,17 @@ StatementDesignator ::= DesignatorStatement
      StatementPrint ::= PRINT PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:
                             // ExpressionToken expr;
-                            if (expr.objType == Tab.intType) {
+                            report_debug(printExpr(expr));
+                            if (expr.objType.getKind() == Struct.Int) {
+                            report_debug("found printint statement!");
                                 Code.loadConst(5);
                                 Code.put(Code.print);
-                            } else if (expr.objType == Tab.charType) {
+                            } else if (expr.objType.getKind() == Struct.Char) {
+                            report_debug("found printchar statement!");
                                 Code.loadConst(1);
                                 Code.put(Code.bprint);
                             }
+                            report_debug("found print statement!");
                         :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -670,10 +681,10 @@ ConditionFactorList ::= ConditionFactorList AND ConditionFactor
                                         report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
                                         RESULT = null;
                                     } else {
-                                        //report_info("TEST5 ovde sam valjda " + varObj.getType().getKind());
                                         Struct objType = varObj.getType();
                                         RESULT = new ExpressionToken(objType, false);
                                     }
+                                    Code.load(varObj);
                                 :}
                                 | Designator:varObj MethodCall
                                 {:

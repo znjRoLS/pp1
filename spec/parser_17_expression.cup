@@ -64,10 +64,10 @@
                                         report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
                                         RESULT = null;
                                     } else {
-                                        //report_info("TEST5 ovde sam valjda " + varObj.getType().getKind());
                                         Struct objType = varObj.getType();
                                         RESULT = new ExpressionToken(objType, false);
                                     }
+                                    Code.load(varObj);
                                 :}
                                 | Designator:varObj MethodCall
                                 {:

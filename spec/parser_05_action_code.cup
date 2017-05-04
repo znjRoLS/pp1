@@ -21,6 +21,9 @@ action code {:
         this.parser.report_info(msg);
         //System.err.println("INFO: " + msg);
     }
+    void report_debug(String msg) {
+        this.parser.report_debug(msg);
+    }
 
     String printObj(Obj object) {
         return this.parser.printObj(object);

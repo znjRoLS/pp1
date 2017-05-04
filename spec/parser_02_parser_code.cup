@@ -4,7 +4,7 @@ parser code {:
     Symbol currSym;
     Boolean errorDetected;
 
-    public SemanticContext context = new SemanticContext();
+    public SemanticContext context = new SemanticContext(this);
 
     void report_error(String msg) {
         errorDetected = true;

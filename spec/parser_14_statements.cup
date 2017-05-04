@@ -42,9 +42,13 @@ StatementDesignator ::= DesignatorStatement
   StatementContinue ::= CONTINUE SEMICOLON;
 
     StatementReturn ::= RETURN SEMICOLON
+                        {:
+                            ctx.symbolReturn(null);
+                        :}
                         | RETURN Expression:expression SEMICOLON
                         {:
-                            //Code.load(expression);
+                            ctx.symbolReturn(expression);
+                            //ctx.foundSymbol(SemanticSymbol.RETURN, null);
                         :};
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;

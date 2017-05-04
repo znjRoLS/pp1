@@ -12,7 +12,34 @@ char hhnjoh;
         return 78;
     }
 
+    //int matoda1() {
+    //    print(2);
+     //   return 'a';
+    //}
+
+    //void mer() {
+    //    return 2;
+    //}
+
+    //oid merr() {
+     //   return;
+    //}
+
+    //void merrrr() {
+    //    return;
+    //    return;
+    //}
+
+    //int alfa() {
+    //    return 3;
+    //    return 4;
+
+    //}
+
     int main(){
+
+        metoda2();
+
 
         //var1 = 5 + 10 * 8 - 2*10;
         //print(var1);

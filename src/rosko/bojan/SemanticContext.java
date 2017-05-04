@@ -53,7 +53,8 @@ public class SemanticContext {
         PROGRAM,
         PROGRAM_EXIT,
         DESIGNATOR,
-        TYPE_CLASS
+        TYPE_CLASS,
+        RETURN
     }
 
     private static HashMap<String,Integer> objectType = new HashMap<String,Integer>(){
@@ -68,7 +69,6 @@ public class SemanticContext {
 
     public SymbolCounter<String> symbolByNameCounter;
     public SymbolCounter<CountType> symbolCounter;
-
     private String currClassName;
     private String currMethodName;
     private Obj currMethod;
@@ -79,9 +79,11 @@ public class SemanticContext {
     private int statementBlockLevel;
     private boolean isCurrMethodStatic;
     private int currentDeclarationType;
+    private boolean returnFound;
     private Logger logger = LogManager.getLogger(SemanticContext.class);
+    private Parser parser;
 
-    SemanticContext() {
+    SemanticContext(Parser parser) {
         currClassName = null;
         currMethodName = null;
         isCurrMethodStatic = false;
@@ -91,6 +93,8 @@ public class SemanticContext {
         lastConstDeclared = null;
         currMethod = null;
         currClass = null;
+        returnFound = false;
+        this.parser = parser;
     }
 
     public void dumpTable() {
@@ -107,6 +111,18 @@ public class SemanticContext {
 
     public String getCurrClass() {
         return currClassName;
+    }
+
+    public void symbolReturn(ExpressionToken expression) {
+        if (returnFound) {
+            report_error("Method cannot have more than one return statement!");
+        }
+        if ((expression == null && currMethod.getType() == Tab.noType) ||
+                expression != null && expression.objType.getKind() != currMethod.getType().getKind()) {
+            report_error("Method declaration and return expression are not of same type!");
+        }
+        returnFound = true;
+
     }
 
     private void setConstIntValue(int value) {
@@ -142,7 +158,7 @@ public class SemanticContext {
     public void foundSymbol(SemanticSymbol type, String name) {
         report_info("foundsymbol " + type + " - " + name);
 
-        updateCounters(type, name);
+        updateCounters(type);
         updateSymbolTable(type, name);
         generateCode(type,name);
         updateContext(type, name);
@@ -185,6 +201,10 @@ public class SemanticContext {
             Tab.openScope();
         }
         if (type == METHOD_EXIT) {
+            if (!returnFound && currMethod.getType() != Tab.noType) {
+                report_error("Non void method must have return statement!");
+            }
+            returnFound = false;
             Tab.chainLocalSymbols(currMethod);
             Tab.closeScope();
         }
@@ -273,7 +293,7 @@ public class SemanticContext {
     }
 
 
-    public void updateCounters(SemanticSymbol type, String name) {
+    public void updateCounters(SemanticSymbol type) {
         if (type == CONST) {
             symbolByNameCounter.inc(getContext() + "const");
             if(currMethodName != null || currClassName != null) {
@@ -356,6 +376,7 @@ public class SemanticContext {
     
     private void report_error(String msg) {
         logger.error(msg);
+        parser.errorDetected = true;
     }
 
 }

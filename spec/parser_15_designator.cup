@@ -22,6 +22,9 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     if (function.getKind() != Obj.Meth) {
                                         report_error("Not a function!");
                                     }
+                                    if (function.getType() == Tab.noType) {
+                                        report_error("Function doesn't return value!");
+                                    }
                                     int functionAdr = function.getAdr() - Code.pc;
                                     Code.put(Code.call);
                                     Code.put2(functionAdr);

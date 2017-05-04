@@ -31,7 +31,7 @@ parser code {:
     Symbol currSym;
     Boolean errorDetected;
 
-    public SemanticContext context = new SemanticContext();
+    public SemanticContext context = new SemanticContext(this);
 
     void report_error(String msg) {
         errorDetected = true;
@@ -505,9 +505,13 @@ StatementDesignator ::= DesignatorStatement
   StatementContinue ::= CONTINUE SEMICOLON;
 
     StatementReturn ::= RETURN SEMICOLON
+                        {:
+                            ctx.symbolReturn(null);
+                        :}
                         | RETURN Expression:expression SEMICOLON
                         {:
-                            //Code.load(expression);
+                            ctx.symbolReturn(expression);
+                            //ctx.foundSymbol(SemanticSymbol.RETURN, null);
                         :};
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
@@ -555,6 +559,9 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     report_info("Function call: " + function.getName());
                                     if (function.getKind() != Obj.Meth) {
                                         report_error("Not a function!");
+                                    }
+                                    if (function.getType() == Tab.noType) {
+                                        report_error("Function doesn't return value!");
                                     }
                                     int functionAdr = function.getAdr() - Code.pc;
                                     Code.put(Code.call);

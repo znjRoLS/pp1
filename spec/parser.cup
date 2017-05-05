@@ -17,6 +17,7 @@ import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
 import rosko.bojan.SemanticContext.SemanticParameters;
+import rosko.bojan.SemanticContext.ErrorType;
 
 import rosko.bojan.ExpressionToken;
 
@@ -30,25 +31,25 @@ parser code {:
     Logger logger = LogManager.getLogger(Parser.class);
     Scanner scanner;
     Symbol currSym;
-    Boolean errorDetected;
 
     public SemanticContext context = new SemanticContext(this);
 
     void report_error(String msg) {
-        errorDetected = true;
+        context.errorDetected();
         logger.error(msg);
-        //System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
         logger.info(msg);
-        //System.err.println("INFO: " + msg);
     }
     void report_debug(String msg) {
         logger.debug(msg);
-        //System.err.println("INFO: " + msg);
     }
     void dump() {
         context.dumpTable();
+    }
+
+    public boolean errorDetected() {
+        return context.errorDetected;
     }
 
     public static String printExpr(ExpressionToken expr) {
@@ -121,19 +122,9 @@ scan with {:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 init with {:
-    errorDetected = false;
     scanner = this.getScanner();
-    Tab.init();
-
-    Obj voidObj = Tab.insert(Obj.Type, "void", new Struct(Struct.None));
-    Obj boolObj = Tab.insert(Obj.Type, "bool", new Struct(Struct.Bool));
-
-    voidObj.setAdr(-1);
-    boolObj.setAdr(-1);
-    voidObj.setLevel(-1);
-    boolObj.setLevel(-1);
-
     action_obj.ctx = context;
+    context.init();
 :}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,17 +145,18 @@ action code {:
 
     SemanticContext ctx;
 
+    Logger logger = LogManager.getLogger(CUP$Parser$actions.class);
+
 
     void report_error(String msg) {
-        this.parser.report_error(msg);
-        //System.err.println("ERROR: " + msg);
+        ctx.errorDetected();
+        logger.error(msg);
     }
     void report_info(String msg) {
-        this.parser.report_info(msg);
-        //System.err.println("INFO: " + msg);
+        logger.info(msg);
     }
     void report_debug(String msg) {
-        this.parser.report_debug(msg);
+        logger.debug(msg);
     }
 
     String printObj(Obj object) {
@@ -343,10 +335,22 @@ DeclarationList ::= DeclarationList Declaration
  VarDeclarationList ::= VarDeclarationList VarDeclarationLine
                         | /* epsilon */;
 
- VarDeclarationLine ::= Type VarIDList SEMICOLON;
+ VarDeclarationLine ::= Type VarIDList SEMICOLON
+                        | Type error SEMICOLON
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                new SemanticParameters()
+                                .setValue(ErrorType.GLOBAL_VAR));
+                        :};
 
           VarIDList ::= VarIDList COMMA VarIDSingle
-                        | VarIDSingle;
+                        | VarIDSingle
+                        | error COMMA VarIDSingle
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                new SemanticParameters()
+                                .setValue(ErrorType.GLOBAL_VAR));
+                        :};
 
         VarIDSingle ::= VarID:varName
                         {:
@@ -586,6 +590,15 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                         .setExpression(expr));
 
                                 :}
+                                |
+                                Designator:design AssignOperator error
+                                {:
+                                    // String design;
+                                    ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                        new SemanticParameters()
+                                        .setName(design)
+                                        .setValue(ErrorType.EXPRESSION_ASSIGN));
+                                :}
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
@@ -801,7 +814,7 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL_FACTOR,
                                         new SemanticParameters()
                                         .setName(function));
 

@@ -1,49 +1,18 @@
 
 program funky
-const int nekiint  =54;
-int var1, var2;
+int var1;//, var2[;
 
 {
 
     int main()
         int i;
-        int j,k;
+        //int j,;
         {
-            i = 2;
-            i = i * i;
-            print(i);
-            if (i > 2) {
-                print('y');
-                print('a');
-                print('y');
-            }
-
-            if (i == 4) {
-                print('y');
-                print('a');
-                print('y');
-                print('y');
-            } else {
-                print('s');
-            }
-
-            if (i != 4) {
-                print('y');
-                print('a');
-                print('t');
-                print('y');
-            } else {
-                print('z');
-            }
-
-            if (i == 4 && i < 6 && i < 3 || 76 > 5) {
-                print('o');
-            } else {
-                print('y');
-            }
-
-
-
+            print(2);
+            var1 = 2;
+            //var1 = 2+;
+            var1 = var1 (5);
+            //var1 = 3 + 2 + 1 * var1 * var1 % var1 (var1 + 2);
             return 0;
         }
 }

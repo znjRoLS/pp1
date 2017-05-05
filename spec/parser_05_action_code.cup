@@ -12,17 +12,18 @@ action code {:
 
     SemanticContext ctx;
 
+    Logger logger = LogManager.getLogger(CUP$Parser$actions.class);
+
 
     void report_error(String msg) {
-        this.parser.report_error(msg);
-        //System.err.println("ERROR: " + msg);
+        ctx.errorDetected();
+        logger.error(msg);
     }
     void report_info(String msg) {
-        this.parser.report_info(msg);
-        //System.err.println("INFO: " + msg);
+        logger.info(msg);
     }
     void report_debug(String msg) {
-        this.parser.report_debug(msg);
+        logger.debug(msg);
     }
 
     String printObj(Obj object) {

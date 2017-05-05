@@ -2,25 +2,25 @@ parser code {:
     Logger logger = LogManager.getLogger(Parser.class);
     Scanner scanner;
     Symbol currSym;
-    Boolean errorDetected;
 
     public SemanticContext context = new SemanticContext(this);
 
     void report_error(String msg) {
-        errorDetected = true;
+        context.errorDetected();
         logger.error(msg);
-        //System.err.println("ERROR: " + msg);
     }
     void report_info(String msg) {
         logger.info(msg);
-        //System.err.println("INFO: " + msg);
     }
     void report_debug(String msg) {
         logger.debug(msg);
-        //System.err.println("INFO: " + msg);
     }
     void dump() {
         context.dumpTable();
+    }
+
+    public boolean errorDetected() {
+        return context.errorDetected;
     }
 
     public static String printExpr(ExpressionToken expr) {

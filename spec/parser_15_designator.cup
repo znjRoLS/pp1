@@ -11,6 +11,15 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                         .setExpression(expr));
 
                                 :}
+                                |
+                                Designator:design AssignOperator error
+                                {:
+                                    // String design;
+                                    ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                        new SemanticParameters()
+                                        .setName(design)
+                                        .setValue(ErrorType.EXPRESSION_ASSIGN));
+                                :}
                                 | Designator:function MethodCall
                                 {:
                                     // String function;

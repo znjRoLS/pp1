@@ -48,7 +48,7 @@ public class ParserTest {
                 parser.context.symbolByNameCounter.printAllCounts();
                 parser.dump();
 
-                if (parser.errorDetected) {
+                if (parser.errorDetected()) {
                     logger.error("Parsing not successful!");
                 } else {
                     logger.info("Parsing successful, writing code to file...");

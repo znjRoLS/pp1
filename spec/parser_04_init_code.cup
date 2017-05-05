@@ -1,15 +1,5 @@
 init with {:
-    errorDetected = false;
     scanner = this.getScanner();
-    Tab.init();
-
-    Obj voidObj = Tab.insert(Obj.Type, "void", new Struct(Struct.None));
-    Obj boolObj = Tab.insert(Obj.Type, "bool", new Struct(Struct.Bool));
-
-    voidObj.setAdr(-1);
-    boolObj.setAdr(-1);
-    voidObj.setLevel(-1);
-    boolObj.setLevel(-1);
-
     action_obj.ctx = context;
+    context.init();
 :}

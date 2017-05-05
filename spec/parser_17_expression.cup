@@ -81,7 +81,7 @@
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL_FACTOR,
                                         new SemanticParameters()
                                         .setName(function));
 

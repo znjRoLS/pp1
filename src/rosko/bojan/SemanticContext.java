@@ -72,7 +72,14 @@ public class SemanticContext {
         ELSEEND,
         PRINT,
         EXPRESSION,
-        SINGLE_EXPRESSION
+        SINGLE_EXPRESSION,
+        ERROR_RECOVERED
+    }
+
+    public enum ErrorType {
+        GLOBAL_VAR,
+        LOCAL_VAR,
+        EXPRESSION_ASSIGN,
     }
 
     private HashMap<SemanticSymbol, String[]> symbolDeclarations =
@@ -111,6 +118,7 @@ public class SemanticContext {
                     put(PRINT, new String[]{"expression"}); // expression that is printed
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
                     put(SINGLE_EXPRESSION, new String[]{"expression", "type"}); // expression found, type it should be
+                    put(ERROR_RECOVERED, new String[]{});
                 }
             };
 
@@ -139,8 +147,9 @@ public class SemanticContext {
     private boolean returnFound;
     private Logger logger = LogManager.getLogger(SemanticContext.class);
     private Parser parser;
-
     private int adrFalseJump, adrTrueJump;
+    public boolean errorDetected;
+    private boolean errorState;
 
     SemanticContext(Parser parser) {
         currClassName = null;
@@ -154,6 +163,25 @@ public class SemanticContext {
         currClass = null;
         returnFound = false;
         this.parser = parser;
+        errorDetected = false;
+        errorState = false;
+    }
+
+    public void errorDetected() {
+        errorDetected = true;
+        errorState = true;
+    }
+
+    public void init() {
+        Tab.init();
+
+        Obj voidObj = Tab.insert(Obj.Type, "void", new Struct(Struct.None));
+        Obj boolObj = Tab.insert(Obj.Type, "bool", new Struct(Struct.Bool));
+
+        voidObj.setAdr(-1);
+        boolObj.setAdr(-1);
+        voidObj.setLevel(-1);
+        boolObj.setLevel(-1);
     }
 
     public static class SemanticParameters{
@@ -189,6 +217,10 @@ public class SemanticContext {
             return this;
         }
 
+        public SemanticParameters setValue(ErrorType value) {
+            return setValue(value.ordinal());
+        }
+
         public SemanticParameters setType(String type) {
             this.type = type;
             return this;
@@ -201,6 +233,7 @@ public class SemanticContext {
 
         public String toString() {
             return "expression: " + printExpr(expression) + " | " +
+                    "expression2: " + printExpr(expression2) + " | " +
                     "value: " + value + " | " +
                     "type: " + type + " | " +
                     "name: " + name;
@@ -232,10 +265,24 @@ public class SemanticContext {
             }
         }
 
+        processError(type, parameters);
         updateCounters(type, parameters);
         checkSemantics(type, parameters);
         updateContext(type, parameters);
-        generateCode(type,parameters);
+        generateCode(type, parameters);
+
+    }
+
+    public void processError(SemanticSymbol type, SemanticParameters parameters) {
+        if (type == ERROR_RECOVERED) {
+            errorDetected = true;
+            if (ErrorType.values()[parameters.value] == ErrorType.GLOBAL_VAR) {
+                if (currMethod != null) {
+                    parameters.value = ErrorType.LOCAL_VAR.ordinal();
+                }
+            }
+            report_error("Successfully recovered from error: " + ErrorType.values()[parameters.value]);
+        }
     }
 
     public void checkSemantics(SemanticSymbol type, SemanticParameters parameters) {
@@ -270,6 +317,7 @@ public class SemanticContext {
             }
 
             case METHOD: {
+                report_info("Method found: " + parameters.name);
                 break;
             }
             case METHOD_START: {
@@ -854,7 +902,7 @@ public class SemanticContext {
 
     private void report_error(String msg) {
         logger.error(msg);
-        parser.errorDetected = true;
+        errorDetected = true;
     }
 
 }

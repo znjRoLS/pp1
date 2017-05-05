@@ -11,6 +11,7 @@ import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
 import rosko.bojan.SemanticContext.SemanticParameters;
+import rosko.bojan.SemanticContext.ErrorType;
 
 import rosko.bojan.ExpressionToken;
 

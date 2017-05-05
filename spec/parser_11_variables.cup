@@ -1,10 +1,22 @@
  VarDeclarationList ::= VarDeclarationList VarDeclarationLine
                         | /* epsilon */;
 
- VarDeclarationLine ::= Type VarIDList SEMICOLON;
+ VarDeclarationLine ::= Type VarIDList SEMICOLON
+                        | Type error SEMICOLON
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                new SemanticParameters()
+                                .setValue(ErrorType.GLOBAL_VAR));
+                        :};
 
           VarIDList ::= VarIDList COMMA VarIDSingle
-                        | VarIDSingle;
+                        | VarIDSingle
+                        | error COMMA VarIDSingle
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                new SemanticParameters()
+                                .setValue(ErrorType.GLOBAL_VAR));
+                        :};
 
         VarIDSingle ::= VarID:varName
                         {:

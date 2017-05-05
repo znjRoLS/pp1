@@ -3,25 +3,36 @@
             ConstIDList ::= ConstIDList COMMA ConstID
                             | ConstID;
 
-                ConstID ::= ID:constObj
+                ConstID ::= ID:id
                             {:
-                                ctx.foundSymbol(SemanticSymbol.CONST, constObj.toString());
-                                //report_info("ConstDeclaration " + constObj);
+                                // String id;
+                                ctx.foundSymbol(SemanticSymbol.CONST,
+                                    new SemanticParameters()
+                                    .setName(id));
                             :}
                             ASSIGN Const;
 
                   Const ::= CONST_NUMBER:val
                             {:
                                 // Integer val;
-                                ctx.setConstValue(val);
+                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                    new SemanticParameters()
+                                    .setValue(val)
+                                    .setType("int"));
                             :}
                             | CONST_CHAR:val
                             {:
                                 // char val;
-                                ctx.setConstValue(val);
+                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                    new SemanticParameters()
+                                    .setValue((int)val)
+                                    .setType("char"));
                             :}
                             | CONST_BOOL:val
                             {:
-                                // bool val;
-                                ctx.setConstValue(val);
+                                // boolean val;
+                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                    new SemanticParameters()
+                                    .setValue(val?1:0)
+                                    .setType("bool"));
                             :};

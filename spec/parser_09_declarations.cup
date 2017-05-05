@@ -1,11 +1,5 @@
 DeclarationList ::= DeclarationList Declaration
-                    {:
-                        report_info("Declaration list Declaration");
-                    :}
-                    | /* epsilon */
-                    {:
-                        report_info("Declaration list epsilon");
-                    :};
+                    | /* epsilon */;
 
     Declaration ::= VarDeclarationLine
                     | ConstDeclarationLine
@@ -13,26 +7,23 @@ DeclarationList ::= DeclarationList Declaration
 
            Type ::= ID:id
                     {:
-                        String name = id.toString();
-                        Obj node = Tab.find(name);
-                        if (node == Tab.noObj) {
-                            report_error("Type not declared: " + name);
-                        } else if (node.getKind() != Obj.Type) {
-                            report_error("Token doesn't represent type: " + name);
-                        }
-                        ctx.foundSymbol(SemanticSymbol.TYPE, id.toString());
-                        report_info("Matched type " + id);
-                        RESULT = node;
+                        // String id;
+                        ctx.foundSymbol(SemanticSymbol.TYPE,
+                            new SemanticParameters()
+                            .setName(id));
                     :};
 
  OptionalStatic ::= STATIC
                     {:
-                        ctx.foundSymbol(SemanticSymbol.STATIC, null);
+                        ctx.foundSymbol(SemanticSymbol.STATIC,
+                            new SemanticParameters());
                     :}
                     | /* epsilon */;
 
-     MethodType ::= Type:id
+     MethodType ::= Type
                     | VOID
                     {:
-                        ctx.foundSymbol(SemanticSymbol.TYPE, "void");
+                        ctx.foundSymbol(SemanticSymbol.TYPE,
+                            new SemanticParameters()
+                            .setName("void"));
                     :};

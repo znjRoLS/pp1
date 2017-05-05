@@ -36,7 +36,7 @@ int var1, var2;
                 print('z');
             }
 
-            if (i == 4 && i < 6 && i < 3 || 76 < 5) {
+            if (i == 4 && i < 6 && i < 3 || 76 > 5) {
                 print('o');
             } else {
                 print('y');

@@ -7,26 +7,32 @@
                                         | /* epsilon */;
 
                   MethodDeclaration ::= OptionalStatic MethodType MethodName
-                                        PARENTHESES_LEFT FormalParameterSection:num PARENTHESES_RIGHT
+                                        PARENTHESES_LEFT FormalParameterSection:numFormal PARENTHESES_RIGHT
                                         VarDeclarationList
                                         BRACES_LEFT
                                         {:
-                                            //ctx.foundSymbol(SemanticSymbol.METHOD_START, null);
-                                            ctx.symbolMethodStart(num);
+                                            // Integer numFormal;
+                                            ctx.foundSymbol(SemanticSymbol.METHOD_START,
+                                                new SemanticParameters()
+                                                .setValue(numFormal));
                                         :}
                                         StatementList BRACES_RIGHT
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.METHOD_EXIT, null);
+                                            ctx.foundSymbol(SemanticSymbol.METHOD_EXIT,
+                                                new SemanticParameters());
                                         :};
 
                          MethodName ::= ID:id
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.METHOD, id.toString());
-                                            report_info("Entered method: " + id);
+                                            // String id;
+                                            ctx.foundSymbol(SemanticSymbol.METHOD,
+                                                new SemanticParameters()
+                                                .setName(id));
                                         :};
 
              FormalParameterSection ::= FormalParameterList:num
                                         {:
+                                            // Integer num;
                                             RESULT = num;
                                         :}
                                         | /* epsilon */
@@ -36,6 +42,7 @@
 
                 FormalParameterList ::= FormalParameterList:num1 COMMA FormalParameter
                                         {:
+                                            // Integer num1;
                                             RESULT = num1 + 1;
                                         :}
                                         | FormalParameter
@@ -45,11 +52,19 @@
 
                     FormalParameter ::= Type:type ID:id
                                         {:
-                                            //ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
-                                            ctx.symbolFormalParameter(type.getType(), id.toString());
+                                            // String type;
+                                            // String id;
+                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER,
+                                                new SemanticParameters()
+                                                .setType(type)
+                                                .setName(id));
                                         :}
-                                        | Type:type ID:id
+                                        | Type:type ID:id BRACKETS_LEFT BRACKETS_RIGHT
                                         {:
-                                            ctx.symbolFormalParameterArr(type.getType(), id.toString());
-                                        :}
-                                        BRACKETS_LEFT BRACKETS_RIGHT;
+                                            // String type;
+                                            // String id;
+                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER_ARRAY,
+                                                new SemanticParameters()
+                                                .setType(type)
+                                                .setName(id));
+                                        :};

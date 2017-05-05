@@ -1,6 +1,6 @@
 non terminal Program, ProgramName;
 non terminal DeclarationList, Declaration;
-non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList, VarIDSingle;
+non terminal VarDeclarationLine, VarDeclarationList, VarIDList;
 non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
 non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
 non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
@@ -16,10 +16,11 @@ non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal OptionalUnaryMinus;
 
-non terminal Obj Designator;
+non terminal String Designator;
+non terminal String VarIDSingle, VarID;
 non terminal ExpressionToken Expression;
 non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
-non terminal Obj Type, MethodType;
+non terminal String Type, MethodType;
 
 non terminal Integer AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
 non terminal Integer MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;

@@ -2,15 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser.cup" afterPath="$PROJECT_DIR$/spec/parser.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_01_import.cup" afterPath="$PROJECT_DIR$/spec/parser_01_import.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_02_parser_code.cup" afterPath="$PROJECT_DIR$/spec/parser_02_parser_code.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_06_terminals.cup" afterPath="$PROJECT_DIR$/spec/parser_06_terminals.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_07_non_terminals.cup" afterPath="$PROJECT_DIR$/spec/parser_07_non_terminals.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_08_program.cup" afterPath="$PROJECT_DIR$/spec/parser_08_program.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_09_declarations.cup" afterPath="$PROJECT_DIR$/spec/parser_09_declarations.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_10_constants.cup" afterPath="$PROJECT_DIR$/spec/parser_10_constants.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_11_variables.cup" afterPath="$PROJECT_DIR$/spec/parser_11_variables.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_12_class.cup" afterPath="$PROJECT_DIR$/spec/parser_12_class.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_13_method.cup" afterPath="$PROJECT_DIR$/spec/parser_13_method.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_14_statements.cup" afterPath="$PROJECT_DIR$/spec/parser_14_statements.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_15_designator.cup" afterPath="$PROJECT_DIR$/spec/parser_15_designator.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_16_condition.cup" afterPath="$PROJECT_DIR$/spec/parser_16_condition.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_17_expression.cup" afterPath="$PROJECT_DIR$/spec/parser_17_expression.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_18_operators.cup" afterPath="$PROJECT_DIR$/spec/parser_18_operators.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/program.mj" afterPath="$PROJECT_DIR$/test/program.mj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test_codes/program_old.mj" afterPath="$PROJECT_DIR$/test/test_codes/program_old.mj" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,22 +30,38 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="SemanticContext.java" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="560">
+                    <caret line="710" column="55" lean-forward="false" selection-start-line="710" selection-start-column="55" selection-end-line="710" selection-end-column="55" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="SemanticContext.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
+            <state relative-caret-position="1664">
+              <caret line="752" column="33" lean-forward="false" selection-start-line="752" selection-start-column="33" selection-end-line="752" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3823#3824#0" expanded="true" />
-                <element signature="e#3863#3864#0" expanded="true" />
-                <element signature="e#4034#4035#0" expanded="true" />
-                <element signature="e#4073#4074#0" expanded="true" />
-                <element signature="e#4139#4140#0" expanded="true" />
-                <element signature="e#4186#4187#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,8 +70,8 @@
       <file leaf-file-name="program.mj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/program.mj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="48" selection-end-column="1" />
+            <state relative-caret-position="686">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,35 +80,73 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="1351" column="0" lean-forward="false" selection-start-line="1351" selection-start-column="0" selection-end-line="1351" selection-end-column="0" />
+            <state relative-caret-position="194">
+              <caret line="576" column="38" lean-forward="false" selection-start-line="576" selection-start-column="38" selection-end-line="576" selection-end-column="38" />
               <folding>
-                <marker date="1493905446328" expanded="true" signature="73998:74089" ph="//..." />
-                <marker date="1493905446328" expanded="true" signature="82625:82800" ph="//..." />
-                <marker date="1493905446328" expanded="true" signature="88986:89061" ph="//..." />
-                <marker date="1493905446328" expanded="true" signature="89273:89461" ph="//..." />
-                <marker date="1493905446328" expanded="true" signature="117048:117154" ph="//..." />
-                <marker date="1493905446328" expanded="true" signature="140995:141327" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="32746:32931" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="32981:33521" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="33171:33471" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="33189:33457" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="33575:34307" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="33589:33903" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="33988:34256" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="34006:34242" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="34313:34380" ph="/**...*/" />
+                <marker date="1493994869935" expanded="true" signature="34406:133938" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="34430:34468" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="34527:34547" ph="&lt;~&gt;" />
+                <marker date="1493994869935" expanded="true" signature="34695:34788" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="34822:34913" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="34947:34958" ph=" { " />
+                <marker date="1493994869935" expanded="true" signature="34988:34994" ph=" }" />
+                <marker date="1493994869935" expanded="true" signature="35027:35038" ph=" { " />
+                <marker date="1493994869935" expanded="true" signature="35074:35080" ph=" }" />
+                <marker date="1493994869935" expanded="true" signature="35124:35135" ph=" { " />
+                <marker date="1493994869935" expanded="true" signature="35170:35176" ph=" }" />
+                <marker date="1493994869935" expanded="true" signature="35213:35231" ph="/**...*/" />
+                <marker date="1493994869935" expanded="true" signature="35267:35274" ph=" { " />
+                <marker date="1493994869935" expanded="true" signature="35295:35299" ph=" }" />
+                <marker date="1493994869935" expanded="true" signature="35303:35355" ph="/**...*/" />
+                <marker date="1493994869935" expanded="true" signature="35649:133936" ph="{...}" />
+                <marker date="1493994869935" expanded="true" signature="57655:57811" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="61472:61628" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="65588:65679" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="68879:68970" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="72179:72270" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="85331:85409" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="102292:102365" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="103707:103780" ph="//..." />
+                <marker date="1493994869935" expanded="true" signature="133654:133936" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program_old.mj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_codes/program_old.mj">
+      <file leaf-file-name="parser_02_parser_code.cup" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/parser_02_parser_code.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="866">
-              <caret line="129" column="1" lean-forward="false" selection-start-line="129" selection-start-column="1" selection-end-line="129" selection-end-column="1" />
+            <state relative-caret-position="209">
+              <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser_14_statements.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/parser_14_statements.cup">
+      <file leaf-file-name="parser_01_import.cup" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/parser_01_import.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-548">
-              <caret line="35" column="19" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="19" />
+            <state relative-caret-position="240">
+              <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parser_15_designator.cup" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/parser_15_designator.cup">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-28">
+              <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -91,32 +155,19 @@
       <file leaf-file-name="parser_16_condition.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser_16_condition.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+            <state relative-caret-position="340">
+              <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="22" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
+      <file leaf-file-name="parser_17_expression.cup" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/parser_17_expression.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state relative-caret-position="306">
+              <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExpressionToken.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-              <folding>
-                <element signature="e#450#451#0" expanded="true" />
-                <element signature="e#517#518#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -124,8 +175,8 @@
       <file leaf-file-name="parser_07_non_terminals.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser_07_non_terminals.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+            <state relative-caret-position="380">
+              <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -134,8 +185,8 @@
       <file leaf-file-name="parser_18_operators.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser_18_operators.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="753">
-              <caret line="77" column="46" lean-forward="false" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
+            <state relative-caret-position="260">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -152,9 +203,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getT</find>
-      <find>EMPTY_</find>
-      <find>System.err.println</find>
       <find>Parser</find>
       <find>what no</find>
       <find>Matched type</find>
@@ -182,6 +230,9 @@
       <find>putFa</find>
       <find>loadC</find>
       <find>Tab.in</find>
+      <find>parameters.</find>
+      <find>VarIdSingle</find>
+      <find>printExpr</find>
     </findStrings>
     <replaceStrings>
       <replace>symbolByNameCounter</replace>
@@ -227,8 +278,6 @@
         <option value="$PROJECT_DIR$/src/rosko/bojan/StringSymbolCounter.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Pair.java" />
         <option value="$PROJECT_DIR$/spec/parser_03_scan_code.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_08_program.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_11_variables.cup" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/src/neki/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/ParserConfigMerger.java" />
@@ -236,31 +285,33 @@
         <option value="$PROJECT_DIR$/src/parsermerger/src/ParserConfigMerger.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/parsermerger/parsermerger.iml" />
         <option value="$PROJECT_DIR$/test/zivan.mj" />
-        <option value="$PROJECT_DIR$/spec/parser_10_constants.cup" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Obj.java" />
         <option value="$PROJECT_DIR$/config/run_configurations" />
-        <option value="$PROJECT_DIR$/spec/parser_01_import.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_12_class.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_09_declarations.cup" />
         <option value="$PROJECT_DIR$/spec/parser.cup" />
         <option value="$PROJECT_DIR$/spec/parser_05_action_code.cup" />
         <option value="$PROJECT_DIR$/config/log4j2.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/spec/parser_06_terminals.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_17_expression.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_02_parser_code.cup" />
         <option value="$PROJECT_DIR$/spec/parser_04_init_code.cup" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
-        <option value="$PROJECT_DIR$/spec/parser_15_designator.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_13_method.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_18_operators.cup" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" />
-        <option value="$PROJECT_DIR$/spec/parser_14_statements.cup" />
-        <option value="$PROJECT_DIR$/spec/parser_07_non_terminals.cup" />
         <option value="$PROJECT_DIR$/test/test_codes/program_old.mj" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" />
+        <option value="$PROJECT_DIR$/spec/parser_08_program.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_06_terminals.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_11_variables.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_12_class.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_09_declarations.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_10_constants.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_13_method.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_14_statements.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_15_designator.cup" />
         <option value="$PROJECT_DIR$/spec/parser_16_condition.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_17_expression.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_18_operators.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_01_import.cup" />
+        <option value="$PROJECT_DIR$/spec/parser_07_non_terminals.cup" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
+        <option value="$PROJECT_DIR$/spec/parser_02_parser_code.cup" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java" />
         <option value="$PROJECT_DIR$/test/program.mj" />
       </list>
     </option>
@@ -286,8 +337,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -547,6 +596,8 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -560,7 +611,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="add_unversioned_files" value="true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/src/rosko/bojan/Parser.java&#10;true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -590,7 +641,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Multirun.ParseAndRun">
+  <component name="RunManager" selected="Multirun.CompileAndRun">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="rosko.bojan.Main" />
@@ -892,7 +943,12 @@
       <runConfiguration name="Run" type="Application" />
       <method />
     </configuration>
-    <list size="11">
+    <configuration default="false" name="CompileAndRun" type="Multirun" factoryName="Multirun" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="2">
+      <runConfiguration name="ParserTest" type="Application" />
+      <runConfiguration name="Run" type="Application" />
+      <method />
+    </configuration>
+    <list size="12">
       <item index="0" class="java.lang.String" itemvalue="JAR Application.Parser" />
       <item index="1" class="java.lang.String" itemvalue="Application.ParserTest" />
       <item index="2" class="java.lang.String" itemvalue="JAR Application.Lexer" />
@@ -903,7 +959,8 @@
       <item index="7" class="java.lang.String" itemvalue="Application.Run" />
       <item index="8" class="java.lang.String" itemvalue="Application.Debug" />
       <item index="9" class="java.lang.String" itemvalue="Multirun.ParseAndRun" />
-      <item index="10" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="10" class="java.lang.String" itemvalue="Multirun.CompileAndRun" />
+      <item index="11" class="java.lang.String" itemvalue="Application.Main" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -937,12 +994,13 @@
       <workItem from="1493365887335" duration="1866000" />
       <workItem from="1493385254030" duration="6933000" />
       <workItem from="1493828292569" duration="8698000" />
-      <workItem from="1493884590917" duration="14230000" />
+      <workItem from="1493884590917" duration="18564000" />
+      <workItem from="1493985156795" duration="9645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136451000" />
+    <option name="totallyTimeSpent" value="150430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -954,7 +1012,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37860963" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37860963" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -984,13 +1042,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/rosko/bojan/Parser.java</url>
-          <line>2000</line>
+          <line>1962</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/rosko/bojan/Parser.java</url>
-          <line>1928</line>
+          <line>1902</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -1008,18 +1066,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java</url>
-          <line>169</line>
+          <line>759</line>
           <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java</url>
-          <line>159</line>
-          <properties />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1066,13 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="980">
           <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_08_program.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1123,13 +1168,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_01_import.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1805">
@@ -1146,21 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_12_class.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_11_variables.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1169,19 +1192,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser_03_scan_code.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1197,14 +1211,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="886">
-          <caret line="92" column="16" lean-forward="true" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1233,51 +1239,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_10_constants.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_09_declarations.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser_04_init_code.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_02_parser_code.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_15_designator.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_06_terminals.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1285,23 +1250,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_13_method.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="52" column="87" lean-forward="false" selection-start-line="52" selection-start-column="87" selection-end-line="52" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_17_expression.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="92" column="45" lean-forward="false" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1313,100 +1261,223 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_18_operators.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="77" column="46" lean-forward="false" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="240">
           <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#517#518#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_07_non_terminals.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_codes/program_old.mj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="866">
+        <state relative-caret-position="2580">
           <caret line="129" column="1" lean-forward="false" selection-start-line="129" selection-start-column="1" selection-end-line="129" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/lexer.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="92" column="16" lean-forward="true" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rosko/bojan/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="69" column="44" lean-forward="true" selection-start-line="65" selection-start-column="16" selection-end-line="69" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_06_terminals.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_08_program.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_09_declarations.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="37" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_10_constants.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="28" column="54" lean-forward="true" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_11_variables.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_12_class.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_13_method.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1352">
+          <caret line="68" column="42" lean-forward="true" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser_14_statements.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-548">
-          <caret line="35" column="19" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="19" />
+        <state relative-caret-position="492">
+          <caret line="72" column="58" lean-forward="false" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_16_condition.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="22" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_18_operators.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_01_import.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_07_non_terminals.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="576" column="38" lean-forward="false" selection-start-line="576" selection-start-column="38" selection-end-line="576" selection-end-column="38" />
+          <folding>
+            <marker date="1493994869935" expanded="true" signature="32746:32931" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="32981:33521" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="33171:33471" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="33189:33457" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="33575:34307" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="33589:33903" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="33988:34256" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="34006:34242" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="34313:34380" ph="/**...*/" />
+            <marker date="1493994869935" expanded="true" signature="34406:133938" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="34430:34468" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="34527:34547" ph="&lt;~&gt;" />
+            <marker date="1493994869935" expanded="true" signature="34695:34788" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="34822:34913" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="34947:34958" ph=" { " />
+            <marker date="1493994869935" expanded="true" signature="34988:34994" ph=" }" />
+            <marker date="1493994869935" expanded="true" signature="35027:35038" ph=" { " />
+            <marker date="1493994869935" expanded="true" signature="35074:35080" ph=" }" />
+            <marker date="1493994869935" expanded="true" signature="35124:35135" ph=" { " />
+            <marker date="1493994869935" expanded="true" signature="35170:35176" ph=" }" />
+            <marker date="1493994869935" expanded="true" signature="35213:35231" ph="/**...*/" />
+            <marker date="1493994869935" expanded="true" signature="35267:35274" ph=" { " />
+            <marker date="1493994869935" expanded="true" signature="35295:35299" ph=" }" />
+            <marker date="1493994869935" expanded="true" signature="35303:35355" ph="/**...*/" />
+            <marker date="1493994869935" expanded="true" signature="35649:133936" ph="{...}" />
+            <marker date="1493994869935" expanded="true" signature="57655:57811" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="61472:61628" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="65588:65679" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="68879:68970" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="72179:72270" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="85331:85409" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="102292:102365" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="103707:103780" ph="//..." />
+            <marker date="1493994869935" expanded="true" signature="133654:133936" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_02_parser_code.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_15_designator.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-28">
+          <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/SemanticContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
+        <state relative-caret-position="1664">
+          <caret line="752" column="33" lean-forward="false" selection-start-line="752" selection-start-column="33" selection-end-line="752" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3823#3824#0" expanded="true" />
-            <element signature="e#3863#3864#0" expanded="true" />
-            <element signature="e#4034#4035#0" expanded="true" />
-            <element signature="e#4073#4074#0" expanded="true" />
-            <element signature="e#4139#4140#0" expanded="true" />
-            <element signature="e#4186#4187#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
+    <entry file="file://$PROJECT_DIR$/spec/parser_17_expression.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="1351" column="0" lean-forward="false" selection-start-line="1351" selection-start-column="0" selection-end-line="1351" selection-end-column="0" />
-          <folding>
-            <marker date="1493905446328" expanded="true" signature="73998:74089" ph="//..." />
-            <marker date="1493905446328" expanded="true" signature="82625:82800" ph="//..." />
-            <marker date="1493905446328" expanded="true" signature="88986:89061" ph="//..." />
-            <marker date="1493905446328" expanded="true" signature="89273:89461" ph="//..." />
-            <marker date="1493905446328" expanded="true" signature="117048:117154" ph="//..." />
-            <marker date="1493905446328" expanded="true" signature="140995:141327" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/parser_16_condition.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+        <state relative-caret-position="306">
+          <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/program.mj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="48" selection-end-column="1" />
+        <state relative-caret-position="686">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>

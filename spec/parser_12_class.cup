@@ -2,29 +2,26 @@
                         BRACES_LEFT VarDeclarationList
                         OptionalMethodDeclarationSection BRACES_RIGHT
                         {:
-                            ctx.foundSymbol(SemanticSymbol.CLASS_EXIT, null);
+                            ctx.foundSymbol(SemanticSymbol.CLASS_EXIT,
+                                new SemanticParameters());
                         :};
 
           ClassName ::= ID:id
                         {:
-                            ctx.foundSymbol(SemanticSymbol.CLASS, id.toString());
-                            report_info("Entered class: " + id);
+                            // String id;
+                            ctx.foundSymbol(SemanticSymbol.CLASS,
+                                new SemanticParameters()
+                                .setName(id));
                         :};
 
        ClassExtends ::= EXTENDS ClassType
-                        {:
-                            report_info ("Parsed nonempty class extends");
-                        :}
-                        | /* epsilon */
-                        {:
-                            report_info ("Parsed empty class extends");
-                        :};
+                        | /* epsilon */;
 
-          ClassType ::= Type:type
+          ClassType ::= Type:typeName
                         {:
-                            //ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
-                            // Struct type;
-                            if (type.getType().getKind() != Struct.Class) {
-                                report_error("Token not of class type: " + type.getName() + " " + printObj(type));
-                            }
+                            // String typeName;
+                            ctx.foundSymbol(SemanticSymbol.TYPE_CLASS,
+                                new SemanticParameters()
+                                .setName(typeName));
+
                         :};

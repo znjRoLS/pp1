@@ -6,26 +6,24 @@
           VarIDList ::= VarIDList COMMA VarIDSingle
                         | VarIDSingle;
 
-        VarIDSingle ::= VarID:varObj
+        VarIDSingle ::= VarID:varName
                         {:
-                            ctx.foundSymbol(SemanticSymbol.VAR, varObj.toString());
-                            report_info("VarDeclaration 1 " + varObj);
+                            // String varName;
+                            ctx.foundSymbol(SemanticSymbol.VAR,
+                                new SemanticParameters()
+                                .setName(varName));
+
                         :}
-                        | VarID:varObj
+                        | VarID:varName BRACKETS_LEFT BRACKETS_RIGHT
                         {:
-                            report_info("VarDeclaration 3 " + varObj);
-                        :}
-                        BRACKETS_LEFT
-                        {:
-                            report_info("VarDeclaration 4 " + varObj);
-                        :}
-                        BRACKETS_RIGHT
-                        {:
-                            ctx.foundSymbol(SemanticSymbol.ARRAY, varObj.toString());
-                            report_info("VarDeclaration 2 " + varObj);
+                            // String varName;
+                            ctx.foundSymbol(SemanticSymbol.ARRAY,
+                                new SemanticParameters()
+                                .setName(varName));
                         :};
 
               VarID ::= ID:id
                         {:
+                            // String id;
                             RESULT = id;
                         :};

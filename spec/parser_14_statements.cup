@@ -29,21 +29,25 @@ StatementDesignator ::= DesignatorStatement
 
         StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT
                         {:
-                            ctx.symbolIf();
+                            ctx.foundSymbol(SemanticSymbol.IFSTART,
+                                new SemanticParameters());
                         :}
                         Statement OptionalElse;
 
        OptionalElse ::= ELSE
                         {:
-                            ctx.symbolIfElse();
+                            ctx.foundSymbol(SemanticSymbol.ELSESTART,
+                                new SemanticParameters());
                         :}
                         Statement
                         {:
-                            ctx.symbolIfElseEnd();
+                            ctx.foundSymbol(SemanticSymbol.ELSEEND,
+                                new SemanticParameters());
                         :}
                         | /* epsilon */
                         {:
-                            ctx.symbolIfEnd();
+                            ctx.foundSymbol(SemanticSymbol.IFEND,
+                                new SemanticParameters());
                         :};
 
        StatementFor ::= FOR PARENTHESES_LEFT
@@ -58,12 +62,18 @@ StatementDesignator ::= DesignatorStatement
 
     StatementReturn ::= RETURN SEMICOLON
                         {:
-                            ctx.symbolReturn(null);
+                            ctx.foundSymbol(SemanticSymbol.RETURN,
+                                new SemanticParameters()
+                                .setExpression(new ExpressionToken(
+                                    Tab.noType,
+                                    false)));
                         :}
                         | RETURN Expression:expression SEMICOLON
                         {:
-                            ctx.symbolReturn(expression);
-                            //ctx.foundSymbol(SemanticSymbol.RETURN, null);
+                            // ExpressionToken expression;
+                            ctx.foundSymbol(SemanticSymbol.RETURN,
+                                new SemanticParameters()
+                                .setExpression(expression));
                         :};
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
@@ -71,15 +81,7 @@ StatementDesignator ::= DesignatorStatement
      StatementPrint ::= PRINT PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:
                             // ExpressionToken expr;
-                            report_debug(printExpr(expr));
-                            if (expr.objType.getKind() == Struct.Int) {
-                            report_debug("found printint statement!");
-                                Code.loadConst(5);
-                                Code.put(Code.print);
-                            } else if (expr.objType.getKind() == Struct.Char) {
-                            report_debug("found printchar statement!");
-                                Code.loadConst(1);
-                                Code.put(Code.bprint);
-                            }
-                            report_debug("found print statement!");
+                            ctx.foundSymbol(SemanticSymbol.PRINT,
+                                new SemanticParameters()
+                                .setExpression(expr));
                         :};

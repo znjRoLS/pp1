@@ -1,23 +1,12 @@
-    Program ::= PROGRAM
+    Program ::= PROGRAM ProgramName DeclarationList MethodDeclarationSection
                 {:
-                    //report_info("Program 1");
-                :}
-                ProgramName
-                {:
-                    //report_info("Program 2");
-                :}
-                DeclarationList
-                {:
-                    //report_info("Program 3");
-                :}
-                MethodDeclarationSection
-                {:
-                    //report_info("Program 4");
-                    ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT, null);
+                    ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT,
+                        new SemanticParameters());
                 :};
 
 ProgramName ::= ID:progName
                 {:
-                    ctx.foundSymbol(SemanticSymbol.PROGRAM, progName.toString());
-                    //report_info("Parsed program name " + progName);
+                    ctx.foundSymbol(SemanticSymbol.PROGRAM,
+                        new SemanticParameters()
+                        .setName(progName.toString()));
                 :};

@@ -1,121 +1,134 @@
                  Expression ::= AdditionTermList:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :}
                                 | SUBTRACTION AdditionTermList:expression
                                 {:
-                                    if (expression.objType.getKind() != Struct.Int) {
-                                        report_error("Type not int: " + printExpr(expression) );
-                                        RESULT = null;
-                                    }
+                                    // ExpressionToken expression;
+
+                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                        new SemanticParameters()
+                                        .setExpression(expression)
+                                        .setType("int"));
+
                                     RESULT = expression;
                                 :};
 
 
            AdditionTermList ::= AdditionTermList:expression1 AdditionOperator:operator Term:expression2
                                 {:
-                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
-                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
-                                        RESULT = null;
-                                    } else if (expression1.objType.getKind() != Struct.Int) {
-                                        report_error("Types same, but not integer: " + printExpr(expression1));
-                                        RESULT = null;
-                                    } else {
-                                        RESULT = new ExpressionToken(expression1.objType, false);
-                                    }
-                                    Code.put(operator);
+                                    // ExpressionToken expression1;
+                                    // ExpressionToken expression2;
+                                    // Integer operator;
+
+                                    ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                        new SemanticParameters()
+                                        .setExpression(expression1)
+                                        .setExpression2(expression2)
+                                        .setType("int")
+                                        .setValue(operator));
+
+                                    RESULT = new ExpressionToken(expression1.objType, false);
                                 :}
                                 | Term:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :};
 
                        Term ::= MultiplicationFactorList:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :};
 
    MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator:operator Factor:expression2
                                 {:
-                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
-                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
-                                        RESULT = null;
-                                    } else if (expression1.objType.getKind() != Struct.Int) {
-                                        report_error("Types same, but not integer: " + printExpr(expression1));
-                                        RESULT = null;
-                                    } else {
-                                        RESULT = new ExpressionToken(expression1.objType, false);
-                                    }
-                                    Code.put(operator);
+                                    // ExpressionToken expression1;
+                                    // ExpressionToken expression2;
+                                    // Integer operator;
+
+                                    ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                        new SemanticParameters()
+                                        .setExpression(expression1)
+                                        .setExpression2(expression2)
+                                        .setType("int")
+                                        .setValue(operator));
+
+                                    RESULT = new ExpressionToken(expression1.objType, false);
                                 :}
                                 | Factor:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :};
 
-                     Factor ::= Designator:varObj
+                     Factor ::= Designator:varName
                                 {:
-                                    // Obj varObj;
+                                    // String varName;
 
-                                    report_info("Found designator factor: " + varObj.getName());
-                                    int objectType = varObj.getKind();
-                                    if (objectType != Obj.Var && objectType != Obj.Con) {
-                                        report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
-                                        RESULT = null;
-                                    } else {
-                                        Struct objType = varObj.getType();
-                                        RESULT = new ExpressionToken(objType, false);
-                                    }
-                                    Code.load(varObj);
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                        new SemanticParameters()
+                                        .setName(varName));
+
+                                    RESULT = new ExpressionToken(Tab.find(varName).getType(), false);
                                 :}
                                 | Designator:function MethodCall
                                 {:
-                                    // Obj function;
-                                    report_info("Function expression call: " + function.getName());
-                                    int objectType = function.getKind();
-                                    if (objectType != Obj.Meth) {
-                                        report_error("Object not a method: " + printObj(function));
-                                        RESULT = null;
-                                    } else {
-                                        int functionAdr = function.getAdr() - Code.pc;
-                                        Code.put(Code.call);
-                                        Code.put2(functionAdr);
+                                    // String function;
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                        new SemanticParameters()
+                                        .setName(function));
 
-                                        Struct methodReturnType = function.getType();
-                                        RESULT = new ExpressionToken(methodReturnType, false);
-                                    }
+                                    RESULT = new ExpressionToken(Tab.find(function).getType(), false);
                                 :}
                                 | CONST_NUMBER:val
                                 {:
                                     // Integer val;
-                                    Obj c = Tab.insert(Obj.Con, null, Tab.intType);
-                                    c.setAdr(val);
-                                    Code.load(c);
-                                    //report_info("nesto " + val);
+
+                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                        new SemanticParameters()
+                                        .setValue(val)
+                                        .setType("int"));
+
                                     RESULT = new ExpressionToken(Tab.intType, false);
                                 :}
                                 | CONST_CHAR:val
                                 {:
                                     // char val;
-                                    Obj c = Tab.insert(Obj.Con, null, Tab.charType);
-                                    c.setAdr(val);
-                                    Code.load(c);
+
+                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                        new SemanticParameters()
+                                        .setValue((int)val)
+                                        .setType("char"));
+
                                     RESULT = new ExpressionToken(Tab.charType, false);
                                 :}
                                 | CONST_BOOL:val
                                 {:
                                     // boolean val;
-                                    Struct boolType = new Struct(Struct.Bool);
-                                    Obj c = Tab.insert(Obj.Con, null, boolType);
-                                    c.setAdr(val?1:0);
-                                    Code.load(c);
-                                    RESULT = new ExpressionToken(boolType, false);
+
+                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                        new SemanticParameters()
+                                        .setValue(val?1:0)
+                                        .setType("bool"));
+
+                                    RESULT = new ExpressionToken(new Struct(Struct.Bool), false);
                                 :}
                                 | NEW Type:type OptionalDimension
                                 {:
-                                    RESULT = new ExpressionToken(type.getType(), false);
+                                    // String type;
+
+                                    RESULT = new ExpressionToken(Tab.find(type).getType(), false);
                                 :}
                                 | PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT
                                 {:
+                                    // ExpressionToken expr;
+
                                     RESULT = expr;
                                 :};

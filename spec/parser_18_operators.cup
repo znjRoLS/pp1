@@ -1,9 +1,13 @@
            AdditionOperator ::= AdditionOperatorLeft:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :}
                                 | AdditionOperatorRight:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :}
                                 ;
@@ -23,10 +27,14 @@
 
      MultiplicationOperator ::= MultiplicationOperatorLeft:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :}
                                 | MultiplicationOperatorRight:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :};
 

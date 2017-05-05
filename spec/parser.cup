@@ -16,6 +16,7 @@ import rs.etf.pp1.mj.runtime.Code;
 import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
+import rosko.bojan.SemanticContext.SemanticParameters;
 
 import rosko.bojan.ExpressionToken;
 
@@ -51,6 +52,7 @@ parser code {:
     }
 
     public static String printExpr(ExpressionToken expr) {
+        if (expr == null) return null;
         return "type: " + printObjKind(expr.objType.getKind()) + ", val: " + (expr.isVar?"lvalue":"rvalue");
     }
 
@@ -188,7 +190,7 @@ terminal IF, ELSE;
 terminal PRINT, READ;
 
 // IDENTIFICATOR AND LITERALS
-terminal ID;
+terminal String ID;
 terminal Integer CONST_NUMBER;
 terminal char CONST_CHAR;
 terminal Boolean CONST_BOOL;
@@ -208,7 +210,7 @@ terminal PARENTHESES_LEFT, PARENTHESES_RIGHT, BRACKETS_LEFT, BRACKETS_RIGHT, BRA
 
 non terminal Program, ProgramName;
 non terminal DeclarationList, Declaration;
-non terminal VarDeclarationLine, VarDeclarationList, VarID, VarIDList, VarIDSingle;
+non terminal VarDeclarationLine, VarDeclarationList, VarIDList;
 non terminal ConstDeclarationLine, ConstIDList, ConstID, Const;
 non terminal ClassDeclaration, ClassExtends, ClassName, ClassType;
 non terminal MethodDeclarationSection, OptionalMethodDeclarationSection;
@@ -224,10 +226,11 @@ non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal OptionalUnaryMinus;
 
-non terminal Obj Designator;
+non terminal String Designator;
+non terminal String VarIDSingle, VarID;
 non terminal ExpressionToken Expression;
 non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;
-non terminal Obj Type, MethodType;
+non terminal String Type, MethodType;
 
 non terminal Integer AdditionOperator, AdditionOperatorLeft, AdditionOperatorRight;
 non terminal Integer MultiplicationOperator, MultiplicationOperatorLeft, MultiplicationOperatorRight;
@@ -243,28 +246,17 @@ precedence left ELSE;
 // parser_08_program.cup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    Program ::= PROGRAM
+    Program ::= PROGRAM ProgramName DeclarationList MethodDeclarationSection
                 {:
-                    //report_info("Program 1");
-                :}
-                ProgramName
-                {:
-                    //report_info("Program 2");
-                :}
-                DeclarationList
-                {:
-                    //report_info("Program 3");
-                :}
-                MethodDeclarationSection
-                {:
-                    //report_info("Program 4");
-                    ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT, null);
+                    ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT,
+                        new SemanticParameters());
                 :};
 
 ProgramName ::= ID:progName
                 {:
-                    ctx.foundSymbol(SemanticSymbol.PROGRAM, progName.toString());
-                    //report_info("Parsed program name " + progName);
+                    ctx.foundSymbol(SemanticSymbol.PROGRAM,
+                        new SemanticParameters()
+                        .setName(progName.toString()));
                 :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,13 +264,7 @@ ProgramName ::= ID:progName
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DeclarationList ::= DeclarationList Declaration
-                    {:
-                        report_info("Declaration list Declaration");
-                    :}
-                    | /* epsilon */
-                    {:
-                        report_info("Declaration list epsilon");
-                    :};
+                    | /* epsilon */;
 
     Declaration ::= VarDeclarationLine
                     | ConstDeclarationLine
@@ -286,28 +272,25 @@ DeclarationList ::= DeclarationList Declaration
 
            Type ::= ID:id
                     {:
-                        String name = id.toString();
-                        Obj node = Tab.find(name);
-                        if (node == Tab.noObj) {
-                            report_error("Type not declared: " + name);
-                        } else if (node.getKind() != Obj.Type) {
-                            report_error("Token doesn't represent type: " + name);
-                        }
-                        ctx.foundSymbol(SemanticSymbol.TYPE, id.toString());
-                        report_info("Matched type " + id);
-                        RESULT = node;
+                        // String id;
+                        ctx.foundSymbol(SemanticSymbol.TYPE,
+                            new SemanticParameters()
+                            .setName(id));
                     :};
 
  OptionalStatic ::= STATIC
                     {:
-                        ctx.foundSymbol(SemanticSymbol.STATIC, null);
+                        ctx.foundSymbol(SemanticSymbol.STATIC,
+                            new SemanticParameters());
                     :}
                     | /* epsilon */;
 
-     MethodType ::= Type:id
+     MethodType ::= Type
                     | VOID
                     {:
-                        ctx.foundSymbol(SemanticSymbol.TYPE, "void");
+                        ctx.foundSymbol(SemanticSymbol.TYPE,
+                            new SemanticParameters()
+                            .setName("void"));
                     :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -319,27 +302,38 @@ DeclarationList ::= DeclarationList Declaration
             ConstIDList ::= ConstIDList COMMA ConstID
                             | ConstID;
 
-                ConstID ::= ID:constObj
+                ConstID ::= ID:id
                             {:
-                                ctx.foundSymbol(SemanticSymbol.CONST, constObj.toString());
-                                //report_info("ConstDeclaration " + constObj);
+                                // String id;
+                                ctx.foundSymbol(SemanticSymbol.CONST,
+                                    new SemanticParameters()
+                                    .setName(id));
                             :}
                             ASSIGN Const;
 
                   Const ::= CONST_NUMBER:val
                             {:
                                 // Integer val;
-                                ctx.setConstValue(val);
+                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                    new SemanticParameters()
+                                    .setValue(val)
+                                    .setType("int"));
                             :}
                             | CONST_CHAR:val
                             {:
                                 // char val;
-                                ctx.setConstValue(val);
+                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                    new SemanticParameters()
+                                    .setValue((int)val)
+                                    .setType("char"));
                             :}
                             | CONST_BOOL:val
                             {:
-                                // bool val;
-                                ctx.setConstValue(val);
+                                // boolean val;
+                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                    new SemanticParameters()
+                                    .setValue(val?1:0)
+                                    .setType("bool"));
                             :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -354,27 +348,25 @@ DeclarationList ::= DeclarationList Declaration
           VarIDList ::= VarIDList COMMA VarIDSingle
                         | VarIDSingle;
 
-        VarIDSingle ::= VarID:varObj
+        VarIDSingle ::= VarID:varName
                         {:
-                            ctx.foundSymbol(SemanticSymbol.VAR, varObj.toString());
-                            report_info("VarDeclaration 1 " + varObj);
+                            // String varName;
+                            ctx.foundSymbol(SemanticSymbol.VAR,
+                                new SemanticParameters()
+                                .setName(varName));
+
                         :}
-                        | VarID:varObj
+                        | VarID:varName BRACKETS_LEFT BRACKETS_RIGHT
                         {:
-                            report_info("VarDeclaration 3 " + varObj);
-                        :}
-                        BRACKETS_LEFT
-                        {:
-                            report_info("VarDeclaration 4 " + varObj);
-                        :}
-                        BRACKETS_RIGHT
-                        {:
-                            ctx.foundSymbol(SemanticSymbol.ARRAY, varObj.toString());
-                            report_info("VarDeclaration 2 " + varObj);
+                            // String varName;
+                            ctx.foundSymbol(SemanticSymbol.ARRAY,
+                                new SemanticParameters()
+                                .setName(varName));
                         :};
 
               VarID ::= ID:id
                         {:
+                            // String id;
                             RESULT = id;
                         :};
 
@@ -386,31 +378,28 @@ DeclarationList ::= DeclarationList Declaration
                         BRACES_LEFT VarDeclarationList
                         OptionalMethodDeclarationSection BRACES_RIGHT
                         {:
-                            ctx.foundSymbol(SemanticSymbol.CLASS_EXIT, null);
+                            ctx.foundSymbol(SemanticSymbol.CLASS_EXIT,
+                                new SemanticParameters());
                         :};
 
           ClassName ::= ID:id
                         {:
-                            ctx.foundSymbol(SemanticSymbol.CLASS, id.toString());
-                            report_info("Entered class: " + id);
+                            // String id;
+                            ctx.foundSymbol(SemanticSymbol.CLASS,
+                                new SemanticParameters()
+                                .setName(id));
                         :};
 
        ClassExtends ::= EXTENDS ClassType
-                        {:
-                            report_info ("Parsed nonempty class extends");
-                        :}
-                        | /* epsilon */
-                        {:
-                            report_info ("Parsed empty class extends");
-                        :};
+                        | /* epsilon */;
 
-          ClassType ::= Type:type
+          ClassType ::= Type:typeName
                         {:
-                            //ctx.foundSymbol(SemanticSymbol.TYPE_CLASS, type.toString());
-                            // Struct type;
-                            if (type.getType().getKind() != Struct.Class) {
-                                report_error("Token not of class type: " + type.getName() + " " + printObj(type));
-                            }
+                            // String typeName;
+                            ctx.foundSymbol(SemanticSymbol.TYPE_CLASS,
+                                new SemanticParameters()
+                                .setName(typeName));
+
                         :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -426,26 +415,32 @@ DeclarationList ::= DeclarationList Declaration
                                         | /* epsilon */;
 
                   MethodDeclaration ::= OptionalStatic MethodType MethodName
-                                        PARENTHESES_LEFT FormalParameterSection:num PARENTHESES_RIGHT
+                                        PARENTHESES_LEFT FormalParameterSection:numFormal PARENTHESES_RIGHT
                                         VarDeclarationList
                                         BRACES_LEFT
                                         {:
-                                            //ctx.foundSymbol(SemanticSymbol.METHOD_START, null);
-                                            ctx.symbolMethodStart(num);
+                                            // Integer numFormal;
+                                            ctx.foundSymbol(SemanticSymbol.METHOD_START,
+                                                new SemanticParameters()
+                                                .setValue(numFormal));
                                         :}
                                         StatementList BRACES_RIGHT
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.METHOD_EXIT, null);
+                                            ctx.foundSymbol(SemanticSymbol.METHOD_EXIT,
+                                                new SemanticParameters());
                                         :};
 
                          MethodName ::= ID:id
                                         {:
-                                            ctx.foundSymbol(SemanticSymbol.METHOD, id.toString());
-                                            report_info("Entered method: " + id);
+                                            // String id;
+                                            ctx.foundSymbol(SemanticSymbol.METHOD,
+                                                new SemanticParameters()
+                                                .setName(id));
                                         :};
 
              FormalParameterSection ::= FormalParameterList:num
                                         {:
+                                            // Integer num;
                                             RESULT = num;
                                         :}
                                         | /* epsilon */
@@ -455,6 +450,7 @@ DeclarationList ::= DeclarationList Declaration
 
                 FormalParameterList ::= FormalParameterList:num1 COMMA FormalParameter
                                         {:
+                                            // Integer num1;
                                             RESULT = num1 + 1;
                                         :}
                                         | FormalParameter
@@ -464,14 +460,22 @@ DeclarationList ::= DeclarationList Declaration
 
                     FormalParameter ::= Type:type ID:id
                                         {:
-                                            //ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER, id.toString());
-                                            ctx.symbolFormalParameter(type.getType(), id.toString());
+                                            // String type;
+                                            // String id;
+                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER,
+                                                new SemanticParameters()
+                                                .setType(type)
+                                                .setName(id));
                                         :}
-                                        | Type:type ID:id
+                                        | Type:type ID:id BRACKETS_LEFT BRACKETS_RIGHT
                                         {:
-                                            ctx.symbolFormalParameterArr(type.getType(), id.toString());
-                                        :}
-                                        BRACKETS_LEFT BRACKETS_RIGHT;
+                                            // String type;
+                                            // String id;
+                                            ctx.foundSymbol(SemanticSymbol.FORMAL_PARAMETER_ARRAY,
+                                                new SemanticParameters()
+                                                .setType(type)
+                                                .setName(id));
+                                        :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // parser_14_statements.cup
@@ -508,21 +512,25 @@ StatementDesignator ::= DesignatorStatement
 
         StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT
                         {:
-                            ctx.symbolIf();
+                            ctx.foundSymbol(SemanticSymbol.IFSTART,
+                                new SemanticParameters());
                         :}
                         Statement OptionalElse;
 
        OptionalElse ::= ELSE
                         {:
-                            ctx.symbolIfElse();
+                            ctx.foundSymbol(SemanticSymbol.ELSESTART,
+                                new SemanticParameters());
                         :}
                         Statement
                         {:
-                            ctx.symbolIfElseEnd();
+                            ctx.foundSymbol(SemanticSymbol.ELSEEND,
+                                new SemanticParameters());
                         :}
                         | /* epsilon */
                         {:
-                            ctx.symbolIfEnd();
+                            ctx.foundSymbol(SemanticSymbol.IFEND,
+                                new SemanticParameters());
                         :};
 
        StatementFor ::= FOR PARENTHESES_LEFT
@@ -537,12 +545,18 @@ StatementDesignator ::= DesignatorStatement
 
     StatementReturn ::= RETURN SEMICOLON
                         {:
-                            ctx.symbolReturn(null);
+                            ctx.foundSymbol(SemanticSymbol.RETURN,
+                                new SemanticParameters()
+                                .setExpression(new ExpressionToken(
+                                    Tab.noType,
+                                    false)));
                         :}
                         | RETURN Expression:expression SEMICOLON
                         {:
-                            ctx.symbolReturn(expression);
-                            //ctx.foundSymbol(SemanticSymbol.RETURN, null);
+                            // ExpressionToken expression;
+                            ctx.foundSymbol(SemanticSymbol.RETURN,
+                                new SemanticParameters()
+                                .setExpression(expression));
                         :};
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
@@ -550,17 +564,9 @@ StatementDesignator ::= DesignatorStatement
      StatementPrint ::= PRINT PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:
                             // ExpressionToken expr;
-                            report_debug(printExpr(expr));
-                            if (expr.objType.getKind() == Struct.Int) {
-                            report_debug("found printint statement!");
-                                Code.loadConst(5);
-                                Code.put(Code.print);
-                            } else if (expr.objType.getKind() == Struct.Char) {
-                            report_debug("found printchar statement!");
-                                Code.loadConst(1);
-                                Code.put(Code.bprint);
-                            }
-                            report_debug("found print statement!");
+                            ctx.foundSymbol(SemanticSymbol.PRINT,
+                                new SemanticParameters()
+                                .setExpression(expr));
                         :};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,34 +579,19 @@ OptionalDesignatorStatement ::= DesignatorStatement
         DesignatorStatement ::= Designator:design AssignOperator Expression:expr
                                 {:
                                     // ExpressionToken expr;
-                                    // Obj design;
-                                    report_info("Found assign statement");
-                                    if (expr.objType.getKind() != design.getType().getKind()) {
-                                        //report_info("expr " + printExpr(expr) + "| design " + printObj(design));
-                                        //report_info(expr.objType.getKind() + " " + design.getType().getKind());
-                                        report_error("Not assignable!");
-                                    } else {
-                                        Code.store(design);
-                                    }
+                                    // String design;
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_ASSIGN,
+                                        new SemanticParameters()
+                                        .setName(design)
+                                        .setExpression(expr));
 
                                 :}
                                 | Designator:function MethodCall
                                 {:
-                                    // Obj function;
-                                    report_info("Function call: " + function.getName());
-                                    if (function.getKind() != Obj.Meth) {
-                                        report_error("Not a function!");
-                                    }
-                                    if (function.getType() == Tab.noType) {
-                                        report_error("Function doesn't return value!");
-                                    }
-                                    int functionAdr = function.getAdr() - Code.pc;
-                                    Code.put(Code.call);
-                                    Code.put2(functionAdr);
-                                    if (function.getType() != Tab.noType) {
-                                        Code.put(Code.pop);
-                                    }
-
+                                    // String function;
+                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL,
+                                        new SemanticParameters()
+                                        .setName(function));
                                 :}
                                 | Designator INCREMENT
                                 | Designator DECREMENT;
@@ -613,20 +604,15 @@ OptionalDesignatorStatement ::= DesignatorStatement
 
             ActualParameter ::= Expression:expression;
 
-                 Designator ::= ID:id
+                 Designator ::= ID:id MemberList
                                 {:
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR, id.toString());
-                                    Obj found = Tab.find(id.toString());
-                                    if (found == Tab.noObj) {
-                                        report_error("Identifier name not declared: " + id.toString());
-                                        RESULT = null;
-                                    } else {
-                                        //RESULT = new ExpressionToken(found.getType(), found.getType().getKind() == Obj.Var);
-                                        //report_info("nestoasdasd " + printObj(found));
-                                        RESULT = found;
-                                    }
-                                :}
-                                MemberList;
+                                    // String id;
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR,
+                                        new SemanticParameters()
+                                        .setName(id));
+
+                                    RESULT = id;
+                                :};
 
                  MemberList ::= MemberList Member
                                 | /* epsilon */;
@@ -640,10 +626,7 @@ OptionalDesignatorStatement ::= DesignatorStatement
          OptionalMethodCall ::= MethodCall
                                 | /* epsilon */;
 
-                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT
-                                {:
-                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL, null);
-                                :};
+                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT;
 
                   Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;
 
@@ -657,6 +640,10 @@ OptionalDesignatorStatement ::= DesignatorStatement
           Condition ::= ConditionTermList:expression
                         {:
                             // ExpressionToken expression;
+                            ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                new SemanticParameters()
+                                .setExpression(expression)
+                                .setType("bool"));
                             RESULT = expression;
                         :};
 
@@ -664,13 +651,13 @@ OptionalDesignatorStatement ::= DesignatorStatement
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            if (expression1.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression1));
-                            }
-                            if (expression2.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression2));
-                            }
-                            Code.put(Code.add);
+                            ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                new SemanticParameters()
+                                .setExpression(expression1)
+                                .setExpression2(expression2)
+                                .setType("bool")
+                                .setValue(Code.add));
+
                             RESULT = expression1;
                         :}
                         | ConditionTerm:expression
@@ -683,9 +670,6 @@ OptionalDesignatorStatement ::= DesignatorStatement
       ConditionTerm ::= ConditionFactorList:expression
                         {:
                             // ExpressionToken expression;
-                            if (expression.objType.getKind() != Struct.Bool) {
-                                report_error("Condition not of type bool!");
-                            }
                             RESULT = expression;
                         :}
                         ;
@@ -694,21 +678,18 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            if (expression1.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression1));
-                            }
-                            if (expression2.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression2));
-                            }
-                            Code.put(Code.mul);
+                            ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                new SemanticParameters()
+                                .setExpression(expression1)
+                                .setExpression2(expression2)
+                                .setType("bool")
+                                .setValue(Code.mul));
+
                             RESULT = expression1;
                         :}
                         | ConditionFactor:expression
                         {:
                             // ExpressionToken expression;
-                            if (expression.objType.getKind() != Struct.Bool) {
-                                report_error("Condition not of type bool!");
-                            }
                             RESULT = expression;
                         :}
                         ;
@@ -716,19 +697,19 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
     ConditionFactor ::= Expression:expression
                         {:
                             // ExpressionToken expression;
-                            if (expression.objType.getKind() != Struct.Bool) {
-                                report_error("Condition not of type bool!");
-                            }
                             RESULT = expression;
                         :}
                         | Expression:expression1 RelationalOperator:operator Expression:expression2
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            if (!expression1.compatible(expression2)) {
-                                report_error("Expressions not compatible! " + printExpr(expression1) + " - " + printExpr(expression2));
-                            }
-                            ctx.symbolRelop(operator);
+
+                            ctx.foundSymbol(SemanticSymbol.RELOP,
+                                new SemanticParameters()
+                                .setExpression(expression1)
+                                .setExpression2(expression2)
+                                .setValue(operator));
+
                             RESULT = new ExpressionToken(new Struct(Struct.Bool), false);
                         :};
 
@@ -739,123 +720,136 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
 
                  Expression ::= AdditionTermList:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :}
                                 | SUBTRACTION AdditionTermList:expression
                                 {:
-                                    if (expression.objType.getKind() != Struct.Int) {
-                                        report_error("Type not int: " + printExpr(expression) );
-                                        RESULT = null;
-                                    }
+                                    // ExpressionToken expression;
+
+                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                        new SemanticParameters()
+                                        .setExpression(expression)
+                                        .setType("int"));
+
                                     RESULT = expression;
                                 :};
 
 
            AdditionTermList ::= AdditionTermList:expression1 AdditionOperator:operator Term:expression2
                                 {:
-                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
-                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
-                                        RESULT = null;
-                                    } else if (expression1.objType.getKind() != Struct.Int) {
-                                        report_error("Types same, but not integer: " + printExpr(expression1));
-                                        RESULT = null;
-                                    } else {
-                                        RESULT = new ExpressionToken(expression1.objType, false);
-                                    }
-                                    Code.put(operator);
+                                    // ExpressionToken expression1;
+                                    // ExpressionToken expression2;
+                                    // Integer operator;
+
+                                    ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                        new SemanticParameters()
+                                        .setExpression(expression1)
+                                        .setExpression2(expression2)
+                                        .setType("int")
+                                        .setValue(operator));
+
+                                    RESULT = new ExpressionToken(expression1.objType, false);
                                 :}
                                 | Term:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :};
 
                        Term ::= MultiplicationFactorList:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :};
 
    MultiplicationFactorList ::= MultiplicationFactorList:expression1 MultiplicationOperator:operator Factor:expression2
                                 {:
-                                    if (expression1.objType.getKind() != expression2.objType.getKind()) {
-                                        report_error("Types not the same: " + printExpr(expression1) + " - " + printExpr(expression2));
-                                        RESULT = null;
-                                    } else if (expression1.objType.getKind() != Struct.Int) {
-                                        report_error("Types same, but not integer: " + printExpr(expression1));
-                                        RESULT = null;
-                                    } else {
-                                        RESULT = new ExpressionToken(expression1.objType, false);
-                                    }
-                                    Code.put(operator);
+                                    // ExpressionToken expression1;
+                                    // ExpressionToken expression2;
+                                    // Integer operator;
+
+                                    ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                        new SemanticParameters()
+                                        .setExpression(expression1)
+                                        .setExpression2(expression2)
+                                        .setType("int")
+                                        .setValue(operator));
+
+                                    RESULT = new ExpressionToken(expression1.objType, false);
                                 :}
                                 | Factor:expression
                                 {:
+                                    // ExpressionToken expression;
+
                                     RESULT = expression;
                                 :};
 
-                     Factor ::= Designator:varObj
+                     Factor ::= Designator:varName
                                 {:
-                                    // Obj varObj;
+                                    // String varName;
 
-                                    report_info("Found designator factor: " + varObj.getName());
-                                    int objectType = varObj.getKind();
-                                    if (objectType != Obj.Var && objectType != Obj.Con) {
-                                        report_error("Object not a constant or variable or class or field or element: " + printObj(varObj));
-                                        RESULT = null;
-                                    } else {
-                                        Struct objType = varObj.getType();
-                                        RESULT = new ExpressionToken(objType, false);
-                                    }
-                                    Code.load(varObj);
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                        new SemanticParameters()
+                                        .setName(varName));
+
+                                    RESULT = new ExpressionToken(Tab.find(varName).getType(), false);
                                 :}
                                 | Designator:function MethodCall
                                 {:
-                                    // Obj function;
-                                    report_info("Function expression call: " + function.getName());
-                                    int objectType = function.getKind();
-                                    if (objectType != Obj.Meth) {
-                                        report_error("Object not a method: " + printObj(function));
-                                        RESULT = null;
-                                    } else {
-                                        int functionAdr = function.getAdr() - Code.pc;
-                                        Code.put(Code.call);
-                                        Code.put2(functionAdr);
+                                    // String function;
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                        new SemanticParameters()
+                                        .setName(function));
 
-                                        Struct methodReturnType = function.getType();
-                                        RESULT = new ExpressionToken(methodReturnType, false);
-                                    }
+                                    RESULT = new ExpressionToken(Tab.find(function).getType(), false);
                                 :}
                                 | CONST_NUMBER:val
                                 {:
                                     // Integer val;
-                                    Obj c = Tab.insert(Obj.Con, null, Tab.intType);
-                                    c.setAdr(val);
-                                    Code.load(c);
-                                    //report_info("nesto " + val);
+
+                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                        new SemanticParameters()
+                                        .setValue(val)
+                                        .setType("int"));
+
                                     RESULT = new ExpressionToken(Tab.intType, false);
                                 :}
                                 | CONST_CHAR:val
                                 {:
                                     // char val;
-                                    Obj c = Tab.insert(Obj.Con, null, Tab.charType);
-                                    c.setAdr(val);
-                                    Code.load(c);
+
+                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                        new SemanticParameters()
+                                        .setValue((int)val)
+                                        .setType("char"));
+
                                     RESULT = new ExpressionToken(Tab.charType, false);
                                 :}
                                 | CONST_BOOL:val
                                 {:
                                     // boolean val;
-                                    Struct boolType = new Struct(Struct.Bool);
-                                    Obj c = Tab.insert(Obj.Con, null, boolType);
-                                    c.setAdr(val?1:0);
-                                    Code.load(c);
-                                    RESULT = new ExpressionToken(boolType, false);
+
+                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                        new SemanticParameters()
+                                        .setValue(val?1:0)
+                                        .setType("bool"));
+
+                                    RESULT = new ExpressionToken(new Struct(Struct.Bool), false);
                                 :}
                                 | NEW Type:type OptionalDimension
                                 {:
-                                    RESULT = new ExpressionToken(type.getType(), false);
+                                    // String type;
+
+                                    RESULT = new ExpressionToken(Tab.find(type).getType(), false);
                                 :}
                                 | PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT
                                 {:
+                                    // ExpressionToken expr;
+
                                     RESULT = expr;
                                 :};
 
@@ -865,10 +859,14 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
 
            AdditionOperator ::= AdditionOperatorLeft:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :}
                                 | AdditionOperatorRight:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :}
                                 ;
@@ -888,10 +886,14 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
 
      MultiplicationOperator ::= MultiplicationOperatorLeft:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :}
                                 | MultiplicationOperatorRight:operator
                                 {:
+                                    // Integer operator;
+
                                     RESULT = operator;
                                 :};
 

@@ -24,6 +24,7 @@ parser code {:
     }
 
     public static String printExpr(ExpressionToken expr) {
+        if (expr == null) return null;
         return "type: " + printObjKind(expr.objType.getKind()) + ", val: " + (expr.isVar?"lvalue":"rvalue");
     }
 

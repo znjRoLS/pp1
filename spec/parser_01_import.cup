@@ -10,6 +10,7 @@ import rs.etf.pp1.mj.runtime.Code;
 import rosko.bojan.SymbolCounter;
 import rosko.bojan.SemanticContext.SemanticSymbol.*;
 import rosko.bojan.SemanticContext.SemanticSymbol;
+import rosko.bojan.SemanticContext.SemanticParameters;
 
 import rosko.bojan.ExpressionToken;
 

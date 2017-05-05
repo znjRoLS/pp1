@@ -4,6 +4,10 @@
           Condition ::= ConditionTermList:expression
                         {:
                             // ExpressionToken expression;
+                            ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                new SemanticParameters()
+                                .setExpression(expression)
+                                .setType("bool"));
                             RESULT = expression;
                         :};
 
@@ -11,13 +15,13 @@
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            if (expression1.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression1));
-                            }
-                            if (expression2.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression2));
-                            }
-                            Code.put(Code.add);
+                            ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                new SemanticParameters()
+                                .setExpression(expression1)
+                                .setExpression2(expression2)
+                                .setType("bool")
+                                .setValue(Code.add));
+
                             RESULT = expression1;
                         :}
                         | ConditionTerm:expression
@@ -30,9 +34,6 @@
       ConditionTerm ::= ConditionFactorList:expression
                         {:
                             // ExpressionToken expression;
-                            if (expression.objType.getKind() != Struct.Bool) {
-                                report_error("Condition not of type bool!");
-                            }
                             RESULT = expression;
                         :}
                         ;
@@ -41,21 +42,18 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            if (expression1.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression1));
-                            }
-                            if (expression2.objType.getKind() != Struct.Bool) {
-                                report_error("Expression not boolean! " + printExpr(expression2));
-                            }
-                            Code.put(Code.mul);
+                            ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                new SemanticParameters()
+                                .setExpression(expression1)
+                                .setExpression2(expression2)
+                                .setType("bool")
+                                .setValue(Code.mul));
+
                             RESULT = expression1;
                         :}
                         | ConditionFactor:expression
                         {:
                             // ExpressionToken expression;
-                            if (expression.objType.getKind() != Struct.Bool) {
-                                report_error("Condition not of type bool!");
-                            }
                             RESULT = expression;
                         :}
                         ;
@@ -63,18 +61,18 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
     ConditionFactor ::= Expression:expression
                         {:
                             // ExpressionToken expression;
-                            if (expression.objType.getKind() != Struct.Bool) {
-                                report_error("Condition not of type bool!");
-                            }
                             RESULT = expression;
                         :}
                         | Expression:expression1 RelationalOperator:operator Expression:expression2
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            if (!expression1.compatible(expression2)) {
-                                report_error("Expressions not compatible! " + printExpr(expression1) + " - " + printExpr(expression2));
-                            }
-                            ctx.symbolRelop(operator);
+
+                            ctx.foundSymbol(SemanticSymbol.RELOP,
+                                new SemanticParameters()
+                                .setExpression(expression1)
+                                .setExpression2(expression2)
+                                .setValue(operator));
+
                             RESULT = new ExpressionToken(new Struct(Struct.Bool), false);
                         :};

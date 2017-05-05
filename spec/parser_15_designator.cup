@@ -4,34 +4,19 @@ OptionalDesignatorStatement ::= DesignatorStatement
         DesignatorStatement ::= Designator:design AssignOperator Expression:expr
                                 {:
                                     // ExpressionToken expr;
-                                    // Obj design;
-                                    report_info("Found assign statement");
-                                    if (expr.objType.getKind() != design.getType().getKind()) {
-                                        //report_info("expr " + printExpr(expr) + "| design " + printObj(design));
-                                        //report_info(expr.objType.getKind() + " " + design.getType().getKind());
-                                        report_error("Not assignable!");
-                                    } else {
-                                        Code.store(design);
-                                    }
+                                    // String design;
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_ASSIGN,
+                                        new SemanticParameters()
+                                        .setName(design)
+                                        .setExpression(expr));
 
                                 :}
                                 | Designator:function MethodCall
                                 {:
-                                    // Obj function;
-                                    report_info("Function call: " + function.getName());
-                                    if (function.getKind() != Obj.Meth) {
-                                        report_error("Not a function!");
-                                    }
-                                    if (function.getType() == Tab.noType) {
-                                        report_error("Function doesn't return value!");
-                                    }
-                                    int functionAdr = function.getAdr() - Code.pc;
-                                    Code.put(Code.call);
-                                    Code.put2(functionAdr);
-                                    if (function.getType() != Tab.noType) {
-                                        Code.put(Code.pop);
-                                    }
-
+                                    // String function;
+                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL,
+                                        new SemanticParameters()
+                                        .setName(function));
                                 :}
                                 | Designator INCREMENT
                                 | Designator DECREMENT;
@@ -44,20 +29,15 @@ OptionalDesignatorStatement ::= DesignatorStatement
 
             ActualParameter ::= Expression:expression;
 
-                 Designator ::= ID:id
+                 Designator ::= ID:id MemberList
                                 {:
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR, id.toString());
-                                    Obj found = Tab.find(id.toString());
-                                    if (found == Tab.noObj) {
-                                        report_error("Identifier name not declared: " + id.toString());
-                                        RESULT = null;
-                                    } else {
-                                        //RESULT = new ExpressionToken(found.getType(), found.getType().getKind() == Obj.Var);
-                                        //report_info("nestoasdasd " + printObj(found));
-                                        RESULT = found;
-                                    }
-                                :}
-                                MemberList;
+                                    // String id;
+                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR,
+                                        new SemanticParameters()
+                                        .setName(id));
+
+                                    RESULT = id;
+                                :};
 
                  MemberList ::= MemberList Member
                                 | /* epsilon */;
@@ -71,9 +51,6 @@ OptionalDesignatorStatement ::= DesignatorStatement
          OptionalMethodCall ::= MethodCall
                                 | /* epsilon */;
 
-                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT
-                                {:
-                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL, null);
-                                :};
+                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT;
 
                   Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;

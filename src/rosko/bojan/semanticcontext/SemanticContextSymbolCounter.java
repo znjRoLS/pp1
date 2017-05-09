@@ -23,8 +23,8 @@ public class SemanticContextSymbolCounter {
 
     private SemanticContext ctx;
 
-    private SymbolCounter<String> symbolByNameCounter;
-    private SymbolCounter<CountType> symbolCounter;
+    SymbolCounter<String> symbolByNameCounter;
+    SymbolCounter<CountType> symbolCounter;
 
     public SemanticContextSymbolCounter() {
         symbolByNameCounter = new SymbolCounter<String>();
@@ -36,7 +36,7 @@ public class SemanticContextSymbolCounter {
         this.ctx = ctx;
     }
 
-    public void updateCounters(SemanticContext.SemanticSymbol type, SemanticContext.SemanticParameters parameters) {
+    public void updateCounters(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
         if (type == SemanticContext.SemanticSymbol.CONST) {
             symbolByNameCounter.inc(getCounterContext() + "const");
             symbolCounter.inc(CountType.GLOBAL_CONST);

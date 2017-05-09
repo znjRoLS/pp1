@@ -44,8 +44,7 @@ public class ParserTest {
                 Symbol symbol = parser.parse();
                 logger.info("Got symbol " + symbol + " " + symbol.value);
 
-                parser.context.symbolCounter.printAllCounts();
-                parser.context.symbolByNameCounter.printAllCounts();
+                parser.context.printCounts();
                 parser.dump();
 
                 if (parser.errorDetected()) {

@@ -3,7 +3,7 @@ parser code {:
     Scanner scanner;
     Symbol currSym;
 
-    public SemanticContext context = new SemanticContext(this);
+    public SemanticContext context = new SemanticContext();
 
     void report_error(String msg) {
         context.errorDetected();

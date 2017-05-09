@@ -1,7 +1,9 @@
-package rosko.bojan;
+package rosko.bojan.semanticcontext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rosko.bojan.ExpressionToken;
+import rosko.bojan.Parser;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
@@ -11,31 +13,14 @@ import rs.etf.pp1.symboltable.concepts.Struct;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
-import java.util.List;
 
 import static rosko.bojan.Parser.printExpr;
-import static rosko.bojan.SemanticContext.SemanticSymbol.*;
+import static rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;
 
 /**
  * Created by rols on 4/26/17.
  */
 public class SemanticContext {
-
-    // for communication with counter
-    public enum CountType {
-        GLOBAL_VAR,
-        MAIN_VAR,
-        GLOBAL_CONST,
-        GLOBAL_ARRAY,
-        GLOBAL_METHOD,
-        CLASS_STATIC_METHOD,
-        STATEMENT_BLOCK,
-        MAIN_METHOD_CALL,
-        FORMAL_ARGUMENT,
-        CLASS,
-        CLASS_METHOD,
-        CLASS_VAR
-    }
 
 
     // for communication from parser
@@ -132,39 +117,46 @@ public class SemanticContext {
         }
     };
 
-    public SymbolCounter<String> symbolByNameCounter;
-    public SymbolCounter<CountType> symbolCounter;
-    private String currClassName;
-    private String currMethodName;
-    private Obj currMethod;
-    private Obj currClass;
-    private Obj programObj;
-    private Struct currClassStruct;
-    private Obj lastConstDeclared;
-    private int statementBlockLevel;
-    private boolean isCurrMethodStatic;
-    private int currentDeclarationType;
-    private boolean returnFound;
-    private Logger logger = LogManager.getLogger(SemanticContext.class);
-    private Parser parser;
-    private int adrFalseJump, adrTrueJump;
-    public boolean errorDetected;
-    private boolean errorState;
 
-    SemanticContext(Parser parser) {
+
+    String currClassName;
+    String currMethodName;
+    Obj currMethod;
+    Obj currClass;
+    Obj programObj;
+    Struct currClassStruct;
+    Obj lastConstDeclared;
+    int statementBlockLevel;
+    boolean isCurrMethodStatic;
+    int currentDeclarationType;
+    boolean returnFound;
+    Logger logger = LogManager.getLogger(SemanticContext.class);
+    Parser parser;
+    int adrFalseJump, adrTrueJump;
+    public boolean errorDetected;
+    boolean errorState;
+
+    private SemanticContextSymbolCounter symbolCounter;
+
+    public SemanticContext() {
+        symbolCounter = new SemanticContextSymbolCounter(this);
+
         currClassName = null;
         currMethodName = null;
         isCurrMethodStatic = false;
         statementBlockLevel = 0;
-        symbolByNameCounter = new SymbolCounter<String>();
-        symbolCounter = new SymbolCounter<CountType>();
+
         lastConstDeclared = null;
         currMethod = null;
         currClass = null;
         returnFound = false;
-        this.parser = parser;
         errorDetected = false;
         errorState = false;
+    }
+
+    public SemanticContext(Parser parser) {
+        this();
+        this.parser = parser;
     }
 
     public void errorDetected() {
@@ -266,7 +258,7 @@ public class SemanticContext {
         }
 
         processError(type, parameters);
-        updateCounters(type, parameters);
+        symbolCounter.updateCounters(type, parameters);
         checkSemantics(type, parameters);
         updateContext(type, parameters);
         generateCode(type, parameters);
@@ -812,80 +804,8 @@ public class SemanticContext {
 
     }
 
-    public void updateCounters(SemanticSymbol type, SemanticParameters parameters) {
-        if (type == CONST) {
-            symbolByNameCounter.inc(getCounterContext() + "const");
-            if(currMethodName != null || currClassName != null) {
-                report_error("error?");
-            }
-            symbolCounter.inc(CountType.GLOBAL_CONST);
-        }
-        if (type == VAR) {
-            symbolByNameCounter.inc(getCounterContext() +"var");
-            if (currClassName != null && currMethodName != null) {
-                // what here?
-            } else if (currClassName != null) {
-                symbolCounter.inc(CountType.CLASS_VAR);
-            } else if (currMethodName != null) {
-                // what here?
-                if (currMethodName == "main") {
-                    symbolCounter.inc(CountType.MAIN_VAR);
-                }
-            } else {
-                symbolCounter.inc(CountType.GLOBAL_VAR);
-            }
-        }
-        if (type == ARRAY) {
-            if (currMethodName == null && currClassName == null) {
-                symbolCounter.inc(CountType.GLOBAL_ARRAY);
-            }
-            symbolByNameCounter.inc(getCounterContext() + "array");
-        }
-        if (type == METHOD) {
-            if (currClassName != null) {
-                if (isCurrMethodStatic) {
-                    symbolCounter.inc(CountType.CLASS_STATIC_METHOD);
-                } else {
-                    symbolCounter.inc(CountType.CLASS_METHOD);
-                }
-            } else {
-                symbolCounter.inc(CountType.GLOBAL_METHOD);
-            }
-            symbolByNameCounter.inc(getCounterContext() + "method");
-        }
-        if (type == CLASS) {
-            symbolCounter.inc(CountType.CLASS);
-            symbolByNameCounter.inc(getCounterContext() + "class");
-        }
-        if (type == FORMAL_PARAMETER) {
-            symbolCounter.inc(CountType.FORMAL_ARGUMENT);
-            symbolByNameCounter.inc(getCounterContext() + "formal");
-        }
-        if (type == STATEMENT_BLOCK) {
-            symbolCounter.inc(CountType.STATEMENT_BLOCK);
-        }
-        if (type == METHOD_CALL) {
-            if (currMethodName == "main") {
-                symbolCounter.inc(CountType.MAIN_METHOD_CALL);
-            }
-        }
-    }
 
-    public String getCounterContext() {
-        String res = "";
-        for(int i = 0 ; i < statementBlockLevel; i ++) {
-            res = "{} | " + res;
-        }
 
-        if (currMethodName != null) {
-            res = currMethodName + " | " + res;
-        }
-        if (currClassName != null) {
-            res = currClassName + " | " + res;
-        }
-
-        return res;
-    }
 
 
     public void dumpTable() {

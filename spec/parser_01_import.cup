@@ -7,11 +7,11 @@ import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 import rs.etf.pp1.mj.runtime.Code;
 
-import rosko.bojan.SymbolCounter;
-import rosko.bojan.SemanticContext.SemanticSymbol.*;
-import rosko.bojan.SemanticContext.SemanticSymbol;
-import rosko.bojan.SemanticContext.SemanticParameters;
-import rosko.bojan.SemanticContext.ErrorType;
+import rosko.bojan.semanticcontext.SymbolCounter;
+import rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;
+import rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol;
+import rosko.bojan.semanticcontext.SemanticContext.SemanticParameters;
+import rosko.bojan.semanticcontext.SemanticContext.ErrorType;
 
 import rosko.bojan.ExpressionToken;
 

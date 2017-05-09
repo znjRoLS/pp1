@@ -1,9 +1,8 @@
-package rosko.bojan;
+package rosko.bojan.semanticcontext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.util.HashMap;
 
 /**

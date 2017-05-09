@@ -11,6 +11,8 @@ DeclarationList ::= DeclarationList Declaration
                         ctx.foundSymbol(SemanticSymbol.TYPE,
                             new SemanticParameters()
                             .setName(id));
+
+                        RESULT = id;
                     :};
 
  OptionalStatic ::= STATIC

@@ -40,11 +40,14 @@ public class SemanticContextSemanticChecker {
                 break;
             }
             case CONST_VAL: {
-                if (context.currentDeclarationType != context.objHelper.objectType.get(parameters.type)) {
-                    report_error("what now?");
+                if (context.currentDeclarationType != context.objHelper.objectStructs.get(parameters.type)) {
+                    report_error("Constant value differs from constant declaration type: "
+                            + context.currentDeclarationType + " - "
+                            + context.objHelper.objectStructs.get(parameters.type));
                 }
                 if (context.lastConstDeclared == null) {
-                    report_error("what now?");
+                    report_info("This shouldn't happen, right?");
+                    report_error("Syntax error!");
                 }
             }
             case CONST_FACTOR: {
@@ -111,8 +114,8 @@ public class SemanticContextSemanticChecker {
                 if (context.returnFound) {
                     report_error("Method cannot have more than one return statement!");
                 }
-                if (!(parameters.expression.objType ==  context.currMethod.getType() ||
-                        parameters.expression.objType.getKind() == context.currMethod.getType().getKind()) ) {
+                if (!(parameters.expression.objType.equals(context.currMethod.getType()) ||
+                        parameters.expression.objType.equals(context.currMethod.getType())) ) {
                     report_error("Method declaration and return expression are not of same type!");
                 }
                 break;
@@ -148,6 +151,9 @@ public class SemanticContextSemanticChecker {
                     report_error("Token doesn't represent type: " + parameters.name);
                 } else if (node.getType().getKind() != Struct.Class) {
                     report_error("Token not of class type: " + parameters.name);
+                } else if (!context.objHelper.objectStructs.containsKey(parameters.name)) {
+                    report_info("This should never happen, right ?");
+                    report_error("Type not declared: " + parameters.name);
                 }
                 break;
             }
@@ -179,7 +185,7 @@ public class SemanticContextSemanticChecker {
             case DESIGNATOR_ASSIGN: {
                 report_info("Found assign statement");
                 Obj design = Tab.find(parameters.name);
-                if (parameters.expression.objType.getKind() != design.getType().getKind()) {
+                if (!parameters.expression.objType.equals(design.getType())) {
                     //report_info("expr " + printExpr(expr) + "| design " + printObj(design));
                     //report_info(expr.objType.getKind() + " " + design.getType().getKind());
                     report_error("Not assignable!");
@@ -235,13 +241,24 @@ public class SemanticContextSemanticChecker {
                 }
                 break;
             }
+            case NEW: {
+                Obj objType = Tab.find(parameters.name);
+                if (objType == Tab.noObj) {
+                    report_error("Symbol not found! " + parameters.name);
+                } else if (objType.getKind() != Obj.Type) {
+                    report_error("Symbol not a type! " + parameters.name);
+                } else if (objType.getType().getKind() != Struct.Class) {
+                    report_error("Type not a class type! " + parameters.name);
+                }
+                break;
+            }
 
             case EXPRESSION: {
-                if (parameters.expression.objType.getKind() != context.objHelper.objectType.get(parameters.type)) {
+                if (!parameters.expression.objType.equals(context.objHelper.objectStructs.get(parameters.type))) {
                     report_error("Expression not of expected type! " + parameters.expression +
                             ", type expected: " + parameters.type);
                 }
-                if (parameters.expression2.objType.getKind() != context.objHelper.objectType.get(parameters.type)) {
+                if (!parameters.expression2.objType.equals(context.objHelper.objectStructs.get(parameters.type))) {
                     report_error("Expression not of expected type! " + parameters.expression2 +
                             ", type expected: " + parameters.type);
                 }

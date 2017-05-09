@@ -26,31 +26,31 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
-                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.METHOD_CALL,
                                         new SemanticParameters()
                                         .setName(function));
 
-                                    RESULT = new ExpressionToken(Tab.find(function).getType(), false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:design INCREMENT
                                 {:
-                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
                                         new SemanticParameters()
                                         .setName(design)
                                         .setType("int")
                                         .setValue(Code.inc));
 
-                                    RESULT = new ExpressionToken(Tab.find(design).getType(), false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:design DECREMENT
                                 {:
-                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
                                         new SemanticParameters()
                                         .setName(design)
                                         .setType("int")
                                         .setValue(Code.inc+1));
 
-                                    RESULT = new ExpressionToken(Tab.find(design).getType(), false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :};
 
      ActualParameterSection ::= ActualParameterList

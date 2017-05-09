@@ -51,6 +51,7 @@ public class SemanticContext {
         ELSESTART,
         ELSEEND,
         PRINT,
+        NEW,
         EXPRESSION,
         SINGLE_EXPRESSION,
         ERROR_RECOVERED
@@ -96,6 +97,7 @@ public class SemanticContext {
                     put(ELSESTART, new String[]{});
                     put(ELSEEND, new String[]{});
                     put(PRINT, new String[]{"expression"}); // expression that is printed
+                    put(NEW, new String[]{"name"}); // expression that is printed
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
                     put(SINGLE_EXPRESSION, new String[]{"expression", "type"}); // expression found, type it should be
                     put(ERROR_RECOVERED, new String[]{});
@@ -112,7 +114,7 @@ public class SemanticContext {
     Obj lastConstDeclared;
     int statementBlockLevel;
     boolean isCurrMethodStatic;
-    int currentDeclarationType;
+    Struct currentDeclarationType;
     boolean returnFound;
     private Logger logger = LogManager.getLogger(SemanticContext.class);
     int adrFalseJump, adrTrueJump;
@@ -143,6 +145,8 @@ public class SemanticContext {
         returnFound = false;
         errorDetected = false;
         errorState = false;
+
+        currentDeclarationType = null;
     }
 
     public void errorDetected() {
@@ -175,15 +179,15 @@ public class SemanticContext {
         objHelper.constant1 = c;
     }
 
-    public void foundSymbol(SemanticSymbol type, SemanticParameters parameters) {
+    public Struct foundSymbol(SemanticSymbol type, SemanticParameters parameters) {
         report_debug("foundsymbol " + type + " - with params " + parameters);
         report_info("foundsymbol " + type);
 
         for (String parameter: symbolDeclarations.get(type)) {
             try {
-                if (parameters.getClass().getField(parameter) == null) {
+                if (parameters.getClass().getField(parameter).get(parameters) == null) {
                     report_error("You must declare parameter " + parameter + " for symbol " + type);
-                    return;
+                    return null;
                 }
             } catch (NoSuchFieldException e) {
                 report_error("No such field in parameters: " + parameter);
@@ -191,16 +195,19 @@ public class SemanticContext {
                 PrintWriter pw = new PrintWriter(sw);
                 e.printStackTrace(pw);
                 report_error(sw.toString());
-                return;
+                return null;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         }
 
         processError(type, parameters);
         symbolCounter.updateCounters(type, parameters);
         semanticChecker.checkSemantics(type, parameters);
-        contextUpdater.updateContext(type, parameters);
+        Struct objectType = contextUpdater.updateContext(type, parameters);
         codeGenerator.generateCode(type, parameters);
 
+        return objectType;
     }
 
     public void processError(SemanticSymbol type, SemanticParameters parameters) {

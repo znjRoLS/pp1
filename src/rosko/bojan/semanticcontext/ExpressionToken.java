@@ -28,6 +28,6 @@ public class ExpressionToken {
     }
 
     public String toString() {
-        return "type: " + printObjKind(objType.getKind()) + ", val: " + (isVar?"lvalue":"rvalue");
+        return "type: " + ((objType == null)?null:printObjKind(objType.getKind())) + ", val: " + (isVar?"lvalue":"rvalue");
     }
 }

@@ -23,14 +23,14 @@
                                     // ExpressionToken expression2;
                                     // Integer operator;
 
-                                    ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.EXPRESSION,
                                         new SemanticParameters()
                                         .setExpression(expression1)
                                         .setExpression2(expression2)
                                         .setType("int")
                                         .setValue(operator));
 
-                                    RESULT = new ExpressionToken(expression1.objType, false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Term:expression
                                 {:
@@ -52,14 +52,14 @@
                                     // ExpressionToken expression2;
                                     // Integer operator;
 
-                                    ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.EXPRESSION,
                                         new SemanticParameters()
                                         .setExpression(expression1)
                                         .setExpression2(expression2)
                                         .setType("int")
                                         .setValue(operator));
 
-                                    RESULT = new ExpressionToken(expression1.objType, false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Factor:expression
                                 {:
@@ -72,59 +72,63 @@
                                 {:
                                     // String varName;
 
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
                                         new SemanticParameters()
                                         .setName(varName));
 
-                                    RESULT = new ExpressionToken(Tab.find(varName).getType(), false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
-                                    ctx.foundSymbol(SemanticSymbol.METHOD_CALL_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.METHOD_CALL_FACTOR,
                                         new SemanticParameters()
                                         .setName(function));
 
-                                    RESULT = new ExpressionToken(Tab.find(function).getType(), false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | CONST_NUMBER:val
                                 {:
                                     // Integer val;
 
-                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
                                         new SemanticParameters()
                                         .setValue(val)
                                         .setType("int"));
 
-                                    RESULT = new ExpressionToken(Tab.intType, false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | CONST_CHAR:val
                                 {:
                                     // char val;
 
-                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
                                         new SemanticParameters()
                                         .setValue((int)val)
                                         .setType("char"));
 
-                                    RESULT = new ExpressionToken(Tab.charType, false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | CONST_BOOL:val
                                 {:
                                     // boolean val;
 
-                                    ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
                                         new SemanticParameters()
                                         .setValue(val?1:0)
                                         .setType("bool"));
 
-                                    RESULT = new ExpressionToken(new Struct(Struct.Bool), false);
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | NEW Type:type OptionalDimension
                                 {:
                                     // String type;
 
-                                    RESULT = new ExpressionToken(Tab.find(type).getType(), false);
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.NEW,
+                                        new SemanticParameters()
+                                        .setName(type));
+
+                                    RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT
                                 {:

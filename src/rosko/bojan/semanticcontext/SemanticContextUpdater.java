@@ -33,29 +33,37 @@ public class SemanticContextUpdater {
         context.errorDetected();
     }
 
-    public void updateContext(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
+    public Struct updateContext(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
+
+        Struct result = null;
 
         switch(type) {
 
             case CONST: {
-                context.lastConstDeclared = Tab.insert(Obj.Con, parameters.name, new Struct(context.currentDeclarationType));
+                context.lastConstDeclared = Tab.insert(Obj.Con, parameters.name, context.currentDeclarationType);
+                result = context.currentDeclarationType;
                 break;
             }
             case CONST_VAL: {
                 context.lastConstDeclared.setAdr(parameters.value);
                 context.lastConstDeclared = null;
+                result = context.currentDeclarationType;
             }
             case CONST_FACTOR: {
+                result = context.objHelper.objectStructs.get(parameters.type);
                 break;
             }
             case VAR: {
-                Tab.insert(Obj.Var, parameters.name, new Struct(context.currentDeclarationType));
+                Tab.insert(Obj.Var, parameters.name, context.currentDeclarationType);
+                result = context.currentDeclarationType;
                 break;
             }
             case ARRAY: {
+                report_error("Arrays are not processed properly");
                 Struct arrType = new Struct(Struct.Array);
-                arrType.setElementType(new Struct(context.currentDeclarationType));
+                arrType.setElementType(context.currentDeclarationType);
                 Tab.insert(Obj.Var, parameters.name, arrType);
+                result = arrType;
                 break;
             }
 
@@ -72,10 +80,11 @@ public class SemanticContextUpdater {
             }
 
             case METHOD: {
-                context.currMethod = Tab.insert(Obj.Meth, parameters.name, new Struct(context.currentDeclarationType));
+                context.currMethod = Tab.insert(Obj.Meth, parameters.name, context.currentDeclarationType);
                 Tab.openScope();
                 context.currMethodName = parameters.name;
                 context.isCurrMethodStatic = false;
+                result = context.currentDeclarationType;
                 break;
             }
             case METHOD_START: {
@@ -98,11 +107,14 @@ public class SemanticContextUpdater {
                 break;
             }
             case FORMAL_PARAMETER: {
-                Tab.insert(Obj.Var, parameters.name, new Struct(context.objHelper.objectType.get(parameters.type)));
+                Tab.insert(Obj.Var, parameters.name, context.objHelper.objectStructs.get(parameters.type));
+                result = context.objHelper.objectStructs.get(parameters.type);
                 break;
             }
             case FORMAL_PARAMETER_ARRAY: {
-                Tab.insert(Obj.Var, parameters.name, new Struct(Struct.Array, new Struct(context.objHelper.objectType.get(parameters.type))));
+                report_error("Arrays are not processed properly");
+                Tab.insert(Obj.Var, parameters.name, new Struct(Struct.Array, context.objHelper.objectStructs.get(parameters.type)));
+                result = context.objHelper.objectStructs.get(parameters.type);
                 break;
             }
             case RETURN: {
@@ -119,6 +131,10 @@ public class SemanticContextUpdater {
                 context.currClass = Tab.insert(Obj.Type, parameters.name, context.currClassStruct);
                 Tab.openScope();
                 context.currClassName = parameters.name;
+
+                context.objHelper.objectStructs.put(parameters.name, context.currClassStruct);
+
+                result = context.currClassStruct;
                 break;
             }
             case CLASS_EXIT: {
@@ -130,11 +146,8 @@ public class SemanticContextUpdater {
             }
 
             case TYPE: {
-                if (context.objHelper.objectType.containsKey(parameters.name)) {
-                    context.currentDeclarationType = context.objHelper.objectType.get(parameters.name);
-                } else {
-                    context.currentDeclarationType = context.objHelper.objectType.get("class");
-                }
+                context.currentDeclarationType = context.objHelper.objectStructs.get(parameters.name);
+                result = context.currentDeclarationType;
                 break;
             }
             case TYPE_CLASS: {
@@ -175,10 +188,17 @@ public class SemanticContextUpdater {
             case PRINT: {
                 break;
             }
+            case NEW: {
+                result = Tab.find(parameters.name).getType();
+                break;
+            }
 
             case EXPRESSION: {
+                result = parameters.expression.objType;
                 break;
             }
         }
+
+        return result;
     }
 }

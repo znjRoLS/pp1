@@ -214,26 +214,51 @@ public class SemanticContextCodeGenerator {
                 break;
             }
 
-            case IFSTART: {
+            case IF_START: {
                 Code.loadConst(0);
                 Code.putFalseJump(Code.ne, 0);
                 context.adrFalseJump = Code.pc - 2;
                 break;
             }
-            case IFEND: {
+            case IF_END: {
                 Code.fixup(context.adrFalseJump);
                 break;
             }
-            case ELSESTART: {
+            case ELSE_START: {
                 Code.putJump(0);
                 context.adrTrueJump = Code.pc - 2;
                 Code.fixup(context.adrFalseJump);
                 break;
             }
-            case ELSEEND: {
+            case ELSE_END: {
                 Code.fixup(context.adrTrueJump);
                 break;
             }
+
+            case FOR_INIT: {
+                context.forConditionAddress = Code.pc;
+                break;
+            }
+            case FOR_CONDITION: {
+                Code.loadConst(0);
+                Code.putFalseJump(Code.ne, 0);
+                context.forFalseConditionJump = Code.pc - 2;
+                Code.putJump(0);
+                context.forTrueConditionJump = Code.pc - 2;
+                context.forIterationAddress = Code.pc;
+                break;
+            }
+            case FOR_ITERATION: {
+                Code.putJump(context.forConditionAddress);
+                Code.fixup(context.forTrueConditionJump);
+                break;
+            }
+            case FOR_BLOCK: {
+                Code.putJump(context.forIterationAddress);
+                Code.fixup(context.forFalseConditionJump);
+                break;
+            }
+
             case PRINT: {
                 if (parameters.expression.objType.getKind() == Struct.Int) {
                     Code.loadConst(5);
@@ -256,30 +281,24 @@ public class SemanticContextCodeGenerator {
                 Code.put(parameters.value);
                 break;
             }
+            case SINGLE_EXPRESSION: {
+                break;
+            }
 
-            case SINGLE_EXPRESSION:
-                if (Code.inc == parameters.value) {
+            case INCREMENT: {
+                if (1 == parameters.value) {
                     Code.load(Tab.find(parameters.name));
                     Code.load(context.objHelper.constant1);
                     Code.put(Code.add);
                     Code.store(Tab.find(parameters.name));
-
-//                    Code.put(Code.inc);
-//                    Code.put(Tab.find(parameters.name).getAdr());
-//                    Code.put(1);
-                } else if (Code.inc + 1 == parameters.value) {
+                } else if (-1 == parameters.value) {
                     Code.load(Tab.find(parameters.name));
                     Code.load(context.objHelper.constant1);
                     Code.put(Code.sub);
                     Code.store(Tab.find(parameters.name));
-
-//                    Code.put(Code.inc);
-//                    Code.put(Tab.find(parameters.name).getAdr());
-//                    Code.put(-1);
-                } else {
-                    Code.put(parameters.value);
                 }
                 break;
+            }
 
         }
 

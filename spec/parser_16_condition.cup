@@ -68,11 +68,11 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
 
-                            ctx.foundSymbol(SemanticSymbol.RELOP,
+                            Struct objectType = ctx.foundSymbol(SemanticSymbol.RELOP,
                                 new SemanticParameters()
                                 .setExpression(expression1)
                                 .setExpression2(expression2)
                                 .setValue(operator));
 
-                            RESULT = new ExpressionToken(new Struct(Struct.Bool), false);
+                            RESULT = new ExpressionToken(objectType, false);
                         :};

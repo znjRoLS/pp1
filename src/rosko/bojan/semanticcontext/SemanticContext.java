@@ -46,14 +46,19 @@ public class SemanticContext {
         TYPE_CLASS,
         RETURN,
         RELOP,
-        IFSTART,
-        IFEND,
-        ELSESTART,
-        ELSEEND,
+        IF_START,
+        IF_END,
+        ELSE_START,
+        ELSE_END,
+        FOR_INIT,
+        FOR_CONDITION,
+        FOR_ITERATION,
+        FOR_BLOCK,
         PRINT,
         NEW,
         EXPRESSION,
         SINGLE_EXPRESSION,
+        INCREMENT,
         ERROR_RECOVERED
     }
 
@@ -92,14 +97,19 @@ public class SemanticContext {
                     put(DESIGNATOR_ASSIGN, new String[]{"name", "expression"}); // designator name and expression assigned
                     put(DESIGNATOR_FACTOR, new String[]{"name"}); // designator name
                     put(RELOP, new String[]{"expression", "expression2", "value"}); // value is relop instruction, expressions to compare
-                    put(IFSTART, new String[]{});
-                    put(IFEND, new String[]{});
-                    put(ELSESTART, new String[]{});
-                    put(ELSEEND, new String[]{});
+                    put(IF_START, new String[]{});
+                    put(IF_END, new String[]{});
+                    put(ELSE_START, new String[]{});
+                    put(ELSE_END, new String[]{});
+                    put(FOR_INIT, new String[]{});
+                    put(FOR_CONDITION, new String[]{});
+                    put(FOR_ITERATION, new String[]{});
+                    put(FOR_BLOCK, new String[]{});
                     put(PRINT, new String[]{"expression"}); // expression that is printed
                     put(NEW, new String[]{"name"}); // expression that is printed
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
                     put(SINGLE_EXPRESSION, new String[]{"expression", "type"}); // expression found, type it should be
+                    put(INCREMENT, new String[]{"name", "value"}); // name of designator, value to increment with
                     put(ERROR_RECOVERED, new String[]{});
                 }
             };
@@ -120,6 +130,8 @@ public class SemanticContext {
     int adrFalseJump, adrTrueJump;
     public boolean errorDetected;
     boolean errorState;
+
+    int forTrueConditionJump, forFalseConditionJump, forConditionAddress, forIterationAddress;
 
     private SemanticContextSymbolCounter symbolCounter;
     private SemanticContextSemanticChecker semanticChecker;

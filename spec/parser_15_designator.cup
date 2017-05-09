@@ -34,21 +34,21 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                 :}
                                 | Designator:design INCREMENT
                                 {:
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                    // String design;
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.INCREMENT,
                                         new SemanticParameters()
                                         .setName(design)
-                                        .setType("int")
-                                        .setValue(Code.inc));
+                                        .setValue(1));
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:design DECREMENT
                                 {:
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                    // String design;
+                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.INCREMENT,
                                         new SemanticParameters()
                                         .setName(design)
-                                        .setType("int")
-                                        .setValue(Code.inc+1));
+                                        .setValue(-1));
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :};

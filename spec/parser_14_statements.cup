@@ -29,32 +29,48 @@ StatementDesignator ::= DesignatorStatement
 
         StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT
                         {:
-                            ctx.foundSymbol(SemanticSymbol.IFSTART,
+                            ctx.foundSymbol(SemanticSymbol.IF_START,
                                 new SemanticParameters());
                         :}
                         Statement OptionalElse;
 
        OptionalElse ::= ELSE
                         {:
-                            ctx.foundSymbol(SemanticSymbol.ELSESTART,
+                            ctx.foundSymbol(SemanticSymbol.ELSE_START,
                                 new SemanticParameters());
                         :}
                         Statement
                         {:
-                            ctx.foundSymbol(SemanticSymbol.ELSEEND,
+                            ctx.foundSymbol(SemanticSymbol.ELSE_END,
                                 new SemanticParameters());
                         :}
                         | /* epsilon */
                         {:
-                            ctx.foundSymbol(SemanticSymbol.IFEND,
+                            ctx.foundSymbol(SemanticSymbol.IF_END,
                                 new SemanticParameters());
                         :};
 
        StatementFor ::= FOR PARENTHESES_LEFT
                         OptionalDesignatorStatement SEMICOLON
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.FOR_INIT,
+                                new SemanticParameters());
+                        :}
                         OptionalCondition SEMICOLON
-                        OptionalDesignatorStatement SEMICOLON
-                        PARENTHESES_RIGHT Statement;
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.FOR_CONDITION,
+                                new SemanticParameters());
+                        :}
+                        OptionalDesignatorStatement
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.FOR_ITERATION,
+                                new SemanticParameters());
+                        :}
+                        PARENTHESES_RIGHT Statement
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.FOR_BLOCK,
+                                new SemanticParameters());
+                        :};
 
      StatementBreak ::= BREAK SEMICOLON;
 

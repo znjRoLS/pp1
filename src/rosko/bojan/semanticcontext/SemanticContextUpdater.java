@@ -201,19 +201,37 @@ public class SemanticContextUpdater {
                 result = extractLastDesignatorType(parameters.name);
                 break;
             }
+            case RELOP: {
+                result = context.objHelper.objectStructs.get("bool");
+                break;
+            }
 
-            case IFSTART: {
+            case IF_START: {
                 break;
             }
-            case IFEND: {
+            case IF_END: {
                 break;
             }
-            case ELSESTART: {
+            case ELSE_START: {
                 break;
             }
-            case ELSEEND: {
+            case ELSE_END: {
                 break;
             }
+
+            case FOR_INIT: {
+                break;
+            }
+            case FOR_CONDITION: {
+                break;
+            }
+            case FOR_ITERATION: {
+                break;
+            }
+            case FOR_BLOCK: {
+                break;
+            }
+
             case PRINT: {
                 break;
             }

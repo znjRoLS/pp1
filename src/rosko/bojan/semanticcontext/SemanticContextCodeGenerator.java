@@ -237,6 +237,7 @@ public class SemanticContextCodeGenerator {
 
             case FOR_INIT: {
                 context.forConditionAddress = Code.pc;
+                context.inFor = true;
                 break;
             }
             case FOR_CONDITION: {
@@ -256,6 +257,20 @@ public class SemanticContextCodeGenerator {
             case FOR_BLOCK: {
                 Code.putJump(context.forIterationAddress);
                 Code.fixup(context.forFalseConditionJump);
+                for (int breakStatement : context.forBreakStatements) {
+                    Code.fixup(breakStatement);
+                }
+                context.forBreakStatements.clear();
+                context.inFor = false;
+                break;
+            }
+            case BREAK : {
+                Code.putJump(0);
+                context.forBreakStatements.add(Code.pc-2);
+                break;
+            }
+            case CONTINUE : {
+                Code.putJump(context.forIterationAddress);
                 break;
             }
 

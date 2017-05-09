@@ -72,9 +72,17 @@ StatementDesignator ::= DesignatorStatement
                                 new SemanticParameters());
                         :};
 
-     StatementBreak ::= BREAK SEMICOLON;
+     StatementBreak ::= BREAK SEMICOLON
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.BREAK,
+                                new SemanticParameters());
+                        :};
 
-  StatementContinue ::= CONTINUE SEMICOLON;
+  StatementContinue ::= CONTINUE SEMICOLON
+                        {:
+                            ctx.foundSymbol(SemanticSymbol.CONTINUE,
+                                new SemanticParameters());
+                        :};
 
     StatementReturn ::= RETURN SEMICOLON
                         {:

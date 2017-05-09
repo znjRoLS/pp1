@@ -9,6 +9,7 @@ import rs.etf.pp1.symboltable.concepts.Struct;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;
@@ -54,6 +55,8 @@ public class SemanticContext {
         FOR_CONDITION,
         FOR_ITERATION,
         FOR_BLOCK,
+        BREAK,
+        CONTINUE,
         PRINT,
         NEW,
         EXPRESSION,
@@ -105,6 +108,8 @@ public class SemanticContext {
                     put(FOR_CONDITION, new String[]{});
                     put(FOR_ITERATION, new String[]{});
                     put(FOR_BLOCK, new String[]{});
+                    put(BREAK, new String[]{});
+                    put(CONTINUE, new String[]{});
                     put(PRINT, new String[]{"expression"}); // expression that is printed
                     put(NEW, new String[]{"name"}); // expression that is printed
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
@@ -132,6 +137,8 @@ public class SemanticContext {
     boolean errorState;
 
     int forTrueConditionJump, forFalseConditionJump, forConditionAddress, forIterationAddress;
+    ArrayList<Integer> forBreakStatements;
+    boolean inFor;
 
     private SemanticContextSymbolCounter symbolCounter;
     private SemanticContextSemanticChecker semanticChecker;
@@ -159,6 +166,9 @@ public class SemanticContext {
         errorState = false;
 
         currentDeclarationType = null;
+
+        forBreakStatements = new ArrayList<>();
+        inFor = false;
     }
 
     public void errorDetected() {

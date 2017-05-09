@@ -231,6 +231,12 @@ public class SemanticContextUpdater {
             case FOR_BLOCK: {
                 break;
             }
+            case BREAK : {
+                break;
+            }
+            case CONTINUE : {
+                break;
+            }
 
             case PRINT: {
                 break;

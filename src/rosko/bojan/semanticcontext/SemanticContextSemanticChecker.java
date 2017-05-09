@@ -277,6 +277,18 @@ public class SemanticContextSemanticChecker {
             case FOR_BLOCK: {
                 break;
             }
+            case BREAK : {
+                if (!context.inFor) {
+                    report_error("Cannot use break statement if not in for loop!");
+                }
+                break;
+            }
+            case CONTINUE : {
+                if (!context.inFor) {
+                    report_error("Cannot use continue statement if not in for loop!");
+                }
+                break;
+            }
 
             case PRINT: {
                 report_debug(parameters.expression.toString());

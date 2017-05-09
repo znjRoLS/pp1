@@ -2,7 +2,6 @@ package rosko.bojan.semanticcontext;
 
 import rosko.bojan.ExpressionToken;
 
-import static rosko.bojan.Parser.printExpr;
 
 /**
  * Created by rols on 5/9/17.
@@ -55,8 +54,8 @@ public class SemanticParameters{
     }
 
     public String toString() {
-        return "expression: " + printExpr(expression) + " | " +
-                "expression2: " + printExpr(expression2) + " | " +
+        return "expression: " + expression + " | " +
+                "expression2: " + expression2 + " | " +
                 "value: " + value + " | " +
                 "type: " + type + " | " +
                 "name: " + name;

@@ -30,8 +30,4 @@ action code {:
         return this.parser.printObj(object);
     }
 
-    String printExpr(ExpressionToken expr) {
-        return this.parser.printExpr(expr);
-    }
-
 :}

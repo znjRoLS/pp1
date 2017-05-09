@@ -14,14 +14,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 
-import static rosko.bojan.Parser.printExpr;
 import static rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;
 
 /**
  * Created by rols on 4/26/17.
  */
 public class SemanticContext {
-
 
     // for communication from parser
     public enum SemanticSymbol {

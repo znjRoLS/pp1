@@ -7,6 +7,7 @@ import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 import rs.etf.pp1.mj.runtime.Code;
 
+import rosko.bojan.ObjHelper;
 import rosko.bojan.semanticcontext.SemanticContext;
 import rosko.bojan.semanticcontext.SymbolCounter;
 import rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;

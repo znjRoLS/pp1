@@ -6,7 +6,6 @@ import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
 
-import static rosko.bojan.Parser.printExpr;
 
 /**
  * Created by rols on 5/9/17.
@@ -208,9 +207,9 @@ public class SemanticContextSemanticChecker {
             case RELOP: {
                 if (!parameters.expression.compatible(parameters.expression2)) {
                     report_error("Expressions not compatible! " +
-                            printExpr(parameters.expression) +
+                            parameters.expression +
                             " - " +
-                            printExpr(parameters.expression2));
+                            parameters.expression2);
                 }
                 break;
             }
@@ -229,7 +228,7 @@ public class SemanticContextSemanticChecker {
             }
 
             case PRINT: {
-                report_debug(printExpr(parameters.expression));
+                report_debug(parameters.expression.toString());
                 if (parameters.expression.objType.getKind() != Struct.Int
                         && parameters.expression.objType.getKind() != Struct.Char) {
                     report_error("Print expression neither int nor char!");
@@ -239,11 +238,11 @@ public class SemanticContextSemanticChecker {
 
             case EXPRESSION: {
                 if (parameters.expression.objType.getKind() != SemanticContext.objectType.get(parameters.type)) {
-                    report_error("Expression not of expected type! " + printExpr(parameters.expression) +
+                    report_error("Expression not of expected type! " + parameters.expression +
                             ", type expected: " + parameters.type);
                 }
                 if (parameters.expression2.objType.getKind() != SemanticContext.objectType.get(parameters.type)) {
-                    report_error("Expression not of expected type! " + printExpr(parameters.expression2) +
+                    report_error("Expression not of expected type! " + parameters.expression2 +
                             ", type expected: " + parameters.type);
                 }
                 break;

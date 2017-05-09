@@ -61,20 +61,38 @@ OptionalDesignatorStatement ::= DesignatorStatement
 
             ActualParameter ::= Expression:expression;
 
-                 Designator ::= ID:id MemberList
+                 Designator ::= ID:id MemberList:member
                                 {:
                                     // String id;
+                                    // String member;
+
                                     ctx.foundSymbol(SemanticSymbol.DESIGNATOR,
                                         new SemanticParameters()
-                                        .setName(id));
+                                        .setName(id + member));
 
-                                    RESULT = id;
+                                    report_debug("test3 " + id + member);
+                                    RESULT = id + member;
                                 :};
 
-                 MemberList ::= MemberList Member
-                                | /* epsilon */;
+                 MemberList ::= MemberList:member1 Member:member2
+                                {:
+                                    // String member1;
+                                    // String member2;
 
-                     Member ::= DOT ID
+                                    report_debug("test2 " + member1 + member2);
+                                    RESULT = member1 + member2;
+                                :}
+                                | /* epsilon */
+                                {:
+                                    RESULT = "";
+                                :};
+
+                     Member ::= DOT ID:id
+                                {:
+                                    // String id;
+                                    report_debug("test1 " + "." + id);
+                                    RESULT = "." + id;
+                                :}
                                 | Dimension;
 
           OptionalDimension ::= Dimension

@@ -76,6 +76,7 @@
                                         new SemanticParameters()
                                         .setName(varName));
 
+                                    report_debug("test " + objectType.getKind());
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:function MethodCall

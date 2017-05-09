@@ -10,12 +10,14 @@ non terminal StatementBlock, StatementList, Statement, OptionalElse;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
 non terminal ActualParameterSection, ActualParameterList, ActualParameter;
-non terminal MemberList, Member;
 non terminal OptionalDimension, Dimension;
 non terminal OptionalMethodCall, MethodCall;
 non terminal OptionalUnaryMinus;
+non terminal DesignatorString;
 
 non terminal String Designator;
+non terminal String MemberList, Member;
+
 non terminal String VarIDSingle, VarID;
 non terminal ExpressionToken Expression;
 non terminal ExpressionToken Term, AdditionTermList, Factor, MultiplicationFactorList;

@@ -167,46 +167,78 @@ public class SemanticContextSemanticChecker {
 
             case DESIGNATOR: {
                 report_info("Found designator: " + parameters.name);
-                Obj node = Tab.find(parameters.name);
-                if (node == Tab.noObj) {
+                Obj design;
+
+                if (parameters.name.contains(".")) {
+                    String paramName = parameters.name;
+                    String firstPart = paramName.substring(0,paramName.indexOf("."));
+                    paramName = paramName.substring(paramName.indexOf(".") + 1);
+                    Obj currentObject = Tab.find(firstPart);
+
+                    while(paramName.contains(".")) {
+                        firstPart = paramName.substring(0,paramName.indexOf("."));
+                        paramName = paramName.substring(paramName.indexOf(".") + 1);
+
+                        if (currentObject.getType().getKind() != Struct.Class) {
+                            report_error("Var " + firstPart + " is not of class type!");
+                        }
+                        currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
+                        if (currentObject == Tab.noObj) {
+                            report_error("Field " + firstPart + " not existant!");
+                        }
+                    }
+
+                    design = currentObject.getType().getMembersTable().searchKey(paramName);
+
+                } else {
+                    design = Tab.find(parameters.name);
+                }
+
+
+                if (design == Tab.noObj) {
                     report_error("Identifier name not declared: " + parameters.name);
                 }
-                if (node.getKind() == Obj.Type) {
+                if (design.getKind() == Obj.Type) {
                     report_error("Identifier name is a type: " + parameters.name);
                 }
-                if (node.getKind() == Obj.Meth) {
+                if (design.getKind() == Obj.Meth) {
                     report_error("Identifier name is a method: " + parameters.name);
                 }
-                if (node.getKind() == Obj.Prog) {
+                if (design.getKind() == Obj.Prog) {
                     report_error("Identifier name is program name: " + parameters.name);
                 }
                 break;
             }
             case DESIGNATOR_ASSIGN: {
-                report_info("Found assign statement");
-                Obj design = Tab.find(parameters.name);
+                report_info("Found designator assign");
+                Obj design;
+                if (parameters.name.contains(".")) {
+                    String paramName = parameters.name;
+
+                    String firstSection = paramName.substring(0, paramName.indexOf('.'));
+                    Obj currentObj = Tab.find(firstSection);
+                    paramName = paramName.substring(paramName.indexOf('.') + 1);
+
+                    while(paramName.contains(".")) {
+                        firstSection = paramName.substring(0, paramName.indexOf('.'));
+                        currentObj = currentObj.getType().getMembersTable().searchKey(firstSection);
+                        paramName = paramName.substring(paramName.indexOf('.') + 1);
+                    }
+
+                    design = currentObj.getType().getMembersTable().searchKey(paramName);
+
+                } else {
+                    design = Tab.find(parameters.name);
+                }
+                String[] nameSections = parameters.name.split("\\.");
+
                 if (!parameters.expression.objType.equals(design.getType())) {
-                    //report_info("expr " + printExpr(expr) + "| design " + printObj(design));
-                    //report_info(expr.objType.getKind() + " " + design.getType().getKind());
                     report_error("Not assignable!");
                 }
                 break;
             }
             case DESIGNATOR_FACTOR: {
-                report_info("Found designator factor: " + parameters.name);
-                Obj node = Tab.find(parameters.name);
-                if (node == Tab.noObj) {
-                    report_error("Identifier name not declared: " + parameters.name);
-                }
-                if (node.getKind() == Obj.Type) {
-                    report_error("Identifier name is a type: " + parameters.name);
-                }
-                if (node.getKind() == Obj.Meth) {
-                    report_error("Identifier name is a method: " + parameters.name);
-                }
-                if (node.getKind() == Obj.Prog) {
-                    report_error("Identifier name is program name: " + parameters.name);
-                }
+                report_info("Found designator factor");
                 break;
             }
 
@@ -250,6 +282,7 @@ public class SemanticContextSemanticChecker {
                 } else if (objType.getType().getKind() != Struct.Class) {
                     report_error("Type not a class type! " + parameters.name);
                 }
+
                 break;
             }
 

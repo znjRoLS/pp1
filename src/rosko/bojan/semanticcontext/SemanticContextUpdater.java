@@ -33,6 +33,27 @@ public class SemanticContextUpdater {
         context.errorDetected();
     }
 
+    private Struct extractLastDesignatorType(String paramName) {
+
+        if (!paramName.contains(".")) {
+            return Tab.find(paramName).getType();
+        }
+
+        String firstPart = paramName.substring(0,paramName.indexOf("."));
+        paramName = paramName.substring(paramName.indexOf(".") + 1);
+        Obj currentObject = Tab.find(firstPart);
+
+        while(paramName.contains(".")) {
+            firstPart = paramName.substring(0,paramName.indexOf("."));
+            paramName = paramName.substring(paramName.indexOf(".") + 1);
+            currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
+        }
+
+        currentObject = currentObject.getType().getMembersTable().searchKey(paramName);
+
+        return currentObject.getType();
+    }
+
     public Struct updateContext(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
 
         Struct result = null;
@@ -54,7 +75,12 @@ public class SemanticContextUpdater {
                 break;
             }
             case VAR: {
-                Tab.insert(Obj.Var, parameters.name, context.currentDeclarationType);
+                if (context.currClass != null && context.currMethod == null) {
+                    // these are fields
+                    Tab.insert(Obj.Fld, parameters.name, context.currentDeclarationType);
+                } else {
+                    Tab.insert(Obj.Var, parameters.name, context.currentDeclarationType);
+                }
                 result = context.currentDeclarationType;
                 break;
             }
@@ -164,12 +190,15 @@ public class SemanticContextUpdater {
             }
 
             case DESIGNATOR: {
+                result = extractLastDesignatorType(parameters.name);
                 break;
             }
             case DESIGNATOR_ASSIGN: {
+                result = extractLastDesignatorType(parameters.name);
                 break;
             }
             case DESIGNATOR_FACTOR: {
+                result = extractLastDesignatorType(parameters.name);
                 break;
             }
 

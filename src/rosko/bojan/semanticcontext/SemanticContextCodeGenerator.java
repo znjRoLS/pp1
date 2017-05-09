@@ -134,12 +134,71 @@ public class SemanticContextCodeGenerator {
                 break;
             }
             case DESIGNATOR_ASSIGN: {
-                Code.store(Tab.find(parameters.name));
+                if (!parameters.name.contains(".")) {
+                    Code.store(Tab.find(parameters.name));
+                } else {
+
+                    String paramName = parameters.name;
+
+                    String firstPart = paramName.substring(0, paramName.indexOf("."));
+                    paramName = paramName.substring(paramName.indexOf(".") + 1);
+                    String secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+                    Obj firstVar = Tab.find(firstPart), secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+                    Code.load(firstVar);
+
+                    while(paramName.contains(".")) {
+
+                        Code.put(Code.getfield);
+                        Code.put2(secondVar.getAdr());
+
+                        firstPart = paramName.substring(0, paramName.indexOf("."));
+                        paramName = paramName.substring(paramName.indexOf(".") + 1);
+                        secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+                        firstVar = secondVar;
+                        secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+
+                    }
+
+                    Code.put(Code.dup_x1);
+                    Code.put(Code.pop);
+                    Code.put(Code.putfield);
+                    Code.put2(secondVar.getAdr());
+                }
                 break;
             }
             case DESIGNATOR_FACTOR: {
-                Obj varObj = Tab.find(parameters.name);
-                Code.load(varObj);
+                if (!parameters.name.contains(".")) {
+                    Code.load(Tab.find(parameters.name));
+                } else {
+                    String paramName = parameters.name;
+
+                    String firstPart = paramName.substring(0, paramName.indexOf("."));
+                    paramName = paramName.substring(paramName.indexOf(".") + 1);
+                    String secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+                    Obj firstVar = Tab.find(firstPart), secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+                    Code.load(firstVar);
+
+                    while(paramName.contains(".")) {
+
+                        Code.put(Code.getfield);
+                        Code.put2(secondVar.getAdr());
+
+                        firstPart = paramName.substring(0, paramName.indexOf("."));
+                        paramName = paramName.substring(paramName.indexOf(".") + 1);
+                        secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+                        firstVar = secondVar;
+                        secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+
+                    }
+
+                    Code.put(Code.getfield);
+                    Code.put2(secondVar.getAdr());
+
+                }
                 break;
             }
 
@@ -183,6 +242,13 @@ public class SemanticContextCodeGenerator {
                     Code.loadConst(1);
                     Code.put(Code.bprint);
                 }
+                break;
+            }
+            case NEW: {
+                Obj classType = Tab.find(parameters.name);
+                Code.put(Code.new_);
+                Code.put2(classType.getType().getNumberOfFields());
+
                 break;
             }
 

@@ -207,6 +207,8 @@ public class SemanticContext {
         Struct objectType = contextUpdater.updateContext(type, parameters);
         codeGenerator.generateCode(type, parameters);
 
+        report_debug("returning for symbol " + type + " - " + objectType);
+
         return objectType;
     }
 

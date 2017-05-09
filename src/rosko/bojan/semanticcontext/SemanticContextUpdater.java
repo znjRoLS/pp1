@@ -98,11 +98,11 @@ public class SemanticContextUpdater {
                 break;
             }
             case FORMAL_PARAMETER: {
-                Tab.insert(Obj.Var, parameters.name, new Struct(context.objectType.get(parameters.type)));
+                Tab.insert(Obj.Var, parameters.name, new Struct(context.objHelper.objectType.get(parameters.type)));
                 break;
             }
             case FORMAL_PARAMETER_ARRAY: {
-                Tab.insert(Obj.Var, parameters.name, new Struct(Struct.Array, new Struct(context.objectType.get(parameters.type))));
+                Tab.insert(Obj.Var, parameters.name, new Struct(Struct.Array, new Struct(context.objHelper.objectType.get(parameters.type))));
                 break;
             }
             case RETURN: {
@@ -130,10 +130,10 @@ public class SemanticContextUpdater {
             }
 
             case TYPE: {
-                if (context.objectType.containsKey(parameters.name)) {
-                    context.currentDeclarationType = context.objectType.get(parameters.name);
+                if (context.objHelper.objectType.containsKey(parameters.name)) {
+                    context.currentDeclarationType = context.objHelper.objectType.get(parameters.name);
                 } else {
-                    context.currentDeclarationType = context.objectType.get("class");
+                    context.currentDeclarationType = context.objHelper.objectType.get("class");
                 }
                 break;
             }

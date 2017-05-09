@@ -44,7 +44,7 @@ public class SemanticContextCodeGenerator {
                 break;
             }
             case CONST_FACTOR: {
-                Obj c = Tab.insert(Obj.Con, null, new Struct(SemanticContext.objectType.get(parameters.type)));
+                Obj c = Tab.insert(Obj.Con, null, new Struct(context.objHelper.objectType.get(parameters.type)));
                 c.setAdr(parameters.value);
                 Code.load(c);
             }

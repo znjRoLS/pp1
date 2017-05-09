@@ -1,7 +1,5 @@
 package rosko.bojan.semanticcontext;
 
-import rosko.bojan.ExpressionToken;
-
 
 /**
  * Created by rols on 5/9/17.

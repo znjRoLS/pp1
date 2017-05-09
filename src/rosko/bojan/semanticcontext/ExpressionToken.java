@@ -1,9 +1,9 @@
-package rosko.bojan;
+package rosko.bojan.semanticcontext;
 
 
 import rs.etf.pp1.symboltable.concepts.Struct;
 
-import static rosko.bojan.ObjHelper.printObjKind;
+import static rosko.bojan.semanticcontext.ObjHelper.printObjKind;
 
 /**
  * Created by rols on 4/28/17.

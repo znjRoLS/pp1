@@ -40,7 +40,7 @@ public class SemanticContextSemanticChecker {
                 break;
             }
             case CONST_VAL: {
-                if (context.currentDeclarationType != SemanticContext.objectType.get(parameters.type)) {
+                if (context.currentDeclarationType != context.objHelper.objectType.get(parameters.type)) {
                     report_error("what now?");
                 }
                 if (context.lastConstDeclared == null) {
@@ -237,11 +237,11 @@ public class SemanticContextSemanticChecker {
             }
 
             case EXPRESSION: {
-                if (parameters.expression.objType.getKind() != SemanticContext.objectType.get(parameters.type)) {
+                if (parameters.expression.objType.getKind() != context.objHelper.objectType.get(parameters.type)) {
                     report_error("Expression not of expected type! " + parameters.expression +
                             ", type expected: " + parameters.type);
                 }
-                if (parameters.expression2.objType.getKind() != SemanticContext.objectType.get(parameters.type)) {
+                if (parameters.expression2.objType.getKind() != context.objHelper.objectType.get(parameters.type)) {
                     report_error("Expression not of expected type! " + parameters.expression2 +
                             ", type expected: " + parameters.type);
                 }

@@ -1,6 +1,7 @@
-package rosko.bojan;
+package rosko.bojan.semanticcontext;
 
 import rs.etf.pp1.symboltable.concepts.Obj;
+import rs.etf.pp1.symboltable.concepts.Struct;
 
 import java.util.HashMap;
 
@@ -8,6 +9,22 @@ import java.util.HashMap;
  * Created by rols on 5/9/17.
  */
 public class ObjHelper {
+
+    HashMap<String, Struct> objectStructs;
+
+    public ObjHelper() {
+        objectStructs = new HashMap<>();
+    }
+
+    static HashMap<String,Integer> objectType = new HashMap<String,Integer>(){
+        {
+            put("int", Struct.Int);
+            put("char", Struct.Char);
+            put("bool", Struct.Bool);
+            put("void", Struct.None);
+            put("class", Struct.Class);
+        }
+    };
 
     public static String printObj(Obj object){
         return "name: " + object.getName() +

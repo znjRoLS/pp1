@@ -2,9 +2,6 @@ package rosko.bojan.semanticcontext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import rosko.bojan.ExpressionToken;
-import rosko.bojan.Parser;
-import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
@@ -105,17 +102,6 @@ public class SemanticContext {
                 }
             };
 
-    static HashMap<String,Integer> objectType = new HashMap<String,Integer>(){
-        {
-            put("int", Struct.Int);
-            put("char", Struct.Char);
-            put("bool", Struct.Bool);
-            put("void", Struct.None);
-            put("class", Struct.Class);
-        }
-    };
-
-
 
     String currClassName;
     String currMethodName;
@@ -137,8 +123,10 @@ public class SemanticContext {
     private SemanticContextSemanticChecker semanticChecker;
     private SemanticContextCodeGenerator codeGenerator;
     private SemanticContextUpdater contextUpdater;
+    ObjHelper objHelper;
 
     public SemanticContext() {
+        objHelper = new ObjHelper();
         symbolCounter = new SemanticContextSymbolCounter(this);
         semanticChecker = new SemanticContextSemanticChecker(this);
         contextUpdater = new SemanticContextUpdater(this);
@@ -165,6 +153,12 @@ public class SemanticContext {
     public void init() {
         Tab.init();
 
+        objHelper.objectStructs.put("int", Tab.intType);
+        objHelper.objectStructs.put("char", Tab.charType);
+        objHelper.objectStructs.put("class", new Struct(Struct.Class));
+        objHelper.objectStructs.put("void", new Struct(Struct.None));
+        objHelper.objectStructs.put("bool", new Struct(Struct.Bool));
+
         Obj voidObj = Tab.insert(Obj.Type, "void", new Struct(Struct.None));
         Obj boolObj = Tab.insert(Obj.Type, "bool", new Struct(Struct.Bool));
 
@@ -172,6 +166,9 @@ public class SemanticContext {
         boolObj.setAdr(-1);
         voidObj.setLevel(-1);
         boolObj.setLevel(-1);
+
+        Tab.currentScope.addToLocals(voidObj);
+        Tab.currentScope.addToLocals(boolObj);
     }
 
     public void foundSymbol(SemanticSymbol type, SemanticParameters parameters) {

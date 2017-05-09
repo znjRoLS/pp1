@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed49476-c6e6-4423-8964-6f3aa49393b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rosko/bojan/ObjHelper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ExpressionToken.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/rosko/bojan/ObjHelper.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ObjHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_01_import.cup" afterPath="$PROJECT_DIR$/spec/parser_01_import.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_02_parser_code.cup" afterPath="$PROJECT_DIR$/spec/parser_02_parser_code.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_05_action_code.cup" afterPath="$PROJECT_DIR$/spec/parser_05_action_code.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticParameters.java" afterPath="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticParameters.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,18 +26,42 @@
       <file leaf-file-name="SemanticContext.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-889">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="164" column="27" lean-forward="true" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExpressionToken.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ExpressionToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="520">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Struct.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1540">
+              <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SemanticParameters.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticParameters.java">
+      <file leaf-file-name="Tab.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="57" column="45" lean-forward="false" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+            <state relative-caret-position="117">
+              <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -46,8 +70,8 @@
       <file leaf-file-name="SemanticContextSemanticChecker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1144">
-              <caret line="246" column="17" lean-forward="true" selection-start-line="246" selection-start-column="17" selection-end-line="246" selection-end-column="17" />
+            <state relative-caret-position="884">
+              <caret line="242" column="17" lean-forward="true" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,37 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
+      <file leaf-file-name="SemanticContextCodeGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="624" column="5" lean-forward="false" selection-start-line="623" selection-start-column="42" selection-end-line="624" selection-end-column="5" />
-              <folding>
-                <element signature="e#33880#33881#0" expanded="true" />
-                <marker date="1494317695885" expanded="true" signature="33918:33936" ph="/**...*/" />
-                <marker date="1494317695885" expanded="false" signature="33972:33979" ph=" { " />
-                <marker date="1494317695885" expanded="false" signature="34000:34004" ph=" }" />
-                <marker date="1494317695885" expanded="true" signature="34008:34060" ph="/**...*/" />
-                <marker date="1494317695885" expanded="true" signature="34354:135124" ph="{...}" />
-                <marker date="1494317695885" expanded="true" signature="56361:56517" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="60178:60334" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="64294:64385" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="67585:67676" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="70885:70976" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="84287:135124" ph="{...}" />
-                <marker date="1494317695885" expanded="true" signature="85182:85260" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="102143:102216" ph="//..." />
-                <marker date="1494317695885" expanded="true" signature="103558:103631" ph="//..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExpressionToken.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="424">
+              <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,22 +91,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser_01_import.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/parser_01_import.cup">
+      <file leaf-file-name="SemanticContextUpdater.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser_02_parser_code.cup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/parser_02_parser_code.cup">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="33" column="11" lean-forward="true" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="617">
+              <caret line="165" column="25" lean-forward="true" selection-start-line="165" selection-start-column="25" selection-end-line="165" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,23 +113,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser_05_action_code.cup" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parser_05_action_code.cup" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/parser_05_action_code.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="280">
+              <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ObjHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ObjHelper.java">
+        <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ObjHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="240">
+              <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#288#289#0" expanded="true" />
+                <element signature="e#335#336#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,8 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/rosko/bojan/SemanticParser.java" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/SemanticSymbol.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/SymbolCounter.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/StringSymbolCounter.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Pair.java" />
@@ -252,21 +242,23 @@
         <option value="$PROJECT_DIR$/src/rosko/bojan/SemanticContextSymbolCounter.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SymbolCounter.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Parser.java" />
         <option value="$PROJECT_DIR$/test/rosko/bojan/ParserTest.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSymbolCounter.java" />
         <option value="$PROJECT_DIR$/test/program.mj" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/Helper.java" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/ObjHelper.java" />
         <option value="$PROJECT_DIR$/spec/parser_02_parser_code.cup" />
         <option value="$PROJECT_DIR$/spec/parser_01_import.cup" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java" />
         <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticParameters.java" />
-        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java" />
         <option value="$PROJECT_DIR$/spec/parser_05_action_code.cup" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/ObjHelper.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ObjHelper.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ExpressionToken.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java" />
+        <option value="$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java" />
       </list>
     </option>
   </component>
@@ -978,12 +970,12 @@
       <workItem from="1493828292569" duration="8698000" />
       <workItem from="1493884590917" duration="18564000" />
       <workItem from="1493985156795" duration="16720000" />
-      <workItem from="1494313173951" duration="4279000" />
+      <workItem from="1494313173951" duration="5974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161784000" />
+    <option name="totallyTimeSpent" value="163479000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1000,6 +992,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1011,7 +1004,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -1113,22 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="119" column="29" lean-forward="true" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1492">
-          <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/sym.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1200,6 +1176,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="22" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1207,6 +1184,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1318,26 +1296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2577">
-          <caret line="179" column="38" lean-forward="true" selection-start-line="179" selection-start-column="38" selection-end-line="179" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="134" column="24" lean-forward="true" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSymbolCounter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
@@ -1370,38 +1328,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ObjHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser_01_import.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/ExpressionToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-889">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1414,36 +1344,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="246" column="17" lean-forward="true" selection-start-line="246" selection-start-column="17" selection-end-line="246" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rosko/bojan/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="624" column="5" lean-forward="false" selection-start-line="623" selection-start-column="42" selection-end-line="624" selection-end-column="5" />
           <folding>
-            <element signature="e#33880#33881#0" expanded="true" />
-            <marker date="1494317695885" expanded="true" signature="33918:33936" ph="/**...*/" />
-            <marker date="1494317695885" expanded="false" signature="33972:33979" ph=" { " />
-            <marker date="1494317695885" expanded="false" signature="34000:34004" ph=" }" />
-            <marker date="1494317695885" expanded="true" signature="34008:34060" ph="/**...*/" />
-            <marker date="1494317695885" expanded="true" signature="34354:135124" ph="{...}" />
-            <marker date="1494317695885" expanded="true" signature="56361:56517" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="60178:60334" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="64294:64385" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="67585:67676" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="70885:70976" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="84287:135124" ph="{...}" />
-            <marker date="1494317695885" expanded="true" signature="85182:85260" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="102143:102216" ph="//..." />
-            <marker date="1494317695885" expanded="true" signature="103558:103631" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="33905:135158" ph="{...}" />
+            <marker date="1494319390266" expanded="true" signature="33907:33913" ph=" }" />
+            <marker date="1494319390266" expanded="true" signature="33950:33968" ph="/**...*/" />
+            <marker date="1494319390266" expanded="false" signature="34004:34011" ph=" { " />
+            <marker date="1494319390266" expanded="false" signature="34032:34036" ph=" }" />
+            <marker date="1494319390266" expanded="true" signature="34040:34092" ph="/**...*/" />
+            <marker date="1494319390266" expanded="true" signature="34386:135156" ph="{...}" />
+            <marker date="1494319390266" expanded="true" signature="56393:56549" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="60210:60366" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="64326:64417" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="67617:67708" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="70917:71008" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="84319:135156" ph="{...}" />
+            <marker date="1494319390266" expanded="true" signature="85214:85292" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="102175:102248" ph="//..." />
+            <marker date="1494319390266" expanded="true" signature="103590:103663" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -1466,9 +1387,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/parser_05_action_code.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        <state relative-caret-position="280">
+          <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/concepts/Struct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1540">
+          <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/symboltable.jar!/rs/etf/pp1/symboltable/Tab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ObjHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="164" column="27" lean-forward="true" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/ExpressionToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextSemanticChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="242" column="17" lean-forward="true" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextCodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rosko/bojan/semanticcontext/SemanticContextUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="165" column="25" lean-forward="true" selection-start-line="165" selection-start-column="25" selection-end-line="165" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -169,6 +169,10 @@ public class SemanticContext {
 
         Tab.currentScope.addToLocals(voidObj);
         Tab.currentScope.addToLocals(boolObj);
+
+        Obj c = Tab.insert(Obj.Con, null, objHelper.objectStructs.get("int"));
+        c.setAdr(1);
+        objHelper.constant1 = c;
     }
 
     public void foundSymbol(SemanticSymbol type, SemanticParameters parameters) {

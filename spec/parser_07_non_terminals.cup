@@ -9,7 +9,6 @@ non terminal OptionalStatic;
 non terminal StatementBlock, StatementList, Statement, OptionalElse;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
-non terminal DesignatorStatement, OptionalDesignatorStatement;
 non terminal ActualParameterSection, ActualParameterList, ActualParameter;
 non terminal MemberList, Member;
 non terminal OptionalDimension, Dimension;
@@ -29,5 +28,7 @@ non terminal Integer FormalParameterSection, FormalParameterList, FormalParamete
 
 non terminal ExpressionToken Condition, OptionalCondition, ConditionTermList, ConditionTerm, ConditionFactorList, ConditionFactor;
 non terminal Integer RelationalOperator, AssignOperator;
+
+non terminal ExpressionToken DesignatorStatement, OptionalDesignatorStatement;
 
 precedence left ELSE;

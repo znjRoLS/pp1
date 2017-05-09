@@ -17,7 +17,7 @@ public class SemanticContextUpdater {
 
     public SemanticContextUpdater(SemanticContext ctx) {
         this.context = ctx;
-        logger = LogManager.getLogger(SemanticContextSemanticChecker.class);
+        logger = LogManager.getLogger(SemanticContextUpdater.class);
     }
 
     private void report_info(String msg) {

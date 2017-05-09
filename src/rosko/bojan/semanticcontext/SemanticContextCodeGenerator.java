@@ -17,7 +17,7 @@ public class SemanticContextCodeGenerator {
 
     public SemanticContextCodeGenerator(SemanticContext ctx) {
         this.context = ctx;
-        logger = LogManager.getLogger(SemanticContextSemanticChecker.class);
+        logger = LogManager.getLogger(SemanticContextCodeGenerator.class);
     }
 
     private void report_info(String msg) {
@@ -190,6 +190,31 @@ public class SemanticContextCodeGenerator {
                 Code.put(parameters.value);
                 break;
             }
+
+            case SINGLE_EXPRESSION:
+                if (Code.inc == parameters.value) {
+                    Code.load(Tab.find(parameters.name));
+                    Code.load(context.objHelper.constant1);
+                    Code.put(Code.add);
+                    Code.store(Tab.find(parameters.name));
+
+//                    Code.put(Code.inc);
+//                    Code.put(Tab.find(parameters.name).getAdr());
+//                    Code.put(1);
+                } else if (Code.inc + 1 == parameters.value) {
+                    Code.load(Tab.find(parameters.name));
+                    Code.load(context.objHelper.constant1);
+                    Code.put(Code.sub);
+                    Code.store(Tab.find(parameters.name));
+
+//                    Code.put(Code.inc);
+//                    Code.put(Tab.find(parameters.name).getAdr());
+//                    Code.put(-1);
+                } else {
+                    Code.put(parameters.value);
+                }
+                break;
+
         }
 
     }

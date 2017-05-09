@@ -12,6 +12,8 @@ public class ObjHelper {
 
     HashMap<String, Struct> objectStructs;
 
+    Obj constant1;
+
     public ObjHelper() {
         objectStructs = new HashMap<>();
     }

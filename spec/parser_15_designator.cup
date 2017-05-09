@@ -10,6 +10,7 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                         .setName(design)
                                         .setExpression(expr));
 
+                                    RESULT = expr;
                                 :}
                                 |
                                 Designator:design AssignOperator error
@@ -19,6 +20,8 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                         new SemanticParameters()
                                         .setName(design)
                                         .setValue(ErrorType.EXPRESSION_ASSIGN));
+
+                                    RESULT = null;
                                 :}
                                 | Designator:function MethodCall
                                 {:
@@ -26,9 +29,29 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     ctx.foundSymbol(SemanticSymbol.METHOD_CALL,
                                         new SemanticParameters()
                                         .setName(function));
+
+                                    RESULT = new ExpressionToken(Tab.find(function).getType(), false);
                                 :}
-                                | Designator INCREMENT
-                                | Designator DECREMENT;
+                                | Designator:design INCREMENT
+                                {:
+                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                        new SemanticParameters()
+                                        .setName(design)
+                                        .setType("int")
+                                        .setValue(Code.inc));
+
+                                    RESULT = new ExpressionToken(Tab.find(design).getType(), false);
+                                :}
+                                | Designator:design DECREMENT
+                                {:
+                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                        new SemanticParameters()
+                                        .setName(design)
+                                        .setType("int")
+                                        .setValue(Code.inc+1));
+
+                                    RESULT = new ExpressionToken(Tab.find(design).getType(), false);
+                                :};
 
      ActualParameterSection ::= ActualParameterList
                                 | /* epsilon */;

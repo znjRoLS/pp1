@@ -41,49 +41,75 @@ public class SemanticContextUpdater {
         context.errorDetected();
     }
 
+
+    private Struct getNextDesignatorSection(Struct currentType, String currentSection){
+        Struct result = null;
+
+        if (currentSection.contains("[]")) {
+            String varName = currentSection.substring(0, currentSection.indexOf('['));
+            Obj foundObj = currentType.getMembersTable().searchKey(currentSection);
+
+            result = foundObj.getType().getElemType();
+        } else {
+            Obj foundObj = currentType.getMembersTable().searchKey(currentSection);
+
+            result = foundObj.getType();
+        }
+
+        return result;
+    }
+
+
+
     private Struct extractLastDesignatorType(String paramName) {
 
-        if (!paramName.contains(".")) {
-            return Tab.find(paramName).getType();
+        Struct varType;
+
+        String varName;
+        String firstPartVarName;
+
+        boolean isField = paramName.contains(".");
+
+        if (isField) {
+            firstPartVarName = paramName.substring(0, paramName.indexOf('.'));
+        } else {
+            firstPartVarName = paramName;
         }
 
-        String firstPart = paramName.substring(0,paramName.indexOf("."));
-        paramName = paramName.substring(paramName.indexOf(".") + 1);
-        Obj currentObject = Tab.find(firstPart);
+        boolean isArray = firstPartVarName.contains("[]");
 
-        while(paramName.contains(".")) {
-            firstPart = paramName.substring(0,paramName.indexOf("."));
-            paramName = paramName.substring(paramName.indexOf(".") + 1);
-            currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
+        if (isArray) {
+            varName = firstPartVarName.substring(0, firstPartVarName.indexOf('['));
+        } else {
+            varName = firstPartVarName;
+        }
 
-            if (firstPart.equals("this")) {
-                //this is not chained yet!
-                currentObject = Tab.currentScope().getOuter().getLocals().searchKey(firstPart);
+        Obj var = Tab.find(varName);
+
+        if (isArray) {
+            varType = var.getType().getElemType();
+        } else {
+            varType = var.getType();
+        }
+
+        if (isField) {
+
+            String restOfName = paramName.substring(paramName.indexOf('.') + 1);
+
+            while (restOfName.contains(".")) {
+                String firstPart = restOfName.substring(0, restOfName.indexOf('.'));
+                restOfName = restOfName.substring(restOfName.indexOf('.') + 1);
+
+                varType = getNextDesignatorSection(varType, firstPart);
             }
+
+            varType = getNextDesignatorSection(varType, restOfName);
         }
 
-        currentObject = currentObject.getType().getMembersTable().searchKey(paramName);
-        if (firstPart.equals("this")) {
-            //this is not chained yet!
-            currentObject = Tab.currentScope().getOuter().getLocals().searchKey(paramName);
-        }
-
-        return currentObject.getType();
+        return varType;
     }
 
-    private Struct cloneStruct(Struct struct) {
-        Struct cloned = new Struct(struct.getKind());
 
-        if (cloned.getKind() == Struct.Array) {
-            cloned.setElementType(struct.getElemType());
-        }
-
-        if (cloned.getKind() == Struct.Class) {
-            cloned.setMembers(struct.getMembersTable());
-        }
-
-        return cloned;
-    }
 
     public Struct updateContext(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
 
@@ -116,10 +142,14 @@ public class SemanticContextUpdater {
                 break;
             }
             case ARRAY: {
-                report_error("Arrays are not processed properly");
                 Struct arrType = new Struct(Struct.Array);
                 arrType.setElementType(context.currentDeclarationType);
-                Tab.insert(Obj.Var, parameters.name, arrType);
+                if (context.currClass != null && context.currMethod == null) {
+                    // these are fields
+                    Tab.insert(Obj.Fld, parameters.name, arrType);
+                } else {
+                    Tab.insert(Obj.Var, parameters.name, arrType);
+                }
                 result = arrType;
                 break;
             }
@@ -172,10 +202,13 @@ public class SemanticContextUpdater {
                 break;
             }
             case METHOD_CALL: {
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                result = currentDesignator.currentStruct;
                 break;
             }
             case METHOD_CALL_FACTOR: {
-                result = extractLastDesignatorType(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                result = currentDesignator.currentStruct;
                 break;
             }
             case FORMAL_PARAMETER: {
@@ -246,17 +279,68 @@ public class SemanticContextUpdater {
             }
 
             case DESIGNATOR: {
-                result = extractLastDesignatorType(parameters.name);
+                report_error("shouldnt be here, right?");
                 break;
             }
             case DESIGNATOR_ASSIGN: {
-                result = extractLastDesignatorType(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.designatorAssign(parameters.expression);
+                if (res != null) {
+                    report_error(res);
+                }
+
+                result = currentDesignator.currentStruct;
+
+                context.currentDesignators.pop();
                 break;
             }
             case DESIGNATOR_FACTOR: {
-                result = extractLastDesignatorType(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.designatorFactor();
+                if (res != null) {
+                    report_error(res);
+                }
+
+                result = currentDesignator.currentStruct;
+
+                context.currentDesignators.pop();
                 break;
             }
+            case DESIGNATOR_FIRSTPART: {
+                context.currentDesignators.push(new DesignatorHelper(context));
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.setFirstPart(parameters.name);
+                if (res != null) {
+                    report_error(res);
+                }
+
+                break;
+            }
+            case DESIGNATOR_MEMBER_ARRAY: {
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.memberArray();
+                if (res != null) {
+                    report_error(res);
+                }
+                break;
+            }
+            case DESIGNATOR_MEMBER_CLASS: {
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.memberClass(parameters.name);
+                if (res != null) {
+                    report_error(res);
+                }
+                break;
+            }
+            case METHOD_CALL_START: {
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.methodCall();
+                if (res != null) {
+                    report_error(res);
+                }
+                break;
+            }
+
             case RELOP: {
                 result = context.objHelper.objectStructs.get("bool");
                 break;
@@ -301,10 +385,21 @@ public class SemanticContextUpdater {
                 result = Tab.find(parameters.name).getType();
                 break;
             }
+            case NEW_ARRAY: {
+                Obj arrayType = Tab.find(parameters.name);
+                result = new Struct(Struct.Array, arrayType.getType());
+                break;
+            }
 
             case EXPRESSION: {
                 result = parameters.expression.objType;
                 break;
+            }
+            case INCREMENT: {
+                String res = context.currentDesignators.peek().increment(parameters.value);
+                if (res != null) {
+                    report_error(res);
+                }
             }
         }
 

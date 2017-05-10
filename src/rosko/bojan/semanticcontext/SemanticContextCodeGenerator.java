@@ -42,7 +42,7 @@ public class SemanticContextCodeGenerator {
         context.errorDetected();
     }
 
-    public Pair<Obj, Obj> getLastDesignators(String designator) {
+    public Obj getLastDesignator(String designator) {
 
         String paramName = designator;
 
@@ -69,10 +69,10 @@ public class SemanticContextCodeGenerator {
             secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
         }
 
-        return new Pair<Obj, Obj>(firstVar, secondVar);
+        return secondVar;
     }
 
-    public Pair<Obj, Obj> getLastDesignatorsWithoutCode(String designator) {
+    public Obj getLastDesignatorWithoutCode(String designator) {
 
         String paramName = designator;
 
@@ -95,7 +95,7 @@ public class SemanticContextCodeGenerator {
             secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
         }
 
-        return new Pair<Obj, Obj>(firstVar, secondVar);
+        return secondVar;
     }
 
     public void generateCode(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
@@ -145,28 +145,28 @@ public class SemanticContextCodeGenerator {
                 break;
             }
             case METHOD_CALL: {
-                Obj function = Tab.find(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                Obj function = currentDesignator.methodObject;
                 int functionAdr = function.getAdr() - Code.pc;
                 Code.put(Code.call);
                 Code.put2(functionAdr);
                 if (function.getType() != Tab.noType) {
                     Code.put(Code.pop);
                 }
+
+                context.currentDesignators.pop();
+
                 break;
             }
             case METHOD_CALL_FACTOR: {
-                if (!parameters.name.contains(".")) {
-                    Obj function = Tab.find(parameters.name);
-                    int functionAdr = function.getAdr() - Code.pc;
-                    Code.put(Code.call);
-                    Code.put2(functionAdr);
-                } else {
-                    Pair<Obj, Obj> vars = getLastDesignatorsWithoutCode(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
 
-                    int methodAdr = vars.getSecond().getAdr() - Code.pc;
-                    Code.put(Code.call);
-                    Code.put2(methodAdr);
-                }
+                Obj function = currentDesignator.methodObject;
+                int functionAdr = function.getAdr() - Code.pc;
+                Code.put(Code.call);
+                Code.put2(functionAdr);
+
+                context.currentDesignators.pop();
 
                 break;
             }
@@ -204,47 +204,6 @@ public class SemanticContextCodeGenerator {
                 break;
             }
 
-            case DESIGNATOR: {
-                if (parameters.name.contains(".")) {
-                    // this thing generates getfield code for getting val of second-to-last segment
-                    // example: var1.var2.var3.var or var1.var2.var3.method() whould have val of reference of var3 on exprstack
-                    // so, if its designator_assign, it should become putfield var,
-                    //     if its designator_factor it should become getfield var
-                    //     BUT if its method call, it should leave the THIS on expr stack(this is in fact val of var3)
-                    Pair<Obj, Obj> vars = getLastDesignators(parameters.name);
-
-                    // (another) BUT if its static, just pop the param
-                    // TODO this actually generates a lot of unnecessary instructions (why call all the getfields, when we dont need THIS?)
-                    if (vars.getSecond().getKind() == Obj.Meth && context.staticMethods.contains(vars.getSecond().getAdr())) {
-                        Code.put(Code.pop);
-                    }
-                }
-                break;
-            }
-            case DESIGNATOR_ASSIGN: {
-                if (!parameters.name.contains(".")) {
-                    Code.store(Tab.find(parameters.name));
-                } else {
-                    Pair<Obj, Obj> vars = getLastDesignatorsWithoutCode(parameters.name);
-
-                    //Code.put(Code.dup_x1);
-                    //Code.put(Code.pop);
-                    Code.put(Code.putfield);
-                    Code.put2(vars.getSecond().getAdr());
-                }
-                break;
-            }
-            case DESIGNATOR_FACTOR: {
-                if (!parameters.name.contains(".")) {
-                    Code.load(Tab.find(parameters.name));
-                } else {
-                    Pair<Obj, Obj> vars = getLastDesignatorsWithoutCode(parameters.name);
-
-                    Code.put(Code.getfield);
-                    Code.put2(vars.getSecond().getAdr());
-                }
-                break;
-            }
 
             case RELOP: {
                 Code.putFalseJump(parameters.value,0);
@@ -361,6 +320,13 @@ public class SemanticContextCodeGenerator {
 
                 break;
             }
+            case NEW_ARRAY: {
+                Obj arrayType = Tab.find(parameters.name);
+
+                Code.put(Code.newarray);
+                Code.put(1);
+                break;
+            }
 
             case EXPRESSION: {
                 Code.put(parameters.value);
@@ -371,17 +337,7 @@ public class SemanticContextCodeGenerator {
             }
 
             case INCREMENT: {
-                if (1 == parameters.value) {
-                    Code.load(Tab.find(parameters.name));
-                    Code.load(context.objHelper.constant1);
-                    Code.put(Code.add);
-                    Code.store(Tab.find(parameters.name));
-                } else if (-1 == parameters.value) {
-                    Code.load(Tab.find(parameters.name));
-                    Code.load(context.objHelper.constant1);
-                    Code.put(Code.sub);
-                    Code.store(Tab.find(parameters.name));
-                }
+
                 break;
             }
 

@@ -1,20 +1,67 @@
 program funky
 int var1;
+int vararr[];
 
-{
-    int fact(int n) {
-        if (n == 1) {
-            return 1;
-        } else {
-            return fact(n-1) * n;
+class nekaklasa {
+    int fld1;
+    char fld2;
+    int arr[];
+    {
+        void metoda1() {
+            print(this.fld2);
+        }
+
+        static void metoda() {
+            print('c');
+        }
+
+        int metodaint(int p) {
+            print(p * this.fld1);
+            return p * this.fld1;
         }
     }
+}
 
+{
+    void metoda1() {
+        print('a');
+    }
+
+    int metoda2(int a, int b) {
+        print('b');
+        return a + b;
+    }
 
     int main()
+    int i;
+    nekaklasa varklasa;
+    nekaklasa arrklasa[];
         {
-            print(fact(1));
-            print(fact(5));
+            vararr = new int[10];
+            vararr[0] = 1;
+            print(vararr[0]);
+
+            metoda1();
+            print(metoda2(5,6));
+
+            varklasa = new nekaklasa;
+
+            varklasa.fld2 = 'd';
+            varklasa.fld1 = 10;
+
+            varklasa.metoda1();
+            varklasa.metoda();
+            varklasa.metodaint(8);
+
+            arrklasa = new nekaklasa[5];
+            for(i=0;i < 5; i ++)
+                arrklasa[i] = new nekaklasa;
+
+            arrklasa[2].arr = new int[10];
+            arrklasa[2].arr[2] = 90;
+            arrklasa[2].arr[2]++;
+            print(arrklasa[2].arr[2]);
+
             return 0;
         }
 }

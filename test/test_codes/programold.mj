@@ -424,3 +424,27 @@ class drugaklasa extends nekaklasa {
             return 0;
         }
 }
+
+
+/////////////////////////////////////////////////////////
+
+program funky
+int var1;
+
+{
+    int fact(int n) {
+        if (n == 1) {
+            return 1;
+        } else {
+            return fact(n-1) * n;
+        }
+    }
+
+
+    int main()
+        {
+            print(fact(1));
+            print(fact(5));
+            return 0;
+        }
+}

@@ -90,7 +90,16 @@
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
-                                | Designator:function MethodCall
+                                | Designator:function
+                                {:
+                                    // String function;
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.METHOD_CALL_START,
+                                        functionleft,
+                                        null
+                                    );
+                                :}
+                                MethodCall
                                 {:
                                     // String function;
                                     Struct objectType = ctx.foundSymbol(
@@ -144,12 +153,25 @@
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
-                                | NEW Type:type OptionalDimension
+                                | NEW Type:type
                                 {:
                                     // String type;
 
                                     Struct objectType = ctx.foundSymbol(
                                         SemanticSymbol.NEW,
+                                        typeleft,
+                                        new SemanticParameters()
+                                            .setName(type)
+                                    );
+
+                                    RESULT = new ExpressionToken(objectType, false);
+                                :}
+                                | NEW Type:type Dimension
+                                {:
+                                    // String type;
+
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.NEW_ARRAY,
                                         typeleft,
                                         new SemanticParameters()
                                             .setName(type)

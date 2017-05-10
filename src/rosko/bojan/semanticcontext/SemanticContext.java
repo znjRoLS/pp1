@@ -12,6 +12,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Stack;
 
 import static rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;
 
@@ -46,6 +47,10 @@ public class SemanticContext {
         DESIGNATOR,
         DESIGNATOR_ASSIGN,
         DESIGNATOR_FACTOR,
+        DESIGNATOR_FIRSTPART,
+        DESIGNATOR_MEMBER_CLASS,
+        DESIGNATOR_MEMBER_ARRAY,
+        METHOD_CALL_START,
         TYPE_CLASS,
         RETURN,
         RELOP,
@@ -61,6 +66,7 @@ public class SemanticContext {
         CONTINUE,
         PRINT,
         NEW,
+        NEW_ARRAY,
         EXPRESSION,
         SINGLE_EXPRESSION,
         INCREMENT,
@@ -86,7 +92,7 @@ public class SemanticContext {
                     put(METHOD, new String[]{"name"}); // method name
                     put(METHOD_START, new String[]{"value"}); // value is number of parameters
                     put(METHOD_EXIT, new String[]{});
-                    put(METHOD_CALL, new String[]{"name"}); // function that is called
+                    put(METHOD_CALL, new String[]{}); // function that is called
                     put(METHOD_CALL_FACTOR, new String[]{"name"}); // function that is called
                     put(FORMAL_PARAMETER, new String[]{"type", "name"}); // type and name of parameter
                     put(FORMAL_PARAMETER_ARRAY, new String[]{"type", "name"}); // type and name of parameter
@@ -102,6 +108,10 @@ public class SemanticContext {
                     put(DESIGNATOR, new String[]{"name"}); // designator name
                     put(DESIGNATOR_ASSIGN, new String[]{"name", "expression"}); // designator name and expression assigned
                     put(DESIGNATOR_FACTOR, new String[]{"name"}); // designator name
+                    put(DESIGNATOR_FIRSTPART, new String[]{"name"}); // designator name
+                    put(DESIGNATOR_MEMBER_CLASS, new String[]{"name"}); // designator name
+                    put(DESIGNATOR_MEMBER_ARRAY, new String[]{});
+                    put(METHOD_CALL_START, new String[]{});
                     put(RELOP, new String[]{"expression", "expression2", "value"}); // value is relop instruction, expressions to compare
                     put(IF_START, new String[]{});
                     put(IF_END, new String[]{});
@@ -115,6 +125,7 @@ public class SemanticContext {
                     put(CONTINUE, new String[]{});
                     put(PRINT, new String[]{"expression"}); // expression that is printed
                     put(NEW, new String[]{"name"}); // expression that is printed
+                    put(NEW_ARRAY, new String[]{"name"}); // expression that is printed
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
                     put(SINGLE_EXPRESSION, new String[]{"expression", "type"}); // expression found, type it should be
                     put(INCREMENT, new String[]{"name", "value"}); // name of designator, value to increment with
@@ -123,7 +134,6 @@ public class SemanticContext {
             };
 
 
-    HashSet<Integer> staticMethods;
     String currClassName;
     String currMethodName;
     Obj currMethod;
@@ -143,14 +153,14 @@ public class SemanticContext {
     public int currentLine;
 
 
-
-
     private SemanticContextSymbolCounter symbolCounter;
     private SemanticContextSemanticChecker semanticChecker;
     private SemanticContextCodeGenerator codeGenerator;
     private SemanticContextUpdater contextUpdater;
     ObjHelper objHelper;
     BranchHelper branchHelper;
+    Stack<DesignatorHelper> currentDesignators;
+    HashSet<Integer> staticMethods;
 
     public SemanticContext() {
         branchHelper = new BranchHelper();
@@ -159,6 +169,8 @@ public class SemanticContext {
         semanticChecker = new SemanticContextSemanticChecker(this);
         contextUpdater = new SemanticContextUpdater(this);
         codeGenerator = new SemanticContextCodeGenerator(this);
+        currentDesignators = new Stack<>();
+        staticMethods = new HashSet<>();
 
         currClassName = null;
         currMethodName = null;
@@ -174,7 +186,6 @@ public class SemanticContext {
 
         currentDeclarationType = null;
 
-        staticMethods = new HashSet<>();
     }
 
     public void errorDetected() {
@@ -188,7 +199,7 @@ public class SemanticContext {
         objHelper.objectStructs.put("int", Tab.intType);
         objHelper.objectStructs.put("char", Tab.charType);
         objHelper.objectStructs.put("class", new Struct(Struct.Class));
-        objHelper.objectStructs.put("void", new Struct(Struct.None));
+        objHelper.objectStructs.put("void", Tab.noType);
         objHelper.objectStructs.put("bool", new Struct(Struct.Bool));
 
         Obj voidObj = Tab.insert(Obj.Type, "void", new Struct(Struct.None));
@@ -215,6 +226,10 @@ public class SemanticContext {
 
         for (String parameter : symbolDeclarations.get(type)) {
             try {
+                if (parameters == null) {
+                    report_error("Parameters null, but " + parameter + " needed for symbol " + type);
+                    return null;
+                }
                 if (parameters.getClass().getField(parameter).get(parameters) == null) {
                     report_error("You must declare parameter " + parameter + " for symbol " + type);
                     return null;

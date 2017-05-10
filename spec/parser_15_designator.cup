@@ -29,14 +29,22 @@ OptionalDesignatorStatement ::= DesignatorStatement
 
                                     RESULT = null;
                                 :}
-                                | Designator:function MethodCall
+                                | Designator:function
                                 {:
-                                    // String function;
+                                     // String function;
+                                     Struct objectType = ctx.foundSymbol(
+                                         SemanticSymbol.METHOD_CALL_START,
+                                         functionleft,
+                                         new SemanticParameters()
+                                             .setName(function)
+                                     );
+                                :}
+                                MethodCall
+                                {:
                                     Struct objectType = ctx.foundSymbol(
                                         SemanticSymbol.METHOD_CALL,
                                         functionleft,
-                                        new SemanticParameters()
-                                            .setName(function)
+                                        null
                                     );
 
                                     RESULT = new ExpressionToken(objectType, false);
@@ -76,19 +84,34 @@ OptionalDesignatorStatement ::= DesignatorStatement
 
             ActualParameter ::= Expression:expression;
 
-                 Designator ::= ID:id MemberList:member
+                 Designator ::= ID:id
+                                {:
+                                    // String id;
+
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.DESIGNATOR_FIRSTPART,
+                                        idleft,
+                                        new SemanticParameters()
+                                            .setName(id)
+                                    );
+
+                                    RESULT = id;
+                                :}
+                                MemberList:member
                                 {:
                                     // String id;
                                     // String member;
 
-                                    ctx.foundSymbol(
-                                        SemanticSymbol.DESIGNATOR,
-                                        idleft,
-                                        new SemanticParameters()
-                                            .setName(id + member)
-                                    );
+                                    //ctx.foundSymbol(
+                                    //   SemanticSymbol.DESIGNATOR_END,
+                                    //    idleft,
+                                    //    null
+                                    //);
+                                    //    new SemanticParameters()
+                                    //        .setName(id + member)
+                                    //);
 
-                                    RESULT = id + member;
+                                    //RESULT = id + member;
                                 :};
 
                  MemberList ::= MemberList:member1 Member:member2
@@ -107,9 +130,26 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                 {:
                                     // String id;
 
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.DESIGNATOR_MEMBER_CLASS,
+                                        idleft,
+                                        new SemanticParameters()
+                                            .setName(id)
+                                    );
+
                                     RESULT = "." + id;
                                 :}
-                                | Dimension;
+                                | BRACKETS_LEFT:leftBracket
+                                {:
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.DESIGNATOR_MEMBER_ARRAY,
+                                        leftBracketleft,
+                                        null
+                                    );
+
+                                    RESULT = "[]";
+                                :}
+                                Expression BRACKETS_RIGHT;
 
           OptionalDimension ::= Dimension
                                 | /* epsilon */;

@@ -70,7 +70,34 @@ public class SemanticContextSemanticChecker {
 
         return design;
     }
-    
+
+    private Struct getNextDesignatorSection(Struct currentType, String currentSection){
+        Struct result = null;
+
+        if (currentSection.contains("[]")) {
+            String varName = currentSection.substring(0, currentSection.indexOf('['));
+            Obj foundObj = currentType.getMembersTable().searchKey(currentSection);
+            if (foundObj == null) {
+                report_error("Identifier name not declared: " + currentSection);
+                return null;
+            }
+            if (foundObj.getType().getKind() != Struct.Array) {
+                report_error("Identifier name not an array: " + currentSection);
+                return null;
+            }
+            result = foundObj.getType().getElemType();
+        } else {
+            Obj foundObj = currentType.getMembersTable().searchKey(currentSection);
+            if (foundObj == null) {
+                report_error("Identifier name not declared: " + currentSection);
+                return null;
+            }
+            result = foundObj.getType();
+        }
+
+        return result;
+    }
+
     public void checkSemantics(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
         switch(type) {
 
@@ -121,28 +148,26 @@ public class SemanticContextSemanticChecker {
             }
             case METHOD_EXIT: {
                 report_info("Exited method: " + context.currMethodName);
-                if (!context.returnFound && context.currMethod.getType() != Tab.noType) {
+                if (!context.returnFound && context.currMethod.getType() != context.objHelper.objectStructs.get("void")) {
                     report_error("Non void method must have return statement!");
                     break;
                 }
                 break;
             }
             case METHOD_CALL: {
-                report_info("Function call: " + parameters.name);
-                Obj function = Tab.find(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                Obj function = currentDesignator.methodObject;
+                report_info("Function call finished "  +function.getName());
                 if (function.getKind() != Obj.Meth) {
                     report_error("Not a function!");
-                    break;
-                }
-                if (function.getType() == Tab.noType) {
-                    report_error("Function doesn't return value!");
                     break;
                 }
                 break;
             }
             case METHOD_CALL_FACTOR: {
                 report_info("Function expression call: " + parameters.name);
-                Obj function = getLastObjDesignator(parameters.name);
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                Obj function = currentDesignator.methodObject;
                 if (function.getKind() != Obj.Meth) {
                     report_error("Not a function!");
                     break;
@@ -226,79 +251,83 @@ public class SemanticContextSemanticChecker {
 
             case DESIGNATOR: {
                 report_info("Found designator: " + parameters.name);
-                Obj design;
+                Struct varType;
 
-                if (parameters.name.contains(".")) {
-                    String paramName = parameters.name;
-                    String firstPart = paramName.substring(0,paramName.indexOf("."));
-                    paramName = paramName.substring(paramName.indexOf(".") + 1);
-                    Obj currentObject = Tab.find(firstPart);
+                String varName;
+                String firstPartVarName;
 
-                    while(paramName.contains(".")) {
-                        firstPart = paramName.substring(0,paramName.indexOf("."));
-                        paramName = paramName.substring(paramName.indexOf(".") + 1);
+                boolean isField = parameters.name.contains(".");
 
-                        if (currentObject.getType().getKind() != Struct.Class) {
-                            report_error("Var " + firstPart + " is not of class type!");
-                            break;
-                        }
-                        currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
-                        if (currentObject.getName().equals("this")) {
-                            //this is not chained yet!
-                            currentObject = Tab.currentScope().getOuter().getLocals().searchKey(firstPart);
-                        }
-                        if (currentObject == Tab.noObj) {
-                            report_error("Field " + firstPart + " not existant!");
-                            break;
-                        }
-                    }
-
-                    design = currentObject.getType().getMembersTable().searchKey(paramName);
-                    if (firstPart.equals("this")) {
-                        //this is not chained yet!
-                        design = Tab.currentScope().getOuter().getLocals().searchKey(paramName);
-                    }
-
+                if (isField) {
+                    firstPartVarName = parameters.name.substring(0, parameters.name.indexOf('.'));
                 } else {
-                    design = Tab.find(parameters.name);
+                    firstPartVarName = parameters.name;
                 }
 
+                boolean isArray = firstPartVarName.contains("[]");
 
-                if (design == Tab.noObj || design == null) {
-                    report_error("Identifier name not declared: " + parameters.name);
-                    break;
+                if (isArray) {
+                    varName = firstPartVarName.substring(0, firstPartVarName.indexOf('['));
+                } else {
+                    varName = firstPartVarName;
                 }
-                if (design.getKind() == Obj.Type) {
-                    report_error("Identifier name is a type: " + parameters.name);
-                    break;
+
+                Obj var = Tab.find(varName);
+                if (var == Tab.noObj) {
+                    report_error("Identifier name not declared: " + firstPartVarName);
+                    return;
                 }
-                if (design.getKind() == Obj.Prog) {
-                    report_error("Identifier name is program name: " + parameters.name);
-                    break;
+                if (var.getKind() == Obj.Type) {
+                    report_error("Identifier name is a type: " + firstPartVarName);
+                    return;
                 }
+                if (var.getKind() == Obj.Prog) {
+                    report_error("Identifier name is program name: " + firstPartVarName);
+                    return;
+                }
+
+                if (isArray) {
+                    if (var.getType().getKind() != Struct.Array) {
+                        report_error("Identifier not an array type: " + firstPartVarName);
+                        return;
+                    }
+                    varType = var.getType().getElemType();
+                } else {
+                    varType = var.getType();
+                }
+
+                if (isField) {
+
+                    if (varType.getKind() != Struct.Class) {
+                        report_error("Identifier not of class type: " + firstPartVarName);
+                        return;
+                    }
+
+                    String restOfName = parameters.name.substring(parameters.name.indexOf('.')+1);
+
+                    while(restOfName.contains(".")) {
+                        String firstPart = restOfName.substring(0,restOfName.indexOf('.'));
+                        restOfName = restOfName.substring(restOfName.indexOf('.') + 1);
+
+                        varType = getNextDesignatorSection(varType,firstPart);
+
+                        if(varType == null) {
+                            //this sum eraaa
+                            return;
+                        }
+
+                        if (varType.getKind() != Struct.Class) {
+                            report_error("Identifier not of class type: " + firstPartVarName);
+                            return;
+                        }
+                    }
+
+                    varType = getNextDesignatorSection(varType, restOfName);
+                }
+
                 break;
             }
-            case DESIGNATOR_ASSIGN: {
-                report_info("Found designator assign");
-                Obj design = getLastObjDesignator(parameters.name);
 
-                if (design == null || !parameters.expression.objType.equals(design.getType())) {
-                    report_error("Not assignable!");
-                    break;
-                }
-                break;
-            }
-            case DESIGNATOR_FACTOR: {
-                report_info("Found designator factor");
-
-                Obj design = getLastObjDesignator(parameters.name);
-
-                if (design.getKind() == Obj.Meth) {
-                    report_error("Identifier name is a method: " + parameters.name);
-                    break;
-                }
-                break;
-            }
 
             case RELOP: {
                 if (!parameters.expression.compatible(parameters.expression2)) {
@@ -364,16 +393,22 @@ public class SemanticContextSemanticChecker {
                 Obj objType = Tab.find(parameters.name);
                 if (objType == Tab.noObj) {
                     report_error("Symbol not found! " + parameters.name);
+                    report_info("This should never happen, right?");
                     break;
                 }
                 if (objType.getKind() != Obj.Type) {
                     report_error("Symbol not a type! " + parameters.name);
+                    report_info("This should never happen, right?");
                     break;
                 }
                 if (objType.getType().getKind() != Struct.Class) {
                     report_error("Type not a class type! " + parameters.name);
                     break;
                 }
+
+                break;
+            }
+            case NEW_ARRAY: {
 
                 break;
             }
@@ -397,11 +432,7 @@ public class SemanticContextSemanticChecker {
             }
 
             case INCREMENT: {
-                Obj node = Tab.find(parameters.name);
-                if (!node.getType().equals(context.objHelper.objectStructs.get("int"))) {
-                    report_error("Var not of int type: " + parameters.name);
-                    break;
-                }
+
                 break;
             }
 

@@ -31,6 +31,7 @@ public class SemanticContext {
         METHOD_EXIT,
         CLASS,
         CLASS_EXIT,
+        EXTENDED,
         FORMAL_PARAMETER,
         FORMAL_PARAMETER_ARRAY,
         STATEMENT_BLOCK,
@@ -92,6 +93,7 @@ public class SemanticContext {
                     put(STATIC, new String[]{});
                     put(CLASS, new String[]{"name"}); // class name
                     put(CLASS_EXIT, new String[]{});
+                    put(EXTENDED, new String[]{"type"}); // name of type(class) extending
                     put(TYPE, new String[]{"name"}); // type name
                     put(TYPE_CLASS, new String[]{"name"}); // type name
                     put(STATEMENT_BLOCK, new String[]{});
@@ -202,16 +204,28 @@ public class SemanticContext {
     }
 
     public Struct foundSymbol(SemanticSymbol type, int line, SemanticParameters parameters) {
-        currentLine = line+1;
+        currentLine = line + 1;
 
         report_debug("foundsymbol " + type + " - with params " + parameters);
         report_info("foundsymbol " + type);
 
-        for (String parameter: symbolDeclarations.get(type)) {
+        for (String parameter : symbolDeclarations.get(type)) {
             try {
                 if (parameters.getClass().getField(parameter).get(parameters) == null) {
                     report_error("You must declare parameter " + parameter + " for symbol " + type);
                     return null;
+                }
+                if (parameter.equals("expression")) {
+                    if (parameters.expression.objType == null) {
+                        report_error("Parameter expression doesn't have a type!");
+                        return null;
+                    }
+                }
+                if (parameter.equals("expression2")) {
+                    if (parameters.expression2.objType == null) {
+                        report_error("Parameter expression2 doesn't have a type!");
+                        return null;
+                    }
                 }
             } catch (NoSuchFieldException e) {
                 report_error("No such field in parameters: " + parameter);
@@ -225,11 +239,23 @@ public class SemanticContext {
             }
         }
 
+        Struct objectType = null;
+
         processError(type, parameters);
         symbolCounter.updateCounters(type, parameters);
         semanticChecker.checkSemantics(type, parameters);
-        Struct objectType = contextUpdater.updateContext(type, parameters);
-        codeGenerator.generateCode(type, parameters);
+        if (!errorDetected) {
+            objectType = contextUpdater.updateContext(type, parameters);
+        }
+        else {
+            report_info("Skipping updating context because of an error");
+        }
+        if (!errorDetected) {
+            codeGenerator.generateCode(type, parameters);
+        }
+        else {
+            report_info("Skipping code generation because of an error");
+        }
 
         report_debug("returning for symbol " + type + " - " + objectType);
 

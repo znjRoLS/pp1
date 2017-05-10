@@ -52,10 +52,12 @@ public class SemanticContextSemanticChecker {
                     report_error("Constant value differs from constant declaration type: "
                             + context.currentDeclarationType + " - "
                             + context.objHelper.objectStructs.get(parameters.type));
+                    break;
                 }
                 if (context.lastConstDeclared == null) {
                     report_info("This shouldn't happen, right?");
                     report_error("Syntax error!");
+                    break;
                 }
             }
             case CONST_FACTOR: {
@@ -87,6 +89,7 @@ public class SemanticContextSemanticChecker {
                 report_info("Exited method: " + context.currMethodName);
                 if (!context.returnFound && context.currMethod.getType() != Tab.noType) {
                     report_error("Non void method must have return statement!");
+                    break;
                 }
                 break;
             }
@@ -95,9 +98,11 @@ public class SemanticContextSemanticChecker {
                 Obj function = Tab.find(parameters.name);
                 if (function.getKind() != Obj.Meth) {
                     report_error("Not a function!");
+                    break;
                 }
                 if (function.getType() == Tab.noType) {
                     report_error("Function doesn't return value!");
+                    break;
                 }
                 break;
             }
@@ -106,9 +111,11 @@ public class SemanticContextSemanticChecker {
                 Obj function = Tab.find(parameters.name);
                 if (function.getKind() != Obj.Meth) {
                     report_error("Not a function!");
+                    break;
                 }
                 if (function.getType() == Tab.noType) {
                     report_error("Function doesn't return value!");
+                    break;
                 }
                 break;
             }
@@ -121,10 +128,12 @@ public class SemanticContextSemanticChecker {
             case RETURN: {
                 if (context.returnFound) {
                     report_error("Method cannot have more than one return statement!");
+                    break;
                 }
                 if (!(parameters.expression.objType.equals(context.currMethod.getType()) ||
                         parameters.expression.objType.equals(context.currMethod.getType())) ) {
                     report_error("Method declaration and return expression are not of same type!");
+                    break;
                 }
                 break;
             }
@@ -133,12 +142,15 @@ public class SemanticContextSemanticChecker {
             }
 
             case CLASS: {
-                report_info("Entered class: " + context.currClassName);
+                report_info("Entered class: " + parameters.name);
                 break;
             }
             case CLASS_EXIT: {
                 report_info("Exited class: " + context.currClassName);
-
+                break;
+            }
+            case EXTENDED: {
+                report_info("Entered class extended: " + parameters.name + " - " + parameters.type);
                 break;
             }
 
@@ -146,8 +158,10 @@ public class SemanticContextSemanticChecker {
                 Obj node = Tab.find(parameters.name);
                 if (node == Tab.noObj) {
                     report_error("Type not declared: " + parameters.name);
+                    break;
                 } else if (node.getKind() != Obj.Type) {
                     report_error("Token doesn't represent type: " + parameters.name);
+                    break;
                 }
                 break;
             }
@@ -155,13 +169,20 @@ public class SemanticContextSemanticChecker {
                 Obj node = Tab.find(parameters.name);
                 if (node == Tab.noObj) {
                     report_error("Type not declared: " + parameters.name);
-                } else if (node.getKind() != Obj.Type) {
+                    break;
+                }
+                if (node.getKind() != Obj.Type) {
                     report_error("Token doesn't represent type: " + parameters.name);
-                } else if (node.getType().getKind() != Struct.Class) {
+                    break;
+                }
+                if (node.getType().getKind() != Struct.Class) {
                     report_error("Token not of class type: " + parameters.name);
-                } else if (!context.objHelper.objectStructs.containsKey(parameters.name)) {
+                    break;
+                }
+                if (!context.objHelper.objectStructs.containsKey(parameters.name)) {
                     report_info("This should never happen, right ?");
                     report_error("Type not declared: " + parameters.name);
+                    break;
                 }
                 break;
             }
@@ -189,10 +210,12 @@ public class SemanticContextSemanticChecker {
 
                         if (currentObject.getType().getKind() != Struct.Class) {
                             report_error("Var " + firstPart + " is not of class type!");
+                            break;
                         }
                         currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
                         if (currentObject == Tab.noObj) {
                             report_error("Field " + firstPart + " not existant!");
+                            break;
                         }
                     }
 
@@ -203,17 +226,21 @@ public class SemanticContextSemanticChecker {
                 }
 
 
-                if (design == Tab.noObj) {
+                if (design == Tab.noObj || design == null) {
                     report_error("Identifier name not declared: " + parameters.name);
+                    break;
                 }
                 if (design.getKind() == Obj.Type) {
                     report_error("Identifier name is a type: " + parameters.name);
+                    break;
                 }
                 if (design.getKind() == Obj.Meth) {
                     report_error("Identifier name is a method: " + parameters.name);
+                    break;
                 }
                 if (design.getKind() == Obj.Prog) {
                     report_error("Identifier name is program name: " + parameters.name);
+                    break;
                 }
                 break;
             }
@@ -240,8 +267,9 @@ public class SemanticContextSemanticChecker {
                 }
                 String[] nameSections = parameters.name.split("\\.");
 
-                if (!parameters.expression.objType.equals(design.getType())) {
+                if (design == null || !parameters.expression.objType.equals(design.getType())) {
                     report_error("Not assignable!");
+                    break;
                 }
                 break;
             }
@@ -256,6 +284,7 @@ public class SemanticContextSemanticChecker {
                             parameters.expression +
                             " - " +
                             parameters.expression2);
+                    break;
                 }
                 break;
             }
@@ -288,21 +317,24 @@ public class SemanticContextSemanticChecker {
             case BREAK : {
                 if (!context.branchHelper.inFor()) {
                     report_error("Cannot use break statement if not in for loop!");
+                    break;
                 }
                 break;
             }
             case CONTINUE : {
                 if (!context.branchHelper.inFor()) {
                     report_error("Cannot use continue statement if not in for loop!");
+                    break;
                 }
                 break;
             }
 
             case PRINT: {
                 report_debug(parameters.expression.toString());
-                if (parameters.expression.objType.getKind() != Struct.Int
-                        && parameters.expression.objType.getKind() != Struct.Char) {
+                if (!parameters.expression.objType.equals(context.objHelper.objectStructs.get("int"))
+                        && !parameters.expression.objType.equals(context.objHelper.objectStructs.get("char"))) {
                     report_error("Print expression neither int nor char!");
+                    break;
                 }
                 break;
             }
@@ -310,10 +342,15 @@ public class SemanticContextSemanticChecker {
                 Obj objType = Tab.find(parameters.name);
                 if (objType == Tab.noObj) {
                     report_error("Symbol not found! " + parameters.name);
-                } else if (objType.getKind() != Obj.Type) {
+                    break;
+                }
+                if (objType.getKind() != Obj.Type) {
                     report_error("Symbol not a type! " + parameters.name);
-                } else if (objType.getType().getKind() != Struct.Class) {
+                    break;
+                }
+                if (objType.getType().getKind() != Struct.Class) {
                     report_error("Type not a class type! " + parameters.name);
+                    break;
                 }
 
                 break;
@@ -323,10 +360,12 @@ public class SemanticContextSemanticChecker {
                 if (!parameters.expression.objType.equals(context.objHelper.objectStructs.get(parameters.type))) {
                     report_error("Expression not of expected type! " + parameters.expression +
                             ", type expected: " + parameters.type);
+                    break;
                 }
-                if (!parameters.expression2.objType.equals(context.objHelper.objectStructs.get(parameters.type))) {
+                else if (!parameters.expression2.objType.equals(context.objHelper.objectStructs.get(parameters.type))) {
                     report_error("Expression not of expected type! " + parameters.expression2 +
                             ", type expected: " + parameters.type);
+                    break;
                 }
                 break;
             }
@@ -339,6 +378,7 @@ public class SemanticContextSemanticChecker {
                 Obj node = Tab.find(parameters.name);
                 if (!node.getType().equals(context.objHelper.objectStructs.get("int"))) {
                     report_error("Var not of int type: " + parameters.name);
+                    break;
                 }
                 break;
             }

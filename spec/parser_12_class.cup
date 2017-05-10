@@ -20,7 +20,16 @@
                             );
                         :};
 
-       ClassExtends ::= EXTENDS ClassType
+       ClassExtends ::= EXTENDS ClassType:type
+                        {:
+                            ctx.foundSymbol(
+                                SemanticSymbol.EXTENDED,
+                                typeleft,
+                                new SemanticParameters()
+                                    .setType(type)
+                            );
+
+                        :}
                         | /* epsilon */;
 
           ClassType ::= Type:typeName
@@ -33,4 +42,5 @@
                                     .setName(typeName)
                             );
 
+                            RESULT = typeName;
                         :};

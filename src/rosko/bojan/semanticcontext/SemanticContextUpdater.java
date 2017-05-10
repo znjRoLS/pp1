@@ -62,6 +62,20 @@ public class SemanticContextUpdater {
         return currentObject.getType();
     }
 
+    private Struct cloneStruct(Struct struct) {
+        Struct cloned = new Struct(struct.getKind());
+
+        if (cloned.getKind() == Struct.Array) {
+            cloned.setElementType(struct.getElemType());
+        }
+
+        if (cloned.getKind() == Struct.Class) {
+            cloned.setMembers(struct.getMembersTable());
+        }
+
+        return cloned;
+    }
+
     public Struct updateContext(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
 
         Struct result = null;
@@ -176,6 +190,16 @@ public class SemanticContextUpdater {
                 Tab.closeScope();
                 context.currClassName = null;
                 context.currClass = null;
+                break;
+            }
+            case EXTENDED: {
+                Obj parentClass = Tab.find(parameters.type);
+
+                for(Obj member : parentClass.getType().getMembers()) {
+                    Tab.insert(Obj.Fld, member.getName(), member.getType());
+                }
+
+                result = context.currClassStruct;
                 break;
             }
 

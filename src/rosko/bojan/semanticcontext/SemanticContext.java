@@ -70,6 +70,7 @@ public class SemanticContext {
         EXPRESSION,
         SINGLE_EXPRESSION,
         INCREMENT,
+        NEGATE,
         ERROR_RECOVERED
     }
 
@@ -129,6 +130,7 @@ public class SemanticContext {
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
                     put(SINGLE_EXPRESSION, new String[]{"expression", "type"}); // expression found, type it should be
                     put(INCREMENT, new String[]{"name", "value"}); // name of designator, value to increment with
+                    put(NEGATE, new String[]{"expression"}); // name of designator, value to increment with
                     put(ERROR_RECOVERED, new String[]{});
                 }
             };

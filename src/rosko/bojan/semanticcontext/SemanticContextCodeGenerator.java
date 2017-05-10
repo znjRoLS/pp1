@@ -341,6 +341,11 @@ public class SemanticContextCodeGenerator {
                 break;
             }
 
+            case NEGATE: {
+                Code.put(Code.neg);
+                break;
+            }
+
         }
 
     }

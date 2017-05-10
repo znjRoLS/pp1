@@ -1,67 +1,43 @@
-program funky
-int var1;
-int vararr[];
-
-class nekaklasa {
-    int fld1;
-    char fld2;
-    int arr[];
-    {
-        void metoda1() {
-            print(this.fld2);
-        }
-
-        static void metoda() {
-            print('c');
-        }
-
-        int metodaint(int p) {
-            print(p * this.fld1);
-            return p * this.fld1;
-        }
-    }
-}
-
+program P
+const int size = 10;
+class Table {
+int pos[], neg[];
 {
-    void metoda1() {
-        print('a');
-    }
+ void putp (int a, int idx) { this.pos[idx]=a; }
+ void putn (int a, int idx) { this.neg[idx]=a; }
+ int getp (int idx) { return pos[idx]; }
+ int getn (int idx) { return neg[idx]; }
+}
+}
+Table val;
+{
+void
+main()
+int x, i;
+{ //‐‐‐‐‐‐‐‐‐‐ Initialize val
+val = new Table;
+val.pos = new int [size];
+val.neg = new int [size];
+for (i = 0; i<size; i++)
+{
+val.putp(0,i);
+ val.putn(0,i);
+}
+//‐‐‐‐‐‐‐‐‐‐ Read values
+read(x);
+for (;x > 0;)
+{
+if (0 <= x && x < size)
+{
+    print(val.getp(x)+1);
+val.putp(val.getp(x)+1);
+} else
+ if (-size < x && x < 0)
+ {
+ print(val.getn(-x)+1);
+val.putn(val.getn(-x)+1);
+ }
+read(x);
 
-    int metoda2(int a, int b) {
-        print('b');
-        return a + b;
-    }
-
-    int main()
-    int i;
-    nekaklasa varklasa;
-    nekaklasa arrklasa[];
-        {
-            vararr = new int[10];
-            vararr[0] = 1;
-            print(vararr[0]);
-
-            metoda1();
-            print(metoda2(5,6));
-
-            varklasa = new nekaklasa;
-
-            varklasa.fld2 = 'd';
-            varklasa.fld1 = 10;
-
-            varklasa.metoda1();
-            varklasa.metoda();
-            varklasa.metodaint(8);
-
-            arrklasa = new nekaklasa[5];
-            for(i=0;i < 5; i ++)
-                arrklasa[i] = new nekaklasa;
-
-            arrklasa[2].arr = new int[10];
-            arrklasa[2].arr[2] = 90;
-            arrklasa[2].arr[2]++;
-            print(arrklasa[2].arr[2]);
-
-            return 0;
-        }
+} }
 }

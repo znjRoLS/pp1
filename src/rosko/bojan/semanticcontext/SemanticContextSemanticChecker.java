@@ -435,6 +435,14 @@ public class SemanticContextSemanticChecker {
 
                 break;
             }
+            case NEGATE: {
+                if (!parameters.expression.objType.equals(context.objHelper.objectStructs.get("int"))) {
+                    report_error("Expression not of expected type! " + parameters.expression +
+                            ", type expected: int");
+                    break;
+                }
+                break;
+            }
 
         }
     }

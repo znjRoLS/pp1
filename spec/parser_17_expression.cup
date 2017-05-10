@@ -2,12 +2,6 @@
                                 {:
                                     // ExpressionToken expression;
 
-                                    RESULT = expression;
-                                :}
-                                | SUBTRACTION AdditionTermList:expression
-                                {:
-                                    // ExpressionToken expression;
-
                                     ctx.foundSymbol(
                                         SemanticSymbol.SINGLE_EXPRESSION,
                                         expressionleft,
@@ -43,7 +37,21 @@
                                     // ExpressionToken expression;
 
                                     RESULT = expression;
-                                :};
+                                :}
+                                | SUBTRACTION Term:expression
+                                {:
+                                    // ExpressionToken expression;
+
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.NEGATE,
+                                        expressionleft,
+                                        new SemanticParameters()
+                                            .setExpression(expression)
+                                    );
+
+                                    RESULT = expression;
+                                :}
+                                ;
 
                        Term ::= MultiplicationFactorList:expression
                                 {:

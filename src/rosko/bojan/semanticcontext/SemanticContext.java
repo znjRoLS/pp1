@@ -136,6 +136,9 @@ public class SemanticContext {
     public boolean errorDetected;
     boolean errorState;
 
+    public int currentLine;
+
+
 
 
     private SemanticContextSymbolCounter symbolCounter;
@@ -198,7 +201,9 @@ public class SemanticContext {
         objHelper.constant1 = c;
     }
 
-    public Struct foundSymbol(SemanticSymbol type, SemanticParameters parameters) {
+    public Struct foundSymbol(SemanticSymbol type, int line, SemanticParameters parameters) {
+        currentLine = line+1;
+
         report_debug("foundsymbol " + type + " - with params " + parameters);
         report_info("foundsymbol " + type);
 
@@ -239,28 +244,37 @@ public class SemanticContext {
                     parameters.value = ErrorType.LOCAL_VAR.ordinal();
                 }
             }
-            report_error("Successfully recovered from error: " + ErrorType.values()[parameters.value]);
+            report_error("Syntax error of type: " + ErrorType.values()[parameters.value]);
+            report_info("Successfully recovered from error: " + ErrorType.values()[parameters.value]);
         }
     }
 
     public void printCounts() {
-        symbolCounter.symbolByNameCounter.printAllCounts();
-        symbolCounter.symbolCounter.printAllCounts();
+        logger.info("Symbol counters by name:\n" + symbolCounter.symbolByNameCounter.printAllCounts());
+        logger.info("Symbol counters by type:\n" + symbolCounter.symbolCounter.printAllCounts());
     }
 
     public void dumpTable() {
         Tab.dump();
     }
 
+    private int loggerPad = 16;
+
     private void report_info(String msg) {
+        msg = "Line " + currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.info(msg);
     }
 
     private void report_debug(String msg) {
+        msg = "Line " + currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.debug(msg);
     }
 
     private void report_error(String msg) {
+        msg = "Line " + currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.error(msg);
         errorDetected = true;
     }

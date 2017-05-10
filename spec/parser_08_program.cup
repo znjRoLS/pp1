@@ -1,12 +1,18 @@
-    Program ::= PROGRAM ProgramName DeclarationList MethodDeclarationSection
+    Program ::= PROGRAM ProgramName DeclarationList MethodDeclarationSection:methods
                 {:
-                    ctx.foundSymbol(SemanticSymbol.PROGRAM_EXIT,
-                        new SemanticParameters());
+                    ctx.foundSymbol(
+                        SemanticSymbol.PROGRAM_EXIT,
+                        methodsleft,
+                        null
+                    );
                 :};
 
 ProgramName ::= ID:progName
                 {:
-                    ctx.foundSymbol(SemanticSymbol.PROGRAM,
+                    ctx.foundSymbol(
+                        SemanticSymbol.PROGRAM,
+                        progNameleft,
                         new SemanticParameters()
-                        .setName(progName.toString()));
+                            .setName(progName.toString())
+                    );
                 :};

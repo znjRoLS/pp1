@@ -20,15 +20,23 @@ public class SemanticContextCodeGenerator {
         logger = LogManager.getLogger(SemanticContextCodeGenerator.class);
     }
 
+    private int loggerPad = 3;
+
     private void report_info(String msg) {
+        msg = "Line " + context.currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.info(msg);
     }
 
     private void report_debug(String msg) {
+        msg = "Line " + context.currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.debug(msg);
     }
 
     private void report_error(String msg) {
+        msg = "Line " + context.currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.error(msg);
         context.errorDetected();
     }

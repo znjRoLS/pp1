@@ -20,15 +20,23 @@ public class SemanticContextSemanticChecker {
         logger = LogManager.getLogger(SemanticContextSemanticChecker.class);
     }
 
+    private int loggerPad = 1;
+
     private void report_info(String msg) {
+        msg = "Line " + context.currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.info(msg);
     }
 
     private void report_debug(String msg) {
+        msg = "Line " + context.currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.debug(msg);
     }
 
     private void report_error(String msg) {
+        msg = "Line " + context.currentLine + ": " + msg;
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.error(msg);
         context.errorDetected();
     }

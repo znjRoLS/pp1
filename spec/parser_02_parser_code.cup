@@ -3,16 +3,21 @@ parser code {:
     Scanner scanner;
     Symbol currSym;
 
+    private int loggerPad = 41;
+
     public SemanticContext context = new SemanticContext();
 
     void report_error(String msg) {
         context.errorDetected();
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.error(msg);
     }
     void report_info(String msg) {
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.info(msg);
     }
     void report_debug(String msg) {
+        msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.debug(msg);
     }
     void dump() {

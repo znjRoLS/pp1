@@ -42,7 +42,7 @@ public class ParserTest {
                 Lexer lexer = new Lexer(reader);
                 Parser parser = new Parser(lexer);
                 Symbol symbol = parser.parse();
-                logger.info("Got symbol " + symbol + " " + symbol.value);
+                //logger.info("Got symbol " + symbol + " " + symbol.value);
 
                 parser.context.printCounts();
                 parser.dump();

@@ -2,36 +2,48 @@
                         | /* epsilon */;
 
  VarDeclarationLine ::= Type VarIDList SEMICOLON
-                        | Type error SEMICOLON
+                        | Type error SEMICOLON:obj
                         {:
-                            ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                            ctx.foundSymbol(
+                                SemanticSymbol.ERROR_RECOVERED,
+                                objleft,
                                 new SemanticParameters()
-                                .setValue(ErrorType.GLOBAL_VAR));
+                                    .setValue(ErrorType.GLOBAL_VAR)
+                            );
                         :};
 
           VarIDList ::= VarIDList COMMA VarIDSingle
                         | VarIDSingle
-                        | error COMMA VarIDSingle
+                        | error COMMA:obj VarIDSingle
                         {:
-                            ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                            ctx.foundSymbol(
+                                SemanticSymbol.ERROR_RECOVERED,
+                                objleft,
                                 new SemanticParameters()
-                                .setValue(ErrorType.GLOBAL_VAR));
+                                    .setValue(ErrorType.GLOBAL_VAR)
+                            );
                         :};
 
         VarIDSingle ::= VarID:varName
                         {:
                             // String varName;
-                            ctx.foundSymbol(SemanticSymbol.VAR,
+                            ctx.foundSymbol(
+                                SemanticSymbol.VAR,
+                                varNameleft,
                                 new SemanticParameters()
-                                .setName(varName));
+                                    .setName(varName)
+                            );
 
                         :}
                         | VarID:varName BRACKETS_LEFT BRACKETS_RIGHT
                         {:
                             // String varName;
-                            ctx.foundSymbol(SemanticSymbol.ARRAY,
+                            ctx.foundSymbol(
+                                SemanticSymbol.ARRAY,
+                                varNameleft,
                                 new SemanticParameters()
-                                .setName(varName));
+                                    .setName(varName)
+                            );
                         :};
 
               VarID ::= ID:id

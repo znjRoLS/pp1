@@ -8,10 +8,13 @@
                                 {:
                                     // ExpressionToken expression;
 
-                                    ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.SINGLE_EXPRESSION,
+                                        expressionleft,
                                         new SemanticParameters()
-                                        .setExpression(expression)
-                                        .setType("int"));
+                                            .setExpression(expression)
+                                            .setType("int")
+                                    );
 
                                     RESULT = expression;
                                 :};
@@ -23,12 +26,15 @@
                                     // ExpressionToken expression2;
                                     // Integer operator;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.EXPRESSION,
+                                        expression1left,
                                         new SemanticParameters()
-                                        .setExpression(expression1)
-                                        .setExpression2(expression2)
-                                        .setType("int")
-                                        .setValue(operator));
+                                            .setExpression(expression1)
+                                            .setExpression2(expression2)
+                                            .setType("int")
+                                            .setValue(operator)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
@@ -52,12 +58,15 @@
                                     // ExpressionToken expression2;
                                     // Integer operator;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.EXPRESSION,
+                                        expression1left,
                                         new SemanticParameters()
-                                        .setExpression(expression1)
-                                        .setExpression2(expression2)
-                                        .setType("int")
-                                        .setValue(operator));
+                                            .setExpression(expression1)
+                                            .setExpression2(expression2)
+                                            .setType("int")
+                                            .setValue(operator)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
@@ -72,19 +81,24 @@
                                 {:
                                     // String varName;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.DESIGNATOR_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.DESIGNATOR_FACTOR,
+                                        varNameleft,
                                         new SemanticParameters()
-                                        .setName(varName));
+                                            .setName(varName)
+                                    );
 
-                                    report_debug("test " + objectType.getKind());
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.METHOD_CALL_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.METHOD_CALL_FACTOR,
+                                        functionleft,
                                         new SemanticParameters()
-                                        .setName(function));
+                                            .setName(function)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
@@ -92,10 +106,13 @@
                                 {:
                                     // Integer val;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.CONST_FACTOR,
+                                        valleft,
                                         new SemanticParameters()
-                                        .setValue(val)
-                                        .setType("int"));
+                                            .setValue(val)
+                                            .setType("int")
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
@@ -103,10 +120,13 @@
                                 {:
                                     // char val;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.CONST_FACTOR,
+                                        valleft,
                                         new SemanticParameters()
-                                        .setValue((int)val)
-                                        .setType("char"));
+                                            .setValue((int)val)
+                                            .setType("char")
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
@@ -114,10 +134,13 @@
                                 {:
                                     // boolean val;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.CONST_FACTOR,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.CONST_FACTOR,
+                                        valleft,
                                         new SemanticParameters()
-                                        .setValue(val?1:0)
-                                        .setType("bool"));
+                                            .setValue(val?1:0)
+                                            .setType("bool")
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
@@ -125,9 +148,12 @@
                                 {:
                                     // String type;
 
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.NEW,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.NEW,
+                                        typeleft,
                                         new SemanticParameters()
-                                        .setName(type));
+                                            .setName(type)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}

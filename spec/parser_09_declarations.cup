@@ -8,24 +8,33 @@ DeclarationList ::= DeclarationList Declaration
            Type ::= ID:id
                     {:
                         // String id;
-                        ctx.foundSymbol(SemanticSymbol.TYPE,
+                        ctx.foundSymbol(
+                            SemanticSymbol.TYPE,
+                            idleft,
                             new SemanticParameters()
-                            .setName(id));
+                                .setName(id)
+                        );
 
                         RESULT = id;
                     :};
 
- OptionalStatic ::= STATIC
+ OptionalStatic ::= STATIC:obj
                     {:
-                        ctx.foundSymbol(SemanticSymbol.STATIC,
-                            new SemanticParameters());
+                        ctx.foundSymbol(
+                            SemanticSymbol.STATIC,
+                            objleft,
+                            null
+                        );
                     :}
                     | /* epsilon */;
 
      MethodType ::= Type
-                    | VOID
+                    | VOID:obj
                     {:
-                        ctx.foundSymbol(SemanticSymbol.TYPE,
+                        ctx.foundSymbol(
+                            SemanticSymbol.TYPE,
+                            objleft,
                             new SemanticParameters()
-                            .setName("void"));
+                                .setName("void")
+                        );
                     :};

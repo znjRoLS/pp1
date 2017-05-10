@@ -6,33 +6,45 @@
                 ConstID ::= ID:id
                             {:
                                 // String id;
-                                ctx.foundSymbol(SemanticSymbol.CONST,
+                                ctx.foundSymbol(
+                                    SemanticSymbol.CONST,
+                                    idleft,
                                     new SemanticParameters()
-                                    .setName(id));
+                                        .setName(id)
+                                );
                             :}
                             ASSIGN Const;
 
                   Const ::= CONST_NUMBER:val
                             {:
                                 // Integer val;
-                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                ctx.foundSymbol(
+                                    SemanticSymbol.CONST_VAL,
+                                    valleft,
                                     new SemanticParameters()
-                                    .setValue(val)
-                                    .setType("int"));
+                                        .setValue(val)
+                                        .setType("int")
+                                );
                             :}
                             | CONST_CHAR:val
                             {:
                                 // char val;
-                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                ctx.foundSymbol(
+                                    SemanticSymbol.CONST_VAL,
+                                    valleft,
                                     new SemanticParameters()
-                                    .setValue((int)val)
-                                    .setType("char"));
+                                        .setValue((int)val)
+                                        .setType("char")
+                                );
                             :}
                             | CONST_BOOL:val
                             {:
                                 // boolean val;
-                                ctx.foundSymbol(SemanticSymbol.CONST_VAL,
+                                ctx.foundSymbol(
+                                    SemanticSymbol.CONST_VAL,
+                                    valleft,
                                     new SemanticParameters()
-                                    .setValue(val?1:0)
-                                    .setType("bool"));
+                                        .setValue(val?1:0)
+                                        .setType("bool")
+                                );
                             :};

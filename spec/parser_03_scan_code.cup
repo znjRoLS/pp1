@@ -1,7 +1,7 @@
 scan with {:
     currSym = scanner.next_token();
     if (currSym != null && currSym.value != null) {
-        report_info("Parsed symbol: " + currSym.value + " - " + currSym);
+        report_info("Line " + (currSym.left+1) + ": " + "Parsed symbol: " + currSym.value + " - " + currSym);
     }
     return currSym;
 :}

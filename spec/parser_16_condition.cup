@@ -4,10 +4,13 @@
           Condition ::= ConditionTermList:expression
                         {:
                             // ExpressionToken expression;
-                            ctx.foundSymbol(SemanticSymbol.SINGLE_EXPRESSION,
+                            ctx.foundSymbol(
+                                SemanticSymbol.SINGLE_EXPRESSION,
+                                expressionleft,
                                 new SemanticParameters()
-                                .setExpression(expression)
-                                .setType("bool"));
+                                    .setExpression(expression)
+                                    .setType("bool")
+                            );
                             RESULT = expression;
                         :};
 
@@ -15,12 +18,15 @@
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                            ctx.foundSymbol(
+                                SemanticSymbol.EXPRESSION,
+                                expression1left,
                                 new SemanticParameters()
-                                .setExpression(expression1)
-                                .setExpression2(expression2)
-                                .setType("bool")
-                                .setValue(Code.add));
+                                    .setExpression(expression1)
+                                    .setExpression2(expression2)
+                                    .setType("bool")
+                                    .setValue(Code.add)
+                            );
 
                             RESULT = expression1;
                         :}
@@ -42,12 +48,15 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
                         {:
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
-                            ctx.foundSymbol(SemanticSymbol.EXPRESSION,
+                            ctx.foundSymbol(
+                                SemanticSymbol.EXPRESSION,
+                                expression1left,
                                 new SemanticParameters()
-                                .setExpression(expression1)
-                                .setExpression2(expression2)
-                                .setType("bool")
-                                .setValue(Code.mul));
+                                    .setExpression(expression1)
+                                    .setExpression2(expression2)
+                                    .setType("bool")
+                                    .setValue(Code.mul)
+                            );
 
                             RESULT = expression1;
                         :}
@@ -68,11 +77,14 @@ ConditionFactorList ::= ConditionFactorList:expression1 AND ConditionFactor:expr
                             // ExpressionToken expression1;
                             // ExpressionToken expression2;
 
-                            Struct objectType = ctx.foundSymbol(SemanticSymbol.RELOP,
+                            Struct objectType = ctx.foundSymbol(
+                                SemanticSymbol.RELOP,
+                                expression1left,
                                 new SemanticParameters()
-                                .setExpression(expression1)
-                                .setExpression2(expression2)
-                                .setValue(operator));
+                                    .setExpression(expression1)
+                                    .setExpression2(expression2)
+                                    .setValue(operator)
+                            );
 
                             RESULT = new ExpressionToken(objectType, false);
                         :};

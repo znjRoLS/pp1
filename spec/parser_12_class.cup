@@ -1,17 +1,23 @@
-   ClassDeclaration ::= CLASS ClassName ClassExtends
+   ClassDeclaration ::= CLASS ClassName:className ClassExtends
                         BRACES_LEFT VarDeclarationList
-                        OptionalMethodDeclarationSection BRACES_RIGHT
+                        OptionalMethodDeclarationSection BRACES_RIGHT:obj
                         {:
-                            ctx.foundSymbol(SemanticSymbol.CLASS_EXIT,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.CLASS_EXIT,
+                                objleft,
+                                null
+                            );
                         :};
 
           ClassName ::= ID:id
                         {:
                             // String id;
-                            ctx.foundSymbol(SemanticSymbol.CLASS,
+                            ctx.foundSymbol(
+                                SemanticSymbol.CLASS,
+                                idleft,
                                 new SemanticParameters()
-                                .setName(id));
+                                    .setName(id)
+                            );
                         :};
 
        ClassExtends ::= EXTENDS ClassType
@@ -20,8 +26,11 @@
           ClassType ::= Type:typeName
                         {:
                             // String typeName;
-                            ctx.foundSymbol(SemanticSymbol.TYPE_CLASS,
+                            ctx.foundSymbol(
+                                SemanticSymbol.TYPE_CLASS,
+                                typeNameleft,
                                 new SemanticParameters()
-                                .setName(typeName));
+                                    .setName(typeName)
+                            );
 
                         :};

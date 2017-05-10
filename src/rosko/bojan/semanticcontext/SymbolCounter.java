@@ -10,7 +10,6 @@ import java.util.HashMap;
  */
 public class SymbolCounter<T> {
 
-    Logger logger = LogManager.getLogger(SymbolCounter.class);
     private HashMap<T, Integer> counters;
 
     SymbolCounter() {
@@ -20,7 +19,6 @@ public class SymbolCounter<T> {
     public void inc(T name) {
         int count = counters.containsKey(name)?counters.get(name):0;
         counters.put(name,count + 1);
-        logger.debug("counter: " + name + " | value: " + count + 1);
     }
 
     public int get(T name) {
@@ -29,9 +27,11 @@ public class SymbolCounter<T> {
         return count;
     }
 
-    public void printAllCounts() {
+    public String printAllCounts() {
+        StringBuilder sb = new StringBuilder();
         for (HashMap.Entry<T, Integer> par : counters.entrySet()) {
-            logger.info(par.getKey() + " - " + par.getValue());
+            sb.append(par.getKey() + " - " + par.getValue() + "\n");
         }
+        return sb.toString();
     }
 }

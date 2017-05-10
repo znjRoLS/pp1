@@ -5,10 +5,13 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                 {:
                                     // ExpressionToken expr;
                                     // String design;
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR_ASSIGN,
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.DESIGNATOR_ASSIGN,
+                                        designleft,
                                         new SemanticParameters()
-                                        .setName(design)
-                                        .setExpression(expr));
+                                            .setName(design)
+                                            .setExpression(expr)
+                                    );
 
                                     RESULT = expr;
                                 :}
@@ -16,39 +19,51 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                 Designator:design AssignOperator error
                                 {:
                                     // String design;
-                                    ctx.foundSymbol(SemanticSymbol.ERROR_RECOVERED,
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.ERROR_RECOVERED,
+                                        designleft,
                                         new SemanticParameters()
-                                        .setName(design)
-                                        .setValue(ErrorType.EXPRESSION_ASSIGN));
+                                            .setName(design)
+                                            .setValue(ErrorType.EXPRESSION_ASSIGN)
+                                    );
 
                                     RESULT = null;
                                 :}
                                 | Designator:function MethodCall
                                 {:
                                     // String function;
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.METHOD_CALL,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.METHOD_CALL,
+                                        functionleft,
                                         new SemanticParameters()
-                                        .setName(function));
+                                            .setName(function)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:design INCREMENT
                                 {:
                                     // String design;
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.INCREMENT,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.INCREMENT,
+                                        designleft,
                                         new SemanticParameters()
-                                        .setName(design)
-                                        .setValue(1));
+                                            .setName(design)
+                                            .setValue(1)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :}
                                 | Designator:design DECREMENT
                                 {:
                                     // String design;
-                                    Struct objectType = ctx.foundSymbol(SemanticSymbol.INCREMENT,
+                                    Struct objectType = ctx.foundSymbol(
+                                        SemanticSymbol.INCREMENT,
+                                        designleft,
                                         new SemanticParameters()
-                                        .setName(design)
-                                        .setValue(-1));
+                                            .setName(design)
+                                            .setValue(-1)
+                                    );
 
                                     RESULT = new ExpressionToken(objectType, false);
                                 :};
@@ -66,11 +81,13 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     // String id;
                                     // String member;
 
-                                    ctx.foundSymbol(SemanticSymbol.DESIGNATOR,
+                                    ctx.foundSymbol(
+                                        SemanticSymbol.DESIGNATOR,
+                                        idleft,
                                         new SemanticParameters()
-                                        .setName(id + member));
+                                            .setName(id + member)
+                                    );
 
-                                    report_debug("test3 " + id + member);
                                     RESULT = id + member;
                                 :};
 
@@ -79,7 +96,6 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     // String member1;
                                     // String member2;
 
-                                    report_debug("test2 " + member1 + member2);
                                     RESULT = member1 + member2;
                                 :}
                                 | /* epsilon */
@@ -90,7 +106,7 @@ OptionalDesignatorStatement ::= DesignatorStatement
                      Member ::= DOT ID:id
                                 {:
                                     // String id;
-                                    report_debug("test1 " + "." + id);
+
                                     RESULT = "." + id;
                                 :}
                                 | Dimension;

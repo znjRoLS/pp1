@@ -1,10 +1,18 @@
-     StatementBlock ::= BRACES_LEFT
+     StatementBlock ::= BRACES_LEFT:leftBraces
                         {:
-                            ctx.foundSymbol(SemanticSymbol.STATEMENT_BLOCK, null);
+                            ctx.foundSymbol(
+                                SemanticSymbol.STATEMENT_BLOCK,
+                                leftBracesleft,
+                                null
+                            );
                         :}
-                        StatementList BRACES_RIGHT
+                        StatementList BRACES_RIGHT:rightBraces
                         {:
-                            ctx.foundSymbol(SemanticSymbol.STATEMENT_BLOCK_EXIT, null);
+                            ctx.foundSymbol(
+                                SemanticSymbol.STATEMENT_BLOCK_EXIT,
+                                rightBracesleft,
+                                null
+                            );
                         :};
 
       StatementList ::= StatementList Statement
@@ -27,85 +35,125 @@ StatementDesignator ::= DesignatorStatement
                         {:
                         :};
 
-        StatementIf ::= IF PARENTHESES_LEFT Condition PARENTHESES_RIGHT
+        StatementIf ::= IF PARENTHESES_LEFT Condition:condition PARENTHESES_RIGHT
                         {:
-                            ctx.foundSymbol(SemanticSymbol.IF_START,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.IF_START,
+                                conditionleft,
+                                null
+                            );
                         :}
                         Statement OptionalElse;
 
-       OptionalElse ::= ELSE
+       OptionalElse ::= ELSE:obj
                         {:
-                            ctx.foundSymbol(SemanticSymbol.ELSE_START,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.ELSE_START,
+                                objleft,
+                                null
+                            );
                         :}
-                        Statement
+                        Statement:statement
                         {:
-                            ctx.foundSymbol(SemanticSymbol.ELSE_END,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.ELSE_END,
+                                statementleft,
+                                null
+                            );
                         :}
                         | /* epsilon */
                         {:
-                            ctx.foundSymbol(SemanticSymbol.IF_END,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.IF_END,
+                                -1,
+                                null
+                            );
                         :};
 
        StatementFor ::= FOR PARENTHESES_LEFT
-                        OptionalDesignatorStatement SEMICOLON
+                        OptionalDesignatorStatement:designatorInit SEMICOLON
                         {:
-                            ctx.foundSymbol(SemanticSymbol.FOR_INIT,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.FOR_INIT,
+                                designatorInitleft,
+                                null
+                            );
                         :}
-                        OptionalCondition SEMICOLON
+                        OptionalCondition:condition SEMICOLON
                         {:
-                            ctx.foundSymbol(SemanticSymbol.FOR_CONDITION,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.FOR_CONDITION,
+                                conditionleft,
+                                null
+                            );
                         :}
-                        OptionalDesignatorStatement
+                        OptionalDesignatorStatement:designatorIter
                         {:
-                            ctx.foundSymbol(SemanticSymbol.FOR_ITERATION,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.FOR_ITERATION,
+                                designatorIterleft,
+                                null
+                            );
                         :}
-                        PARENTHESES_RIGHT Statement
+                        PARENTHESES_RIGHT Statement:statement
                         {:
-                            ctx.foundSymbol(SemanticSymbol.FOR_BLOCK,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.FOR_BLOCK,
+                                statementleft,
+                                null
+                            );
                         :};
 
-     StatementBreak ::= BREAK SEMICOLON
+     StatementBreak ::= BREAK:obj SEMICOLON
                         {:
-                            ctx.foundSymbol(SemanticSymbol.BREAK,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.BREAK,
+                                objleft,
+                                null
+                            );
                         :};
 
-  StatementContinue ::= CONTINUE SEMICOLON
+  StatementContinue ::= CONTINUE:obj SEMICOLON
                         {:
-                            ctx.foundSymbol(SemanticSymbol.CONTINUE,
-                                new SemanticParameters());
+                            ctx.foundSymbol(
+                                SemanticSymbol.CONTINUE,
+                                objleft,
+                                null
+                            );
                         :};
 
-    StatementReturn ::= RETURN SEMICOLON
+    StatementReturn ::= RETURN:obj SEMICOLON
                         {:
-                            ctx.foundSymbol(SemanticSymbol.RETURN,
+                            ctx.foundSymbol(
+                                SemanticSymbol.RETURN,
+                                objleft,
                                 new SemanticParameters()
-                                .setExpression(new ExpressionToken(
-                                    Tab.noType,
-                                    false)));
+                                    .setExpression(new ExpressionToken(
+                                        Tab.noType,
+                                        false)
+                                    )
+                            );
                         :}
-                        | RETURN Expression:expression SEMICOLON
+                        | RETURN:obj Expression:expression SEMICOLON
                         {:
                             // ExpressionToken expression;
-                            ctx.foundSymbol(SemanticSymbol.RETURN,
+                            ctx.foundSymbol(
+                                SemanticSymbol.RETURN,
+                                objleft,
                                 new SemanticParameters()
-                                .setExpression(expression));
+                                    .setExpression(expression)
+                            );
                         :};
 
       StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
 
-     StatementPrint ::= PRINT PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
+     StatementPrint ::= PRINT:obj PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:
                             // ExpressionToken expr;
-                            ctx.foundSymbol(SemanticSymbol.PRINT,
+                            ctx.foundSymbol(
+                                SemanticSymbol.PRINT,
+                                objleft,
                                 new SemanticParameters()
-                                .setExpression(expr));
+                                    .setExpression(expr)
+                            );
                         :};

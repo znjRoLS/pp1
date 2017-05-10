@@ -160,10 +160,6 @@ public class SemanticContextSemanticChecker {
                 break;
             }
             case RETURN: {
-                if (context.returnFound) {
-                    report_error("Method cannot have more than one return statement!");
-                    break;
-                }
                 if (!(parameters.expression.objType.equals(context.currMethod.getType()) ||
                         parameters.expression.objType.equals(context.currMethod.getType())) ) {
                     report_error("Method declaration and return expression are not of same type!");

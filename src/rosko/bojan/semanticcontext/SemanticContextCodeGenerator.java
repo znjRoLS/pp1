@@ -2,6 +2,7 @@ package rosko.bojan.semanticcontext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rosko.bojan.Pair;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
@@ -39,6 +40,62 @@ public class SemanticContextCodeGenerator {
         msg = String.format("%1$" + loggerPad + "s", "") + msg;
         logger.error(msg);
         context.errorDetected();
+    }
+
+    public Pair<Obj, Obj> getLastDesignators(String designator) {
+
+        String paramName = designator;
+
+        String firstPart = paramName.substring(0, paramName.indexOf("."));
+        paramName = paramName.substring(paramName.indexOf(".") + 1);
+        String secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+        Obj firstVar = Tab.find(firstPart), secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+        if (firstPart.equals("this")) {
+            secondVar = Tab.currentScope().getOuter().getLocals().searchKey(secondPart);
+        }
+        Code.load(firstVar);
+
+        while(paramName.contains(".")) {
+
+            Code.put(Code.getfield);
+            Code.put2(secondVar.getAdr());
+
+            firstPart = paramName.substring(0, paramName.indexOf("."));
+            paramName = paramName.substring(paramName.indexOf(".") + 1);
+            secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+            firstVar = secondVar;
+            secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+        }
+
+        return new Pair<Obj, Obj>(firstVar, secondVar);
+    }
+
+    public Pair<Obj, Obj> getLastDesignatorsWithoutCode(String designator) {
+
+        String paramName = designator;
+
+        String firstPart = paramName.substring(0, paramName.indexOf("."));
+        paramName = paramName.substring(paramName.indexOf(".") + 1);
+        String secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+        Obj firstVar = Tab.find(firstPart), secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+        if (firstPart.equals("this")) {
+            secondVar = Tab.currentScope().getOuter().getLocals().searchKey(secondPart);
+        }
+
+        while(paramName.contains(".")) {
+
+            firstPart = paramName.substring(0, paramName.indexOf("."));
+            paramName = paramName.substring(paramName.indexOf(".") + 1);
+            secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
+
+            firstVar = secondVar;
+            secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
+        }
+
+        return new Pair<Obj, Obj>(firstVar, secondVar);
     }
 
     public void generateCode(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
@@ -98,10 +155,19 @@ public class SemanticContextCodeGenerator {
                 break;
             }
             case METHOD_CALL_FACTOR: {
-                Obj function = Tab.find(parameters.name);
-                int functionAdr = function.getAdr() - Code.pc;
-                Code.put(Code.call);
-                Code.put2(functionAdr);
+                if (!parameters.name.contains(".")) {
+                    Obj function = Tab.find(parameters.name);
+                    int functionAdr = function.getAdr() - Code.pc;
+                    Code.put(Code.call);
+                    Code.put2(functionAdr);
+                } else {
+                    Pair<Obj, Obj> vars = getLastDesignatorsWithoutCode(parameters.name);
+
+                    int methodAdr = vars.getSecond().getAdr() - Code.pc;
+                    Code.put(Code.call);
+                    Code.put2(methodAdr);
+                }
+
                 break;
             }
             case FORMAL_PARAMETER: {
@@ -139,40 +205,32 @@ public class SemanticContextCodeGenerator {
             }
 
             case DESIGNATOR: {
+                if (parameters.name.contains(".")) {
+                    // this thing generates getfield code for getting val of second-to-last segment
+                    // example: var1.var2.var3.var or var1.var2.var3.method() whould have val of reference of var3 on exprstack
+                    // so, if its designator_assign, it should become putfield var,
+                    //     if its designator_factor it should become getfield var
+                    //     BUT if its method call, it should leave the THIS on expr stack(this is in fact val of var3)
+                    Pair<Obj, Obj> vars = getLastDesignators(parameters.name);
+
+                    // (another) BUT if its static, just pop the param
+                    // TODO this actually generates a lot of unnecessary instructions (why call all the getfields, when we dont need THIS?)
+                    if (context.staticMethods.contains(vars.getSecond().getAdr())) {
+                        Code.put(Code.pop);
+                    }
+                }
                 break;
             }
             case DESIGNATOR_ASSIGN: {
                 if (!parameters.name.contains(".")) {
                     Code.store(Tab.find(parameters.name));
                 } else {
+                    Pair<Obj, Obj> vars = getLastDesignatorsWithoutCode(parameters.name);
 
-                    String paramName = parameters.name;
-
-                    String firstPart = paramName.substring(0, paramName.indexOf("."));
-                    paramName = paramName.substring(paramName.indexOf(".") + 1);
-                    String secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
-
-                    Obj firstVar = Tab.find(firstPart), secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
-                    Code.load(firstVar);
-
-                    while(paramName.contains(".")) {
-
-                        Code.put(Code.getfield);
-                        Code.put2(secondVar.getAdr());
-
-                        firstPart = paramName.substring(0, paramName.indexOf("."));
-                        paramName = paramName.substring(paramName.indexOf(".") + 1);
-                        secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
-
-                        firstVar = secondVar;
-                        secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
-
-                    }
-
-                    Code.put(Code.dup_x1);
-                    Code.put(Code.pop);
+                    //Code.put(Code.dup_x1);
+                    //Code.put(Code.pop);
                     Code.put(Code.putfield);
-                    Code.put2(secondVar.getAdr());
+                    Code.put2(vars.getSecond().getAdr());
                 }
                 break;
             }
@@ -180,32 +238,10 @@ public class SemanticContextCodeGenerator {
                 if (!parameters.name.contains(".")) {
                     Code.load(Tab.find(parameters.name));
                 } else {
-                    String paramName = parameters.name;
-
-                    String firstPart = paramName.substring(0, paramName.indexOf("."));
-                    paramName = paramName.substring(paramName.indexOf(".") + 1);
-                    String secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
-
-                    Obj firstVar = Tab.find(firstPart), secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
-                    Code.load(firstVar);
-
-                    while(paramName.contains(".")) {
-
-                        Code.put(Code.getfield);
-                        Code.put2(secondVar.getAdr());
-
-                        firstPart = paramName.substring(0, paramName.indexOf("."));
-                        paramName = paramName.substring(paramName.indexOf(".") + 1);
-                        secondPart = paramName.contains(".")?paramName.substring(0, paramName.indexOf(".")):paramName;
-
-                        firstVar = secondVar;
-                        secondVar = firstVar.getType().getMembersTable().searchKey(secondPart);
-
-                    }
+                    Pair<Obj, Obj> vars = getLastDesignatorsWithoutCode(parameters.name);
 
                     Code.put(Code.getfield);
-                    Code.put2(secondVar.getAdr());
-
+                    Code.put2(vars.getSecond().getAdr());
                 }
                 break;
             }

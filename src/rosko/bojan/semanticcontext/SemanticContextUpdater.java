@@ -55,9 +55,18 @@ public class SemanticContextUpdater {
             firstPart = paramName.substring(0,paramName.indexOf("."));
             paramName = paramName.substring(paramName.indexOf(".") + 1);
             currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
+
+            if (firstPart.equals("this")) {
+                //this is not chained yet!
+                currentObject = Tab.currentScope().getOuter().getLocals().searchKey(firstPart);
+            }
         }
 
         currentObject = currentObject.getType().getMembersTable().searchKey(paramName);
+        if (firstPart.equals("this")) {
+            //this is not chained yet!
+            currentObject = Tab.currentScope().getOuter().getLocals().searchKey(paramName);
+        }
 
         return currentObject.getType();
     }
@@ -131,12 +140,25 @@ public class SemanticContextUpdater {
                 context.currMethod = Tab.insert(Obj.Meth, parameters.name, context.currentDeclarationType);
                 Tab.openScope();
                 context.currMethodName = parameters.name;
+
+                if (context.currClass != null && !context.isCurrMethodStatic) {
+                    //add THIS formal param
+                    Tab.insert(Obj.Var, "this", context.currClassStruct);
+                }
+
+                if (context.isCurrMethodStatic) {
+                    context.staticMethods.add(context.currMethod.getAdr());
+                }
+
                 context.isCurrMethodStatic = false;
                 result = context.currentDeclarationType;
                 break;
             }
             case METHOD_START: {
                 context.currMethod.setAdr(Code.pc);
+                if (context.currClass != null) {
+                    parameters.value ++;
+                }
                 context.currMethod.setLevel(parameters.value);
                 break;
             }
@@ -152,6 +174,7 @@ public class SemanticContextUpdater {
                 break;
             }
             case METHOD_CALL_FACTOR: {
+                result = extractLastDesignatorType(parameters.name);
                 break;
             }
             case FORMAL_PARAMETER: {
@@ -196,7 +219,7 @@ public class SemanticContextUpdater {
                 Obj parentClass = Tab.find(parameters.type);
 
                 for(Obj member : parentClass.getType().getMembers()) {
-                    Tab.insert(Obj.Fld, member.getName(), member.getType());
+                    Tab.insert(member.getKind(), member.getName(), member.getType());
                 }
 
                 result = context.currClassStruct;

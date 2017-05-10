@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static rosko.bojan.semanticcontext.SemanticContext.SemanticSymbol.*;
 
@@ -122,6 +123,7 @@ public class SemanticContext {
             };
 
 
+    HashSet<Integer> staticMethods;
     String currClassName;
     String currMethodName;
     Obj currMethod;
@@ -171,6 +173,8 @@ public class SemanticContext {
         errorState = false;
 
         currentDeclarationType = null;
+
+        staticMethods = new HashSet<>();
     }
 
     public void errorDetected() {

@@ -40,6 +40,36 @@ public class SemanticContextSemanticChecker {
         logger.error(msg);
         context.errorDetected();
     }
+
+    private Obj getLastObjDesignator(String designator) {
+        Obj design;
+        if (designator.contains(".")) {
+            String paramName = designator;
+
+            String firstSection = paramName.substring(0, paramName.indexOf('.'));
+            Obj currentObj = Tab.find(firstSection);
+            paramName = paramName.substring(paramName.indexOf('.') + 1);
+
+            while(paramName.contains(".")) {
+                firstSection = paramName.substring(0, paramName.indexOf('.'));
+                paramName = paramName.substring(paramName.indexOf('.') + 1);
+                currentObj = currentObj.getType().getMembersTable().searchKey(firstSection);
+                if (currentObj.getName().equals("this")) {
+                    currentObj = Tab.currentScope().getOuter().getLocals().searchKey(firstSection);
+                }
+            }
+
+            design = currentObj.getType().getMembersTable().searchKey(paramName);
+            if (currentObj.getName().equals("this")) {
+                design = Tab.currentScope().getOuter().getLocals().searchKey(paramName);
+            }
+
+        } else {
+            design = Tab.find(designator);
+        }
+
+        return design;
+    }
     
     public void checkSemantics(SemanticContext.SemanticSymbol type, SemanticParameters parameters) {
         switch(type) {
@@ -78,6 +108,10 @@ public class SemanticContextSemanticChecker {
             }
 
             case METHOD: {
+                if (context.isCurrMethodStatic && context.currClass == null) {
+                    report_error("Cannot declare static function (just static methods are allowed)");
+                    break;
+                }
                 report_info("Method found: " + parameters.name);
                 break;
             }
@@ -108,7 +142,7 @@ public class SemanticContextSemanticChecker {
             }
             case METHOD_CALL_FACTOR: {
                 report_info("Function expression call: " + parameters.name);
-                Obj function = Tab.find(parameters.name);
+                Obj function = getLastObjDesignator(parameters.name);
                 if (function.getKind() != Obj.Meth) {
                     report_error("Not a function!");
                     break;
@@ -213,6 +247,10 @@ public class SemanticContextSemanticChecker {
                             break;
                         }
                         currentObject = currentObject.getType().getMembersTable().searchKey(firstPart);
+                        if (currentObject.getName().equals("this")) {
+                            //this is not chained yet!
+                            currentObject = Tab.currentScope().getOuter().getLocals().searchKey(firstPart);
+                        }
                         if (currentObject == Tab.noObj) {
                             report_error("Field " + firstPart + " not existant!");
                             break;
@@ -220,6 +258,10 @@ public class SemanticContextSemanticChecker {
                     }
 
                     design = currentObject.getType().getMembersTable().searchKey(paramName);
+                    if (firstPart.equals("this")) {
+                        //this is not chained yet!
+                        design = Tab.currentScope().getOuter().getLocals().searchKey(paramName);
+                    }
 
                 } else {
                     design = Tab.find(parameters.name);
@@ -234,10 +276,6 @@ public class SemanticContextSemanticChecker {
                     report_error("Identifier name is a type: " + parameters.name);
                     break;
                 }
-                if (design.getKind() == Obj.Meth) {
-                    report_error("Identifier name is a method: " + parameters.name);
-                    break;
-                }
                 if (design.getKind() == Obj.Prog) {
                     report_error("Identifier name is program name: " + parameters.name);
                     break;
@@ -246,26 +284,7 @@ public class SemanticContextSemanticChecker {
             }
             case DESIGNATOR_ASSIGN: {
                 report_info("Found designator assign");
-                Obj design;
-                if (parameters.name.contains(".")) {
-                    String paramName = parameters.name;
-
-                    String firstSection = paramName.substring(0, paramName.indexOf('.'));
-                    Obj currentObj = Tab.find(firstSection);
-                    paramName = paramName.substring(paramName.indexOf('.') + 1);
-
-                    while(paramName.contains(".")) {
-                        firstSection = paramName.substring(0, paramName.indexOf('.'));
-                        currentObj = currentObj.getType().getMembersTable().searchKey(firstSection);
-                        paramName = paramName.substring(paramName.indexOf('.') + 1);
-                    }
-
-                    design = currentObj.getType().getMembersTable().searchKey(paramName);
-
-                } else {
-                    design = Tab.find(parameters.name);
-                }
-                String[] nameSections = parameters.name.split("\\.");
+                Obj design = getLastObjDesignator(parameters.name);
 
                 if (design == null || !parameters.expression.objType.equals(design.getType())) {
                     report_error("Not assignable!");
@@ -275,6 +294,13 @@ public class SemanticContextSemanticChecker {
             }
             case DESIGNATOR_FACTOR: {
                 report_info("Found designator factor");
+
+                Obj design = getLastObjDesignator(parameters.name);
+
+                if (design.getKind() == Obj.Meth) {
+                    report_error("Identifier name is a method: " + parameters.name);
+                    break;
+                }
                 break;
             }
 

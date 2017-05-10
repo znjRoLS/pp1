@@ -381,6 +381,24 @@ public class SemanticContextUpdater {
             case PRINT: {
                 break;
             }
+            case READ: {
+
+                Code.put(Code.read);
+
+                DesignatorHelper currentDesignator = context.currentDesignators.peek();
+                String res = currentDesignator.designatorAssign(
+                        new ExpressionToken(context.objHelper.objectStructs.get("int"), false)
+                );
+                if (res != null) {
+                    report_error(res);
+                }
+
+                result = currentDesignator.currentStruct;
+
+                context.currentDesignators.pop();
+                break;
+            }
+
             case NEW: {
                 result = Tab.find(parameters.name).getType();
                 break;

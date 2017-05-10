@@ -145,7 +145,14 @@ StatementDesignator ::= DesignatorStatement
                             );
                         :};
 
-      StatementRead ::= READ PARENTHESES_LEFT Designator PARENTHESES_RIGHT SEMICOLON;
+      StatementRead ::= READ:obj PARENTHESES_LEFT Designator:design PARENTHESES_RIGHT SEMICOLON
+                        {:
+                            ctx.foundSymbol(
+                                SemanticSymbol.READ,
+                                objleft,
+                                null
+                            );
+                        :};
 
      StatementPrint ::= PRINT:obj PARENTHESES_LEFT Expression:expr PARENTHESES_RIGHT SEMICOLON
                         {:

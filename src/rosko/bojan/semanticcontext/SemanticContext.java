@@ -65,12 +65,14 @@ public class SemanticContext {
         BREAK,
         CONTINUE,
         PRINT,
+        READ,
         NEW,
         NEW_ARRAY,
         EXPRESSION,
         SINGLE_EXPRESSION,
         INCREMENT,
         NEGATE,
+        EMPTY_CONDITION,
         ERROR_RECOVERED
     }
 
@@ -93,8 +95,8 @@ public class SemanticContext {
                     put(METHOD, new String[]{"name"}); // method name
                     put(METHOD_START, new String[]{"value"}); // value is number of parameters
                     put(METHOD_EXIT, new String[]{});
-                    put(METHOD_CALL, new String[]{}); // function that is called
-                    put(METHOD_CALL_FACTOR, new String[]{"name"}); // function that is called
+                    put(METHOD_CALL, new String[]{"value"}); // value is number of arguments
+                    put(METHOD_CALL_FACTOR, new String[]{"name", "value"}); // function that is called, num of args
                     put(FORMAL_PARAMETER, new String[]{"type", "name"}); // type and name of parameter
                     put(FORMAL_PARAMETER_ARRAY, new String[]{"type", "name"}); // type and name of parameter
                     put(RETURN, new String[]{"expression"}); // return expression
@@ -125,12 +127,14 @@ public class SemanticContext {
                     put(BREAK, new String[]{});
                     put(CONTINUE, new String[]{});
                     put(PRINT, new String[]{"expression"}); // expression that is printed
+                    put(READ, new String[]{}); // expression that is printed
                     put(NEW, new String[]{"name"}); // expression that is printed
                     put(NEW_ARRAY, new String[]{"name"}); // expression that is printed
                     put(EXPRESSION, new String[]{"expression", "expression2", "type", "value"}); // expressions that are found and type it should be, value is operator code
                     put(SINGLE_EXPRESSION, new String[]{"expression", "type"}); // expression found, type it should be
                     put(INCREMENT, new String[]{"name", "value"}); // name of designator, value to increment with
-                    put(NEGATE, new String[]{"expression"}); // name of designator, value to increment with
+                    put(NEGATE, new String[]{"expression"}); // expression to negate
+                    put(EMPTY_CONDITION, new String[]{});
                     put(ERROR_RECOVERED, new String[]{});
                 }
             };

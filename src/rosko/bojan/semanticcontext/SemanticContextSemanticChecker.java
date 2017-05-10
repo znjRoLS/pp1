@@ -162,6 +162,14 @@ public class SemanticContextSemanticChecker {
                     report_error("Not a function!");
                     break;
                 }
+                if (currentDesignator.lastMemberExists && !context.staticMethods.contains(function.getAdr())) {
+                    parameters.value ++;
+                }
+                if (function.getLevel() != parameters.value ) {
+                    report_error("Function " + function.getName() + " called with " + parameters.value
+                            +" args, expected " + function.getLevel());
+                    break;
+                }
                 break;
             }
             case METHOD_CALL_FACTOR: {

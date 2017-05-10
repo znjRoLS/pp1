@@ -9,9 +9,9 @@ non terminal OptionalStatic;
 non terminal StatementBlock, StatementList, Statement, OptionalElse;
 non terminal StatementDesignator, StatementIf, StatementFor, StatementBreak;
 non terminal StatementContinue, StatementReturn, StatementRead, StatementPrint;
-non terminal ActualParameterSection, ActualParameterList, ActualParameter;
+non terminal ActualParameter;
 non terminal OptionalDimension, Dimension;
-non terminal OptionalMethodCall, MethodCall;
+non terminal OptionalMethodCall;
 non terminal OptionalUnaryMinus;
 non terminal DesignatorString;
 
@@ -32,5 +32,7 @@ non terminal ExpressionToken Condition, OptionalCondition, ConditionTermList, Co
 non terminal Integer RelationalOperator, AssignOperator;
 
 non terminal ExpressionToken DesignatorStatement, OptionalDesignatorStatement;
+
+non terminal Integer MethodCall, ActualParameterSection, ActualParameterList;
 
 precedence left ELSE;

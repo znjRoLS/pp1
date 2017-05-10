@@ -1,5 +1,12 @@
   OptionalCondition ::= Condition
-                        | /* epsilon */;
+                        | /* epsilon */
+                        {:
+                            ctx.foundSymbol(
+                                SemanticSymbol.EMPTY_CONDITION,
+                                -1,
+                                null
+                            );
+                        :};
 
           Condition ::= ConditionTermList:expression
                         {:

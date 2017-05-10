@@ -5,8 +5,8 @@ int pos[], neg[];
 {
  void putp (int a, int idx) { this.pos[idx]=a; }
  void putn (int a, int idx) { this.neg[idx]=a; }
- int getp (int idx) { return pos[idx]; }
- int getn (int idx) { return neg[idx]; }
+ int getp (int idx) { return this.pos[idx]; }
+ int getn (int idx) { return this.neg[idx]; }
 }
 }
 Table val;
@@ -20,23 +20,24 @@ val.pos = new int [size];
 val.neg = new int [size];
 for (i = 0; i<size; i++)
 {
-val.putp(0,i);
- val.putn(0,i);
+val.putp(i*i,i);
+ val.putn(i*i,i);
 }
 //‐‐‐‐‐‐‐‐‐‐ Read values
 read(x);
-for (;x > 0;)
+for (;;)
 {
 if (0 <= x && x < size)
 {
     print(val.getp(x)+1);
-val.putp(val.getp(x)+1);
+val.putp(val.getp(x)+1,x);
 } else
  if (-size < x && x < 0)
  {
  print(val.getn(-x)+1);
-val.putn(val.getn(-x)+1);
+val.putn(val.getn(-x)+1,-x);
  }
+ else break;
 read(x);
 
 } }

@@ -107,7 +107,7 @@
                                         null
                                     );
                                 :}
-                                MethodCall
+                                MethodCall:argNum
                                 {:
                                     // String function;
                                     Struct objectType = ctx.foundSymbol(
@@ -115,6 +115,7 @@
                                         functionleft,
                                         new SemanticParameters()
                                             .setName(function)
+                                            .setValue(argNum)
                                     );
 
                                     RESULT = new ExpressionToken(objectType, false);

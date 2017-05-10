@@ -39,12 +39,13 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                              .setName(function)
                                      );
                                 :}
-                                MethodCall
+                                MethodCall:argNum
                                 {:
                                     Struct objectType = ctx.foundSymbol(
                                         SemanticSymbol.METHOD_CALL,
                                         functionleft,
-                                        null
+                                        new SemanticParameters()
+                                            .setValue(argNum)
                                     );
 
                                     RESULT = new ExpressionToken(objectType, false);
@@ -76,11 +77,23 @@ OptionalDesignatorStatement ::= DesignatorStatement
                                     RESULT = new ExpressionToken(objectType, false);
                                 :};
 
-     ActualParameterSection ::= ActualParameterList
-                                | /* epsilon */;
+     ActualParameterSection ::= ActualParameterList:param1
+                                {:
+                                    RESULT = param1;
+                                :}
+                                | /* epsilon */
+                                {:
+                                    RESULT = 0;
+                                :};
 
-        ActualParameterList ::= ActualParameterList COMMA ActualParameter
-                                | ActualParameter;
+        ActualParameterList ::= ActualParameterList:param1 COMMA ActualParameter
+                                {:
+                                    RESULT = param1 + 1;
+                                :}
+                                | ActualParameter
+                                {:
+                                    RESULT = 1;
+                                :};
 
             ActualParameter ::= Expression:expression;
 
@@ -157,6 +170,9 @@ OptionalDesignatorStatement ::= DesignatorStatement
          OptionalMethodCall ::= MethodCall
                                 | /* epsilon */;
 
-                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection PARENTHESES_RIGHT;
+                 MethodCall ::= PARENTHESES_LEFT ActualParameterSection:param1 PARENTHESES_RIGHT
+                                {:
+                                    RESULT = param1;
+                                :};
 
                   Dimension ::= BRACKETS_LEFT Expression BRACKETS_RIGHT;

@@ -345,6 +345,10 @@ public class SemanticContextCodeGenerator {
                 Code.put(Code.neg);
                 break;
             }
+            case EMPTY_CONDITION: {
+                Code.load(context.objHelper.constant1);
+                break;
+            }
 
         }
 

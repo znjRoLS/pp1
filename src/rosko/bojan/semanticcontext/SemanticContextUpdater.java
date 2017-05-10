@@ -146,17 +146,12 @@ public class SemanticContextUpdater {
                     Tab.insert(Obj.Var, "this", context.currClassStruct);
                 }
 
-                if (context.isCurrMethodStatic) {
-                    context.staticMethods.add(context.currMethod.getAdr());
-                }
-
-                context.isCurrMethodStatic = false;
                 result = context.currentDeclarationType;
                 break;
             }
             case METHOD_START: {
                 context.currMethod.setAdr(Code.pc);
-                if (context.currClass != null) {
+                if (context.currClass != null && !context.isCurrMethodStatic) {
                     parameters.value ++;
                 }
                 context.currMethod.setLevel(parameters.value);
@@ -166,6 +161,12 @@ public class SemanticContextUpdater {
                 context.returnFound = false;
                 Tab.chainLocalSymbols(context.currMethod);
                 Tab.closeScope();
+
+                if (context.isCurrMethodStatic) {
+                    context.staticMethods.add(context.currMethod.getAdr());
+                    context.isCurrMethodStatic = false;
+                }
+
                 context.currMethodName = null;
                 context.currMethod = null;
                 break;
@@ -219,7 +220,7 @@ public class SemanticContextUpdater {
                 Obj parentClass = Tab.find(parameters.type);
 
                 for(Obj member : parentClass.getType().getMembers()) {
-                    Tab.insert(member.getKind(), member.getName(), member.getType());
+                    Tab.currentScope().addToLocals(member);
                 }
 
                 result = context.currClassStruct;

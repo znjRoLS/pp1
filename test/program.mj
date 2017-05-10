@@ -11,6 +11,10 @@ class nekaklasa {
             return p*p * this.fld1;
         }
 
+        static int staticmetoda1(int p) {
+            return p*p;
+        }
+
     }
 }
 
@@ -34,6 +38,7 @@ class drugaklasa extends nekaklasa {
             return p;
     }
 
+
     int main()
         int i;
         drugaklasa varklasa;
@@ -43,6 +48,9 @@ class drugaklasa extends nekaklasa {
             klasa1 = new drugaklasa;
             klasa1.fld1 = 2;
             i = klasa1.metoda1(3);
+            print(i);
+
+            i = klasa1.staticmetoda1(3);
             print(i);
 
             i = metoda2(3,4);

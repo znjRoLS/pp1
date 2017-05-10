@@ -215,7 +215,7 @@ public class SemanticContextCodeGenerator {
 
                     // (another) BUT if its static, just pop the param
                     // TODO this actually generates a lot of unnecessary instructions (why call all the getfields, when we dont need THIS?)
-                    if (context.staticMethods.contains(vars.getSecond().getAdr())) {
+                    if (vars.getSecond().getKind() == Obj.Meth && context.staticMethods.contains(vars.getSecond().getAdr())) {
                         Code.put(Code.pop);
                     }
                 }

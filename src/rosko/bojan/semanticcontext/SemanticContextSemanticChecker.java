@@ -278,13 +278,13 @@ public class SemanticContextSemanticChecker {
                 break;
             }
             case BREAK : {
-                if (!context.inFor) {
+                if (!context.branchHelper.inFor()) {
                     report_error("Cannot use break statement if not in for loop!");
                 }
                 break;
             }
             case CONTINUE : {
-                if (!context.inFor) {
+                if (!context.branchHelper.inFor()) {
                     report_error("Cannot use continue statement if not in for loop!");
                 }
                 break;

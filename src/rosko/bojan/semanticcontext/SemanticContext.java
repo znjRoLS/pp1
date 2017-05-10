@@ -132,21 +132,21 @@ public class SemanticContext {
     Struct currentDeclarationType;
     boolean returnFound;
     private Logger logger = LogManager.getLogger(SemanticContext.class);
-    int adrFalseJump, adrTrueJump;
+
     public boolean errorDetected;
     boolean errorState;
 
-    int forTrueConditionJump, forFalseConditionJump, forConditionAddress, forIterationAddress;
-    ArrayList<Integer> forBreakStatements;
-    boolean inFor;
+
 
     private SemanticContextSymbolCounter symbolCounter;
     private SemanticContextSemanticChecker semanticChecker;
     private SemanticContextCodeGenerator codeGenerator;
     private SemanticContextUpdater contextUpdater;
     ObjHelper objHelper;
+    BranchHelper branchHelper;
 
     public SemanticContext() {
+        branchHelper = new BranchHelper();
         objHelper = new ObjHelper();
         symbolCounter = new SemanticContextSymbolCounter(this);
         semanticChecker = new SemanticContextSemanticChecker(this);
@@ -166,9 +166,6 @@ public class SemanticContext {
         errorState = false;
 
         currentDeclarationType = null;
-
-        forBreakStatements = new ArrayList<>();
-        inFor = false;
     }
 
     public void errorDetected() {

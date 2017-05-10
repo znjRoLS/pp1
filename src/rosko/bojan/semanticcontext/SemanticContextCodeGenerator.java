@@ -215,62 +215,88 @@ public class SemanticContextCodeGenerator {
             }
 
             case IF_START: {
+                context.branchHelper.openNewIf();
+                BranchHelper.IfStruct currentIf = context.branchHelper.getCurrentIf();
+
                 Code.loadConst(0);
                 Code.putFalseJump(Code.ne, 0);
-                context.adrFalseJump = Code.pc - 2;
+                currentIf.adrFalseJump = Code.pc - 2;
                 break;
             }
             case IF_END: {
-                Code.fixup(context.adrFalseJump);
+                BranchHelper.IfStruct currentIf = context.branchHelper.getCurrentIf();
+
+                Code.fixup(currentIf.adrFalseJump);
+
+                context.branchHelper.closeCurrentIf();
                 break;
             }
             case ELSE_START: {
+                BranchHelper.IfStruct currentIf = context.branchHelper.getCurrentIf();
+
                 Code.putJump(0);
-                context.adrTrueJump = Code.pc - 2;
-                Code.fixup(context.adrFalseJump);
+                currentIf.adrTrueJump = Code.pc - 2;
+                Code.fixup(currentIf.adrFalseJump);
                 break;
             }
             case ELSE_END: {
-                Code.fixup(context.adrTrueJump);
+                BranchHelper.IfStruct currentIf = context.branchHelper.getCurrentIf();
+
+                Code.fixup(currentIf.adrTrueJump);
+
+                context.branchHelper.closeCurrentIf();
                 break;
             }
 
             case FOR_INIT: {
-                context.forConditionAddress = Code.pc;
-                context.inFor = true;
+                context.branchHelper.openNewFor();
+                BranchHelper.ForStruct currentFor = context.branchHelper.getCurrentFor();
+
+                currentFor.forConditionAddress = Code.pc;
                 break;
             }
             case FOR_CONDITION: {
+                BranchHelper.ForStruct currentFor = context.branchHelper.getCurrentFor();
+
                 Code.loadConst(0);
                 Code.putFalseJump(Code.ne, 0);
-                context.forFalseConditionJump = Code.pc - 2;
+                currentFor.forFalseConditionJump = Code.pc - 2;
                 Code.putJump(0);
-                context.forTrueConditionJump = Code.pc - 2;
-                context.forIterationAddress = Code.pc;
+                currentFor.forTrueConditionJump = Code.pc - 2;
+                currentFor.forIterationAddress = Code.pc;
                 break;
             }
             case FOR_ITERATION: {
-                Code.putJump(context.forConditionAddress);
-                Code.fixup(context.forTrueConditionJump);
+                BranchHelper.ForStruct currentFor = context.branchHelper.getCurrentFor();
+
+                Code.putJump(currentFor.forConditionAddress);
+                Code.fixup(currentFor.forTrueConditionJump);
                 break;
             }
             case FOR_BLOCK: {
-                Code.putJump(context.forIterationAddress);
-                Code.fixup(context.forFalseConditionJump);
-                for (int breakStatement : context.forBreakStatements) {
+                BranchHelper.ForStruct currentFor = context.branchHelper.getCurrentFor();
+
+                Code.putJump(currentFor.forIterationAddress);
+                Code.fixup(currentFor.forFalseConditionJump);
+                for (int breakStatement : currentFor.forBreakStatements) {
                     Code.fixup(breakStatement);
                 }
-                context.forBreakStatements.clear();
-                context.inFor = false;
+                currentFor.forBreakStatements.clear();
+
+                context.branchHelper.closeCurrentFor();
                 break;
             }
             case BREAK : {
+                BranchHelper.ForStruct currentFor = context.branchHelper.getCurrentFor();
+
                 Code.putJump(0);
-                context.forBreakStatements.add(Code.pc-2);
+                currentFor.forBreakStatements.add(Code.pc-2);
                 break;
             }
             case CONTINUE : {
-                Code.putJump(context.forIterationAddress);
+                BranchHelper.ForStruct currentFor = context.branchHelper.getCurrentFor();
+
+                Code.putJump(currentFor.forIterationAddress);
                 break;
             }
 
